@@ -22,6 +22,21 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Install Typst
+        env:
+          TYPST_VERSION: "0.14.2"
+        run: |
+          # Quarto shells out to a `typst` binary on PATH for the typst
+          # format; it does not bundle one itself, so it has to be
+          # installed separately. Pinned to the version this project's
+          # --no-pdf-tags workaround (below) was verified against.
+          curl -fsSL -o typst.tar.xz \
+            "https://github.com/typst/typst/releases/download/v${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz"
+          tar -xf typst.tar.xz
+          sudo mv "typst-x86_64-unknown-linux-musl/typst" /usr/local/bin/typst
+          rm -rf typst.tar.xz typst-x86_64-unknown-linux-musl
+          typst --version
+
       - name: Render consolidated PDF (Typst)
         run: |
           # Quarto's own compile attempt below is expected to fail (see the
