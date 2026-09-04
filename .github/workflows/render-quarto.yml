@@ -22,6 +22,15 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Render consolidated PDF (Typst)
+        run: |
+          quarto render --profile pdf --to typst
+          # Workaround for a Typst tagged-PDF (accessibility) writer bug that
+          # crashes on this project (reproduced on Typst 0.14.2 and 0.15.0,
+          # tracked upstream; quarto does not expose --no-pdf-tags itself).
+          typst compile --no-pdf-tags index.typ assets/documentation.pdf
+          rm -f index.typ
+
       - name: Render and publish to gh-pages
         uses: quarto-dev/quarto-actions/publish@v2
         with:

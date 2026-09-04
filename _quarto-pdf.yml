@@ -1,0 +1,129 @@
+project:
+  type: book
+
+book:
+  title: "High Performance Computing"
+  author: "Smithsonian Institution Data Platform and Advanced Computing Office"
+  chapters:
+  - index.md
+  - part: "Overview"
+    chapters:
+      - overview.md
+      - overview/citing-acknowledging-hydra-and-its-doi.md
+  - part: "What's New"
+    chapters:
+      - what-s-new.md
+      - what-s-new/what-was-new-in-2024.md
+      - what-s-new/what-was-new-in-2023.md
+      - what-s-new/what-was-new-in-2020-to-2022.md
+  - hydra-policies.md
+  - hydra-training.md
+  - part: "Quick Start Guide"
+    chapters:
+      - quick-start-guide.md
+      - quick-start-guide/logging-into-hydra.md
+      - quick-start-guide/changing-or-resetting-your-hydra-password.md
+      - quick-start-guide/transferring-files-to-from-hydra.md
+      - quick-start-guide/the-qsub-generator.md
+      - quick-start-guide/submitting-a-job.md
+  - part: "Reference Pages"
+    chapters:
+      - reference-pages.md
+      - reference-pages/introduction.md
+      - reference-pages/hardware-description.md
+      - reference-pages/hardware-description/login-and-head-nodes.md
+      - reference-pages/hardware-description/compute-nodes.md
+      - reference-pages/hardware-description/network-ethernet-and-infiniband.md
+      - reference-pages/hardware-description/storage-systems-disks.md
+      - reference-pages/submitting-jobs.md
+      - reference-pages/submitting-jobs/conceptual-examples.md
+      - reference-pages/submitting-jobs/serial-jobs.md
+      - reference-pages/submitting-jobs/parallel-jobs.md
+      - reference-pages/submitting-jobs/parallel-jobs/mpi-jobs.md
+      - reference-pages/submitting-jobs/parallel-jobs/multi-threaded-jobs.md
+      - reference-pages/submitting-jobs/parallel-jobs/hybrid-jobs.md
+      - reference-pages/submitting-jobs/job-arrays.md
+      - reference-pages/submitting-jobs/available-queues.md
+      - reference-pages/submitting-jobs/resource-limits.md
+      - reference-pages/submitting-jobs/job-monitoring.md
+      - reference-pages/submitting-jobs/help-choosing-a-queue.md
+      - reference-pages/submitting-jobs/help-writing-a-job-script.md
+      - reference-pages/submitting-jobs/where-to-find-examples.md
+      - reference-pages/interactive-use.md
+      - reference-pages/interactive-use/using-a-jupyter-notebook-on-hydra.md
+      - reference-pages/interactive-use/using-vscode-on-hydra.md
+      - reference-pages/interactive-use/using-rstudio-on-hydra.md
+      - reference-pages/cluster-monitoring.md
+      - reference-pages/disks-space-and-usage.md
+      - reference-pages/disks-space-and-usage/disks-space-configuration.md
+      - reference-pages/disks-space-and-usage/how-to-copy-files-to-from-hydra.md
+      - reference-pages/disks-space-and-usage/how-to-copy-files-to-from-hydra/using-dropbox.md
+      - reference-pages/disks-space-and-usage/how-to-copy-files-to-from-hydra/using-firefox-send.md
+      - reference-pages/disks-space-and-usage/how-to-copy-files-to-from-hydra/using-rclone.md
+      - reference-pages/disks-space-and-usage/how-to-check-disk-quota-usage.md
+      - reference-pages/disks-space-and-usage/how-to-check-disk-quota-usage/disk-usage.md
+      - reference-pages/disks-space-and-usage/how-to-check-disk-quota-usage/quota-usage.md
+      - reference-pages/disks-space-and-usage/how-to-recover-old-or-deleted-files-using-snapshots.md
+      - reference-pages/disks-space-and-usage/scrubber-and-how-to-request-scrubbed-files-to-be-restored.md
+      - reference-pages/disks-space-and-usage/how-to-use-local-ssd-space.md
+      - reference-pages/disks-space-and-usage/how-to-use-nas-storage-and-the-i-o-queue.md
+      - reference-pages/disks-space-and-usage/how-to-use-bigtmp-access-to-large-temporary-disk-space.md
+      - reference-pages/software.md
+      - reference-pages/software/the-module-command.md
+      - reference-pages/software/the-module-command/how-to-write-your-own-module-file.md
+      - reference-pages/software/compilers-libraries-and-mpi-or-multi-threaded-programs.md
+      - reference-pages/software/compilers-libraries-and-mpi-or-multi-threaded-programs/building-running-mpi.md
+      - reference-pages/software/compilers-libraries-and-mpi-or-multi-threaded-programs/building-running-multi-threaded-programs.md
+      - reference-pages/software/packages-and-tools.md
+      - reference-pages/software/packages-and-tools/idl-gdl-fl.md
+      - reference-pages/software/packages-and-tools/java.md
+      - reference-pages/software/packages-and-tools/julia.md
+      - reference-pages/software/packages-and-tools/matlab.md
+      - reference-pages/software/packages-and-tools/python.md
+      - reference-pages/software/packages-and-tools/r-and-rstudio.md
+      - reference-pages/software/packages-and-tools/r-and-rstudio/r-on-the-command-line.md
+      - reference-pages/software/packages-and-tools/r-and-rstudio/rstudio-on-hydra-s-nodes.md
+      - reference-pages/software/packages-and-tools/r-and-rstudio/using-the-rstudio-server.md
+      - reference-pages/software/packages-and-tools/conda-anaconda-miniconda.md
+      - reference-pages/software/packages-and-tools/conda-anaconda-miniconda/installing-miniconda-on-hydra.md
+      - reference-pages/software/packages-and-tools/conda-anaconda-miniconda/using-conda.md
+      - reference-pages/software/genomics-software.md
+      - reference-pages/software/genomics-software/allpaths-lg.md
+      - reference-pages/software/genomics-software/beast.md
+      - reference-pages/software/genomics-software/blast.md
+      - reference-pages/software/genomics-software/blast2go.md
+      - reference-pages/software/genomics-software/busco.md
+      - reference-pages/software/genomics-software/genemark-es.md
+      - reference-pages/software/genomics-software/masurca.md
+      - reference-pages/software/genomics-software/smc.md
+      - reference-pages/software/genomics-software/spades.md
+      - reference-pages/software/genomics-software/local-bioinformatics-databases.md
+      - reference-pages/software/bioinformatics-software-and-modules.md
+      - reference-pages/additional-tools.md
+      - reference-pages/additional-tools/a-better-qstat-qstat.md
+      - reference-pages/additional-tools/a-better-qacct-qacct.md
+      - reference-pages/additional-tools/a-better-quota-quota.md
+      - reference-pages/additional-tools/checking-a-compute-node-with-rtop.md
+      - reference-pages/additional-tools/checking-memory-and-cpu-usage.md
+      - reference-pages/additional-tools/more-tools.md
+      - reference-pages/how-to-use-gpus.md
+      - reference-pages/how-to-use-containers.md
+  - globus.md
+  - dedicated-rstudio-server.md
+  - explanation-of-warning-emails-sent-to-users.md
+  - faqs.md
+  - part: "Cluster Upgrades"
+    chapters:
+      - cluster-upgrades.md
+      - cluster-upgrades/2024-cluster-upgrade-to-hydra-7.md
+      - cluster-upgrades/2024-cluster-upgrade-to-hydra-7/2024-upgrade-details.md
+      - cluster-upgrades/2024-cluster-upgrade-to-hydra-7/2024-upgrade-details/bio-packages.md
+      - cluster-upgrades/nov-2021-updates-compilers-tools-and-more.md
+      - cluster-upgrades/2021-cluster-upgrade-to-hydra-6.md
+      - cluster-upgrades/2019-cluster-upgrade-to-hydra-5.md
+  - 2025-data-center-move.md
+
+format:
+  typst:
+    toc: true
+    keep-typ: true
