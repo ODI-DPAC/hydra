@@ -5,3 +5,4 @@
 /index_files/
 
 **/*.quarto_ipynb
+*.log

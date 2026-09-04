@@ -24,10 +24,14 @@ jobs:
 
       - name: Render consolidated PDF (Typst)
         run: |
-          quarto render --profile pdf --to typst
+          # Quarto's own compile attempt below is expected to fail (see the
+          # workaround note); `|| true` keeps the step alive so the manual
+          # `typst compile` after it can still run.
+          quarto render --profile pdf --to typst || true
           # Workaround for a Typst tagged-PDF (accessibility) writer bug that
           # crashes on this project (reproduced on Typst 0.14.2 and 0.15.0,
           # tracked upstream; quarto does not expose --no-pdf-tags itself).
+          test -f index.typ
           typst compile --no-pdf-tags index.typ assets/documentation.pdf
           rm -f index.typ
 
