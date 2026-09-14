@@ -24,7 +24,7 @@ author: "SGK/PBF"
 
 
 - You can copy files to/from `hydra` using `scp`, `sftp or rsync:`
-    - to `Hydra` you can only copy from *trusted* hosts (computers on SI or SAO/CfA trusted network, or VPN'ed),
+    - to `Hydra` you can only copy from *trusted* hosts (computers on SI trusted network, or VPN'ed),
     - from `Hydra` to any host that allows external `ssh` connections (if you can `ssh` from Hydra to it, you can `scp`, `sftp and rsync` to it).
 - For large transfers (over 70GB, sustained), we ask users to use `rsync`, and limit the bandwidth to 20 MB/s (70 GB/h), with the "`--bwlimit="` option:
     - `rsync --bwlimit=20000 ...` 
