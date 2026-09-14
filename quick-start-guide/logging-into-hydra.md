@@ -50,9 +50,9 @@ You can use either one.
 To connect to Hydra you must either:
 
 
-- use SI's or SAO/CfA's VPN, or
+- use SI's VPN, or
 - use `telework.si.edu` , (see below), or
-- use a "*trusted*" computer: one connected to the Smithsonian network - SI or SAO/CfA
+- use a "*trusted*" computer: one connected to the Smithsonian network
 
 
 To prevent brute force hacking, **users accounts are locked for 15 minutes after 3 failed login attempts:**
@@ -65,8 +65,7 @@ To prevent brute force hacking, **users accounts are locked for 15 minutes after
 ### Requesting Access
 
 
-- SAO users should follow the instruction posted on the [CF: Services: High Performance Computing web page](https://www.cfa.harvard.edu/cf/services/cluster/),
-- Non-SAO users should fill out this [online form](https://smithsonianprod.servicenowservices.com/si?id=sc_cat_item&sys_id=962e05331b96e05078932f41f54bcb3b&sysparm_category=8b5b9d421b601410520ba82eac4bcb65) for a new Hydra account and this [online form](https://smithsonianprod.servicenowservices.com/si?id=sc_cat_item&sys_id=cd8bcf38dbaec810faac7c031f961992&sysparm_category=8b5b9d421b601410520ba82eac4bcb65) for a VPN account.
+- Users should fill out this [online form](https://smithsonianprod.servicenowservices.com/si?id=sc_cat_item&sys_id=962e05331b96e05078932f41f54bcb3b&sysparm_category=8b5b9d421b601410520ba82eac4bcb65) for a new Hydra account and this [online form](https://smithsonianprod.servicenowservices.com/si?id=sc_cat_item&sys_id=cd8bcf38dbaec810faac7c031f961992&sysparm_category=8b5b9d421b601410520ba82eac4bcb65) for a VPN account.
 
 
 # Logging in From a Computer Running MacOS
@@ -187,7 +186,7 @@ You are now logged into Hydra!
 # Logging in From a Computer Running Linux
 
 
-- From a trusted computer (i.e. most CF- or HEA-managed machines, or after enabling SI's or SAO/CfA's VPN) use`ssh` to connect to one of the two login nodes:
+- From a trusted computer (i.e. most SI-managed machines, or after enabling SI's VPN) use`ssh` to connect to one of the two login nodes:
     - `ssh hydra-login01.si.edu`
 
 
