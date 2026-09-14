@@ -25,4 +25,4 @@ If you have used Hydra for work that will be a part of a scholarly or profession
 "*(Some of) [Tt]he computations in this paper were conducted on the Smithsonian High Performance Cluster (SI/HPC), Smithsonian Institution. [https://doi.org/10.25572/SIHPC](https://doi.org/10.25572/SIHPC)*".
 
 
-We also would very much appreciate being notified of such citations, so please email us ([hpc\@cfa.harvard.edu](mailto:hcp@cfa.harvard.edu) for SAO users, [SI-HPC\@si.edu](mailto:SIHPC@si.edu) for others) the reference to the citation, and if you can think of one, add a nice illustration with a short caption in layperson's terms.
+We also would very much appreciate being notified of such citations, so please [email us](mailto:SI-HPC@si.edu) the reference to the citation, and if you can think of one, add a nice illustration with a short caption in layperson's terms.
