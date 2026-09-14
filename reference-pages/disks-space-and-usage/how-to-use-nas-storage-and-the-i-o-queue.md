@@ -17,7 +17,7 @@ author: "SGK"
     - Note that we reserve the right to clean up old stuff that is likely to accumulate in the future, with proper notification, once it fills up.
 
 
-SAO users interested in receiving an allocation in `/store/public`should contact Sylvain ([hpc\@cfa.harvard.edu](mailto:hpc@cfa.harvard.edu)) and Biology users should contact Rebecca ([DikowR\@si.edu](mailto:DikowR@si.edu)).
+Users interested in receiving an allocation in `/store/public` should contact [Hydra admin](mailto:si-hpc-admin@si.edu).
 
 
 ## Additional Technical Details
