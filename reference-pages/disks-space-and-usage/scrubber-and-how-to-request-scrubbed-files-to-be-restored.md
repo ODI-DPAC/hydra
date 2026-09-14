@@ -164,10 +164,7 @@ To produce the list of files to restore (that in this example were under `/scrat
 `verify-restore-list -d /scratch/public/genomics/kweskinm 240721 restore.list` 
 if the verification produced an error, edit the file accordingly.
     - You need a separate restore file per scrubbed date and per disk (i.e., `/scratch`vs `/scratch`)
-5. Only then, and if the verification produced no error, submit your scrubbed file restoration request as follow:
-    - SAO users: email the location of the list file(s) to [hpc\@cfa.harvard.edu](mailto:hpc@cfa.harvard.edu)
-    - non-SAO users: email the location of the list file(s) to [SI-HPC\@si.edu](mailto:SI-HPC@si.edu)
-        - While you can email the list file(s) themselves, it is more a lots more convenient for us if these list files are already somewhere on Hydra.
+5. Only then, and if the verification produced no error, submit your scrubbed file restoration request: email the location of the list file(s) to [SI-HPC\@si.edu](mailto:SI-HPC@si.edu). While you can email the list file(s) themselves, it is a lot more convenient for us if these list files are already somewhere on Hydra.
 
 
 You can also consult the man pages for the `list-scrubbed-files` and `verify-restore-list` commands, as follows:
