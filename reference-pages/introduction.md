@@ -65,24 +65,13 @@ Note that it does not represent the actual physical layout.
 
 ## Requesting Accounts
 
-
-- *SAO users* should request an account following the [instructions posted on the CF's web page](https://www.cfa.harvard.edu/cf/services/cluster/). 
 Accounts on Hydra are separate from `CF`, `HEA`, `SI`'s Active Directory, or `VPN` accounts.
-- *Non-SAO users* should request an account by [submitting a request through the SI Service Portal](https://smithsonianprod.servicenowservices.com/si/?id=sc_cat_item&sys_id=962e05331b96e05078932f41f54bcb3b). 
-Accounts on Hydra are separate from `SI`'s Active Directory, or `VPN` accounts.
-
+- Users should request an account by [submitting a request through the SI Service Portal](https://smithsonianprod.servicenowservices.com/si/?id=sc_cat_item&sys_id=962e05331b96e05078932f41f54bcb3b). 
 
 ## Secure Connection
 
-
-- You can connect to the login nodes using `ssh`*only from a trusted machine*.
-- Trusted machines are computers connected via a hardwired network link to SI's or SAO's network.
-- Any other computer, like your laptop, a *"self-managed"* computer, a computer at another institution, or a computer connected via WiFi, must be *authenticated* using VPN.
-- Information on VPN authentication is available elsewhere:
-    - [here for SI (via OCIO)](http://prism2.si.edu/ocio/pages/LP-WiFiNetwork.aspx), and
-    - [here for SAO (via CF/HEA)](https://www.cfa.harvard.edu/cf/services/remote/).
-- SAO users can also connect to the cluster using `ssh` directly from *trusted* machine (like an ITS-managed machine).
-
+- You can connect to the login nodes using `ssh` only from a machine physically on SINet or via the SI VPN.
+- Information on VPN authentication is available [here](https://smithsonianprod.servicenowservices.com/si?sys_kb_id=e2996a031b79ae50e5c0657ae54bcb5d&id=kb_article_view&sysparm_rank=1&sysparm_tsqueryId=b8c7ecb2cf9f43500b16fb152f851cc6).
 
 ## SSH Clients
 
@@ -211,25 +200,16 @@ Refer to the [Software pages](https://confluence.si.edu/pages/viewpage.action?pa
 # 5. Support
 
 
-The cluster is located in Herndon, VA and is managed by ORCS/OCIO (Office of Research Computing Services/Office of the Chief Information Officer).
+The cluster is located in Ashburn, VA and is managed by the Office of Data Platforms and Advanced Computing, part of the Office of the Chief Data and AI Officer, itself part of the Office of Digital and Innovation.
 
 
 The cluster is supported by the following individuals:
 
-
-- DJ Ding ([DingDJ\@si.edu](mailto:UddinJ@si.edu)), the the system administrator (at OCIO, Herndon, VA).
-    - As the sys-admin, he is responsible to keep the cluster operational and secure.
-
-
-- Alex White ([WhiteAE\@si.edu](mailto:WhiteAE@si.edu)) - Research Data Scientist, OCIO Data Science Lab (Washington, D.C.);
-- Matthew Kweskin ([KweskinM\@si.edu](mailto:KweskinM@si.edu)) - NMNH/L.A.B., IT specialist (Washington, D.C.).
-- Mike Trizna ([TriznaM\@si.edu](mailto:TriznaM@si.edu)) - Data Scientist, OCIO Data Science Lab, Washington, D.C.).
-- Vanessa Gonzalez ([GonzalezV\@si.edu](mailto:GonzalezV@si.edu)) - NMNH/GGI, biologist (Washington, D.C.).**
-- Sylvain Korzennik ([hpc\@cfa.harvard.edu](mailto:hpc@cfa.harvard.edu)), Astronomer at SAO (Cambridge, MA);
-    - primary support person for SAO/CfA users.
-- Babin Sunar ([hpc\@cfa.harvard.edu](mailto:hpc@cfa.harvard.edu)), IT specialist at SAO (Cambridge, MA);
-    - offers additional support person for SAO/CfA users.
-
+- DJ Ding ([DingDJ\@si.edu](mailto:DingDJ@si.edu)), the system administrator.
+- Alex White ([WhiteAE\@si.edu](mailto:WhiteAE@si.edu)) - Research Data Scientist, ODI/CDAIO/DPAC.
+- Matthew Kweskin ([KweskinM\@si.edu](mailto:KweskinM@si.edu)) - NMNH/L.A.B., IT specialist.
+- Mike Trizna ([TriznaM\@si.edu](mailto:TriznaM@si.edu)) - Data Scientist, ODI/CDAIO/DPAC.
+- Vanessa Gonzalez ([GonzalezV\@si.edu](mailto:GonzalezV@si.edu)) - NMNH/GGI, biologist.
 
 Support is also provided by other OCIO staff members (networking, etc...).
 
@@ -238,13 +218,11 @@ Support is also provided by other OCIO staff members (networking, etc...).
 
 
 - *For sys-admin issues:* (something is not working any more, etc):
-    - *All users* should contact DJ (and Sylvain & Babin) at [SI-HPC-Admin\@si.edu](mailto:SI-HPC-Admin@si.edu)
+    - Use [SI-HPC-Admin\@si.edu](mailto:SI-HPC-Admin@si.edu)
 - *For application support:* (how do I do this?, why did that fail?, etc)*:*
-    - *SAO users* should contact Sylvain, *not* the `CF` or `HEA` support sys-admin groups, at [hpc\@cfa.harvard.edu](mailto:hpc@cfa.harvard.edu),
-    - *Non-SAO users* should contact Alex, Mike, Vanessa & Matt at [SI-HPC\@si.edu](mailto:SI-HPC@si.edu)
+    - Use [SI-HPC\@si.edu](mailto:SI-HPC@si.edu)
 - *Password problems:* go to the[self-serve password page](https://hydra-adm01.si.edu/ssp/).
-- Please use these email addresses to let the SI/HPC support team address your issues as soon as possible,
-    - rather than emailing individuals directly.
+- Please use these email addresses to let the SI/HPC support team address your issues as soon as possible, rather than emailing individuals directly.
 
 
 ## Mailing List
