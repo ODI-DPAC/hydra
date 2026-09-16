@@ -42,11 +42,6 @@ RStudio can be started or accessed in various ways:
 # 4. Getting help and providing feedback
 
 
-For assistance with the using R or RStudio on Hydra or Hydra's RStudio Server, please use the existing help resources for Hydra. 
+For assistance with the using R or RStudio on Hydra or Hydra's RStudio Server, please [use the existing help resources](mailto:SI-HPC@si.edu) for Hydra. 
 Include the full error message and include whether you are using the dedicated RStudio Server, starting your own (and how) or R via the command line, when contacting support to expedite troubleshooting.
 
-
-| [SI-HPC-Admin\@si.edu](mailto:SI-HPC-Admin@si.edu) | for Sys-Admin related issues, |
-| --- | --- |
-| [SI-HPC\@si.edu](mailto:SI-HPC@si.edu) | for non-SAO users who need help, |
-| [hpc\@cfa.harvard.edu](mailto:hpc@cfa.harvard.edu) | for SAO users who need help. |
