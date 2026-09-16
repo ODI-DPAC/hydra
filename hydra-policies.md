@@ -36,10 +36,6 @@ In addition, it is expected that each SI/HPC user will provide and keep up to da
 - Supervisor approval via online interface
 - 1-2 sentence description of the work they plan to conduct on Hydra.
 
-
-SAO/CfA affiliates should the account request [form](https://lweb.cfa.harvard.edu/cf/services/cluster/request-account.html) hosted at the [SAO/CfA ITS/HPC info page](https://lweb.cfa.harvard.edu/cf/services/cluster/), managed by the SAO HPC analysist (currently: Sylvain Korzennik).
-
-
 Introduction to Hydra workshops are held quarterly; contact [SI-HPC\@si.edu](mailto:SI-HPC@si.edu) for more information.
 
 
@@ -157,7 +153,7 @@ Our overarching goal is to support all users: to get all jobs through the queue 
 **Communication**
 
 
-All users are expected to check **and** read their email regularly, including those from the HPCC-L mail group (hpcc-l\@cfa.harvard.edu) . Users will be added to the HPCC-L mail group when they are granted an account.
+All users are expected to check and read their email regularly.
 
 
 The SI/HPC admins use email to:
@@ -186,5 +182,3 @@ A `~/.forward` file is created for each new account, using the user *canonical* 
 
 
 - All questions should be send to [si-hpc\@si.edu](mailto:si-hpc@si.edu)
-- SAO users: Sylvain Korzennik & Babin Sunar at [hpc\@cfa.harvard.edu](mailto:hpc@cfa.harvard.edu)
-- Non-SAO users: Alex E. White, Matthew Kweskin, Vanessa Gonzalez, Mike Trizna and Kenneth (Tripp) Macdonald at [si-hpc\@si.edu](mailto:si-hpc@si.edu)
