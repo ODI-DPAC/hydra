@@ -209,11 +209,8 @@ s_cpu                 INFINITY
 # 4. Cluster Status Web Page
 
 
-We also maintain a cluster status web page that can be accessed at two locations:
+We also maintain a cluster status web page that can be accessed  at https://hydra-7.si.edu/tools/status/ as long as you are on SINet or the SI VPN.
 
-
-- from a trusted machine, [here (at .si.edu)](https://hydra-7.si.edu/tools/status/), or
-- from anywhere, [here (at .cfa.harvard.edu).](https://lweb.cfa.harvard.edu/~sylvain/hydra/)
 - You can specify up to 3 arguments to the URL, especially useful if you bookmark it, to specify either:
     1. the sorting in the cluster snapshot graph with `sortby=`, like in `sortby=nCPU`
     2. the length of the plots vs time with `len=`, like in `len=7d`
