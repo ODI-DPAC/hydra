@@ -227,19 +227,4 @@ Support is also provided by other OCIO staff members (networking, etc...).
 
 ## Mailing List
 
-
-A mailing list, called `HPPC-L` on SI's listserv (i.e., at `si-listserv.si.edu`, hence `HPCC-L@si-listserv.si.edu`) is available to contact all the users of the cluster.
-
-
-This mailing list is used by the support people to notify the users of important changes, etc.
-
-
-- You can also use this mailing list to communicate with other cluster users, share ideas, ask for help with cluster use problems, offer advice and solutions to problems, etc.
-- The mailing list is read by the cluster sysadmin and support staff as well as by other cluster users.
-
-
-To email to that list you must log to the `listserv` and post your message. Note that:
-
-
-- replies to these messages are by default broadcast to the entire list; and
-- you will need to set up a password on this `listserv` the first time you use it (look in the upper right, under "Options").
+All users of the cluster are added to a mailing list `hpcc-l@cfa.harvard.edu` to provide for notifications of important changes, etc.
