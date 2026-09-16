@@ -55,7 +55,7 @@ Subject: Process 1259315 priority was lowered on hydra-login01.si.edu
 
 - What you're doing is using high CPU for a sustained period of time, and this should not be running on one of the login node.
     - *Analyses*: These should be run in the interactive queue or submitted as a job.
-    - *File transfers*: Some file transfer programs can produce high CPU. Please contact [hpc\@cfa.harvard.edu](mailto:hpc@cfa.harvard.edu) (SAO users) or [si-hpc\@si.edu](mailto:si-hpc@si.edu) (others) for alternative programs that use less CPU.
+    - *File transfers*: Some file transfer programs can produce high CPU. Please contact [si-hpc\@si.edu](mailto:si-hpc@si.edu) for alternative programs that use less CPU.
     - *Conda*: c`onda` commands can use high CPU in the 'solving environment' stage of installing packages.
         - Run the `conda` command in an interactive session.
         - Consider using `mamba` which is much more efficient in the 'solving environment' stage.

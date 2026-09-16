@@ -16,7 +16,7 @@ All new (non-SAO) Hydra users are required to watch the video available at [this
 3. Inform users about the Hydra usage policies (posted [here](hydra-policies.md)) and ensure that they agree to abide by those policies
 
 
-For questions concerns about the training, please contact us at [si-hpc\@si.edu](mailto:si-hpc@si.edu) (non-SAO users) or [hpc\@cfa.harvard.edu](mailto:hpc@cfa.harvard.edu) (SAO users).
+For questions or concerns about the training, please contact us at [si-hpc\@si.edu](mailto:si-hpc@si.edu).
 
 
 Other training materials are available in this [GitHub repository](https://github.com/SmithsonianWorkshops/Hydra-introduction).
