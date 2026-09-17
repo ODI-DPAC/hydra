@@ -1,5 +1,5 @@
 ---
-title: Smithsonian HPC
+title: Hydra user documentation
 hide:
   - navigation
   - toc
@@ -7,7 +7,7 @@ hide:
 
 # Hydra: Smithsonian High Performance Computing
 
-Hydra is the Smithsonian Institution HPC cluster, run by the Data Platform and Advanced Computing Office under the Office of Digital and Innovation. It is housed at the Ashburn Data Center in Virginia. This site is the user documentation.
+Hydra is the Smithsonian Institution HPC cluster, run by the Data Platform and Advanced Computing Office under the Office of Digital and Innovation, and housed at the Ashburn Data Center in Virginia.
 
 <div class="grid cards" markdown>
 
@@ -15,7 +15,7 @@ Hydra is the Smithsonian Institution HPC cluster, run by the Data Platform and A
 
     ---
 
-    Who is eligible, what to send, and what happens next.
+    Eligibility, the request form, password setup.
 
     [:octicons-arrow-right-24: Request an account](getting-started/account.md)
 
@@ -23,7 +23,7 @@ Hydra is the Smithsonian Institution HPC cluster, run by the Data Platform and A
 
     ---
 
-    Log in, copy a file, submit your first job. Ten minutes.
+    `ssh` to a login node, copy a file, submit and check on your jobs.
 
     [:octicons-arrow-right-24: Quick start](getting-started/quick-start.md)
 
@@ -31,7 +31,7 @@ Hydra is the Smithsonian Institution HPC cluster, run by the Data Platform and A
 
     ---
 
-    Queues, job scripts, limits, monitoring, and what the warning emails mean.
+    `qsub` and job scripts, queue selection, memory and CPU requests, resource limits, `qstat+`, warning emails.
 
     [:octicons-arrow-right-24: Running jobs](hydra/jobs/index.md)
 
@@ -39,15 +39,15 @@ Hydra is the Smithsonian Institution HPC cluster, run by the Data Platform and A
 
     ---
 
-    Which filesystem to use, quotas, snapshots, the scrubber, and transfer tools.
+    `/home`, `/data`, `/scratch`, `/store`; quotas, snapshots, the 180-day scrubber; scp, Globus, rclone.
 
-    [:octicons-arrow-right-24: Storage](hydra/storage/index.md) · [Data transfer](data-transfer/index.md)
+    [:octicons-arrow-right-24: Storage](hydra/storage/index.md)
 
 -   :material-package-variant:{ .lg .middle } **Find software**
 
     ---
 
-    Modules, compilers, Python, R, bioinformatics packages, GPUs, containers.
+    `module avail`, compilers and MPI, Python and conda, R, the `bio/` packages, GPUs, containers.
 
     [:octicons-arrow-right-24: Software](hydra/software/index.md)
 
@@ -55,7 +55,7 @@ Hydra is the Smithsonian Institution HPC cluster, run by the Data Platform and A
 
     ---
 
-    Cluster status, FAQ, policies, and how to reach the HPC team.
+    Usage policies, FAQ, cluster status, what to include when you email SI-HPC@si.edu.
 
     [:octicons-arrow-right-24: Policies and support](policies/index.md)
 
@@ -63,12 +63,10 @@ Hydra is the Smithsonian Institution HPC cluster, run by the Data Platform and A
 
 ## Status and contact
 
-- Cluster status: [status page](policies/status.md) (reachable from SI networks or VPN)
+- Cluster status: [status page](policies/status.md) (SI networks or VPN only)
 - Questions and problems: **SI-HPC@si.edu**
 - Job script builder: [QSub Generator](hydra/jobs/qsubgen.md)
 
-## Latest news
+## News
 
-See [News](news/index.md) for change notices, upgrades and outages.
-
-<!-- TODO: once the blog has posts, pull the latest three here with a snippet or leave the link. -->
+Change notices, upgrades and outages: [News](news/index.md).
