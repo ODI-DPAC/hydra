@@ -1,9 +1,9 @@
 # Hydra documentation. Build: mkdocs serve   Deploy: push to main (see .github/workflows/deploy.yml)
 site_name: Smithsonian HPC
 site_description: User documentation for Hydra, the Smithsonian Institution High Performance Computing cluster
-site_url: https://REPLACE_ME_ORG.github.io/hydra-docs/
-repo_url: https://github.com/REPLACE_ME_ORG/hydra-docs
-repo_name: REPLACE_ME_ORG/hydra-docs
+site_url: https://smithsonian.github.io/hydra/
+repo_url: https://github.com/Smithsonian/hydra
+repo_name: Smithsonian/hydra
 edit_uri: edit/main/docs/
 copyright: Smithsonian Institution, Office of Digital and Innovation
 
@@ -49,11 +49,11 @@ extra_css:
   - stylesheets/extra.css
 
 extra:
-  status_url: https://REPLACE_ME_STATUS_PAGE
+  status_url: https://hydra.si.edu/tools/status/
   support_email: SI-HPC@si.edu
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/REPLACE_ME_ORG/hydra-docs
+      link: https://github.com/Smithsonian/hydra
 
 plugins:
   - search
