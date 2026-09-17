@@ -1,0 +1,12 @@
+/* Smithsonian palette placeholder. Adjust to brand guidance. */
+:root {
+  --md-primary-fg-color: #1a3c6e;
+  --md-primary-fg-color--light: #2f5a9a;
+  --md-primary-fg-color--dark: #0f2444;
+  --md-accent-fg-color: #b8860b;
+}
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #0f2444;
+  --md-accent-fg-color: #e0aa2a;
+}
+.md-grid { max-width: 72rem; }

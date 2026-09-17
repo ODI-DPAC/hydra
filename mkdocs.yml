@@ -1,0 +1,179 @@
+# Hydra documentation. Build: mkdocs serve   Deploy: push to main (see .github/workflows/deploy.yml)
+site_name: Smithsonian HPC
+site_description: User documentation for Hydra, the Smithsonian Institution High Performance Computing cluster
+site_url: https://REPLACE_ME_ORG.github.io/hydra-docs/
+repo_url: https://github.com/REPLACE_ME_ORG/hydra-docs
+repo_name: REPLACE_ME_ORG/hydra-docs
+edit_uri: edit/main/docs/
+copyright: Smithsonian Institution, Office of Digital and Innovation
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  logo: assets/logo.svg
+  favicon: assets/favicon.png
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - navigation.instant
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - content.tabs.link
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  status_url: https://REPLACE_ME_STATUS_PAGE
+  support_email: SI-HPC@si.edu
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/REPLACE_ME_ORG/hydra-docs
+
+plugins:
+  - search
+  - blog:
+      blog_dir: news
+      blog_toc: true
+      post_url_format: "{date}/{slug}"
+      post_date_format: long
+      archive_name: By year
+      archive_date_format: yyyy
+      categories: false
+      authors: false
+      pagination_per_page: 10
+  - git-revision-date-localized:
+      type: date
+      fallback_to_build_date: true
+      enable_creation_date: false
+  - redirects:
+      redirect_maps: {}
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - def_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.keys
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+# Nav is independent of the directory tree. Cluster-specific content lives under
+# docs/hydra/ so a second platform (AWS, etc.) can be added later by regrouping
+# this nav without moving files or changing URLs.
+nav:
+  - Home: index.md
+  - Getting Started:
+      - getting-started/index.md
+      - Requesting an account: getting-started/account.md
+      - Logging in and passwords: getting-started/login.md
+      - Quick start: getting-started/quick-start.md
+      - Training and workshops: getting-started/training.md
+      - Citing Hydra: getting-started/citing.md
+  - Running Jobs:
+      - hydra/jobs/index.md
+      - How the cluster and scheduler work: hydra/jobs/concepts.md
+      - Queues and how to choose one: hydra/jobs/queues.md
+      - Writing a job script: hydra/jobs/job-scripts.md
+      - QSub Generator: hydra/jobs/qsubgen.md
+      - Serial, parallel and array jobs: hydra/jobs/job-types.md
+      - Resource limits: hydra/jobs/limits.md
+      - Monitoring jobs: hydra/jobs/monitoring.md
+      - Job efficiency and warning emails: hydra/jobs/efficiency.md
+      - Example scripts: hydra/jobs/examples.md
+      - Cluster hardware:
+          - hydra/hardware/index.md
+          - Nodes and network: hydra/hardware/nodes.md
+          - Hardware limits table: hydra/hardware/limits.md
+  - Interactive Use:
+      - hydra/interactive/index.md
+      - Interactive sessions (qrsh): hydra/interactive/qrsh.md
+      - Jupyter: hydra/interactive/jupyter.md
+      - VS Code: hydra/interactive/vscode.md
+      - RStudio: hydra/interactive/rstudio.md
+  - Storage:
+      - hydra/storage/index.md
+      - Filesystems: hydra/storage/filesystems.md
+      - Quotas and checking usage: hydra/storage/quotas.md
+      - Snapshots and recovering files: hydra/storage/snapshots.md
+      - Scrubber: hydra/storage/scrubber.md
+      - Local SSD, NAS and bigtmp: hydra/storage/special.md
+      - Backups and disaster recovery: hydra/storage/backups.md
+  - Software:
+      - hydra/software/index.md
+      - Modules: hydra/software/modules.md
+      - Writing your own module file: hydra/software/custom-modules.md
+      - Compilers, libraries and MPI: hydra/software/compilers.md
+      - Python and conda: hydra/software/python.md
+      - R: hydra/software/r.md
+      - Julia, MATLAB, IDL and Java: hydra/software/other-languages.md
+      - Bioinformatics modules: hydra/software/bio-modules.md
+      - Bioinformatics guides:
+          - hydra/software/bio-guides/index.md
+          - Local databases: hydra/software/bio-guides/databases.md
+      - GPUs: hydra/software/gpus.md
+      - Containers: hydra/software/containers.md
+  - Data Transfer:
+      - data-transfer/index.md
+      - scp, sftp and rsync: data-transfer/scp-rsync.md
+      - Globus: data-transfer/globus.md
+      - rclone and cloud storage: data-transfer/rclone.md
+  - Policies & Support:
+      - policies/index.md
+      - Usage policies: policies/usage.md
+      - Getting help: policies/help.md
+      - FAQ: policies/faq.md
+      - Cluster status: policies/status.md
+  - News:
+      - news/index.md
+      - Cluster upgrades:
+          - news/upgrades/index.md
+          - 2025 data center move: news/upgrades/2025-data-center-move.md
+          - 2024 upgrade to Hydra-7: news/upgrades/2024-hydra-7.md
+          - 2021 upgrade to Hydra-6: news/upgrades/2021-hydra-6.md
+          - 2019 upgrade to Hydra-5: news/upgrades/2019-hydra-5.md
