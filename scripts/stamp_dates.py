@@ -6,6 +6,8 @@ import subprocess, pathlib, sys
 docs = pathlib.Path("docs")
 n = 0
 for md in docs.rglob("*.md"):
+    if md == docs / "index.md":
+        continue
     date = subprocess.run(
         ["git", "log", "-1", "--format=%cs", "--", str(md)],
         capture_output=True, text=True).stdout.strip()

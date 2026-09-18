@@ -4,7 +4,7 @@ Change notices, upgrades, outages and new features, newest first. Major upgrades
 
 ## 2026
 
-<a id="maint-2026-10-07"></a>**Oct 7, 2026.** Scheduled maintenance, 08:00 to 17:00 ET. All queues are disabled at 08:00; running jobs are terminated, queued jobs are held and resume afterward. Login nodes are unavailable.
+**October 7.** Scheduled maintenance, 08:00 to 17:00 ET. All queues are disabled at 08:00; running jobs are terminated, queued jobs are held and resume afterward. Login nodes are unavailable.
 
 ## 2025
 

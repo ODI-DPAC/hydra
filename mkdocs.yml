@@ -5,7 +5,7 @@ site_url: https://smithsonian.github.io/hydra/
 repo_url: https://github.com/Smithsonian/hydra
 repo_name: Smithsonian/hydra
 edit_uri: edit/main/docs/
-copyright: Smithsonian Institution, Office of Digital and Innovation
+copyright: 'Smithsonian Institution, Office of Digital and Innovation &middot; <a href="mailto:SI-HPC@si.edu">SI-HPC@si.edu</a>'
 
 theme:
   name: material

@@ -25,6 +25,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Stamp last-updated dates from git
         run: python scripts/stamp_dates.py
+      - name: Refresh home page news from News
+        run: python scripts/build_home_news.py
       - name: Build
         run: zensical build --clean --strict
       - uses: actions/upload-pages-artifact@v5

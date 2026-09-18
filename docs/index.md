@@ -11,7 +11,7 @@ hide:
 
 <p class="hero__kicker">Smithsonian High Performance Computing</p>
 
-# Hydra
+# <span class="hero__name">Hydra</span> <span class="hydra-status"></span>
 
 The SI HPC cluster contains 78 compute nodes, including GPU nodes, with 5,900 CPU cores and 50 TB of memory. The system is designed and operated by the Data Platforms and Advanced Computing team in the Office of Digital and Innovation.
 
@@ -66,23 +66,21 @@ The SI HPC cluster contains 78 compute nodes, including GPU nodes, with 5,900 CP
 
 - Cluster status: [status page](policies/status.md) (SI networks or VPN only)
 - [FAQ](policies/faq.md) and [usage policies](policies/usage.md)
-- [Warning emails](hydra/jobs/efficiency.md)
-- Questions and problems: **SI-HPC@si.edu**
-- Job script builder: [QSub Generator](hydra/jobs/qsubgen.md)
+- Email **SI-HPC@si.edu** with your username, job ID, and the error text
 
 </div>
 
-<div class="card" markdown>
+<div class="card card--link" markdown>
 
-## News
+## [News](news/index.md)
 
-**Dec 16, 2025.** RStudio server upgraded (new OS and R version).
+<!-- news:start -->
+**October 7, 2026.** Scheduled maintenance, 08:00 to 17:00 ET.
 
-**Dec 8, 2025.** QSubGen now includes virtual memory and GPU options.
+**December 16, 2025.** The production RStudio server was upgraded with an updated OS and R version.
 
-**Dec 5, 2025.** Scrubber resumed on public disks.
-
-[:octicons-arrow-right-24: All news](news/index.md)
+**December 8, 2025.** QSubGen now includes virtual memory and GPU options.
+<!-- news:end -->
 
 </div>
 

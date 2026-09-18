@@ -62,27 +62,6 @@
   .hydra-announce__action { display: none; }
 }
 
-/* Cluster status pill after the site name in the header; state from extra.announce
-   via the CSS variables set in overrides/main.html */
-.md-header__topic:first-child {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-.md-header__topic:first-child::after {
-  content: var(--hydra-status-label);
-  position: relative;
-  padding: 0.12rem 0.55rem 0.12rem 1rem;
-  border-radius: 1rem;
-  background: var(--hydra-status-bg);
-  background-image: radial-gradient(circle at 0.5rem 50%, var(--hydra-status-fg) 0.17rem, transparent 0.2rem);
-  color: var(--hydra-status-fg);
-  font-size: 0.58rem;
-  font-weight: 600;
-  line-height: 1.4;
-  white-space: nowrap;
-}
-
 /* Full-bleed landing page hero: navy band edge to edge under the tabs,
    image on the right, gradient over both so the text half is solid,
    text kept on the 61rem page grid by .hero__inner.
@@ -114,18 +93,33 @@
   margin: 0 0 0.2rem;
 }
 .md-typeset .hero h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
   color: #fff;
   font-size: 1.8rem;
   margin: 0 0 0.9rem;
-  padding-bottom: 0.6rem;
-  border-bottom: 3px solid var(--si-yellow);
-  display: inline-block;
 }
 .md-typeset .hero h1 .headerlink {
   display: none;
 }
+.md-typeset .hero__name {
+  position: relative;
+}
+.md-typeset .hero__name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.6rem;
+  height: 3px;
+  background: var(--si-yellow);
+}
+.md-typeset .hero .hydra-status {
+  margin-bottom: 0.7rem;
+}
 .md-typeset .hero p {
-  max-width: 48rem;
+  max-width: 51rem;
   font-size: 0.85rem;
   line-height: 1.5;
   margin: 0;
@@ -141,6 +135,23 @@
 }
 .md-container {
   overflow-x: clip;
+}
+
+/* Cluster status pill beside the cluster name; state from extra.announce
+   via the CSS variables set in overrides/main.html */
+.md-typeset .hydra-status::after {
+  content: var(--hydra-status-label);
+  display: inline-block;
+  padding: 0.12rem 0.55rem 0.12rem 1rem;
+  border-radius: 1rem;
+  background: var(--hydra-status-bg);
+  background-image: radial-gradient(circle at 0.5rem 50%, var(--hydra-status-fg) 0.17rem, transparent 0.2rem);
+  color: var(--hydra-status-fg);
+  font-size: 0.66rem;
+  padding: 0.14rem 0.6rem 0.14rem 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
 /* Landing page cards: three columns, titles are the links, tight spacing */
@@ -193,4 +204,33 @@
 .md-typeset .grid .card h2 {
   font-size: 1rem;
   margin: 0 0 0.4rem;
+}
+
+/* Card with one link: the heading is the link, the whole card is the click target */
+.md-typeset .grid .card--link {
+  position: relative;
+}
+.md-typeset .grid .card--link h2 a:not(.headerlink) {
+  color: inherit;
+  text-decoration: none;
+}
+.md-typeset .grid .card--link h2 a:not(.headerlink)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.md-typeset .grid .card h2 .headerlink {
+  display: none;
+}
+.md-typeset .grid .card--link:hover {
+  background: #d0d7de;
+}
+[data-md-color-scheme="slate"] .md-typeset .grid .card--link:hover {
+  background: #263241;
+}
+/* News card: one line per entry, ellipsis if longer */
+.md-typeset .grid .card--link p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
