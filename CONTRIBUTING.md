@@ -13,7 +13,7 @@ Every page has an edit icon that opens it on GitHub. Small fixes: edit there and
 - Do not hand-edit generated tables (module lists, hardware limits). Rerun the script.
 - No screenshots of terminal output; paste the text. Screenshots are fine for GUIs (Globus, RStudio).
 - Names of queues, paths, modules and commands in backticks.
-- Dated notices go in `docs/news/posts/YYYY-MM-DD-slug.md` with a `date:` frontmatter field. Never edit an old post to describe a new change; write a new one.
+- Dated notices go at the top of the current year in `docs/news/index.md`: bold date, one to three sentences, link to the page with the details. Never edit an old entry to describe a new change; add a new one.
 
 ## Adding a page
 

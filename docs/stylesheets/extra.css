@@ -1,12 +1,85 @@
-/* Smithsonian palette placeholder. Adjust to brand guidance. */
+/* Smithsonian palette, from si.edu --si-color-* variables. Adjust to the real values. */
 :root {
-  --md-primary-fg-color: #1a3c6e;
-  --md-primary-fg-color--light: #2f5a9a;
-  --md-primary-fg-color--dark: #0f2444;
-  --md-accent-fg-color: #b8860b;
+  --md-primary-fg-color: #0060a9;
+  --md-primary-fg-color--light: #2a7fc4;
+  --md-primary-fg-color--dark: #004a85;
+  --md-accent-fg-color: #004a85;
 }
+
 [data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #0f2444;
-  --md-accent-fg-color: #e0aa2a;
+  --md-primary-fg-color: #2a7fc4;
+  --md-accent-fg-color: #5aa0d8;
 }
-.md-grid { max-width: 72rem; }
+
+/* Landing page hero: brand color base, image on the right, gradient over both
+   so the text half is solid. Swap hero.jpg for a photo of the racks when available. */
+.md-typeset .hero {
+  background:
+    linear-gradient(90deg,
+      var(--md-primary-fg-color--dark) 0%,
+      var(--md-primary-fg-color--dark) 50%,
+      rgba(0, 0, 0, 0) 100%),
+    url("../assets/hero.jpg") right center / cover no-repeat,
+    var(--md-primary-fg-color);
+  background-blend-mode: normal, multiply, normal;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 1.2rem 1.6rem 1.1rem;
+  margin: 0 0 1rem;
+}
+.md-typeset .hero h1 {
+  color: #fff;
+  font-size: 1.8rem;
+  margin: 0 0 0.3rem;
+}
+.md-typeset .hero p {
+  max-width: 48rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0 0 0.9rem;
+  opacity: 0.92;
+}
+.md-typeset .hero .md-button {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+  font-size: 0.7rem;
+  padding: 0.5em 1.2em;
+  margin: 0 0.5rem 0 0;
+}
+.md-typeset .hero .md-button--primary {
+  background: #fff;
+  color: var(--md-primary-fg-color--dark);
+  border-color: #fff;
+}
+
+/* Landing page grids: three card columns, brand-colored icons, tight spacing */
+.md-typeset .grid {
+  gap: 0.6rem;
+}
+@media screen and (min-width: 60em) {
+  .md-typeset .grid.cards { grid-template-columns: repeat(3, 1fr); }
+}
+.md-typeset .grid.cards .lg.middle {
+  color: var(--md-primary-fg-color);
+}
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid .card {
+  padding: 0.7rem 0.9rem;
+}
+.md-typeset .grid.cards > ul > li hr {
+  margin: 0.5rem 0;
+}
+.md-typeset .grid.cards > ul > li p,
+.md-typeset .grid .card p,
+.md-typeset .grid .card ul {
+  margin: 0.35rem 0;
+}
+.md-typeset .grid.cards > ul > li > p:first-child {
+  margin-top: 0;
+}
+
+/* Status and News cards under the grid */
+.md-typeset .grid .card h2 {
+  font-size: 1rem;
+  margin: 0 0 0.4rem;
+}

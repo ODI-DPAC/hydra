@@ -1,4 +1,4 @@
-# Hydra documentation. Build: mkdocs serve   Deploy: push to main (see .github/workflows/deploy.yml)
+# Hydra documentation. Build: zensical serve   Deploy: push to main (see .github/workflows/deploy.yml)
 site_name: Smithsonian HPC
 site_description: User documentation for Hydra, the Smithsonian Institution High Performance Computing cluster
 site_url: https://smithsonian.github.io/hydra/
@@ -9,10 +9,12 @@ copyright: Smithsonian Institution, Office of Digital and Innovation
 
 theme:
   name: material
+  variant: modern
   custom_dir: overrides
   language: en
-  logo: assets/logo.svg
   favicon: assets/favicon.png
+  icon:
+    logo: material/server-network
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -33,6 +35,7 @@ theme:
     - navigation.tabs.sticky
     - navigation.sections
     - navigation.indexes
+    - navigation.path
     - navigation.top
     - navigation.footer
     - navigation.instant
@@ -57,22 +60,6 @@ extra:
 
 plugins:
   - search
-  - blog:
-      blog_dir: news
-      blog_toc: true
-      post_url_format: "{date}/{slug}"
-      post_date_format: long
-      archive_name: By year
-      archive_date_format: yyyy
-      categories: false
-      authors: false
-      pagination_per_page: 10
-  - git-revision-date-localized:
-      type: date
-      fallback_to_build_date: true
-      enable_creation_date: false
-  - redirects:
-      redirect_maps: {}
 
 markdown_extensions:
   - admonition
@@ -106,6 +93,7 @@ validation:
 # Nav is independent of the directory tree. Cluster-specific content lives under
 # docs/hydra/ so a second platform (AWS, etc.) can be added later by regrouping
 # this nav without moving files or changing URLs.
+# Keep sidebar labels short; the page H1 carries the full title.
 nav:
   - Home: index.md
   - Getting Started:
@@ -117,43 +105,43 @@ nav:
       - Citing Hydra: getting-started/citing.md
   - Running Jobs:
       - hydra/jobs/index.md
-      - How the cluster and scheduler work: hydra/jobs/concepts.md
-      - Queues and how to choose one: hydra/jobs/queues.md
-      - Writing a job script: hydra/jobs/job-scripts.md
+      - How the scheduler works: hydra/jobs/concepts.md
+      - Queues: hydra/jobs/queues.md
+      - Job scripts: hydra/jobs/job-scripts.md
       - QSub Generator: hydra/jobs/qsubgen.md
-      - Serial, parallel and array jobs: hydra/jobs/job-types.md
+      - Serial, parallel, array: hydra/jobs/job-types.md
       - Resource limits: hydra/jobs/limits.md
-      - Monitoring jobs: hydra/jobs/monitoring.md
-      - Job efficiency and warning emails: hydra/jobs/efficiency.md
-      - Example scripts: hydra/jobs/examples.md
+      - Monitoring: hydra/jobs/monitoring.md
+      - Warning emails: hydra/jobs/efficiency.md
+      - Examples: hydra/jobs/examples.md
       - Cluster hardware:
           - hydra/hardware/index.md
           - Nodes and network: hydra/hardware/nodes.md
-          - Hardware limits table: hydra/hardware/limits.md
+          - Limits table: hydra/hardware/limits.md
   - Interactive Use:
       - hydra/interactive/index.md
-      - Interactive sessions (qrsh): hydra/interactive/qrsh.md
+      - qrsh sessions: hydra/interactive/qrsh.md
       - Jupyter: hydra/interactive/jupyter.md
       - VS Code: hydra/interactive/vscode.md
       - RStudio: hydra/interactive/rstudio.md
   - Storage:
       - hydra/storage/index.md
       - Filesystems: hydra/storage/filesystems.md
-      - Quotas and checking usage: hydra/storage/quotas.md
-      - Snapshots and recovering files: hydra/storage/snapshots.md
+      - Quotas: hydra/storage/quotas.md
+      - Snapshots: hydra/storage/snapshots.md
       - Scrubber: hydra/storage/scrubber.md
-      - Local SSD, NAS and bigtmp: hydra/storage/special.md
-      - Backups and disaster recovery: hydra/storage/backups.md
+      - Local SSD, NAS, bigtmp: hydra/storage/special.md
+      - Backups: hydra/storage/backups.md
   - Software:
       - hydra/software/index.md
       - Modules: hydra/software/modules.md
-      - Writing your own module file: hydra/software/custom-modules.md
-      - Compilers, libraries and MPI: hydra/software/compilers.md
+      - Custom module files: hydra/software/custom-modules.md
+      - Compilers and MPI: hydra/software/compilers.md
       - Python and conda: hydra/software/python.md
       - R: hydra/software/r.md
-      - Julia, MATLAB, IDL and Java: hydra/software/other-languages.md
-      - Bioinformatics modules: hydra/software/bio-modules.md
-      - Bioinformatics guides:
+      - Julia, MATLAB, IDL, Java: hydra/software/other-languages.md
+      - Bio modules: hydra/software/bio-modules.md
+      - Bio guides:
           - hydra/software/bio-guides/index.md
           - Local databases: hydra/software/bio-guides/databases.md
       - GPUs: hydra/software/gpus.md

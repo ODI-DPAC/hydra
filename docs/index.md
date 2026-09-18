@@ -5,9 +5,16 @@ hide:
   - toc
 ---
 
-# Hydra: Smithsonian High Performance Computing
+<div class="hero" markdown>
 
-Hydra is the Smithsonian Institution HPC cluster, run by the Data Platform and Advanced Computing Office under the Office of Digital and Innovation, and housed at the Ashburn Data Center in Virginia.
+# Hydra
+
+Smithsonian's High Performance Computing cluster contains about 78 compute nodes with 5,900 CPU cores, 50 TB of memory, and GPU nodes. The cluster is designed and operated by the Data Platforms and Advanced Computing team in the Office of Digital and Innovation.
+
+[Quick start](getting-started/quick-start.md){ .md-button .md-button--primary }
+[Request an account](getting-started/account.md){ .md-button }
+
+</div>
 
 <div class="grid cards" markdown>
 
@@ -23,7 +30,7 @@ Hydra is the Smithsonian Institution HPC cluster, run by the Data Platform and A
 
     ---
 
-    `ssh` to a login node, copy a file, submit and check on your jobs.
+    Log in, copy a file, submit and check one serial job.
 
     [:octicons-arrow-right-24: Quick start](getting-started/quick-start.md)
 
@@ -31,7 +38,7 @@ Hydra is the Smithsonian Institution HPC cluster, run by the Data Platform and A
 
     ---
 
-    `qsub` and job scripts, queue selection, memory and CPU requests, resource limits, `qstat+`, warning emails.
+    Job scripts, queue selection, memory and CPU requests, resource limits, monitoring, warning emails.
 
     [:octicons-arrow-right-24: Running jobs](hydra/jobs/index.md)
 
@@ -47,7 +54,7 @@ Hydra is the Smithsonian Institution HPC cluster, run by the Data Platform and A
 
     ---
 
-    `module avail`, compilers and MPI, Python and conda, R, the `bio/` packages, GPUs, containers.
+    Modules, compilers and MPI, Python and conda, R, bioinformatics packages, GPUs, containers.
 
     [:octicons-arrow-right-24: Software](hydra/software/index.md)
 
@@ -61,12 +68,30 @@ Hydra is the Smithsonian Institution HPC cluster, run by the Data Platform and A
 
 </div>
 
+<div class="grid" markdown>
+
+<div class="card" markdown>
+
 ## Status and contact
 
 - Cluster status: [status page](policies/status.md) (SI networks or VPN only)
 - Questions and problems: **SI-HPC@si.edu**
 - Job script builder: [QSub Generator](hydra/jobs/qsubgen.md)
 
+</div>
+
+<div class="card" markdown>
+
 ## News
 
-Change notices, upgrades and outages: [News](news/index.md).
+**Dec 16, 2025.** RStudio server upgraded (new OS and R version).
+
+**Dec 8, 2025.** QSubGen now includes virtual memory and GPU options.
+
+**Dec 5, 2025.** Scrubber resumed on public disks.
+
+[:octicons-arrow-right-24: All news](news/index.md)
+
+</div>
+
+</div>
