@@ -11,9 +11,6 @@ hide:
 
 Smithsonian's High Performance Computing cluster contains about 78 compute nodes with 5,900 CPU cores, 50 TB of memory, and GPU nodes. The cluster is designed and operated by the Data Platforms and Advanced Computing team in the Office of Digital and Innovation.
 
-[Quick start](getting-started/quick-start.md){ .md-button .md-button--primary }
-[Request an account](getting-started/account.md){ .md-button }
-
 </div>
 
 <div class="grid cards" markdown>

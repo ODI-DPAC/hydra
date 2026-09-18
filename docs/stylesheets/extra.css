@@ -1,17 +1,68 @@
-/* Smithsonian palette, from si.edu --si-color-* variables. Adjust to the real values. */
+/* Smithsonian palette, from logo.si.edu/visual-styles/color */
 :root {
-  --md-primary-fg-color: #0060a9;
-  --md-primary-fg-color--light: #2a7fc4;
-  --md-primary-fg-color--dark: #004a85;
-  --md-accent-fg-color: #004a85;
+  --si-yellow: #ffcd00;
+  --si-blue: #009cde;          /* primary sky blue: accents on dark, hover; too light for text on white */
+  --si-black: #101820;
+  --si-navy: #002554;
+  --si-dark-blue: #165c7d;
+  --si-red: #f0515a;
+
+  --md-primary-fg-color: var(--si-dark-blue);
+  --md-primary-fg-color--light: var(--si-blue);
+  --md-primary-fg-color--dark: var(--si-navy);
+  --md-accent-fg-color: var(--si-blue);
 }
 
 [data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #2a7fc4;
-  --md-accent-fg-color: #5aa0d8;
+  --md-primary-fg-color: var(--si-blue);
+  --md-accent-fg-color: #74d1ea;
 }
 
-/* Landing page hero: brand color base, image on the right, gradient over both
+/* Announcement bar: yellow bar with navy pill for maintenance and info,
+   red bar for outages. Content comes from extra.announce in mkdocs.yml
+   via overrides/main.html. */
+[data-md-component="announce"] {
+  background: var(--si-yellow);
+  color: var(--si-black);
+}
+[data-md-component="announce"]:has(.hydra-announce--outage) {
+  background: var(--si-red);
+}
+[data-md-component="announce"] .md-banner {
+  background: transparent;
+  color: inherit;
+}
+.hydra-announce {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: inherit !important;
+  font-size: 0.68rem;
+  text-decoration: none !important;
+}
+.hydra-announce__label {
+  flex: 0 0 auto;
+  padding: 0.1rem 0.55rem;
+  border-radius: 1rem;
+  background: var(--si-navy);
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 700;
+}
+.hydra-announce--outage .hydra-announce__label {
+  background: var(--si-black);
+  color: #fff;
+}
+.hydra-announce__action {
+  flex: 0 0 auto;
+  font-weight: 700;
+  text-decoration: underline;
+}
+@media (max-width: 600px) {
+  .hydra-announce__action { display: none; }
+}
+
+/* Landing page hero: navy base, image on the right, gradient over both
    so the text half is solid. Swap hero.jpg for a photo of the racks when available. */
 .md-typeset .hero {
   background:
@@ -36,20 +87,8 @@
   max-width: 48rem;
   font-size: 0.85rem;
   line-height: 1.5;
-  margin: 0 0 0.9rem;
+  margin: 0;
   opacity: 0.92;
-}
-.md-typeset .hero .md-button {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.7);
-  font-size: 0.7rem;
-  padding: 0.5em 1.2em;
-  margin: 0 0.5rem 0 0;
-}
-.md-typeset .hero .md-button--primary {
-  background: #fff;
-  color: var(--md-primary-fg-color--dark);
-  border-color: #fff;
 }
 
 /* Landing page grids: three card columns, brand-colored icons, tight spacing */

@@ -31,6 +31,7 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
+    - announce.dismiss
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
@@ -52,6 +53,10 @@ extra_css:
   - stylesheets/extra.css
 
 extra:
+  announce:
+    kind: maintenance          # maintenance | outage | info
+    text: Hydra will be down for scheduled maintenance Tue Oct 7, 08:00 to 17:00 ET. Queued jobs resume afterward.
+    link: news/#maint-2026-10-07
   status_url: https://hydra.si.edu/tools/status/
   support_email: SI-HPC@si.edu
   social:
