@@ -3,75 +3,70 @@ title: Hydra user documentation
 hide:
   - navigation
   - toc
+  - footer
 ---
 
 <div class="hero" markdown>
+<div class="hero__inner" markdown>
+
+<p class="hero__kicker">Smithsonian High Performance Computing</p>
 
 # Hydra
 
-Smithsonian's High Performance Computing cluster contains about 78 compute nodes with 5,900 CPU cores, 50 TB of memory, and GPU nodes. The cluster is designed and operated by the Data Platforms and Advanced Computing team in the Office of Digital and Innovation.
+The SI HPC cluster contains 78 compute nodes, including GPU nodes, with 5,900 CPU cores and 50 TB of memory. The system is designed and operated by the Data Platforms and Advanced Computing team in the Office of Digital and Innovation.
 
+</div>
 </div>
 
 <div class="grid cards" markdown>
 
--   :material-account-plus:{ .lg .middle } **Get an account**
+-   :material-rocket-launch:{ .lg .middle } [**Getting started**](getting-started/index.md)
 
     ---
 
-    Eligibility, the request form, password setup.
+    Request an account, log in, submit your first job.
 
-    [:octicons-arrow-right-24: Request an account](getting-started/account.md)
-
--   :material-rocket-launch:{ .lg .middle } **Quick start**
+-   :material-format-list-checks:{ .lg .middle } [**Running jobs**](hydra/jobs/index.md)
 
     ---
 
-    Log in, copy a file, submit and check one serial job.
+    Queues, job scripts, memory and CPU requests.
 
-    [:octicons-arrow-right-24: Quick start](getting-started/quick-start.md)
-
--   :material-format-list-checks:{ .lg .middle } **Run jobs**
+-   :material-monitor:{ .lg .middle } [**Interactive use**](hydra/interactive/index.md)
 
     ---
 
-    Job scripts, queue selection, memory and CPU requests, resource limits, monitoring, warning emails.
+    Jupyter, RStudio, VS Code, interactive shells on compute nodes.
 
-    [:octicons-arrow-right-24: Running jobs](hydra/jobs/index.md)
-
--   :material-harddisk:{ .lg .middle } **Store and move data**
+-   :material-harddisk:{ .lg .middle } [**Storage**](hydra/storage/index.md)
 
     ---
 
-    `/home`, `/data`, `/scratch`, `/store`; quotas, snapshots, the 180-day scrubber; scp, Globus, rclone.
+    Which filesystem to use, quotas, snapshots, the scrubber.
 
-    [:octicons-arrow-right-24: Storage](hydra/storage/index.md)
-
--   :material-package-variant:{ .lg .middle } **Find software**
+-   :material-swap-horizontal:{ .lg .middle } [**Data transfer**](data-transfer/index.md)
 
     ---
 
-    Modules, compilers and MPI, Python and conda, R, bioinformatics packages, GPUs, containers.
+    Moving data on and off the cluster with scp, rsync, Globus, or rclone.
 
-    [:octicons-arrow-right-24: Software](hydra/software/index.md)
-
--   :material-lifebuoy:{ .lg .middle } **Get help**
+-   :material-package-variant:{ .lg .middle } [**Software**](hydra/software/index.md)
 
     ---
 
-    Usage policies, FAQ, cluster status, what to include when you email SI-HPC@si.edu.
-
-    [:octicons-arrow-right-24: Policies and support](policies/index.md)
+    Modules, compilers, Python and R, bioinformatics packages, and CUDA for GPUs.
 
 </div>
 
-<div class="grid" markdown>
+<div class="grid meta" markdown>
 
 <div class="card" markdown>
 
-## Status and contact
+## Help
 
 - Cluster status: [status page](policies/status.md) (SI networks or VPN only)
+- [FAQ](policies/faq.md) and [usage policies](policies/usage.md)
+- [Warning emails](hydra/jobs/efficiency.md)
 - Questions and problems: **SI-HPC@si.edu**
 - Job script builder: [QSub Generator](hydra/jobs/qsubgen.md)
 

@@ -62,26 +62,67 @@
   .hydra-announce__action { display: none; }
 }
 
-/* Landing page hero: navy base, image on the right, gradient over both
-   so the text half is solid. Swap hero.jpg for a photo of the racks when available. */
+/* Cluster status pill after the site name in the header; state from extra.announce
+   via the CSS variables set in overrides/main.html */
+.md-header__topic:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.md-header__topic:first-child::after {
+  content: var(--hydra-status-label);
+  position: relative;
+  padding: 0.12rem 0.55rem 0.12rem 1rem;
+  border-radius: 1rem;
+  background: var(--hydra-status-bg);
+  background-image: radial-gradient(circle at 0.5rem 50%, var(--hydra-status-fg) 0.17rem, transparent 0.2rem);
+  color: var(--hydra-status-fg);
+  font-size: 0.58rem;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Full-bleed landing page hero: navy band edge to edge under the tabs,
+   image on the right, gradient over both so the text half is solid,
+   text kept on the 61rem page grid by .hero__inner.
+   Swap hero.jpg for a photo of the racks when available. */
 .md-typeset .hero {
   background:
     linear-gradient(90deg,
       var(--md-primary-fg-color--dark) 0%,
-      var(--md-primary-fg-color--dark) 50%,
+      var(--md-primary-fg-color--dark) 40%,
       rgba(0, 0, 0, 0) 100%),
     url("../assets/hero.jpg") right center / cover no-repeat,
     var(--md-primary-fg-color);
   background-blend-mode: normal, multiply, normal;
   color: #fff;
-  border-radius: 0.5rem;
-  padding: 1.2rem 1.6rem 1.1rem;
-  margin: 0 0 1rem;
+  margin: -2.4rem calc(50% - 50vw) 1.5rem;
+  padding: 1.8rem 0 2rem;
+}
+.md-typeset .hero__inner {
+  max-width: 61rem;
+  margin: 0 auto;
+  padding: 0 1.2rem;
+}
+.md-typeset .hero__kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin: 0 0 0.2rem;
 }
 .md-typeset .hero h1 {
   color: #fff;
   font-size: 1.8rem;
-  margin: 0 0 0.3rem;
+  margin: 0 0 0.9rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 3px solid var(--si-yellow);
+  display: inline-block;
+}
+.md-typeset .hero h1 .headerlink {
+  display: none;
 }
 .md-typeset .hero p {
   max-width: 48rem;
@@ -90,8 +131,19 @@
   margin: 0;
   opacity: 0.92;
 }
+@media screen and (max-width: 59.9em) {
+  .md-typeset .hero {
+    background: var(--md-primary-fg-color--dark);
+  }
+}
+.md-content:has(.hero) .md-content__button {
+  display: none;
+}
+.md-container {
+  overflow-x: clip;
+}
 
-/* Landing page grids: three card columns, brand-colored icons, tight spacing */
+/* Landing page cards: three columns, titles are the links, tight spacing */
 .md-typeset .grid {
   gap: 0.6rem;
 }
@@ -116,8 +168,28 @@
 .md-typeset .grid.cards > ul > li > p:first-child {
   margin-top: 0;
 }
+.md-typeset .grid.cards > ul > li > p:first-child a {
+  color: var(--md-default-fg-color);
+  text-decoration: none;
+  font-weight: 700;
+}
+.md-typeset .grid.cards > ul > li:hover > p:first-child a {
+  color: var(--md-primary-fg-color);
+}
 
-/* Status and News cards under the grid */
+/* Bottom row: help and news as tinted panels, set apart from the six cards */
+.md-typeset .grid.meta {
+  margin-top: 1.5rem;
+}
+.md-typeset .grid.meta .card {
+  background: #e2e8ec;
+  border: 0;
+  border-radius: 0.4rem;
+  padding: 0.9rem 1.1rem;
+}
+[data-md-color-scheme="slate"] .md-typeset .grid.meta .card {
+  background: #1d2733;
+}
 .md-typeset .grid .card h2 {
   font-size: 1rem;
   margin: 0 0 0.4rem;

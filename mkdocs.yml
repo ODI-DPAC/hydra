@@ -54,7 +54,7 @@ extra_css:
 
 extra:
   announce:
-    kind: maintenance          # maintenance | outage | info
+    kind: info          # maintenance | outage | info
     text: Hydra will be down for scheduled maintenance Tue Oct 7, 08:00 to 17:00 ET. Queued jobs resume afterward.
     link: news/#maint-2026-10-07
   status_url: https://hydra.si.edu/tools/status/
