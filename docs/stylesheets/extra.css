@@ -234,3 +234,55 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* Content tabs: make the tab row read as tabs, not as a line of text */
+.md-typeset .tabbed-set {
+  margin: 1.5rem 0;
+}
+.md-typeset .tabbed-labels {
+  gap: 0.25rem;
+  box-shadow: none;
+  border-bottom: 1px solid #d0d7de;
+}
+.md-typeset .tabbed-labels > label {
+  padding: 0.55rem 1rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #75787b;
+  background: #efefef;
+  border: 1px solid #d0d7de;
+  border-bottom: none;
+  border-radius: 0.3rem 0.3rem 0 0;
+  margin-bottom: -1px;
+}
+.md-typeset .tabbed-labels > label:hover {
+  color: #101820;
+  background: #e2e8ec;
+}
+.md-typeset .tabbed-set input:checked + .tabbed-labels > label,
+.md-typeset .tabbed-labels > label.tabbed-label--active {   /* Zensical marks the active label */
+  color: #101820;
+  background: #fff;
+  border-bottom: 1px solid #fff;
+  box-shadow: inset 0 3px 0 #ffcd00;
+}
+.md-typeset .tabbed-content {
+  padding: 1rem 1.2rem 0.2rem;
+  border: 1px solid #d0d7de;
+  border-top: none;
+  border-radius: 0 0 0.3rem 0.3rem;
+}
+.md-typeset .tabbed-labels::before {      /* remove the default sliding underline */
+  display: none;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .tabbed-labels { border-color: #333f48; }
+[data-md-color-scheme="slate"] .md-typeset .tabbed-labels > label {
+  color: #a3aab0; background: #1d2733; border-color: #333f48;
+}
+[data-md-color-scheme="slate"] .md-typeset .tabbed-labels > label:hover { color: #fff; background: #26313f; }
+[data-md-color-scheme="slate"] .md-typeset .tabbed-set input:checked + .tabbed-labels > label,
+[data-md-color-scheme="slate"] .md-typeset .tabbed-labels > label.tabbed-label--active {
+  color: #fff; background: #101820; border-bottom-color: #101820;
+}
+[data-md-color-scheme="slate"] .md-typeset .tabbed-content { border-color: #333f48; }
