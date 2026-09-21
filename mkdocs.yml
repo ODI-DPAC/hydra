@@ -31,7 +31,6 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
-    - announce.dismiss
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
@@ -48,15 +47,18 @@ theme:
     - content.code.annotate
     - content.action.edit
     - content.tabs.link
+    - announce.dismiss
 
 extra_css:
   - stylesheets/extra.css
 
 extra:
+  # Announcement bar and status pill. kind: maintenance | outage | info.
+  # Blank text = no banner, pill shows Operational.
   announce:
-    kind: info          # maintenance | outage | info
-    text: Hydra will be down for scheduled maintenance Tue Oct 7, 08:00 to 17:00 ET. Queued jobs resume afterward.
-    link: news/#maint-2026-10-07
+    kind: info
+    text: ""
+    link: news/
   status_url: https://hydra.si.edu/tools/status/
   support_email: SI-HPC@si.edu
   social:
@@ -107,14 +109,14 @@ nav:
       - Logging in and passwords: getting-started/login.md
       - Quick start: getting-started/quick-start.md
       - Training and workshops: getting-started/training.md
-      - Citing Hydra: getting-started/citing.md
   - Running Jobs:
       - hydra/jobs/index.md
       - How the scheduler works: hydra/jobs/concepts.md
       - Queues: hydra/jobs/queues.md
       - Job scripts: hydra/jobs/job-scripts.md
       - QSub Generator: hydra/jobs/qsubgen.md
-      - Serial, parallel, array: hydra/jobs/job-types.md
+      - Serial and array jobs: hydra/jobs/job-types.md
+      - Parallel jobs: hydra/jobs/parallel.md
       - Resource limits: hydra/jobs/limits.md
       - Monitoring: hydra/jobs/monitoring.md
       - Warning emails: hydra/jobs/efficiency.md
@@ -148,6 +150,15 @@ nav:
       - Bio modules: hydra/software/bio-modules.md
       - Bio guides:
           - hydra/software/bio-guides/index.md
+          - ALLPATHS-LG: hydra/software/bio-guides/allpaths-lg.md
+          - BEAST: hydra/software/bio-guides/beast.md
+          - BLAST: hydra/software/bio-guides/blast.md
+          - Blast2GO: hydra/software/bio-guides/blast2go.md
+          - BUSCO: hydra/software/bio-guides/busco.md
+          - GeneMark-ES: hydra/software/bio-guides/genemark-es.md
+          - MaSuRCA: hydra/software/bio-guides/masurca.md
+          - SMC++: hydra/software/bio-guides/smc.md
+          - SPAdes: hydra/software/bio-guides/spades.md
           - Local databases: hydra/software/bio-guides/databases.md
       - GPUs: hydra/software/gpus.md
       - Containers: hydra/software/containers.md
@@ -159,11 +170,13 @@ nav:
   - Policies & Support:
       - policies/index.md
       - Usage policies: policies/usage.md
+      - Citing Hydra: policies/citing.md
       - Getting help: policies/help.md
       - FAQ: policies/faq.md
       - Cluster status: policies/status.md
   - News:
       - news/index.md
+      - Older notices: news/history.md
       - Cluster upgrades:
           - news/upgrades/index.md
           - 2025 data center move: news/upgrades/2025-data-center-move.md

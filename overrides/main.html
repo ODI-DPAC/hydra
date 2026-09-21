@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 
-{% block announce %}
-  {% set a = config.extra.announce %}
-  {% if a and a.text %}
+{% block announce -%}
+  {%- set a = config.extra.announce -%}
+  {%- if a and a.text -%}
     <a class="hydra-announce hydra-announce--{{ a.kind | default('info') }}" href="{{ a.link | url }}">
       <span class="hydra-announce__label">{{ a.kind | default('info') | capitalize }}</span>
       <span class="hydra-announce__text">{{ a.text }}</span>
       <span class="hydra-announce__action">Details</span>
     </a>
-  {% endif %}
-{% endblock %}
+  {%- endif -%}
+{%- endblock %}
 
 {% block header %}
   {{ super() }}
