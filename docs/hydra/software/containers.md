@@ -1,6 +1,5 @@
 # Containers
 
-!!! warning "Not yet migrated"
-    Source: Confluence section 1.6.10: How to Use Containers (Feb 2026 export p. 220). Disposition: **keep**. 
-
-<!-- Delete the admonition above once the page is written. Keep one topic per page. -->
+- `singularity` is now available on all the compute nodes, the interactive nodes and the login nodes.
+    - There is no longer any module or host-group needed tun use i\@
+- Examples are under `/home/hpc/examples/containers`

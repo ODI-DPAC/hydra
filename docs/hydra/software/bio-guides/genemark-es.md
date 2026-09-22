@@ -1,6 +1,6 @@
 # GeneMark-ES
 
-!!! warning "Not yet migrated"
-    Created by migrate.py apply.
+GeneMark-ES is a eukaryotic gene prediction software. In order to run it, the user must copy the license from the software install into their home directory as `.gm_key` in order to run the software. You can do this with:
 
-<!-- placeholder -->
+
+`$ cp gm_key_64 ~/.gm_key`
