@@ -1,26 +1,100 @@
 # Contributing
 
-Every page has an edit icon that opens it on GitHub. Small fixes: edit there and open a pull request. Larger changes: clone, `mkdocs serve`, edit, PR.
+Thanks for helping us make these documents better. The site is Markdown under `docs/`, built with [Zensical](https://zensical.org/docs/).
 
-## Conventions
+## Fixing a page
 
-- One topic per page. If a page needs more than three H2 sections, split it.
-- Imperative headings: "Submit a job", not "Job submission".
-- Every command in a code block, copy-pasteable, with the prompt omitted. Show output in a separate block when it matters.
-- Prefer admonitions (`!!! note`, `!!! warning`, `!!! tip`) over bold sentences.
-- Link with relative paths to `.md` files. Never link to a URL on this site.
-- Do not add "Last updated" lines. The build stamps every page from git.
-- Do not hand-edit generated tables (module lists, hardware limits). Rerun the script.
-- No screenshots of terminal output; paste the text. Screenshots are fine for GUIs (Globus, RStudio).
-- Names of queues, paths, modules and commands in backticks.
-- Dated notices go at the top of the current year in `docs/news/index.md`: bold date, one to three sentences, link to the page with the details. Never edit an old entry to describe a new change; add a new one.
+For a typo, a wrong flag or a dead link: open the page on the site, click the edit icon by the title, make the change on GitHub, open a pull request. The build check runs; when it's green, merge it.
 
-## Adding a page
+For anything larger, work locally so you can see the result:
 
-1. Create the file under the right directory.
-2. Add it to `nav` in `mkdocs.yml` (the build warns if you forget).
-3. `mkdocs build --strict` must pass.
+```bash
+git clone git@github.com:Smithsonian/hydra.git && cd hydra
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+git checkout -b my-change
+zensical serve                # http://localhost:8000, rebuilds when you save
+```
 
-## Removing or renaming a page
+When it looks right, `zensical build --strict` (this is what CI runs; it fails on a broken link or a page missing from the nav), then push and open a pull request against `main`.
 
-Add the old path to `redirect_maps` in `mkdocs.yml` so old links keep working.
+## What a page looks like
+
+Here is a short page written the way we want the whole site to read:
+
+```markdown
+# Recover a file from a snapshot
+
+Snapshots of `/home` and `/data` are taken nightly and kept for 30 days. This page covers finding
+and copying back a file you have deleted or overwritten.
+
+Snapshots are read-only copies under a hidden `.snapshots` directory at the top of each filesystem.
+
+1. List the snapshots:
+
+    ```console
+    $ ls /home/.snapshots
+    2026-09-14  2026-09-15  2026-09-16
+    ```
+
+2. Copy the file back from the date you want:
+
+    ```bash
+    cp /home/.snapshots/2026-09-15/USERNAME/analysis/results.csv ~/analysis/
+    ```
+
+!!! warning "`/scratch` has no snapshots"
+
+    Files deleted from `/scratch` cannot be recovered. See [Scrubber](scrubber.md).
+```
+
+The things to copy from it:
+
+- **The title is the task or the thing**, in sentence case. "Recover a file from a snapshot", not "Snapshots and how to use them".
+- **The first paragraph says what the page covers.** Two sentences.
+- **Second person, imperative, present tense.** "Copy the file", not "the user should copy the file"; "the scheduler starts the job", not "the job will be started".
+- **Steps are a numbered list, one action each, with the command in a code block.** Explanation is prose. Bullets are for lists of things. A paragraph should not be five nested bullets.
+- **Code blocks have a language.** `bash` for a command, `console` for a prompt and its output (with `$` as the prompt, so the copy button copies only the command), `text` for raw output. Every command, path, flag, hostname and queue name in prose is in backticks. Placeholders are `USERNAME`, `JOBID`, in capitals.
+- **An admonition when the reader must not miss something, with the message as its title.** `warning` for things that cost time or data, `note` for an aside, `danger` for irreversible loss. Body one or two lines.
+- **Numbers and versions live in tables, not prose.** "macOS 15", not "newer versions of macOS". Node counts, quotas and limits are on the reference pages; link there rather than repeating them.
+- **Link text says where the link goes.** "See [Scrubber](scrubber.md)", never "click here".
+- **Don't document upstream software.** How conda or Globus works is their manual's job. Write what's Hydra-specific: paths, queues, modules, what breaks here.
+
+Content tabs (`=== "macOS and Linux"`) are for the same procedure on different systems, as on the login page. Tables are for anything with the same fields on every row. Images only for things that are visual, with alt text, under `docs/assets/`.
+
+## Important to keep in mind
+
+- A hand-typed "Last updated" line is not necessary. The build adds one from git.
+- A new page must be in `nav` in `mkdocs.yml` (the strict build catches this) or must be linked from its section's index page.
+
+## News and announcements
+
+News is one page, `docs/news/index.md`, newest first under `## YYYY`. An entry is one paragraph, and its first sentence has to stand on its own because the home page shows only that:
+
+```markdown
+<a id="2025-12-16"></a>**December 16.** The RStudio server was upgraded to a newer OS and R. See [RStudio](../hydra/interactive/rstudio.md).
+```
+
+Don't rewrite old entries; add new ones. After editing, run `python scripts/build_home_news.py` so the home page card matches (CI runs it too, so forgetting only affects your preview).
+
+The yellow banner at the top of every page and the status pill on the home page come from one block in `mkdocs.yml`:
+
+```yaml
+extra:
+  announce:
+    kind: maintenance     # maintenance | outage | info
+    text: "Hydra is down for scheduled maintenance Tue Oct 7, 08:00 to 17:00 ET."
+    link: news/#2025-10-07
+```
+
+Blank `text` means no banner and a green pill. Change it in a PR and add the matching News entry in the same PR.
+
+## Generated files
+
+Don't edit these by hand; run the script and commit the result.
+
+| File | Script | Where to run it |
+|---|---|---|
+| `docs/hydra/software/bio-modules.md` | `scripts/gen_module_list.sh` | a Hydra login node |
+| News card on `docs/index.md` | `scripts/build_home_news.py` | anywhere |
+| "Last updated" line on each page | `scripts/stamp_dates.py` | CI only; never commit its output |
