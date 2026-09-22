@@ -3,6 +3,8 @@
 /_book/
 /index.typ
 /index_files/
+/site
+.cache/
 
 **/*.quarto_ipynb
 *.log

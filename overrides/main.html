@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block announce -%}
+  {%- set a = config.extra.announce -%}
+  {%- if a and a.text -%}
+    <a class="hydra-announce hydra-announce--{{ a.kind | default('info') }}" href="{{ a.link | url }}">
+      <span class="hydra-announce__label">{{ a.kind | default('info') | capitalize }}</span>
+      <span class="hydra-announce__text">{{ a.text }}</span>
+      <span class="hydra-announce__action">Details</span>
+    </a>
+  {%- endif -%}
+{%- endblock %}
+
+{% block header %}
+  {{ super() }}
+  {% set a = config.extra.announce %}
+  {% if a and a.text and a.kind == "outage" %}
+    <style>:root{--hydra-status-label:"Outage";--hydra-status-bg:#fbd7da;--hydra-status-fg:#8a1d24;}</style>
+  {% elif a and a.text and a.kind == "maintenance" %}
+    <style>:root{--hydra-status-label:"Maintenance";--hydra-status-bg:#fff1c2;--hydra-status-fg:#7a5a00;}</style>
+  {% else %}
+    <style>:root{--hydra-status-label:"Operational";--hydra-status-bg:#d9f2e3;--hydra-status-fg:#0f6b3a;}</style>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,185 @@
+# Hydra documentation. Build: zensical serve   Deploy: push to main (see .github/workflows/deploy.yml)
+site_name: Smithsonian HPC
+site_description: User documentation for Hydra, the Smithsonian Institution High Performance Computing cluster
+site_url: https://smithsonian.github.io/hydra/
+repo_url: https://github.com/Smithsonian/hydra
+repo_name: Smithsonian/hydra
+edit_uri: edit/main/docs/
+copyright: 'Smithsonian Institution, Office of Digital and Innovation &middot; <a href="mailto:SI-HPC@si.edu">SI-HPC@si.edu</a>'
+
+theme:
+  name: material
+  variant: modern
+  custom_dir: overrides
+  language: en
+  favicon: assets/favicon.png
+  icon:
+    logo: material/server-network
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - navigation.instant
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - content.tabs.link
+    - announce.dismiss
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  # Announcement bar and status pill. kind: maintenance | outage | info.
+  # Blank text = no banner, pill shows Operational.
+  announce:
+    kind: info
+    text: ""
+    link: news/
+  status_url: https://hydra.si.edu/tools/status/
+  support_email: SI-HPC@si.edu
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Smithsonian/hydra
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - def_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.keys
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+# Nav is independent of the directory tree. Cluster-specific content lives under
+# docs/hydra/ so a second platform (AWS, etc.) can be added later by regrouping
+# this nav without moving files or changing URLs.
+# Keep sidebar labels short; the page H1 carries the full title.
+nav:
+  - Home: index.md
+  - Getting Started:
+      - getting-started/index.md
+      - Requesting an account: getting-started/account.md
+      - Logging in and passwords: getting-started/login.md
+      - Quick start: getting-started/quick-start.md
+      - Training and workshops: getting-started/training.md
+  - Running Jobs:
+      - hydra/jobs/index.md
+      - How the scheduler works: hydra/jobs/concepts.md
+      - Queues: hydra/jobs/queues.md
+      - Job scripts: hydra/jobs/job-scripts.md
+      - QSub Generator: hydra/jobs/qsubgen.md
+      - Serial and array jobs: hydra/jobs/job-types.md
+      - Parallel jobs: hydra/jobs/parallel.md
+      - Resource limits: hydra/jobs/limits.md
+      - Monitoring: hydra/jobs/monitoring.md
+      - Warning emails: hydra/jobs/efficiency.md
+      - Examples: hydra/jobs/examples.md
+      - Cluster hardware:
+          - hydra/hardware/index.md
+          - Nodes and network: hydra/hardware/nodes.md
+          - Limits table: hydra/hardware/limits.md
+  - Interactive Use:
+      - hydra/interactive/index.md
+      - qrsh sessions: hydra/interactive/qrsh.md
+      - Jupyter: hydra/interactive/jupyter.md
+      - VS Code: hydra/interactive/vscode.md
+      - RStudio: hydra/interactive/rstudio.md
+  - Storage:
+      - hydra/storage/index.md
+      - Filesystems: hydra/storage/filesystems.md
+      - Quotas: hydra/storage/quotas.md
+      - Snapshots: hydra/storage/snapshots.md
+      - Scrubber: hydra/storage/scrubber.md
+      - Local SSD, NAS, bigtmp: hydra/storage/special.md
+      - Backups: hydra/storage/backups.md
+  - Software:
+      - hydra/software/index.md
+      - Modules: hydra/software/modules.md
+      - Custom module files: hydra/software/custom-modules.md
+      - Compilers and MPI: hydra/software/compilers.md
+      - Python and conda: hydra/software/python.md
+      - R: hydra/software/r.md
+      - Julia, MATLAB, IDL, Java: hydra/software/other-languages.md
+      - Bio modules: hydra/software/bio-modules.md
+      - Bio guides:
+          - hydra/software/bio-guides/index.md
+          - ALLPATHS-LG: hydra/software/bio-guides/allpaths-lg.md
+          - BEAST: hydra/software/bio-guides/beast.md
+          - BLAST: hydra/software/bio-guides/blast.md
+          - Blast2GO: hydra/software/bio-guides/blast2go.md
+          - BUSCO: hydra/software/bio-guides/busco.md
+          - GeneMark-ES: hydra/software/bio-guides/genemark-es.md
+          - MaSuRCA: hydra/software/bio-guides/masurca.md
+          - SMC++: hydra/software/bio-guides/smc.md
+          - SPAdes: hydra/software/bio-guides/spades.md
+          - Local databases: hydra/software/bio-guides/databases.md
+      - GPUs: hydra/software/gpus.md
+      - Containers: hydra/software/containers.md
+  - Data Transfer:
+      - data-transfer/index.md
+      - scp, sftp and rsync: data-transfer/scp-rsync.md
+      - Globus: data-transfer/globus.md
+      - rclone and cloud storage: data-transfer/rclone.md
+  - Policies & Support:
+      - policies/index.md
+      - Usage policies: policies/usage.md
+      - Citing Hydra: policies/citing.md
+      - Getting help: policies/help.md
+      - FAQ: policies/faq.md
+      - Cluster status: policies/status.md
+  - News:
+      - news/index.md
+      - Older notices: news/history.md
+      - Cluster upgrades:
+          - news/upgrades/index.md
+          - 2025 data center move: news/upgrades/2025-data-center-move.md
+          - 2024 upgrade to Hydra-7: news/upgrades/2024-hydra-7.md
+          - 2021 upgrade to Hydra-6: news/upgrades/2021-hydra-6.md
+          - 2019 upgrade to Hydra-5: news/upgrades/2019-hydra-5.md
