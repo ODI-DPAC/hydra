@@ -29,6 +29,11 @@ jobs:
         run: python scripts/build_home_news.py
       - name: Build
         run: zensical build --clean --strict
+      - name: Build PDF
+        run: |
+          sudo apt-get install -y --no-install-recommends libpango-1.0-0 libpangoft2-1.0-0 fonts-dejavu-core
+          pip install weasyprint beautifulsoup4 pyyaml
+          python scripts/build_pdf.py site/hydra-documentation.pdf
       - uses: actions/upload-pages-artifact@v5
         with:
           path: site
