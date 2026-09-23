@@ -4,12 +4,12 @@ Hydra has several filesystems with different purposes, speeds, quotas and retent
 
 ## Which filesystem
 
-| Path | Purpose | Backed up | Snapshots | Scrubbed |
-|---|---|---|---|---|
-| `/home` | dotfiles, scripts, small files | see [Backups](backups.md) | hourly and weekly, two weeks | no |
-| `/data` | project data | see [Backups](backups.md) | hourly and weekly, two weeks | no |
-| `/scratch` | working space for jobs (GPFS over InfiniBand) | no | no | files older than 180 days |
-| `/store` | near-line storage, I/O queue only | no | ZFS snapshots | no |
+| Path | Purpose | Snapshots and backups |
+|---|---|---|
+| `/home` | dotfiles, scripts, small files | see [Backups](backups.md) |
+| `/data` | project data | see [Backups](backups.md) |
+| `/scratch` | working space for jobs (GPFS over InfiniBand); scrubbed after 180 days | none |
+| `/store` | near-line storage, I/O queue only | see [Backups](backups.md) |
 
 ## In this section
 
