@@ -6,4 +6,4 @@
 | [Globus](globus.md) | large transfers, transfers between institutions, unattended transfers |
 | [rclone](rclone.md) | Dropbox, OneDrive, Google Drive, S3 and other cloud storage |
 
-Transfers to `/store` must run from the I/O queue; see [Local SSD, NAS and bigtmp](../hydra/storage/special.md).
+Transfers to `/store` must run from the I/O queue; see [Use /store and the I/O queue](../hydra/storage/store.md).
