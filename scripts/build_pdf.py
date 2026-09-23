@@ -59,6 +59,7 @@ img { max-width: 100%; }
 .toc li.entry { padding-left: 14pt; }
 .toc a::after { content: leader(".") target-counter(attr(href), page); }
 .headerlink, .md-content__button, .md-source-file { display: none; }
+hr { border: 0; border-top: 1px solid #d0d7de; margin: 14pt 0 6pt; }
 """
 
 def nav_pages(items, section=None, out=None):
