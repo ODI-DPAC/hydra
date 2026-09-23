@@ -26,5 +26,5 @@ $ cp -r ~hpc/examples/serial /scratch/genomics/USERNAME/
 | `ssd/` | using a node's local SSD; see [Use a node's local SSD](../storage/ssd.md) |
 | `misc/` | other examples |
 
-Each directory has a `README`. The [Quick start](../../getting-started/quick-start.md) walks through a first job; the bio guides under [Software](../software/bio-guides/index.md) show job files for specific packages.
+Each directory has a `README`. The [Quick start](../getting-started/quick-start.md) walks through a first job; the bio guides under [Software](../software/bio-guides/index.md) show job files for specific packages.
 

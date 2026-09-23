@@ -50,7 +50,7 @@ Enter the commands the job runs, starting with the executable name and followed 
 
 1. Click **Check if OK**. The generated script appears in the grey box, with the total CPU time and memory requested above the **Save it** button.
 2. Click **Save it** to download the `.job` file.
-3. Copy the file to your working directory under `/scratch` or `/data` on Hydra (see [Data transfer](../../data-transfer/index.md)).
-4. Log in and submit it with `qsub FILE.job`, as in the [Quick start](../../getting-started/quick-start.md).
+3. Copy the file to your working directory under `/scratch` or `/data` on Hydra (see [Data transfer](../data-transfer/index.md)).
+4. Log in and submit it with `qsub FILE.job`, as in the [Quick start](../getting-started/quick-start.md).
 
 Edit the file in a text editor on Hydra to change it afterwards; [Job script reference](job-scripts.md) describes every directive it contains.

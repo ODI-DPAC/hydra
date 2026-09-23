@@ -1,6 +1,6 @@
 # Warning emails
 
-Automated checks watch the login nodes, running jobs and the disks, and email you when something you own is outside the limits. The mail goes to the address in your `~/.forward` file on Hydra. The [usage policies](../../policies/usage.md) state the thresholds and require you to act on the warnings; jobs that are not corrected can be killed.
+Automated checks watch the login nodes, running jobs and the disks, and email you when something you own is outside the limits. The mail goes to the address in your `~/.forward` file on Hydra. The [usage policies](../policies/usage.md) state the thresholds and require you to act on the warnings; jobs that are not corrected can be killed.
 
 | Subject | Trigger | Check |
 |---|---|---|

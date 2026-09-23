@@ -22,4 +22,4 @@ The Glacier copy of `/home` and `/data` is for rebuilding a partition after a st
 
 !!! note "None of the storage systems on Hydra are meant for archival storage"
 
-    Some projects keep data on Hydra for years, because of the volume they collect or because the data were here before other options existed, and their allocations reflect that. Identify a long-term destination off Hydra for every dataset that outlives its analysis, and move data there when the analysis ends. Moving data off the cluster is under [Data transfer](../../data-transfer/index.md).
+    Some projects keep data on Hydra for years, because of the volume they collect or because the data were here before other options existed, and their allocations reflect that. Identify a long-term destination off Hydra for every dataset that outlives its analysis, and move data there when the analysis ends. Moving data off the cluster is under [Data transfer](../data-transfer/index.md).

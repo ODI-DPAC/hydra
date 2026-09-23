@@ -8,4 +8,4 @@ To see where you stand, [check your usage and quotas](quotas.md). To get a file 
 
     `/scratch` has no snapshots and no backup. Keep results on `/data` or off Hydra; the [scrubber](scrubber.md) can restore a file for about ten days after removing it, and not after.
 
-None of the storage systems on Hydra are meant for archival storage; [Backups](backups.md) lists the snapshot and disaster-recovery coverage of each partition. Moving data on and off the cluster is under [Data transfer](../../data-transfer/index.md).
+None of the storage systems on Hydra are meant for archival storage; [Backups](backups.md) lists the snapshot and disaster-recovery coverage of each partition. Moving data on and off the cluster is under [Data transfer](../data-transfer/index.md).

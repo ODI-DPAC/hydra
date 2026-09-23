@@ -107,7 +107,7 @@ The storage architecture was reorganized to improve performance while maintainin
 The GPU nodes are up and running, and available as of Tuesday Oct 14 2025.
 
 
-- Some things have changed, though, see below and the [documentation](../../hydra/software/gpus.md).
+- Some things have changed, though, see below and the [documentation](../../software/gpus.md).
 - What has changed:
     - you must specify `-l gpu,ngpus=1` to use and request 1 GPU (both)
         - `gpu` is an abbreviation for `use_gpu`

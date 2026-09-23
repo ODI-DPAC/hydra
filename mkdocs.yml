@@ -103,9 +103,8 @@ validation:
   unrecognized_links: warn
   anchors: warn
 
-# Nav is independent of the directory tree. Cluster-specific content lives under
-# docs/hydra/ so a second platform (AWS, etc.) can be added later by regrouping
-# this nav without moving files or changing URLs.
+# Nav is independent of the directory tree. The site is served under /hydra/, so
+# the docs tree is flat: docs/jobs, docs/storage, docs/software, docs/interactive.
 # Keep sidebar labels short; the page H1 carries the full title.
 nav:
   - Home: index.md
@@ -116,59 +115,59 @@ nav:
       - Quick start: getting-started/quick-start.md
       - Training and workshops: getting-started/training.md
   - Running Jobs:
-      - hydra/jobs/index.md
-      - How the scheduler works: hydra/jobs/concepts.md
-      - Write and submit a job: hydra/jobs/submit.md
-      - Request a queue, memory and CPUs: hydra/jobs/request-resources.md
-      - Submit a job array: hydra/jobs/arrays.md
-      - Submit a parallel job: hydra/jobs/parallel.md
-      - Monitor and manage jobs: hydra/jobs/monitoring.md
-      - QSub Generator: hydra/jobs/qsubgen.md
-      - Queues: hydra/jobs/queues.md
-      - Job script reference: hydra/jobs/job-scripts.md
-      - Resource limits: hydra/jobs/limits.md
-      - Monitoring tools: hydra/jobs/tools.md
-      - Warning emails: hydra/jobs/efficiency.md
-      - Examples: hydra/jobs/examples.md
-      - Cluster hardware: hydra/jobs/hardware.md
+      - jobs/index.md
+      - How the scheduler works: jobs/concepts.md
+      - Write and submit a job: jobs/submit.md
+      - Request a queue, memory and CPUs: jobs/request-resources.md
+      - Submit a job array: jobs/arrays.md
+      - Submit a parallel job: jobs/parallel.md
+      - Monitor and manage jobs: jobs/monitoring.md
+      - QSub Generator: jobs/qsubgen.md
+      - Queues: jobs/queues.md
+      - Job script reference: jobs/job-scripts.md
+      - Resource limits: jobs/limits.md
+      - Monitoring tools: jobs/tools.md
+      - Warning emails: jobs/efficiency.md
+      - Examples: jobs/examples.md
+      - Cluster hardware: jobs/hardware.md
   - Interactive Use:
-      - hydra/interactive/index.md
-      - qrsh sessions: hydra/interactive/qrsh.md
-      - Jupyter: hydra/interactive/jupyter.md
-      - VS Code: hydra/interactive/vscode.md
-      - RStudio: hydra/interactive/rstudio.md
+      - interactive/index.md
+      - qrsh sessions: interactive/qrsh.md
+      - Jupyter: interactive/jupyter.md
+      - VS Code: interactive/vscode.md
+      - RStudio: interactive/rstudio.md
   - Storage:
-      - hydra/storage/index.md
-      - Check usage and quotas: hydra/storage/quotas.md
-      - Recover a file from a snapshot: hydra/storage/snapshots.md
-      - Scrubbed files and restores: hydra/storage/scrubber.md
-      - Use a node's local SSD: hydra/storage/ssd.md
-      - Use /store and the I/O queue: hydra/storage/store.md
-      - Filesystems: hydra/storage/filesystems.md
-      - Backups: hydra/storage/backups.md
+      - storage/index.md
+      - Check usage and quotas: storage/quotas.md
+      - Recover a file from a snapshot: storage/snapshots.md
+      - Scrubbed files and restores: storage/scrubber.md
+      - Use a node's local SSD: storage/ssd.md
+      - Use /store and the I/O queue: storage/store.md
+      - Filesystems: storage/filesystems.md
+      - Backups: storage/backups.md
   - Software:
-      - hydra/software/index.md
-      - Modules: hydra/software/modules.md
-      - Custom module files: hydra/software/custom-modules.md
-      - Compilers and MPI: hydra/software/compilers.md
-      - Python and conda: hydra/software/python.md
-      - R: hydra/software/r.md
-      - Julia, MATLAB, IDL, Java: hydra/software/other-languages.md
-      - Bio modules: hydra/software/bio-modules.md
+      - software/index.md
+      - Modules: software/modules.md
+      - Custom module files: software/custom-modules.md
+      - Compilers and MPI: software/compilers.md
+      - Python and conda: software/python.md
+      - R: software/r.md
+      - Julia, MATLAB, IDL, Java: software/other-languages.md
+      - Bio modules: software/bio-modules.md
       - Bio guides:
-          - hydra/software/bio-guides/index.md
-          - ALLPATHS-LG: hydra/software/bio-guides/allpaths-lg.md
-          - BEAST: hydra/software/bio-guides/beast.md
-          - BLAST: hydra/software/bio-guides/blast.md
-          - Blast2GO: hydra/software/bio-guides/blast2go.md
-          - BUSCO: hydra/software/bio-guides/busco.md
-          - GeneMark-ES: hydra/software/bio-guides/genemark-es.md
-          - MaSuRCA: hydra/software/bio-guides/masurca.md
-          - SMC++: hydra/software/bio-guides/smc.md
-          - SPAdes: hydra/software/bio-guides/spades.md
-          - Local databases: hydra/software/bio-guides/databases.md
-      - GPUs: hydra/software/gpus.md
-      - Containers: hydra/software/containers.md
+          - software/bio-guides/index.md
+          - ALLPATHS-LG: software/bio-guides/allpaths-lg.md
+          - BEAST: software/bio-guides/beast.md
+          - BLAST: software/bio-guides/blast.md
+          - Blast2GO: software/bio-guides/blast2go.md
+          - BUSCO: software/bio-guides/busco.md
+          - GeneMark-ES: software/bio-guides/genemark-es.md
+          - MaSuRCA: software/bio-guides/masurca.md
+          - SMC++: software/bio-guides/smc.md
+          - SPAdes: software/bio-guides/spades.md
+          - Local databases: software/bio-guides/databases.md
+      - GPUs: software/gpus.md
+      - Containers: software/containers.md
   - Data Transfer:
       - data-transfer/index.md
       - scp, sftp and rsync: data-transfer/scp-rsync.md

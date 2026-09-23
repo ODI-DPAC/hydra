@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Regenerate docs/hydra/software/bio-modules.md from the live module tree.
+# Regenerate docs/software/bio-modules.md from the live module tree.
 # Run on a Hydra login node, commit the result. Wire into a cron or a CI job that
 # ssh-es to the cluster if you want it automatic.
 #
-#   ./scripts/gen_module_list.sh > docs/hydra/software/bio-modules.md
+#   ./scripts/gen_module_list.sh > docs/software/bio-modules.md
 set -euo pipefail
 PREFIX="${1:-bio}"   # module prefix to list; "bio" or "tools" etc.
 

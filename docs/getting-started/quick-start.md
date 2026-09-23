@@ -45,7 +45,7 @@ echo = `date` job $JOB_NAME done
 | `-N hello` | Job name |
 | `-o hello.log` | Output file |
 
-[Job scripts](../hydra/jobs/job-scripts.md) describes all options. The [QSub Generator](../hydra/jobs/qsubgen.md) produces a job file from a web form.
+[Job scripts](../jobs/job-scripts.md) describes all options. The [QSub Generator](../jobs/qsubgen.md) produces a job file from a web form.
 
 ## 3. Submit the job
 
@@ -81,10 +81,10 @@ $ cat hello.log
 
 !!! warning "`/scratch` is not permanent storage"
 
-    Files older than 180 days are deleted. Move results off the cluster when an analysis is complete. See [Storage](../hydra/storage/index.md).
+    Files older than 180 days are deleted. Move results off the cluster when an analysis is complete. See [Storage](../storage/index.md).
 
 ## Next steps
 
 - Copying data to Hydra and results back: [Data transfer](../data-transfer/index.md).
-- Choosing a queue and memory for a production job: [Queues](../hydra/jobs/queues.md).
-- Loading software: [Modules](../hydra/software/modules.md).
+- Choosing a queue and memory for a production job: [Queues](../jobs/queues.md).
+- Loading software: [Modules](../software/modules.md).

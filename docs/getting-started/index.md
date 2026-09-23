@@ -9,4 +9,4 @@ The pages a new user reads, in order.
 
 Publications that used Hydra should [cite it](../policies/citing.md).
 
-If you have used a Slurm cluster elsewhere: Hydra runs Grid Engine. The commands are `qsub`, `qstat`, `qdel` and `qrsh`, not `sbatch` and `squeue`. [How the scheduler works](../hydra/jobs/concepts.md) covers the differences.
+If you have used a Slurm cluster elsewhere: Hydra runs Grid Engine. The commands are `qsub`, `qstat`, `qdel` and `qrsh`, not `sbatch` and `squeue`. [How the scheduler works](../jobs/concepts.md) covers the differences.

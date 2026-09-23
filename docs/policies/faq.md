@@ -34,4 +34,4 @@
 
     - Use the command `qrsh` instead of `qsub` (not `ssh`);
     - like all queues, the interactive queue has limits (CPU time, elapsed time, memory and number of CPUs/threads/cores/slots);
-    - Read the documentation under [Available Queues](../hydra/jobs/queues.md).
+    - Read the documentation under [Available Queues](../jobs/queues.md).

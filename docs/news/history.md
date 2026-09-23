@@ -69,7 +69,7 @@ We have updated/reorganized the documentation on the Wiki accordingly.
 We have tested a new RStudio server with an updated image (OS) and R version (4.4.3 -> 4.5.1). We've tested this new OS and R release, but be aware that some R packages that you've installed in your R library may prompt to be updated for the new R version.
 
 The production RStudio server will be offline on Tuesday December 16, 2025 for this upgrade. Let us know right away if this timing conflicts with your needs. We will notify users when it is back up and ready for use.
-        - Information on scrubbing is available [here](../hydra/storage/scrubber.md).
+        - Information on scrubbing is available [here](../storage/scrubber.md).
         - IDL version 9.2.0
         - julia version 1.12.1
         - Matlab runtime versions 2025a and 2025b
@@ -90,7 +90,7 @@ The production RStudio server will be offline on Tuesday December 16, 2025 for t
 - **Oct 14, 2025**
     - GPU nodes and queues are available
     - Check these updated pages
-        - [How to Use GPUs](../hydra/software/gpus.md)
+        - [How to Use GPUs](../software/gpus.md)
         - [2025 Data Center Move](upgrades/2025-data-center-move.md)
 - **Oct 6, 2025**
     - Hydra is back and operational
@@ -158,7 +158,7 @@ The production RStudio server will be offline on Tuesday December 16, 2025 for t
     - load the `matlab/R2024b` or `matlab/2024a` module to access them.
 - **Nov 7, 2024**
     - The command dos2unix is accessible without the need to load any module and the man page is available (man dos2unix).
-    - We have added a workflow manager ("WFM") special queue, please consult the relevant [documentation](../hydra/jobs/queues.md).
+    - We have added a workflow manager ("WFM") special queue, please consult the relevant [documentation](../jobs/queues.md).
 
 
 - **Oct 28, 2024**
@@ -377,7 +377,7 @@ You are now able and encouraged to cite Hydra whenever research has benefited fr
     - Users are asked to remain in contact via their SI email.
 - **February 27, 2020** - `cpu_arch` resource and IDL 8.7.3
     - We have added a new resource, called `cpu_arch`, to allow users to direct jobs on nodes with CPUs of a specific (list of) architecture(s). 
-If you run jobs/codes that can only run on (a) specific type(s) of processors, look at the new section [CPU Architecture](../hydra/jobs/queues.md) under the [Available Queues](../hydra/jobs/queues.md) page.
+If you run jobs/codes that can only run on (a) specific type(s) of processors, look at the new section [CPU Architecture](../jobs/queues.md) under the [Available Queues](../jobs/queues.md) page.
     - IDL version 8.7.3 has been installed on Hydra, and is accessible via the idl/8.7.3 module. The idl/8.7 module is now pointing to idl/8.7.3
 - **January 14, 2020** - Increased total slot limit
     - The total number of slots (CPUs) a user can grab has been increased from 512 to 640.
