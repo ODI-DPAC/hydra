@@ -12,14 +12,14 @@ The nodes, slots and memory behind each queue set. These figures change with the
 | `qrsh.iq` | 2 | 40 | | 256 GB per node | interactive queue; `qrsh` or `qlogin` |
 | `qgpu.iq` | 3 | 8 GPUs | | | interactive GPU queue; `qrsh -l gpu` |
 
-
+`?` stands for the time class: `s` (short), `m` (medium), `l` (long) or `u` (unlimited). The four queues of a set share the same nodes.
 
 Check the current values with:
 
-```console
-$ qstat -g c
-$ qstat+ -gc
-$ qhost
+```bash
+qstat -g c
+qstat+ -gc
+qhost
 ```
 
 A request for resources that no node has, or that exceed a queue's limit, is rejected with `Unable to run job: error: no suitable queues.` Run `qsub -w v` or `qsub -verify` on the job file to see which resource; see [Check a request before submitting](../jobs/request-resources.md#check-a-request-before-submitting).
