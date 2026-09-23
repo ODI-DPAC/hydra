@@ -1,6 +1,6 @@
 # Use /store and the I/O queue
 
-This page covers moving data between `/store` and the partitions jobs can read. `/store` holds the project partitions on the NAS: near-line storage, large, inexpensive, not mounted on the compute nodes. It holds data waiting to be processed or already processed. It is not backed up. Groups with a `/store` partition are set up by [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
+This page covers moving data between `/store` and the partitions jobs can read. `/store` holds the project partitions on the NAS, a large and inexpensive near-line system that is not mounted on the compute nodes. It holds data waiting to be processed or already processed, and it is not backed up. Groups with a `/store` partition are set up by [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
 
 !!! note "`/store/public` is being phased out"
 
@@ -24,7 +24,7 @@ The login-node limits apply (see [Warning emails](../jobs/efficiency.md#high-cpu
 
 ## Copy data as an I/O job
 
-Large or repeated copies run as jobs in the I/O queue, `lTIO.sq`, which runs on the interactive nodes. An I/O job can run for 72 hours but use only 12 hours of CPU and 8 GB per slot. One user may run two I/O jobs at once, with up to 8 slots.
+Large or repeated copies run as jobs in the I/O queue, `lTIO.sq`, which runs on the interactive nodes. An I/O job can run for 72 hours but use only 12 hours of CPU and 8 GB per slot. One user may run eight I/O jobs at once, with up to 8 slots in total.
 
 1. Write a job file that requests the queue with `-q lTIO.sq -l ioq`:
 

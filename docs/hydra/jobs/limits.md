@@ -1,6 +1,6 @@
 # Resource limits
 
-Each queue limits what one job may use; these cluster-wide limits cap how much of the cluster one user may hold at once. A job that would exceed one waits in the queue until your other jobs finish. The values are from `qconf -srqs` in May 2024; the commands at the end print the current ones.
+Each queue limits what one job may use; these cluster-wide limits cap how much of the cluster one user may hold at once. A job that would exceed one waits in the queue until your other jobs finish. The commands at the end print the current values.
 
 ## Queued jobs
 
@@ -17,15 +17,16 @@ A job array counts as one job. `q-wait` and a counting loop for scripts that sub
 | Queue | Slots |
 |---|---|
 | all queues together | 840 |
-| `sThC.q`, `mThC.q` | 840 |
-| `lThC.q` | 417 |
-| `uThC.q` | 139 |
+| `sThC.q` | 840 |
+| `mThC.q` | 640 |
+| `lThC.q` | 431 |
+| `uThC.q` | 143 |
 | `sThM.q` | 840 |
-| `mThM.q` | 569 |
-| `lThM.q` | 379 |
-| `uThM.q` | 71 |
-| `uTxlM.rq` | 480 |
-| `qrsh.iq` | 16 |
+| `mThM.q` | 640 |
+| `lThM.q` | 390 |
+| `uThM.q` | 73 |
+| `uTxlM.rq` | 536 |
+| `qrsh.iq` | 64 |
 | `lTIO.sq` | 8 |
 | `lTWFM.sq` | 2 |
 
@@ -33,27 +34,50 @@ A job array counts as one job. `q-wait` and a counting loop for scripts that sub
 
 | Queue | Jobs |
 |---|---|
-| `qrsh.iq` | 1 |
+| `qrsh.iq` | 12 |
 | `qgpu.iq` | 1 |
-| `lTIO.sq` | 2 |
+| `lTIO.sq` | 8 |
 | `uTxlM.rq` | 3 |
 | `lTWFM.sq` | 1 |
 
-## GPUs
+## Reserved memory per user
 
-| Queue | Per user | All users |
-|---|---|---|
-| `qgpu.iq` | 1 | 4 |
-| `sTgpu.q` | 4 | 4 |
-| `mTgpu.q` | 3 | 4 |
-| `lTgpu.q` | 2 | 4 |
+| Queues | Reserved memory (`mres`) |
+|---|---|
+| `sThC.q` `mThC.q` `lThC.q` `uThC.q` together | 10 TB |
+| `sThM.q` `mThM.q` `lThM.q` `uThM.q` together | 9 TB |
+| `uTxlM.rq` | 8 TB |
+
+## GPUs per user
+
+| Queue | GPUs |
+|---|---|
+| all GPU queues together | 4 |
+| `sTgpu.q` | 4 |
+| `mTgpu.q` | 3 |
+| `lTgpu.q` | 2 |
+| `qgpu.iq` | 1 |
+
+The cluster has 8 GPUs; a group of approved users has higher GPU limits.
 
 ## Other limits
 
 | Resource | Per user |
 |---|---|
 | IDL runtime licenses | 102 |
-| reserved memory in `lThM.q` | 2.6 TB |
+
+## All users together
+
+| Resource | Limit |
+|---|---|
+| slots, all queues | 5,960 |
+| slots in the high-CPU queues | 5,176 |
+| slots in the high-memory queues | 4,680 |
+| slots in `uTxlM.rq` | 536 |
+| slots in the GPU queues | 104 |
+| reserved memory, high-CPU queues | 40 TB |
+| reserved memory, high-memory queues | 36 TB |
+| reserved memory, `uTxlM.rq` | 8 TB |
 
 ## Print the current limits
 

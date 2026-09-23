@@ -6,7 +6,7 @@ Replace `USERNAME` with your Hydra username throughout.
 
 ## 1. Log in and create a working directory
 
-Jobs run from `/scratch`, not from your home directory.
+Jobs run from a directory under `/scratch`; the home directory has a small quota and is not for job input and output.
 
 ```bash
 ssh USERNAME@hydra-login01.si.edu

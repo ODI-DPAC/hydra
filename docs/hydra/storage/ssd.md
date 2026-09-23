@@ -41,7 +41,7 @@ This page covers running a job on a compute node's local solid-state disk. It is
     rm -rf *
     ```
 
-The whole job file:
+The whole job file is:
 
 ```sh title="wow.job"
 #$ -S /bin/sh

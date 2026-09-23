@@ -25,7 +25,7 @@ This page covers the options that decide where a job runs and what it may use: t
 
 `himem`, `gpu` and `lopri` are required so that the scheduler does not place an ordinary job in a high-memory, GPU or unlimited queue only because that queue is less busy. The more a job requests, the fewer similar jobs you can run at once under the [resource limits](limits.md).
 
-Some complete requests:
+Some complete requests are:
 
 | Options | Effect |
 |---|---|

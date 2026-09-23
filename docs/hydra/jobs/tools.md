@@ -85,7 +85,7 @@ The accounting data is loaded into a PostgreSQL database within about a minute o
 | `qacct+ -show fields` | every field available |
 | `qacct+ -show explain_failed` | meanings of the `failed` codes |
 
-Built-in formats: `simple`, `simple+`, `tab`, `tab+`, `gpu`, `gpu+`, `raw`. A custom `-show` takes `+field,...` for keyed output or `%field,...` for tabular, each field with an optional C format or an `@DATE`, `@MEM` or `@AGE` converter.
+The built-in formats are `simple`, `simple+`, `tab`, `tab+`, `gpu`, `gpu+`, `raw`. A custom `-show` takes `+field,...` for keyed output or `%field,...` for tabular, each field with an optional C format or an `@DATE`, `@MEM` or `@AGE` converter.
 
 ## qhost and qconf
 
