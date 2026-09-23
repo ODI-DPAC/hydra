@@ -4,7 +4,7 @@ Anyone affiliated with the Smithsonian, including SAO/CfA, requests a Hydra acco
 
 !!! note "A Hydra account is separate from your SI, CfA and VPN accounts"
 
-    The username and password are set by the HPC team and are not synchronized with any other SI system. <!-- VERIFY: "As of Jun 2026, this applies to all SI's users, i.e., including SAO/CfA's affiliates." Confirm this is still the policy and drop the date once it is settled. -->
+    The username and password are set by the HPC team and are not synchronized with any other SI system.
 
 ## Request the account
 

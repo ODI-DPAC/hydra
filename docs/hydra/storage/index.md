@@ -1,16 +1,15 @@
 # Storage
 
-Hydra has several filesystems with different purposes, speeds, quotas and retention rules. Choosing the right one matters.
+Hydra has several filesystems with different purposes, speeds, quotas and retention rules.
 
 ## Which filesystem
 
 | Path | Purpose | Backed up | Snapshots | Scrubbed |
 |---|---|---|---|---|
-| `/home` | dotfiles, scripts, small files | DR copy to cloud | yes | no |
-| `/data` | project data | see [backups](backups.md) | yes | no |
+| `/home` | dotfiles, scripts, small files | see [Backups](backups.md) | hourly and weekly, two weeks | no |
+| `/data` | project data | see [Backups](backups.md) | hourly and weekly, two weeks | no |
 | `/scratch` | working space for jobs (GPFS over InfiniBand) | no | no | files older than 180 days |
-| `/store` | near-line storage, I/O queue only | no | no | no |
-
+| `/store` | near-line storage, I/O queue only | no | ZFS snapshots | no |
 
 ## In this section
 

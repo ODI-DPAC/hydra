@@ -22,31 +22,31 @@ When it looks right, `zensical build --strict` (this is what CI runs; it fails o
 
 Here is a short page written the way we want the whole site to read:
 
-```markdown
+````markdown
 # Recover a file from a snapshot
 
-Snapshots of `/home` and `/data` are taken nightly and kept for 30 days. This page covers finding
-and copying back a file you have deleted or overwritten.
+`/home` and `/data` keep hourly and weekly snapshots for two weeks. This page covers copying back
+a file you have deleted or overwritten.
 
-Snapshots are read-only copies under a hidden `.snapshots` directory at the top of each filesystem.
+Snapshots are read-only copies under a hidden `.snapshot` directory at the top of each filesystem.
 
 1. List the snapshots:
 
-    ```console
-    $ ls /home/.snapshots
-    2026-09-14  2026-09-15  2026-09-16
-    ```
+```console
+    $ ls /data/genomics/.snapshot
+    hourly.2026-09-15_1005  hourly.2026-09-15_1105  weekly.2026-09-14_0015
+```
 
-2. Copy the file back from the date you want:
+2. Copy the file back from the snapshot you want:
 
-    ```bash
-    cp /home/.snapshots/2026-09-15/USERNAME/analysis/results.csv ~/analysis/
-    ```
+```bash
+    cp -pi /data/genomics/.snapshot/hourly.2026-09-15_1105/USERNAME/analysis/results.csv /data/genomics/USERNAME/analysis/
+```
 
 !!! warning "`/scratch` has no snapshots"
 
-    Files deleted from `/scratch` cannot be recovered. See [Scrubber](scrubber.md).
-```
+    A file deleted from `/scratch` cannot be recovered. See [Scrubber](scrubber.md).
+````
 
 The things to copy from it:
 
@@ -84,7 +84,7 @@ extra:
   announce:
     kind: maintenance     # maintenance | outage | info
     text: "Hydra is down for scheduled maintenance Tue Oct 7, 08:00 to 17:00 ET."
-    link: news/#2025-10-07
+    link: news/#2026-10-07
 ```
 
 Blank `text` means no banner and a green pill. Change it in a PR and add the matching News entry in the same PR.
