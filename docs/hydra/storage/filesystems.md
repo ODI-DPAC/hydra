@@ -1,12 +1,12 @@
 # Filesystems
 
-This page lists the partitions on Hydra with their quotas and retention rules, as of October 2025. Sizes and quotas are adjusted as needed; `disk-usage -d all+ -quotas` on a login node prints the current values (see [Check your disk usage and quotas](quotas.md)).
+This page lists the partitions on Hydra with their quotas and retention rules. Sizes and quotas are adjusted as needed; `disk-usage -d all+ -quotas` on a login node prints the current values (see [Check your disk usage and quotas](quotas.md)).
 
 ## Public partitions
 
 | Partition | System | Size | Space quota, soft / hard | File quota, soft / hard |
 |---|---|---|---|---|
-| `/home` | NetApp | 23 TB | 350 GB / 384 GB | 9 M / 10 M |
+| `/home` | NetApp | 22 TB | 350 GB / 384 GB | 9 M / 10 M |
 | `/data/public` | NetApp | 330 TB | 4.3 TB / 4.5 TB | 9.5 M / 10 M |
 | `/scratch/public` | GPFS | 800 TB | 14 TB / 15 TB | 37 M / 39 M |
 
