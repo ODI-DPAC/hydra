@@ -25,12 +25,12 @@ The hard limits are 15 minutes longer than the soft ones. At a soft limit the sc
 | `sTgpu.q` `mTgpu.q` `lTgpu.q` | 64 GB / 128 GB | `mthread` | jobs that use a GPU | `-l gpu` |
 | `qrsh.iq` | 8 GB / 64 GB | `mthread` | interactive sessions; 12 h CPU, 24 h elapsed | started with `qrsh` |
 | `qgpu.iq` | 64 GB / 65 GB | `mthread` | interactive sessions with a GPU; approved users only | `qrsh -l gpu` |
-| `lTIO.sq` | 8 GB / 64 GB | `mthread` | jobs that read or write `/store`; 12 h CPU, 72 h elapsed | `-q lTIO.sq` |
+| `lTIO.sq` | 8 GB / 64 GB | `mthread` | jobs that read or write `/store`; 12 h CPU, 72 h elapsed | `-q lTIO.sq -l ioq` |
 | `lTWFM.sq` | 8 GB / 64 GB | `mthread` | a workflow manager that submits jobs; 6 d CPU, 30 d elapsed, 2 slots | `-q lTWFM.sq -l wfmq` |
 
 Memory limits are per slot: a job with `-pe mthread 4` in a high-CPU queue may use 4 × 8 GB. Only the high-CPU queues run multi-node (MPI and hybrid) jobs; in every other queue a parallel job fits on one node.
 
-The interactive queues are described under [qrsh sessions](../interactive/qrsh.md), the I/O queue under [Local SSD, NAS, bigtmp](../storage/special.md), the GPU queues under [GPUs](../software/gpus.md). Jobs in `lTWFM.sq` run on the `@wfm-hosts` nodes, which can run `qsub`; one such job per user at a time.
+The interactive queues are described under [qrsh sessions](../interactive/qrsh.md), the I/O queue under [Use /store and the I/O queue](../storage/store.md), the GPU queues under [GPUs](../software/gpus.md). Jobs in `lTWFM.sq` run on the `@wfm-hosts` nodes, which can run `qsub`; one such job per user at a time.
 
 ## Host groups
 

@@ -1,25 +1,11 @@
 # Running jobs
 
-Hydra runs Grid Engine. You submit work as jobs from a login node with `qsub`; the scheduler runs them on the compute nodes.
+Hydra runs Grid Engine. You submit work as jobs from a login node with `qsub`; the scheduler runs each one on the compute nodes and kills it if it exceeds the limits of its queue.
 
-How to:
+For a first job, [write and submit a job](submit.md), then [check on it](monitoring.md). Anything larger than the default (7 hours of CPU, 8 GB, one CPU) needs a [queue, memory or CPU request](request-resources.md); many similar runs go in a [job array](arrays.md); threaded, MPI and hybrid programs are [parallel jobs](parallel.md). The [QSub Generator](qsubgen.md) writes a job file from a web form.
 
-- [Write and submit a job](submit.md): a first job file, arguments, email, the time limit, jobs in sequence
-- [Request a queue, memory and CPUs](request-resources.md): pick the queue, reserve memory, restrict to nodes, check the request
-- [Submit a job array](arrays.md): many similar runs from one job file
-- [Submit a parallel job](parallel.md): multi-threaded, MPI and hybrid jobs
-- [Monitor and manage jobs](monitoring.md): `qstat`, `qdel`, `qalter`, `qacct`, nodes and cluster state
-- [QSub Generator](qsubgen.md): a web form that writes a job file
+!!! warning "Do not compute on the login nodes"
 
-Reference:
+    A process that runs for more than a few minutes on a login node is slowed, then killed. Run it as a job, or under `qrsh` in an [interactive session](../interactive/qrsh.md). [Warning emails](efficiency.md#high-cpu-use-on-a-login-node) gives the thresholds.
 
-- [How the scheduler works](concepts.md): nodes, queues, limits, the rules for a shared cluster
-- [Queues](queues.md): time classes, queue sets, host groups, CPU architectures
-- [Job script reference](job-scripts.md): options, precedence, variables, signals, PEs, MPI modules
-- [Resource limits](limits.md): slots, jobs, GPUs and memory one user may hold
-- [Monitoring tools](tools.md): job states, `qstat+`, `qacct` fields, `qacct+`, the Hydra tools
-- [Warning emails](efficiency.md): each automated warning and what to do
-- [Examples](examples.md): the worked examples under `~hpc/examples`
-- [Cluster hardware](../hardware/index.md): nodes, network, the hardware behind each queue
-
-Interactive sessions on a compute node are under [Interactive Use](../interactive/index.md).
+The reference pages in the sidebar list the [queues](queues.md), the [job script options](job-scripts.md), the [per-user limits](limits.md), the [monitoring tools](tools.md) and the [warning emails](efficiency.md). [How the scheduler works](concepts.md) explains the pieces, including what changes if you know Slurm. Interactive sessions on a compute node are under [Interactive Use](../interactive/index.md).

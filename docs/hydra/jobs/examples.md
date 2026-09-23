@@ -23,8 +23,7 @@ $ cp -r ~hpc/examples/serial /scratch/genomics/USERNAME/
 | `gsl/` | a program using GSL |
 | `c++11/` | a C++11 build |
 | `memtest/` | large-memory use and reservation |
-| `ssd/` | using a node's local SSD; see [Local SSD, NAS, bigtmp](../storage/special.md) |
-| `bigtmp/` | using the large temporary disk space |
+| `ssd/` | using a node's local SSD; see [Use a node's local SSD](../storage/ssd.md) |
 | `misc/` | other examples |
 
 Each directory has a `README`. The [Quick start](../../getting-started/quick-start.md) walks through a first job; the bio guides under [Software](../software/bio-guides/index.md) show job files for specific packages.

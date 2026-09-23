@@ -1,53 +1,49 @@
-# Snapshots and recovering files
+# Recover a file from a snapshot
 
-Some of the disks on the NetApp filer and the NAS have the so called "snapshot mechanism" enabled:
+This page covers getting back a file you deleted or overwrote on `/home`, `/data` or a project `/store` partition. Those partitions keep read-only snapshots of their contents: `/home` for 4 weeks, `/data` for 2 weeks, `/store` for 8 weeks. 
+!!! danger "`/scratch` has no snapshots"
 
+    A file you delete from `/scratch` cannot be recovered. Only files removed by the [scrubber](scrubber.md) can be restored, and only for about ten days.
 
-- This allow users to recover deleted files or access an older version of a file.
-- Indeed, the NetApp filer makes a "snapshot" copy of the file system (the content of the disk) every so often and keeps these snapshots up to a given age.
-- So if we enable hourly snapshot and set a two weeks retention, you can recover a file as it was hours ago, days ago or weeks ago, but only up to two weeks ago.
-- The drawback of the snapshot is that when files are deleted, the disk space is not freed until the deleted files age-out, like 2 or 4 weeks later.
+## Recover a file on /home or /data
 
+1. List the snapshots of the partition. They are in a hidden `.snapshot` directory at its top, named by frequency and time:
 
-## How to Use the NetApp Snapshots:
+    ```console
+    $ ls /data/genomics/.snapshot
+    hourly.2026-09-23_1005  hourly.2026-09-23_1105  daily.2026-09-23_0010  weekly.2026-09-21_0015
+    ```
 
+2. Change into the snapshot from before the loss, at the path the file had:
 
-To recover an old version or a deleted file, foo.dat, that was (for example) in`/data/genomics/frandsen/important/results/`:
+    ```bash
+    cd /data/genomics/.snapshot/daily.2026-09-23_0010/USERNAME/analysis/results
+    ```
 
+3. Copy the file back. `-p` keeps its dates; `-i` refuses to overwrite an existing file:
 
-- If the file was deleted:
+    ```bash
+    cp -pi results.csv /data/genomics/USERNAME/analysis/results/results.csv
+    ```
 
+    To keep the current version as well, copy the old one under another name:
 
+    ```bash
+    cp -pi results.csv /data/genomics/USERNAME/analysis/results/results-old.csv
+    ```
+
+Files under `.snapshot` can be read and copied (with `cp`, `tar` or `rsync`) but not moved or deleted. `/home` works the same way: `/home/.snapshot/`.
+
+## Recover a file on /store
+
+`/store` snapshots are under `.zfs/snapshot` at the top of each `/store` partition, one directory per day, named `auto-YYMMDD.0230-8w`:
+
+```console
+$ ls /store/PROJECT/.zfs/snapshot
+auto-260916.0230-8w  auto-260917.0230-8w  auto-260918.0230-8w  ...
+$ cp -pi /store/PROJECT/.zfs/snapshot/auto-260917.0230-8w/USERNAME/data.tar /store/PROJECT/USERNAME/
 ```
-   % cd /data/genomics/.snapshot/XXXX/frandsen/important/results
-   % cp -pi foo.dat /data/genomics/frandsen/important/results/foo.dat
-```
 
+`/store` is mounted on the login and interactive nodes only.
 
-- If you want to recover an old version:
-
-
-```
-   % cd /data/genomics/.snapshot/XXXX/frandsen/important/results
-   % cp -pi foo.dat /data/genomics/frandsen/important/results/old-foo.dat
-```
-
-
-- The "`-p"` will preserve the file creation date and the`"-i"`will prevent overwriting an existing file.
-- The `"XXXX`" is to be replaced by either:
-    - `hourly.YYYY-MM-DD_HHMM`
-    - `daily.YYYY-MM-DD_0010`
-    - `weekly.YYYY-MM-DD_0015` 
-where `YYY-MM-DD` is a date specification (i.e., `2015-11-01`)
-- The files under `.snapshot` are read-only:
-    - they be recovered using `cp`, `tar` or `rsync`; but
-    - they cannot be moved (`mv`) or deleted (`rm`).
-
-
-## How to Use the NAS/ZFS Snapshots:
-
-
-- The snapshots on the `/store` disks are:
-    - located under `/store/XXX/.zfs/snapshot` (where XXX is, for example, `public`) and
-    - in sub-directories named `auto-YYMMDD.0230-8w` where YYYYMMDD represent the date of the snapshot.
-- Content of NAS/ZFS snapshots can be recovered as described above.
+A snapshot lives on the same storage system as the partition, so it does not protect against a failure of that system; what does is described under [Backups](backups.md).
