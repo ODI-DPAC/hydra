@@ -124,10 +124,10 @@ Loading the module `tools/manpath` will solve this.
 ### Available Module Files
 
 
-For a current list of all available module files on Hydra, see [here](https://lweb.cfa.harvard.edu/~sylvain/hydra/module-avail.html) (or as plain text [here](https://lweb.cfa.harvard.edu/~sylvain/hydra/module-avail.txt)).
+For a current list of all available module files on Hydra, see the [list of module files](https://hydra.si.edu/tools/QSubGen/module-avail.html).
 
 
-In the *bioinformatics* and *tools* categories, the [list of module files](https://www.cfa.harvard.edu/~sylvain/hydra/module-avail.html) does not include every version of each software package installed. For these sections, you will need to run `module avail` on Hydra to see every available version.
+In the *bioinformatics* and *tools* categories, the [list of module files](https://hydra.si.edu/tools/QSubGen/module-avail.html) does not include every version of each software package installed. For these sections, you will need to run `module avail` on Hydra to see every available version.
 
 
 ### How to Write your Own Modules Files

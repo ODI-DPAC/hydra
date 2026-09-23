@@ -11,7 +11,7 @@
     Login to Hydra and issue the command `module avail,`
 
 
-    or go to the status page(s) ([\@si.edu](https://hydra-7.si.edu/tools/status/) or [\@cfa.harvard.edu](https://lweb.cfa.harvard.edu/~sylvain/hydra/)), or the [Hydra-7 tools](https://hydra-7.si.edu/tools/) page and click on link to display the list of available modules
+    or go to the [status page](https://hydra.si.edu/tools/status/), or the [Hydra-7 tools](https://hydra-7.si.edu/tools/) page and click on link to display the list of available modules
 
 
 
