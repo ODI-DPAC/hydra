@@ -1,23 +1,11 @@
 # Storage
 
-Hydra has several filesystems with different purposes, speeds, quotas and retention rules.
+Hydra has four kinds of disk space: `/home` for scripts and configuration, `/data` for results, `/scratch` for the working files of jobs, and `/store` for project near-line storage. Each has its own quota and retention rules, listed under [Filesystems](filesystems.md).
 
-## Which filesystem
+To see where you stand, [check your usage and quotas](quotas.md). To get a file back, [recover it from a snapshot](snapshots.md) on `/home`, `/data` or `/store`, or [request a restore](scrubber.md) if the scrubber removed it from `/scratch`. Jobs that read and write intensively can [use a node's local SSD](ssd.md); data on `/store` is [copied with the I/O queue](store.md) before a job uses it.
 
-| Path | Purpose | Snapshots and backups |
-|---|---|---|
-| `/home` | dotfiles, scripts, small files | see [Backups](backups.md) |
-| `/data` | project data | see [Backups](backups.md) |
-| `/scratch` | working space for jobs (GPFS over InfiniBand); scrubbed after 180 days | none |
-| `/store` | near-line storage, I/O queue only | see [Backups](backups.md) |
+!!! danger "Files on `/scratch` older than 180 days are deleted every week"
 
-## In this section
+    `/scratch` has no snapshots and no backup. Keep results on `/data` or off Hydra; the [scrubber](scrubber.md) can restore a file for about ten days after removing it, and not after.
 
-- [Filesystems in detail](filesystems.md)
-- [Quotas and checking your usage](quotas.md)
-- [Snapshots and recovering deleted files](snapshots.md)
-- [The scrubber and requesting restores](scrubber.md)
-- [Local SSD, NAS and bigtmp](special.md)
-- [Backups and disaster recovery](backups.md)
-
-Moving data on and off Hydra is covered under [Data transfer](../../data-transfer/index.md).
+None of the storage systems on Hydra are meant for archival storage; [Backups](backups.md) lists the snapshot and disaster-recovery coverage of each partition. Moving data on and off the cluster is under [Data transfer](../../data-transfer/index.md).

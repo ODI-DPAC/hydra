@@ -18,7 +18,7 @@ This page covers the options that decide where a job runs and what it may use: t
     | a GPU | `-l gpu` (see [GPUs](../software/gpus.md)) |
     | an unknown or unlimited amount of CPU time | `-q uThC.q -l lopri` |
     | more than one CPU | `-pe PE N` (see [Submit a parallel job](parallel.md)) |
-    | to read or write `/store` | `-q lTIO.sq` (see [Local SSD, NAS, bigtmp](../storage/special.md)) |
+    | to read or write `/store` | `-q lTIO.sq -l ioq` (see [Use /store and the I/O queue](../storage/store.md)) |
     | to submit jobs itself | `-q lTWFM.sq -l wfmq` |
 
 3. Check the request before submitting (see [Check a request](#check-a-request-before-submitting)).

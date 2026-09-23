@@ -15,7 +15,7 @@ the `-m <int>` option for `spades.py` should be used to specify the amount of me
 `spades.py` can create many temporary files, more that one million in some cases. This is seen when using the `--careful` option in the assembly. During the mismatch correction phase that this option adds, a separate file is created for each contig, which can number more than 105. Additional intermediate files for each contig can then increase the total number of temporary files to more than a million. By default, these temporary files are placed in a `tmp` directory in the output directory you specify with `-o`. The large number of files can cause you to exceed your inode quota or adversely affect the operation of the GPFS ( `/scratch` et al.) and NetApp ( `/data` et al.).
 
 
-To avoid this, it is recommended to use the [local SSD space](../../storage/special.md) for the SPAdes temporary files.
+To avoid this, it is recommended to use the [local SSD space](../../storage/ssd.md) for the SPAdes temporary files.
 
 
 This examples requests 200GB of local SSD from the scheduler (`-l ssd_res=200G`) and then uses this for the `spades.py` tmp directory by adding `--tmp-dir $SSD_DIR`

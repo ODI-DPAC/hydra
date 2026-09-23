@@ -1,6 +1,6 @@
 # Getting started
 
-Everything a new user needs, in order.
+The pages a new user reads, in order.
 
 1. [Request an account](account.md)
 2. [Watch the introduction video](training.md), required for new users

@@ -1,175 +1,71 @@
-# Scrubber
+# Find scrubbed files and request a restore
 
+This page covers checking which of your files on `/scratch/public` the weekly scrubber will remove, finding out what it removed, and asking for some of it back. The scrubber removes files older than 180 days and old empty directories, moves the files to a staging area, and deletes them permanently about ten days later; the rules are under [Filesystems](filesystems.md#scrubbing). You receive an email when any of your files are scrubbed.
 
+The scrubber tools are in the `tools/scrubber` module. `module help tools/scrubber` lists them; each has a man page.
 
-## 1.Introduction - What is Scrubbing?
+## Check what will be scrubbed
 
+1. Load the module and search a directory for files near the age limit:
 
-In order to maintain free disk space on the public disks, we use a disk scrubber to remove old files and old empty directories.
+    ```console
+    $ module load tools/scrubber
+    $ find-scrub -in /scratch/genomics/USERNAME/project-a -age 173
+    ```
 
+    `-in` defaults to the current directory; `-age` defaults to 173 days, a week before the limit.
 
-The scrubber is run on a weekly basis, it deletes old empty directories, but old files are, at first, moved away in a staging location, then *permanent*ly deleted some 10 days later.
+2. Move anything you still need to `/data`, or off Hydra, before the next Sunday.
 
+`find-scrub` reads every file in the tree, which loads the file server; run it on the directories you care about, not on all of `/scratch`.
 
-!!! note "Please Note"
-    Since the scrubber moves old files away at first, and delete them later,
+## Find out what was scrubbed
 
+1. Note the date in the email; the report is keyed by it as `YYMMDD`.
 
-    - there is a grace period between the scrubbing (move) and the *permanent* deletion to allow users to request for some scrubbed files to be restored;
-    - reasonable requests to restore scrubbed files must be be sent no later than the Friday following the scrubbing, by 5pm;
-    - scrubbed files still "count" against the user quota until they are *permanent*ly deleted;
-    - one *permanent*ly deleted (aka zapped) the files can no longer be restored.
+2. Print the report for your directory and that date:
 
+    ```console
+    $ module load tools/scrubber
+    $ show-scrubber-report /scratch/public/genomics/USERNAME 260920
+    ```
 
-    Requests to restore scrubbed file should be
+3. List the scrubbed files, or the scrubbed empty directories:
 
+    ```console
+    $ list-scrubbed-files -long /scratch/public/genomics/USERNAME 260920
+    $ list-scrubbed-dirs -long /scratch/public/genomics/USERNAME 260920
+    ```
 
-    - rare,
-    - reasonable (*i.e.* no blanket request), and,
-    - can only be granted while the scrubbed files are not yet *permanently* deleted.
+    `-long` adds age and size; `-all` adds the owner; `-n` prints only the count. A Perl regular expression as a last argument limits the list, for example `'^/scratch/public/genomics/USERNAME/project-a/.*\.log$'` for the `.log` files under `project-a`.
 
+## Request a restore
 
-    Past the grace period, the files are no longer available, hence users who want their scrubbed files restore have to act *promptly*.
+Restores are granted only while the files are in the staging area, for a list you have trimmed to what you need, and not for everything that was scrubbed.
 
+1. Write the list of scrubbed files under the directory you want back:
 
+    ```console
+    $ module load tools/scrubber
+    $ list-scrubbed-files /scratch/public/genomics/USERNAME 260920 /scratch/public/genomics/USERNAME/project-a > restore.list
+    ```
 
-## What Disks Are Scrubbed
+    The path argument matches as a prefix: `project-a` also matches `project-a2`.
 
+2. Edit `restore.list` down to the files you need.
 
-The disks that are scrubbed are:
+3. Verify the list:
 
+    ```console
+    $ verify-restore-list -d /scratch/public/genomics/USERNAME 260920 restore.list
+    ```
 
-- `/scratch/public/{biology|genomics|nasm|sao}- 180 days old files/empty directories`
-    - `/scratch/genomics` is the same as `/scratch/public/genomics`, etc.
+    Fix anything it reports and verify again. One list per scrubbing date and per partition.
 
+4. Email the full path of the list file to [SI-HPC@si.edu](mailto:SI-HPC@si.edu) before 5 pm on the Friday after the scrubbing. Send the path, not the file.
 
-## How to Access the Scrubber's Tools
+!!! danger "Scrubbed files are permanently deleted about ten days after the scrubbing"
 
+    After that no restore is possible. Files in the staging area still count against your quota until then.
 
-To access the scrubber tools, you need to load the module:
-
-
-`module load tools/scrubber`
-
-
-- to get the list of tools, use:
-
-
-`module help tools/scrubber`
-
-
-- to get the man page, accessible after loading the module, use:
-
-
-`man <tool-name>`
-
-
-## How to Check what Will Be Scrubbed
-
-
-- To check what files will be scrubbed, use: 
- 
-`find-scrub [-in <dir>] [-age <age>]` 
-
-this will look for files older than <age> days in <dir>, by default dir=current working directory, and age=173 or 83 days.
-- This search taxes the file system (aka disk server), especially if you have a lot of files, so use as needed only.
-
-
-## How to Find Out what Was Scrubbed
-
-
-You will receive an email if any of your files were scrubbed.
-
-
-- To look at the report for what was scrubbed on Sunday Jun 16 2024 under `/scratch/public/genomics/kweskinm`:
-
-
-`show-scrubber-report /scratch/public/genomics/kweskinm 240616`
-
-
-- To find out which old empty directories where scrubbed:
-
-
-`list-scrubbed-dirs [-long|-all] /scratch/public/genomics/kweskinm 240616 [<RE>|-n]`
-
-
-where the <RE> is an optional regular-expression to limit the printout, w/o an RE your get the complete list, unless you specify -n and you get the number of scrubbed directories.
-
-
-The -long or -all option allows you to get more info (like age, size and owner)
-
-
-- To find out which old files where scrubbed:
-
-
-`list-scrubbed-files [-long|-all] /scratch``/public/genomics/kweskinm 240616 [<RE>|-n]`
-
-
-where again the <RE> is an optional regular-expression to limit the printout, w/o an RE your get the complete list, unless you specify -n and you get the number of scrubbed files;
-
-
-the `-long` option will produce a list that includes the files' age and size, -all will list age, size and owner.
-
-
-- The <RE> (regular expressions) are PERL-style RE:
-    - `.` means any char,
-    - `.*` means any set of chars,
-    - `[a-z]` means any single character between `a` and `z,`
-    - `^` means start of match,
-    - `$` means end of match, etc ([see gory details here](http://perldoc.perl.org/perlre.html#Regular-Expressions)).
-- for example:
-
-
-`'^/scratch/public/genomics/blah/project/.*\.log$'`
-
-
-means all the files that end in`'.log'`under `'/scratch/public/genomics/blah/project/'`
-
-
-## How to Request Scrubbed Files to be Restored
-
-
-In order to request that some of your scrubbed files be restored, you need to create a list of files, *trimmed it down to what you really need,* and verify that list.
-
-
-We do not accept bulk restore requests.
-
-
-To produce the list of files to restore (that in this example were under `/scratch/public/genomics/kweskinm/big-project`), follow these steps:
-
-
-1. Load the scrubber module (under tools): 
-`module load tools/scrubber`
-2. Create a list (use the appropriate path): 
-`list-scrubbed-files /scratch/public/genomics/kweskinm 240721 > restore.list` to get a list of all the files scrubbed on Sunday Jul 21 2024, or for example: 
-`list-scrubbed-files /scratch/public/genomics/kweskinm 240721 /scratch/public/genomics/kweskinm/big-project/ > restore.list` 
- to get a list all the scrubbed files under `'big-project/`' and in both cases save the list in the file 'r`estore.list' (`in the current working directory). 
- 
-Note that `/scratch/public/genomics/kweskinm/big-project` means `/scratch/public/genomics/kweskinm/big-project*`, not `/scratch/public/genomics/kweskinm/big-project/`
-3. Edit the file '`restore.lis`t' to trim it down to what you really need, with any text editor (like `vi, nano, emacs`, etc);
-4. Verify the '`restore.list`' file: 
-`verify-restore-list /scratch/public/genomics/kweskinm 240721 restore.list` 
- or, to get more info 
-`verify-restore-list -d /scratch/public/genomics/kweskinm 240721 restore.list` 
-if the verification produced an error, edit the file accordingly.
-    - You need a separate restore file per scrubbed date and per disk (i.e., `/scratch`vs `/scratch`)
-5. Only then, and if the verification produced no error, submit your scrubbed file restoration request: email the location of the list file(s) to [SI-HPC\@si.edu](mailto:SI-HPC@si.edu). While you can email the list file(s) themselves, it is a lot more convenient for us if these list files are already somewhere on Hydra.
-
-
-You can also consult the man pages for the `list-scrubbed-files` and `verify-restore-list` commands, as follows:
-
-
-`module load tools/scrubber`
-
-
-`man list-scrubbed-files`
-
-
-`man verify-restore-list`
-
-
-The restored files will not be scrubbed for another 180 days:
-
-
-- 
-    - check with `ls -lc filename` or `stat filename` on a restored file, it is the `ctime` (change time) that matters.
+A restored file gets a new change time (`ctime`), which is what the scrubber measures, so it is safe for another 180 days. `stat FILE` shows it.

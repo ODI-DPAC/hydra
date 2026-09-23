@@ -53,7 +53,6 @@ A job array counts as one job. `q-wait` and a counting loop for scripts that sub
 
 | Resource | Per user |
 |---|---|
-| `big_tmp` units (see [bigtmp](../storage/special.md)) | 25 |
 | IDL runtime licenses | 102 |
 | reserved memory in `lThM.q` | 2.6 TB |
 
