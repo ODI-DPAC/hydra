@@ -10,9 +10,9 @@ PREFIX="${1:-bio}"   # module prefix to list; "bio" or "tools" etc.
 cat << HDR
 # Bioinformatics modules
 
-Generated from \`module -t avail ${PREFIX}\` on $(hostname -s), $(date +%Y-%m-%d). Do not edit by hand; rerun \`scripts/gen_module_list.sh\`.
+Generated from \`module -t avail ${PREFIX}\` on $(date +%Y-%m-%d). Do not edit by hand; rerun \`scripts/gen_module_list.sh\`.
 
-Load with \`module load ${PREFIX}/NAME/VERSION\`. \`(default)\` marks the version you get with no version given.
+Load a package with \`module load ${PREFIX}/NAME/VERSION\`; \`(default)\` marks the version loaded when no version is given. The prefix \`bioinformatics/\` is an alias of \`${PREFIX}/\`. Every module on the cluster, including versions this list omits, is in the [list of module files](https://hydra.si.edu/tools/QSubGen/module-avail.html) and in \`module avail\` on a login node.
 
 | Module | Versions |
 |---|---|
