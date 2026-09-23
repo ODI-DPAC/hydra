@@ -130,10 +130,7 @@ nav:
       - Monitoring tools: hydra/jobs/tools.md
       - Warning emails: hydra/jobs/efficiency.md
       - Examples: hydra/jobs/examples.md
-      - Cluster hardware:
-          - hydra/hardware/index.md
-          - Nodes and network: hydra/hardware/nodes.md
-          - Limits table: hydra/hardware/limits.md
+      - Cluster hardware: hydra/jobs/hardware.md
   - Interactive Use:
       - hydra/interactive/index.md
       - qrsh sessions: hydra/interactive/qrsh.md

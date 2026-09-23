@@ -47,7 +47,6 @@ A job array counts as one job. `q-wait` and a counting loop for scripts that sub
 | `sTgpu.q` | 4 | 4 |
 | `mTgpu.q` | 3 | 4 |
 | `lTgpu.q` | 2 | 4 |
-| `uTgpu.q` | 1 | 4 |
 
 ## Other limits
 
