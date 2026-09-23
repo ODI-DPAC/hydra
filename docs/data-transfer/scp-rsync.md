@@ -1,10 +1,5 @@
 # scp, sftp and rsync
 
-!!! note
-    The material on this page is part of the Quick Start Guide and is not exhaustive. For more details, please see the Reference Pages.
-
-
-
 ## Introduction
 
 

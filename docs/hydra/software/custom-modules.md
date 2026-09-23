@@ -129,4 +129,3 @@ With this `~/.modulerc`file, you can then load your module file `miniconda` with
 - You can take a look there for more examples of what can be done with modules and see `man modulefile`for more information.
 
 
-Last modified 14 Jun 2018 MK/SGK

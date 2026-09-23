@@ -334,37 +334,37 @@ Volume=NetApp:vol_data_public, mounted as /data/public
                      --  disk   --     --  #files --     default quota:  4.50TB/10.0M
 Disk                 usage   %quota    usage  %quota     name, affiliation - username (indiv. quota)
 -------------------- ------- ------    ------ ------     -------------------------------------------
-/data/public          4.13TB  91.8%     5.07M  50.7%     Alicia Talavera, NMNH - talaveraa
+/data/public          4.13TB  91.8%     5.07M  50.7%     NAME, UNIT - USERNAME
 
 Volume=NetApp:vol_home, mounted as /home
                      --  disk   --     --  #files --     default quota: 384.0GB/10.0M
 Disk                 usage   %quota    usage  %quota     name, affiliation - username (indiv. quota)
 -------------------- ------- ------    ------ ------     -------------------------------------------
-/home                361.1GB  94.0%     2.73M  27.3%     Brian Bourke, WRBU - bourkeb
-/home                360.7GB  93.9%     0.24M   2.4%     Juan Uribe, NMNH - uribeje
-/home                348.5GB  90.8%     2.06M  20.6%     Michael Trizna, NMNH/BOL - triznam
-/home                344.2GB  89.6%     0.30M   3.0%     Paul Cristofari, SAO/SSP - pcristof
-/home                328.1GB  85.4%     0.00M   0.0%     Allan Cabrero, NMNH - cabreroa
+/home                361.1GB  94.0%     2.73M  27.3%     NAME, UNIT - USERNAME
+/home                360.7GB  93.9%     0.24M   2.4%     NAME, UNIT - USERNAME
+/home                348.5GB  90.8%     2.06M  20.6%     NAME, UNIT - USERNAME
+/home                344.2GB  89.6%     0.30M   3.0%     NAME, UNIT - USERNAME
+/home                328.1GB  85.4%     0.00M   0.0%     NAME, UNIT - USERNAME
 
 Volume=NetApp:vol_pool_nmnh_ggi, mounted as /pool/nmnh_ggi
                      --  disk   --     --  #files --     default quota: 16.00TB/39.0M
 Disk                 usage   %quota    usage  %quota     name, affiliation - username (indiv. quota)
 -------------------- ------- ------    ------ ------     -------------------------------------------
-/pool/nmnh_ggi       13.76TB  86.0%     6.08M  15.6%     Vanessa Gonzalez, NMNH/LAB - gonzalezv
+/pool/nmnh_ggi       13.76TB  86.0%     6.08M  15.6%     NAME, UNIT - USERNAME
 
 Volume=NetApp:vol_pool_public, mounted as /pool/public
                      --  disk   --     --  #files --     default quota:  7.50TB/18.0M
 Disk                 usage   %quota    usage  %quota     name, affiliation - username (indiv. quota)
 -------------------- ------- ------    ------ ------     -------------------------------------------
-/pool/public          5.66TB  75.5%    17.31M  96.2% *** Alberto Coello Garrido, NMNH - coellogarridoa
+/pool/public          5.66TB  75.5%    17.31M  96.2% *** NAME, UNIT - USERNAME
 
 Volume=NAS:store_public, mounted as /store/public
                      --  disk   --     --  #files --     default quota:   0.0MB/0.0M
 Disk                 usage   %quota    usage  %quota     name, affiliation - username (indiv. quota)
 -------------------- ------- ------    ------ ------     -------------------------------------------
-/store/public         4.80TB  96.1%        -      -  *** Madeline Bursell, OCIO - bursellm (5.0TB/0M)
-/store/public         4.51TB  90.1%        -      -      Alicia Talavera, NMNH - talaveraa (5.0TB/0M)
-/store/public         4.39TB  87.8%        -      -      Mirian Tsuchiya, NMNH/Botany - tsuchiyam (5.0TB/0M)
+/store/public         4.80TB  96.1%        -      -  *** NAME, UNIT - USERNAME
+/store/public         4.51TB  90.1%        -      -      NAME, UNIT - USERNAME
+/store/public         4.39TB  87.8%        -      -      NAME, UNIT - USERNAME
 ```
 
 

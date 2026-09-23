@@ -1,8 +1,8 @@
 # Cluster hardware
 
-Hydra-7 (2024) runs Rocky Linux 8 with the Altair Grid Engine. Roughly 78 compute nodes, about 5,900 CPU cores and 50 TB of memory, plus GPU nodes, connected by 10 GbE and InfiniBand.
+Hydra runs Rocky Linux 8 with Grid Engine. The nodes are connected by 10 Gb Ethernet and InfiniBand.
 
 - [Login, head and compute nodes; network](nodes.md)
-- [Hardware limits table](limits.md): nodes, slots and memory per queue
+- [Limits table](limits.md): nodes, slots and memory behind each queue
 
-Run `qhost+` or `qstat -g c` on a login node for live numbers.
+`qstat -g c` and `qhost` on a login node print the current numbers.

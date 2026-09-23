@@ -14,7 +14,7 @@ mkdir -p /scratch/genomics/USERNAME/quickstart
 cd /scratch/genomics/USERNAME/quickstart
 ```
 
-<!-- VERIFY: /scratch/genomics/USERNAME is the layout in the old example; confirm which /scratch directory new users get. -->
+
 
 ## 2. Write a job file
 

@@ -54,7 +54,7 @@ Subject: Process 1259315 priority was lowered on hydra-login01.si.edu
 ```{.text title="Example email"}
 Subject: [Hydra - alert] Process 1259315 was killed on hydra-login02.si.edu
 
-Dear Jarrod:
+Dear USER:
 
   Your command '/process/causing/high-CPU' (PID=1259315 on hydra-login02.si.edu) was killed (kill -9) because:
      used %CPU = 95.4 > 85 %
@@ -203,7 +203,7 @@ report for Mon Jul 15 10:22:03 2024 to Mon Jul 22 10:12:04 2024
 
 userName             #jobs    total  average excess CPU use [day]
 -------------------- ----- -------- -------- 
-bourkeb                  1     10.3     10.3
+USER                  1     10.3     10.3
 
  details are shown only for jobs with excess CPU use > 1 per job [in day]
      jobID name            user              age    nPEs     cpu% queue    node  taskID date/time            excess CPU use
@@ -299,27 +299,27 @@ Volume=NetApp:vol_home, mounted as /home
                      --  disk   --     --  #files --     default quota: 384.0GB/10.0M
 Disk                 usage   %quota    usage  %quota     name, affiliation - username (indiv. quota)
 -------------------- ------- ------    ------ ------     -------------------------------------------
-/home                385.0GB 100.3%     0.05M   0.5% *** Rebeka Tamasi Bottger, SAO/OIR - rbottger
-/home                371.3GB  96.7%     2.82M  28.2%     Brian Bourke, WRBU - bourkeb
+/home                385.0GB 100.3%     0.05M   0.5% *** NAME, UNIT - USERNAME
+/home                371.3GB  96.7%     2.82M  28.2%     NAME, UNIT - USERNAME
 
 Volume=GPFS:scratch_public, mounted as /scratch/public
                      --  disk   --     --  #files --     default quota: 15.00TB/39.8M
 Disk                 usage   %quota    usage  %quota     name, affiliation - username (indiv. quota)
 -------------------- ------- ------    ------ ------     -------------------------------------------
-/scratch/public      17.20TB 114.7%     3.02M   0.0% *** Ting Wang, NMNH - wangt2
-/scratch/public      15.00TB 100.0%     4.26M   0.0% *** Kevin Mulder, NZP - mulderk
+/scratch/public      17.20TB 114.7%     3.02M   0.0% *** NAME, UNIT - USERNAME
+/scratch/public      15.00TB 100.0%     4.26M   0.0% *** NAME, UNIT - USERNAME
 
 Volume=GPFS:scratch_stri_ap, mounted as /scratch/stri_ap
                      --  disk   --     --  #files --     default quota:  5.00TB/12.6M
 Disk                 usage   %quota    usage  %quota     name, affiliation - username (indiv. quota)
 -------------------- ------- ------    ------ ------     -------------------------------------------
-/scratch/stri_ap     14.60TB 292.0%     0.05M   0.0% *** Carlos Arias, STRI - ariasc
+/scratch/stri_ap     14.60TB 292.0%     0.05M   0.0% *** NAME, UNIT - USERNAME
 
 Volume=NAS:store_public, mounted as /store/public
                      --  disk   --     --  #files --     default quota:   0.0MB/0.0M
 Disk                 usage   %quota    usage  %quota     name, affiliation - username (indiv. quota)
 -------------------- ------- ------    ------ ------     -------------------------------------------
-/store/public         4.80TB  96.1%        -      -      Madeline Bursell, OCIO - bursellm (5.0TB/0M)
+/store/public         4.80TB  96.1%        -      -      NAME, UNIT - USERNAME
 ```
 
 
@@ -357,11 +357,11 @@ Volume=GPFS:scratch_sao_atmos, mounted as /scratch/sao_atmos
                      --  disk   --     --  #files --     default quota: 350.0TB/307.2M
 Disk                 usage   %quota    usage  %quota     name, affiliation - username (indiv. quota)
 -------------------- ------- ------    ------ ------     -------------------------------------------
-/scratch/sao_atmos   92.80TB  26.5%     3.03M   0.0%     Zolal Ayazpour, SAO/AMP - zayazpou
-/scratch/sao_atmos   50.40TB  14.4%     0.32M   0.0%     Juseon (Sunny) Bak, SAO/AMP - jbak
-/scratch/sao_atmos   50.30TB  14.4%     0.93M   0.0%     Gonzalo Abad Gonzalez, SAO/AMP - ggonzale
-/scratch/sao_atmos   47.10TB  13.5%    11.14M   0.0%     Heesung Chong, SAO/AMP - hchong
-/scratch/sao_atmos   21.60TB   6.2%     1.77M   0.0%     Hyeong-Ahn Kwon, SAO/AMP - hkwon
+/scratch/sao_atmos   92.80TB  26.5%     3.03M   0.0%     NAME, UNIT - USERNAME
+/scratch/sao_atmos   50.40TB  14.4%     0.32M   0.0%     NAME, UNIT - USERNAME
+/scratch/sao_atmos   50.30TB  14.4%     0.93M   0.0%     NAME, UNIT - USERNAME
+/scratch/sao_atmos   47.10TB  13.5%    11.14M   0.0%     NAME, UNIT - USERNAME
+/scratch/sao_atmos   21.60TB   6.2%     1.77M   0.0%     NAME, UNIT - USERNAME
 ```
 
 
@@ -380,4 +380,3 @@ Disk                 usage   %quota    usage  %quota     name, affiliation - use
 - See documentation on disk space and usage.
 
 
-Last modified 31 Oct 2025 MK/SGK

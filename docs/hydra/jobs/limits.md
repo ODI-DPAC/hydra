@@ -59,7 +59,7 @@ and the explanation of these parameters can be found in
 - As of May 2024, this command returns:
 
 
-```{.text title="qconf -srqs returns the following: (click on \"Expand source\" to view content) Expand source"}
+```text
 {
    name         max_slots_per_user
    description  Limit slots/user for all queues

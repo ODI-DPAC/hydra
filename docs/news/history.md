@@ -150,7 +150,6 @@ The production RStudio server will be offline on Tuesday December 16, 2025 for t
     - To address a problem that arose lately (i.e., job that creates an excessive number of threads), we have changed a section of [Hydra's Usage Policy.](../policies/usage.md)
 
 
-Last updated //SGK
 
 ## What was New in 2024
 

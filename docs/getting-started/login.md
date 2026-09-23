@@ -81,7 +81,7 @@ On macOS and Linux you can use an ssh key pair instead of a password. Generate a
 ssh-copy-id USERNAME@hydra-login01.si.edu
 ```
 
-Do the same for `hydra-login02.si.edu`, or add both nodes to `~/.ssh/config` on your computer. <!-- VERIFY: the old page linked to a 2005 external tutorial; confirm ssh-copy-id works against the LDAP home directories and that keys are shared between the two login nodes (same /home). -->
+Do the same for `hydra-login02.si.edu`, or add both nodes to `~/.ssh/config` on your computer.
 
 ## Passwords
 
@@ -109,7 +109,7 @@ The change applies to both login nodes immediately.
 
 The self-service page handles both a change (you know the current password) and a reset (you don't), including up to 14 days after the password has expired.
 
-1. Open the page. From the SI network or VPN, go directly to <https://hydra.si.edu/ssp/>. From telework.si.edu, choose **Hydra** under IT Tools, then **Change Password on Hydra-7** or **Reset Password on Hydra-7**. <!-- VERIFY: the old page gives both hydra.si.edu/ssp and hydra-7.si.edu/ssp/index.php. Keep whichever is canonical and confirm the telework button labels. -->
+1. Open the page. From the SI network or VPN, go directly to <https://hydra.si.edu/ssp/>. From telework.si.edu, choose **Hydra** under IT Tools, then **Change Password on Hydra-7** or **Reset Password on Hydra-7**.
 2. To reset, enter your Hydra username and click **Send**. A link is emailed to your canonical address, usually the one ending in `.edu`.
 3. Follow the link. From telework, paste it into the **Enter internal resource** box on the telework home page instead of opening it directly.
 
@@ -119,4 +119,4 @@ The self-service page handles both a change (you know the current password) and 
 
 ### After the 14-day grace period
 
-Once a password has been expired for more than 14 days the account is locked. Email [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) to request a reset; you will receive instructions at your work email address. <!-- VERIFY: single support address. The rest of the site uses SI-HPC@si.edu; confirm whether resets still go to SI-HPC-Admin. -->
+Once a password has been expired for more than 14 days the account is locked. Email [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) to request a reset; you will receive instructions at your work email address.
