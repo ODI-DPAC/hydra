@@ -1,6 +1,6 @@
 # Cluster hardware
 
-The nodes of the cluster, the slots behind each queue, and the network and storage systems, as of September 2026. `qhost` on a login node prints the current node list; `qstat -g c` prints the slots per queue.
+This page lists the nodes of the cluster, the slots behind each queue, and the network and storage systems. `qhost` on a login node prints the current node list; `qstat -g c` prints the slots per queue.
 
 ## Head and login nodes
 
@@ -37,7 +37,7 @@ The name in parentheses is the `cpu_arch` value for restricting a job to that ar
 
 ## Hardware behind each queue
 
-Slots from `qstat -g c` on 2026-09-23. A node serves several queues, so the same slots appear in more than one row.
+Slots are from `qstat -g c`. A node serves several queues, so the same slots appear in more than one row.
 
 | Queues | Slots | CPUs per node | Memory | Note |
 |---|---|---|---|---|
