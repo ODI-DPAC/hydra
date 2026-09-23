@@ -18,10 +18,6 @@ Use snapshots to recover a file you deleted or overwrote within the retention pe
 
 The Glacier copy of `/home` and `/data` is for rebuilding a partition after a storage failure. It is not for restoring individual files: a restore from Glacier takes staff time and is billed by Amazon, so a request needs a justification, and the requester may be asked to contribute to the cost. Copies are kept for up to a year.
 
-!!! warning "The disaster-recovery copy has been paused since December 2025"
-
-    Backups to Glacier are suspended pending an accounting issue. The NetApp filer holding `/home` and `/data` is unaffected and snapshots still work. See [News](../../news/index.md#2025-12-05).
-
 ## Results
 
 !!! warning "Hydra is not long-term storage"
