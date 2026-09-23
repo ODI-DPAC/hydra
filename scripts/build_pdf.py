@@ -91,7 +91,9 @@ def main():
         pass
     Loose.add_multi_constructor("tag:yaml.org,2002:python/", lambda loader, suffix, node: None)
     cfg = yaml.load((ROOT / "mkdocs.yml").read_text(), Loader=Loose)
-    pages = [p for p in nav_pages(cfg["nav"]) if p[2] != "index.md"]     # home page is not a document
+    SKIP_SECTIONS = {"News"}
+    pages = [p for p in nav_pages(cfg["nav"])
+             if p[2] != "index.md" and p[0] not in SKIP_SECTIONS]     # no home page, no news
     known = {page_url(md): page_id(md) for _, _, md in pages}
 
     try:
@@ -111,7 +113,8 @@ def main():
         if art is None:
             print(f"no article in {html_path}", file=sys.stderr); continue
 
-        # Drop chrome, flatten tabs, resolve links and images relative to this page.
+        for el in art.select(".headerlink, .md-content__button, .md-source-file, script, style"):
+            el.decompose()
         for el in art.select("colgroup, col"):
             el.decompose()
         for el in art.select("table, th, td"):
@@ -154,7 +157,7 @@ def main():
 
     doc = f"""<!doctype html><html><head><meta charset="utf-8"><style>{CSS}</style></head><body>
 <div class="cover"><p class="kicker">Smithsonian High Performance Computing</p>
-<h1>{cfg.get("site_name", "Hydra")}</h1>
+<h1>Hydra</h1>
 <p>{cfg.get("site_description", "")}</p>
 <p>Generated {today}. The current version is at
 <a href="{cfg.get("site_url", "")}">{cfg.get("site_url", "")}</a>.</p></div>
