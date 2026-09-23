@@ -34,7 +34,7 @@ Replace `USERNAME` with your Hydra username from your welcome email, in lower ca
     Are you sure you want to continue connecting (yes/no)? yes
     ```
 
-    At the `Password:` prompt, type your password. Nothing is echoed while you type.
+    At the `Password:` prompt, type your password. The password is not echoed while you type.
 
 === "Windows"
 
@@ -52,7 +52,7 @@ Replace `USERNAME` with your Hydra username from your welcome email, in lower ca
     Are you sure you want to continue connecting (yes/no)? yes
     ```
 
-    At the `Password:` prompt, type your password. Nothing is echoed while you type.
+    At the `Password:` prompt, type your password. The password is not echoed while you type.
 
     If you see `'ssh' is not recognized as an internal or external command`, use [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) instead: download `putty.exe` (no installer needed), start it, enter `USERNAME@hydra-login01.si.edu` as the Host Name, and click Open. Accept the host key warning the first time.
 
@@ -89,7 +89,7 @@ The initial password must be changed when the account is created, and every 180 
 
 !!! note "Password requirements"
 
-    At least 12 characters, with at least one digit, one upper-case letter, one lower-case letter and one special character. A new password must not be similar to a previous one.
+    A password has at least 12 characters, with at least one digit, one upper-case letter, one lower-case letter and one special character. A new password must not be similar to a previous one.
 
 ### Change your password from the command line
 

@@ -1,6 +1,6 @@
 # Use /store and the I/O queue
 
-This page covers moving data between `/store` and the partitions jobs can read. `/store` holds the project partitions on the NAS: near-line storage, large, inexpensive, not mounted on the compute nodes. It holds data waiting to be processed or already processed. It is not backed up. Groups with a `/store` partition are set up by [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
+This page covers moving data between `/store` and the partitions jobs can read. `/store` holds the project partitions on the NAS, a large and inexpensive near-line system that is not mounted on the compute nodes. It holds data waiting to be processed or already processed, and it is not backed up. Groups with a `/store` partition are set up by [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
 
 !!! note "`/store/public` is being phased out"
 

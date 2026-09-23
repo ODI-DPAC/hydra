@@ -28,7 +28,7 @@ Your command '/process/causing/high-CPU' (PID=1259315 on hydra-login01.si.edu) p
 Remember: jobs/long computations should be submitted to a queue, or run in the interactive queue, not on a login node.
 ```
 
-Stop the process and run it as a [job](submit.md) or in an [interactive session](../interactive/qrsh.md). Programs that commonly trigger this:
+Stop the process and run it as a [job](submit.md) or in an [interactive session](../interactive/qrsh.md). These programs commonly trigger it:
 
 - Analyses: submit them as jobs or run them under `qrsh`.
 - `conda`: the "solving environment" step uses a full CPU. Run `conda` under `qrsh`, use `mamba`, and install into a new environment rather than modifying an existing one. See [Python and conda](../software/python.md).
