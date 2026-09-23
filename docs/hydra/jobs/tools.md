@@ -1,6 +1,6 @@
 # Monitoring tools
 
-The commands for watching jobs, nodes and the cluster, and what their output means. How to use them is under [Monitor and manage jobs](monitoring.md). `qstat`, `qdel`, `qalter`, `qacct`, `qhost` and `qconf` are Grid Engine commands; the rest are Hydra's, in the `tools/local-user` module, which every session loads.
+This page lists the commands for watching jobs, nodes and the cluster, and what their output means. How to use them is under [Monitor and manage jobs](monitoring.md). `qstat`, `qdel`, `qalter`, `qacct`, `qhost` and `qconf` are Grid Engine commands; the rest are Hydra's, in the `tools/local-user` module, which every session loads.
 
 ## qstat
 

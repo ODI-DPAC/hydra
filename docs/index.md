@@ -13,7 +13,7 @@ hide:
 
 # <span class="hero__name">Hydra</span> <span class="hydra-status"></span>
 
-The SI HPC cluster contains 78 compute nodes, including GPU nodes, with 5,900 CPU cores and 50 TB of memory. The system is designed and operated by the Data Platforms and Advanced Computing team in the Office of Digital and Innovation.
+The SI HPC cluster contains 74 compute nodes, including GPU nodes, with 5,840 CPU cores and 49 TB of memory. The system is designed and operated by the Data Platforms and Advanced Computing team in the Office of Digital and Innovation.
 
 </div>
 </div>

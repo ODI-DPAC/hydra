@@ -1,6 +1,6 @@
 # Queues
 
-Every job runs in a queue, and each queue limits CPU time, elapsed time and memory per CPU. The scheduler selects a queue from the resources a job requests unless the job names one with `-q`; with no options a job runs in `sThC.q`. The default Grid Engine queue `all.q` does not exist on Hydra. How to choose is under [Request a queue, memory and CPUs](request-resources.md); the number of nodes and slots behind each queue is in the [hardware limits table](../hardware/limits.md).
+Every job runs in a queue, and each queue limits CPU time, elapsed time and memory per CPU. The scheduler selects a queue from the resources a job requests unless the job names one with `-q`; with no options a job runs in `sThC.q`. The default Grid Engine queue `all.q` exists but has no slots. How to choose is under [Request a queue, memory and CPUs](request-resources.md); the number of nodes and slots behind each queue is under [Cluster hardware](hardware.md).
 
 ## Time classes
 

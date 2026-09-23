@@ -1,6 +1,6 @@
 # Filesystems
 
-The partitions on Hydra, their quotas and their retention rules, as of October 2025. Sizes and quotas are adjusted as needed; `disk-usage -d all+ -quotas` on a login node prints the current values (see [Check your disk usage and quotas](quotas.md)).
+This page lists the partitions on Hydra with their quotas and retention rules, as of October 2025. Sizes and quotas are adjusted as needed; `disk-usage -d all+ -quotas` on a login node prints the current values (see [Check your disk usage and quotas](quotas.md)).
 
 ## Public partitions
 
