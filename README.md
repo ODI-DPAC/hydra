@@ -35,8 +35,4 @@ The nav in `mkdocs.yml` is independent of the directory tree. `hydra/` is a URL 
 
 `main` is the site. Every change is a branch and a pull request; the `build` check must pass. 
 
-## Status
-
-All pages are in place. The text on most of them is the Confluence text as exported in February 2026; sections are being rewritten in turn, tracked in the checklist on pull request #9. Three pages have no source and are still stubs: `hydra/hardware/limits.md`, `hydra/storage/backups.md`, `policies/status.md`.
-
 Writing conventions are in CONTRIBUTING.md.

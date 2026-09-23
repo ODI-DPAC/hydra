@@ -129,7 +129,7 @@ ssh -N -L 8000:192.168.92.85:8000 sylvain@hydra-login01.si.edu
 and you should get VSCode running:
 
 
-![](../../assets/vscode-server.jpg)
+![](../assets/vscode-server.jpg)
 
 
 You will be asked to choose things the first time you start it.
@@ -240,7 +240,7 @@ Open this link in your browser https://vscode.dev/tunnel/sylvain-compute-64-15
 but will be different in your case, and you should get VSCode running via a tunnel:
 
 
-![](../../assets/vscode-tunnel.jpg)
+![](../assets/vscode-tunnel.jpg)
 
 
 ### Notes

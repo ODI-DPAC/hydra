@@ -68,7 +68,7 @@ Jobs that would exceed a cluster-wide limit wait in the queue until your other j
 
 **Treat the disks as working space.** Public disks are scrubbed and are not backed up. Move results off the cluster when an analysis is complete. See [Storage](../storage/index.md).
 
-Jobs that use far fewer CPUs than requested, more CPUs than requested, or far less memory than reserved trigger [warning emails](efficiency.md) and can be killed. The [usage policies](../../policies/usage.md) state the thresholds and what is expected of you.
+Jobs that use far fewer CPUs than requested, more CPUs than requested, or far less memory than reserved trigger [warning emails](efficiency.md) and can be killed. The [usage policies](../policies/usage.md) state the thresholds and what is expected of you.
 
 ## If you know Slurm
 

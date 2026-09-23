@@ -64,7 +64,7 @@ sylvain@compute-64-15% rstudio --no-sandbox --disable-gpu
 and you should see on your machine, if the X tunnel is set right:
 
 
-![](../../assets/RStudio-desktop.png)
+![](../assets/RStudio-desktop.png)
 
 
 Note that the RStudio desktop does not work with the Windows `Xming` X-server, but works with Cygwin/X and WSL.
@@ -138,13 +138,13 @@ ssh -N -L 8787:compute-64-16:8787 sylvain@hydra-login01.si.edu
 you should see:
 
 
-![](../../assets/RStudio-server.jpg)
+![](../assets/RStudio-server.jpg)
 
 
 or
 
 
-![](../../assets/RStudio-server-login.jpg)
+![](../assets/RStudio-server-login.jpg)
 
 
 (yse your Hydra credentials).
@@ -234,13 +234,13 @@ Just like the other components of Hydra, this server is only accessible from com
 
 1. Open https://galaxy.si.edu/R4 in a browser on a computer that has access to Hydra.
 2. Log in with your Hydra username (all lowercase) and password. 
-![](../../assets/image-2025-5-22_16-24-4.png)
+![](../assets/image-2025-5-22_16-24-4.png)
 3. A web-based interface to a RStudio session running on the server opens. The interface is nearly identical to what you would use on your workstation. 
 You can install packages, runs scripts, create R projects, etc. in the same way as your workstation. 
-![](../../assets/Screenshot_2025-05-22_at_4.27.46_PM.png)
+![](../assets/Screenshot_2025-05-22_at_4.27.46_PM.png)
 4. The "Files" tab shows Hydra's storage systems. You have access to Hydra's `/home`, `/scratch`, `/data`, etc. 
  You can use the RStudio Server interface to transfer files or use other file transfer tools. SeeFile transfers below. 
-![](../../assets/image-2025-6-4_8-37-21.png)
+![](../assets/image-2025-6-4_8-37-21.png)
 5. All computations are performed on the dedicated server. If you close the browser window, your R session continues so objects in memory are preserved and computations will continue. SeeR Sessionbelow.
 
 
@@ -281,7 +281,7 @@ The Smithsonian Telework website, https://telework.si.edu, can be used to access
 
 1. Log into[https://telework.si.edu](https://telework.si.edu)
 2. In the text box in the top left of the window, under the Smithsonian logo, labeled "*Enter an internal resource*" enter:[https://galaxy.si.edu/R4](https://galaxy.si.edu/R4)and then press the enter/return key. 
-![](../../assets/image-2025-5-27_15-17-27.png)
+![](../assets/image-2025-5-27_15-17-27.png)
 3. The RStudio Server login page will open in the same way as if you were onsite.
 
 
@@ -302,15 +302,15 @@ In addition to the existing file transfer tools for Hydra (see the file transfer
 
 
 - **Upload** from your computer to Hydra: use the “Upload” button in the Files tag. 
-![](../../assets/image-2025-5-27_15-28-13.png)
+![](../assets/image-2025-5-27_15-28-13.png)
     - Only one file can be uploaded at a time. Create a zip archive on your computer to upload several files at once. RStudio Server with unzip them automatically when they’re received.
 - **Download** from Hydra to your computer
     - Select the checkboxes for files and folders you want to download.
     - Click the “More” button.
     - Choose “Export…” 
-![](../../assets/image-2025-5-27_15-29-21.png)
+![](../assets/image-2025-5-27_15-29-21.png)
     - In the pop-up window click the Download button to save to your computer. If multiple files or a folder was selected, it will be zipped automatically prior to download. 
-![](../../assets/image-2025-5-27_15-30-8.png)
+![](../assets/image-2025-5-27_15-30-8.png)
 
 
 ##### **b. R Session**
@@ -328,7 +328,7 @@ When you have completed your work on the RStudio Server, please quit your R sess
 Use “Quit Session...” from the Session or File menu.
 
 
-![](../../assets/image-2025-5-27_15-40-11.png)
+![](../assets/image-2025-5-27_15-40-11.png)
 
 
 ##### One R Session limit

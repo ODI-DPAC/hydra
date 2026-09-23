@@ -26,19 +26,19 @@ The SI HPC cluster contains 74 compute nodes, including GPU nodes, with 5,840 CP
 
     Request an account, log in, submit your first job.
 
--   :material-format-list-checks:{ .lg .middle } [**Running jobs**](hydra/jobs/index.md)
+-   :material-format-list-checks:{ .lg .middle } [**Running jobs**](jobs/index.md)
 
     ---
 
     Queues, job scripts, memory and CPU requests.
 
--   :material-monitor:{ .lg .middle } [**Interactive use**](hydra/interactive/index.md)
+-   :material-monitor:{ .lg .middle } [**Interactive use**](interactive/index.md)
 
     ---
 
     Jupyter, RStudio, VS Code, interactive shells on compute nodes.
 
--   :material-harddisk:{ .lg .middle } [**Storage**](hydra/storage/index.md)
+-   :material-harddisk:{ .lg .middle } [**Storage**](storage/index.md)
 
     ---
 
@@ -50,7 +50,7 @@ The SI HPC cluster contains 74 compute nodes, including GPU nodes, with 5,840 CP
 
     Moving data on and off the cluster with scp, rsync, Globus, or rclone.
 
--   :material-package-variant:{ .lg .middle } [**Software**](hydra/software/index.md)
+-   :material-package-variant:{ .lg .middle } [**Software**](software/index.md)
 
     ---
 

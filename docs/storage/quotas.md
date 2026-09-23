@@ -39,7 +39,7 @@ gpfs02:public                          800.00T  349.32T  450.68T  44%/26%  /scra
 nas1:/mnt/pool/PROJECT                 175.00T   94.03T   80.97T  54%/1%   /store/PROJECT
 ```
 
-`Capacity` is space used / files used. `disk-usage -d all+ -quotas` adds the default quotas of each partition. `df -h /scratch/public` gives the same for one partition without the tool. The [status page](../../policies/status.md) plots the same figures over time under Disk Usage & Quota.
+`Capacity` is space used / files used. `disk-usage -d all+ -quotas` adds the default quotas of each partition. `df -h /scratch/public` gives the same for one partition without the tool. The [status page](../policies/status.md) plots the same figures over time under Disk Usage & Quota.
 
 ## Find what takes the space
 
@@ -79,6 +79,6 @@ nas1:/mnt/pool/PROJECT                 175.00T   94.03T   80.97T  54%/1%   /stor
 
     This frees inodes as well as space. `tar -xf project-a.tgz` unpacks it.
 
-4. Move data that is finished with off Hydra; see [Data transfer](../../data-transfer/index.md).
+4. Move data that is finished with off Hydra; see [Data transfer](../data-transfer/index.md).
 
 On `/data` and `/home`, space from deleted files is not freed until the snapshots holding them age out (2 and 4 weeks); see [Recover a file from a snapshot](snapshots.md). On `/scratch` it is freed at once.

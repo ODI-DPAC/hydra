@@ -72,7 +72,7 @@ Content tabs (`=== "macOS and Linux"`) are for the same procedure on different s
 News is one page, `docs/news/index.md`, newest first under `## YYYY`. An entry is one paragraph, and its first sentence has to stand on its own because the home page shows only that:
 
 ```markdown
-<a id="2025-12-16"></a>**December 16.** The RStudio server was upgraded to a newer OS and R. See [RStudio](../hydra/interactive/rstudio.md).
+<a id="2025-12-16"></a>**December 16.** The RStudio server was upgraded to a newer OS and R. See [RStudio](../interactive/rstudio.md).
 ```
 
 Don't rewrite old entries; add new ones. After editing, run `python scripts/build_home_news.py` so the home page card matches (CI runs it too, so forgetting only affects your preview).
@@ -95,6 +95,6 @@ Don't edit these by hand; run the script and commit the result.
 
 | File | Script | Where to run it |
 |---|---|---|
-| `docs/hydra/software/bio-modules.md` | `scripts/gen_module_list.sh` | a Hydra login node |
+| `docs/software/bio-modules.md` | `scripts/gen_module_list.sh` | a Hydra login node |
 | News card on `docs/index.md` | `scripts/build_home_news.py` | anywhere |
 | "Last updated" line on each page | `scripts/stamp_dates.py` | CI only; never commit its output |

@@ -20,4 +20,4 @@ https://hydra.si.edu/tools/status/?sortby=nCPU&len=15d&user=USERNAME
 
 Click a plot to open it at full size. The page also links the list of every installed module, as HTML and as plain text.
 
-The same numbers are available on a login node with `qstat -g c`, `qstat+ -gc` and `qhost`; see [Monitor and manage jobs](../hydra/jobs/monitoring.md#check-the-state-of-the-cluster). Planned maintenance and outages are announced in the banner at the top of every page of this site and under [News](../news/index.md).
+The same numbers are available on a login node with `qstat -g c`, `qstat+ -gc` and `qhost`; see [Monitor and manage jobs](../jobs/monitoring.md#check-the-state-of-the-cluster). Planned maintenance and outages are announced in the banner at the top of every page of this site and under [News](../news/index.md).

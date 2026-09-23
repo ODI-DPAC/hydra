@@ -161,4 +161,4 @@ Jobs in the high-memory queues are sampled every five minutes.
 
     `qhost` takes no patterns; filter with `egrep`.
 
-The [status page](../../policies/status.md) shows the same as graphs, with past usage and disk space.
+The [status page](../policies/status.md) shows the same as graphs, with past usage and disk space.
