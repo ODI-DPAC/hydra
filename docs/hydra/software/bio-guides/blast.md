@@ -145,7 +145,7 @@ echo + `date` job $JOB_NAME done
 ### Parallelization
 
 
-Although BLAST jobs can be natively parallelized using the -num_threads option, often it is better to split large BLAST jobs into smaller files and concatenate the results afterwards. Files containing 1000 to 10,000 sequences each have performed well on Hydra. The jobs can be run using [job arrays](../../jobs/job-types.md) or using a bash or csh loop to submit a separate job for each sequence file.
+Although BLAST jobs can be natively parallelized using the -num_threads option, often it is better to split large BLAST jobs into smaller files and concatenate the results afterwards. Files containing 1000 to 10,000 sequences each have performed well on Hydra. The jobs can be run using [job arrays](../../jobs/arrays.md) or using a bash or csh loop to submit a separate job for each sequence file.
 
 
 #### Submitting separate jobs for each input file

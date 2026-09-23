@@ -1,105 +1,114 @@
-# Writing a job script
+# Job script reference
 
-1. Introduction
-    1. [Conceptual Examples](job-types.md)
-    2. [Serial Jobs](job-types.md)
-    3. [Parallel Jobs](parallel.md)
-    4. [Job Arrays](job-types.md)
-2. [Available Queues](queues.md)
-3. [Resource Limits](limits.md)
-4. [Job Monitoring](monitoring.md)
-5. [Help Choosing a Queue](queues.md)
-6. Help Writing a Job Script
-7. [Where to Find Examples](examples.md)
+A job file is a shell script whose `#$` lines carry options for `qsub`. This page lists the options, variables and parallel environments a job file uses. How to put them together is under [Write and submit a job](submit.md).
 
+## Options
 
-## Introduction
+| Option | Effect |
+|---|---|
+| `-S /bin/sh` | Run the script with the Bourne shell. The default is `csh`. |
+| `-N NAME` | Job name, shown by `qstat`; sets `$JOB_NAME`. No spaces. |
+| `-cwd` | Run in the directory the job was submitted from and write output files there. |
+| `-j y` | Write standard error to the standard output file. |
+| `-o FILE` | Standard output file. |
+| `-e FILE` | Standard error file, when not using `-j y`. |
+| `-q QUEUE` | Run in a named [queue](queues.md); `QUEUE@@GROUP` restricts to a host group. |
+| `-l RESOURCE=VALUE,...` | Request resources: `s_cpu`, `s_rt`, `mres`, `h_data`, `h_vmem`, `himem`, `gpu`, `lopri`, `cpu_arch`, `wfmq`. |
+| `-pe PE N` | Request N slots in a [parallel environment](#parallel-environments); `N-M` accepts a range. |
+| `-t N-M[:S]` | Run as a [job array](arrays.md) with task IDs N to M, step S. |
+| `-tc N` | Run at most N tasks of an array at once. |
+| `-m abe` | Email when the job begins, ends, aborts; any subset of the letters. |
+| `-M ADDRESS` | Email recipient; the default is the address in `~/.forward`. |
+| `-hold_jid JOBID` | Start only after another job has finished. |
+| `-terse` | Print only the job ID on submission. |
+| `-w v` | Verify the request against an empty cluster instead of submitting; `-w p` verifies against the current state. |
+| `-verify` | Print what `qstat -j` would show for the job instead of submitting. |
 
+`man qsub` lists every option. Options on the command line override `#$` lines.
 
-Most computations on Hydra are run in batch mode using a job scheduler (aka workload manager).
+## Where options come from
 
+Options are collected in this order; each step overrides the previous one.
 
-Hydra uses the Univa Grid Engine (GE or UGE) as the job scheduler:
+1. the system-wide file `$SGE_ROOT/$SGE_CELL/common/sge_request`
+2. `.sge_request` in the current directory
+3. `~/.sge_request`
+4. the `#$` lines in the job file
+5. the `qsub` command line
 
+`~/.sge_request` applies options to every job you submit, one or more per line:
 
-- Jobs are submitted from either login node to the job scheduler using the command `qsub` and a job file;
-- submitted jobs may wait in the queue:
-    - until the requested resource(s) is/are available, or
-    - if a user has reached a resource usage limit, until that limit has cleared.
-- The scheduler will eventually run each job, starting it on one or several compute nodes:
-    - the job will run in batch, not interactive, mode;
-    - it is the scheduler that selects on which compute(s) node to run a job on, and
-    - if the job exceeds a limit, like it uses too much memory, or consumes too much CPU time, the scheduler will kill the job.
+```text title="~/.sge_request"
+-cwd -j y
+```
 
+## Shell
 
-To run a computation (a job) on Hydra users must write a list of instructions, that specifies the step(s) needed to perform the said computation and if needed pass instructions (aka directives) to the job scheduler as to which resources are required to complete the said computation (like the amount of memory, CPU time, number of CPUs, etc.).
+| | |
+|---|---|
+| Default shell | `csh` |
+| Bourne shell | `-S /bin/sh` |
+| `#!` line | ignored; the first comment line in the examples is a reminder only |
+| `/bin/bash` | works; reads startup files that `/bin/sh` does not, which can change the job's environment |
+| `csh` limits | cannot catch signals; does not run a last line that lacks a newline |
 
+## Environment variables
 
-These steps are typically written in a file, aka the job script, while the directives are either passed as options to the `qsub` command or included in the job script, as embedded directives.
+Set by the scheduler in every job. `man qsub` lists the full set.
 
+| Variable | Meaning | Example |
+|---|---|---|
+| `JOB_NAME` | job name from `-N` | `crunch` |
+| `JOB_ID` | job ID | `8736123` |
+| `HOSTNAME` | node the job runs on; the master node of a parallel job | `compute-64-11` |
+| `QUEUE` | queue the job runs in | `sThC.q` |
+| `NSLOTS` | slots allocated by `-pe` | `1` |
+| `TMPDIR` | job-specific temporary directory, deleted when the job ends | `/tmp/8736123.1.sThC.q` |
+| `PE_HOSTFILE` | file listing the nodes and slots of a parallel job | |
+| `SGE_TASK_ID` | task ID in a job array | `17` |
+| `SGE_TASK_FIRST`, `SGE_TASK_LAST`, `SGE_TASK_STEPSIZE` | the `-t` range of a job array | `1`, `1000`, `20` |
 
-A job is thus submitted with the command `qsub`, with the required options (or embedded directives) followed by the name of the file containing the job script.
+In a `#$` line, and only there, `$TASK_ID` expands to the task ID.
 
+## Signals at the time limits
 
-The different types of jobs are:
+| Limit | Signal at the soft limit | At the hard limit, 15 min later |
+|---|---|---|
+| CPU time (`s_cpu`, `h_cpu`) | `SIGXCPU` | job killed |
+| elapsed time (`s_rt`, `h_rt`) | `SIGUSR1` | job killed |
 
+## Parallel environments
 
-- serial jobs: computations that use only one CPU;
-- parallel jobs: computation that use more than one CPU (either all on the same node, using multi-threading, or distributed across nodes, using message passing)
-- job arrays: a set of similar computations, aka tasks, that use a single unique job script file and a number that identifies each task to be performed.
+| PE | Slots are | Queues | Used with |
+|---|---|---|---|
+| `mthread` | all on one node | all | threads, OpenMP, any `-threads N` option |
+| `orte` | spread across nodes | high-CPU | OpenMPI |
+| `ompi` | spread across nodes | high-CPU | NVIDIA's bundled OpenMPI |
+| `mpich` | spread across nodes | high-CPU | MVAPICH |
+| `h2` `h4` `h8` `h12` `h16` `h24` `h32` `h48` `h64` | M per node on N/M nodes | high-CPU | hybrid MPI with M threads per process |
 
+## MPI modules
 
-A few compute nodes are set aside for interactive use, consult the section on using the interactive queue.
+Each MPI implementation is built for each compiler. Load the module that matches the compiler the program was built with and the implementation it was linked against.
 
+| GCC | Intel | NVIDIA | Provides |
+|---|---|---|---|
+| | `intel/24/mpi`, `intel/23/mpi` | `nvidia/24/mpi`, `nvidia/23/mpi` | the vendor's MPI |
+| `gcc/13.2/openmpi` | `intel/24/openmpi` | `nvidia/24/openmpi` | OpenMPI, default version |
+| `gcc/13.2/openmpi5` | `intel/24/openmpi5` | `nvidia/24/openmpi5` | OpenMPI 5 |
+| `gcc/13.2/openmpi4` | `intel/24/openmpi4` | `nvidia/24/openmpi4` | OpenMPI 4 |
+| `gcc/13.2/openmpi4.1.6-13.2.0` | `intel/24/openmpi4.1.6-24.0` | `nvidia/24/openmpi4.1.6-24.3` | one specific OpenMPI build |
+| `gcc/13.2/mvapich` | `intel/24/mvapich` | `nvidia/24/mvapich` | MVAPICH |
 
-The [Available Queues](queues.md) page describes in detail the available queues.
+```console
+$ ( module -t avail ) 2>&1 | egrep '^gcc/' | grep mpi     # every MPI module for GCC; intel/, nvidia/ likewise
+$ module show gcc/13.2/openmpi                            # what the module sets
+$ module load gcc/13.2/openmpi; ompi_info                 # details of an OpenMPI build
+$ module load gcc/13.2/mvapich; mpirun -info              # details of an MVAPICH build
+```
 
+Every MPI module sets `MPILIB`, `MPIINC` and `MPIBIN`, sets one of `OPENMPI`, `MPICH` or `MVAPICH`, and defines `mpirun` as a shell function or alias for the matching version. `declare -f mpirun` (`sh`) or `alias mpirun` (`csh`) shows which one is active. OpenMPI is not OpenMP: OpenMPI passes messages between processes; OpenMP runs threads in one process.
 
-Every job running on the cluster is started in a queue.
+## Do not use `-V`
 
-
-- The GE will select a queue based on the resources requested and the usage in each queue.
-- If you don't specify the right queues or the right resource(s), your job will either
-    - not get queued,
-    - wait forever and never run, or
-    - start and get killed when it exceeds one of the limit of the queue it was started in.
-
-
-The set of available queues is a matrix of queues:
-
-
-- Four sets of queues: a high-CPU and a high-memory set of queues, complemented by a very-high-memory restricted queue and *special* queues.
-- The high-CPU and a high-memory sets of queues have different time limits: short, medium, long and unlimited.
-
-
-<table class="wrapped confluenceTable"><colgroup><col/><col/></colgroup><thead><tr><th class="confluenceTh" colspan="1" style="text-align: left;"><p>Type</p></th><th class="confluenceTh" colspan="1" style="text-align: left;"><p>Description</p></th></tr></thead><tbody><tr><td class="confluenceTd" colspan="1" style="text-align: left;">high-CPU</td><td class="confluenceTd" colspan="1" style="text-align: left;">for serial or parallel jobs that do not need a lot of memory,</td></tr><tr><td class="confluenceTd" colspan="1" style="text-align: left;">high-memory</td><td class="confluenceTd" colspan="1" style="text-align: left;">for serial or multi-threaded parallel jobs that require a lot of memory,</td></tr><tr><td class="confluenceTd" colspan="1" style="text-align: left;">very-high-memory</td><td class="confluenceTd" colspan="1" style="text-align: left;">reserved for jobs that need a very large amount of memory,</td></tr><tr><td class="confluenceTd" colspan="1" style="text-align: left;">other</td><td class="confluenceTd" colspan="1" style="text-align: left;">for interactive use or projects that need special resources (GPUs, I/O, etc).</td></tr></tbody></table>
-
-
-## Notes
-
-
-!!! note
-    1. A job will run in a queue. Each queue has some form of limit:
-     - in most cases, a job won't be allowed to run forever, nor grab as much memory as it may want to.
-     - How to specify resources and what queues to use is explained at the [Available Queues](queues.md) page.
-    2. There is some overhead in starting a job, so it is bad practice to submit a large number of very small jobs. 
-    While you may find it convenient to submit 10,000 five-minute-long jobs, the system will end up taking as much time starting the jobs as the jobs will take to run. 
-    As a precaution to prevent clobbering the system there is a limit on how many jobs a single user can submit to any of the queues (see explanations in the sections about [hardware limits](queues.md) and resource limits ).
-    3. The cluster is a shared resource:
-     - there are limits on how much of the cluster resources (total amount of CPUs, memory, etc) a single user can grab at any time (concurrent use).
-    4. In most cases your job script also needs to load a module or a set of modules.
-    5. Do not use the login nodes to run any substantive computation:
-     - the login nodes are monitored and processes running on one of the the login node that consume too much resources will have at first their priority reduced, and eventually terminated.
-
-## Help Writing a Job Script
-
-### QSubGen: is a Job Script Generator for Hydra
-
-
-There is a web page with an app to help you choose a queue and write a job script.
-
-
-It writes out the embedded directives as you specify the resources your computation will need and can help selecting which modules to load
-
-
-- Go to the [QsubGen](https://hydra-7.si.edu/tools/QSubGen/) page to run the job script generator, that page is only accessible from a trusted computer, with VPN turned on, or from telework.si.edu.
+`-V` copies your entire login environment into the job. The job then depends on whatever modules and variables were set in that shell, and the same job file fails when submitted later or from a different login. Load modules and set variables inside the job script.

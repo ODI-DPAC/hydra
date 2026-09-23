@@ -118,13 +118,16 @@ nav:
   - Running Jobs:
       - hydra/jobs/index.md
       - How the scheduler works: hydra/jobs/concepts.md
-      - Queues: hydra/jobs/queues.md
-      - Job scripts: hydra/jobs/job-scripts.md
+      - Write and submit a job: hydra/jobs/submit.md
+      - Request a queue, memory and CPUs: hydra/jobs/request-resources.md
+      - Submit a job array: hydra/jobs/arrays.md
+      - Submit a parallel job: hydra/jobs/parallel.md
+      - Monitor and manage jobs: hydra/jobs/monitoring.md
       - QSub Generator: hydra/jobs/qsubgen.md
-      - Serial and array jobs: hydra/jobs/job-types.md
-      - Parallel jobs: hydra/jobs/parallel.md
+      - Queues: hydra/jobs/queues.md
+      - Job script reference: hydra/jobs/job-scripts.md
       - Resource limits: hydra/jobs/limits.md
-      - Monitoring: hydra/jobs/monitoring.md
+      - Monitoring tools: hydra/jobs/tools.md
       - Warning emails: hydra/jobs/efficiency.md
       - Examples: hydra/jobs/examples.md
       - Cluster hardware:
