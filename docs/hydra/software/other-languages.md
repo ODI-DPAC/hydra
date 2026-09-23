@@ -164,7 +164,6 @@ to limit GDL to using only one thread (one CPU).
 Alternatively, you can request several slots, as described for IDL above, with the same caveats.
 
 
-Last update 02 Dec 2025 SGK
 
 ## Java
 
@@ -212,7 +211,6 @@ The total amount of memory used by java is not just the maximum heap size.
 The complete documentation for all of `java` options (all versions) is posted [at Oracle's web site.](https://docs.oracle.com/en/java/javase/).
 
 
-Last update 16 May 2024 SGK/MPK
 
 ## Julia
 
@@ -240,7 +238,6 @@ etc...
 and documentation at [julialang.org](http://julialang.org/) & [juliaplots.org](http://juliaplots.org)
 
 
-Last update 02 Dec 2025 SGK/MPK
 
 ## Matlab
 
@@ -280,4 +277,3 @@ Last update 02 Dec 2025 SGK/MPK
         - Look at the README file under `~/hpc/examples/matlab` on Hydra.
 
 
-Last update 02 Dec 2025 SGK/MPK

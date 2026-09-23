@@ -1,7 +1,5 @@
 # Login, head and compute nodes; network
 
-5. [Storage Systems (Disks)](../storage/filesystems.md)
-
 
 ## Introduction
 

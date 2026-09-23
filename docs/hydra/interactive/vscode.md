@@ -271,4 +271,3 @@ Which VSCode: desktop, server or tunnel?
 type in d, desktop, s, server, t, or tunnel to start either.
 
 
-Last update 10 Jul 2024 SGK

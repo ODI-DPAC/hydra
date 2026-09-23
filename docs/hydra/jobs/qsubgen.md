@@ -1,10 +1,5 @@
 # QSub Generator
 
-!!! note
-    The material on this page is part of the Quick Start Guide and is not exhaustive. For more details, please see the Reference Pages.
-
-
-
 ## Introduction
 
 
@@ -77,4 +72,3 @@ Above the Save it button is the time and total RAM being requested for your job.
 [Upload this .job file](../../data-transfer/scp-rsync.md) that is generated to Hydra in the /scratch or /data folder to be used for your job.
 
 
-Last update 09 Dec 2025 SGK/MPK

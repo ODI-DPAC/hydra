@@ -2,10 +2,6 @@
 
 Change notices, upgrades, outages and new features, newest first. Major upgrades have their own pages under [Cluster upgrades](upgrades/index.md).
 
-## 2026
-
-**October 7.** Scheduled maintenance, 08:00 to 17:00 ET. All queues are disabled at 08:00; running jobs are terminated, queued jobs are held and resume afterward. Login nodes are unavailable.
-
 ## 2025
 
 **December 16.** The production RStudio server was upgraded with an updated OS and R version. See [RStudio](../hydra/interactive/rstudio.md).

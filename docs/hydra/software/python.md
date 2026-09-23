@@ -135,7 +135,6 @@ echo = `date` $JOB_NAME done.
 ```
 
 
-Last update 16 May 2024 SGK/MPK
 
 ## Conda: Anaconda & Miniconda
 
@@ -284,7 +283,6 @@ To install Miniconda:
 - Instructions on how to use `conda`are in the Using Condapage.
 
 
-Last update 02 Dec 2025 SGK/MPK
 
 ## Installing Miniconda on Hydra
 
