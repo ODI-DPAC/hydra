@@ -147,27 +147,26 @@ nav:
       - Backups: storage/backups.md
   - Software:
       - software/index.md
-      - Modules: software/modules.md
-      - Custom module files: software/custom-modules.md
-      - Compilers and MPI: software/compilers.md
+      - Find and load software: software/modules.md
       - Python and conda: software/python.md
       - R: software/r.md
       - Julia, MATLAB, IDL, Java: software/other-languages.md
-      - Bio modules: software/bio-modules.md
-      - Bio guides:
-          - software/bio-guides/index.md
-          - ALLPATHS-LG: software/bio-guides/allpaths-lg.md
-          - BEAST: software/bio-guides/beast.md
-          - BLAST: software/bio-guides/blast.md
-          - Blast2GO: software/bio-guides/blast2go.md
-          - BUSCO: software/bio-guides/busco.md
-          - GeneMark-ES: software/bio-guides/genemark-es.md
-          - MaSuRCA: software/bio-guides/masurca.md
-          - SMC++: software/bio-guides/smc.md
-          - SPAdes: software/bio-guides/spades.md
-          - Local databases: software/bio-guides/databases.md
       - GPUs: software/gpus.md
       - Containers: software/containers.md
+      - Write a module file: software/custom-modules.md
+      - Compilers, libraries and MPI: software/compilers.md
+      - Installed modules: software/module-list.md
+      - Guides:
+          - software/guides/index.md
+          - BEAST: software/guides/beast.md
+          - BirdNET: software/guides/birdnet.md
+          - BLAST: software/guides/blast.md
+          - Blast2GO: software/guides/blast2go.md
+          - BUSCO: software/guides/busco.md
+          - MaSuRCA: software/guides/masurca.md
+          - SMC++: software/guides/smc.md
+          - SPAdes: software/guides/spades.md
+          - Local databases: software/guides/databases.md
   - Data Transfer:
       - data-transfer/index.md
       - scp, sftp and rsync: data-transfer/scp-rsync.md

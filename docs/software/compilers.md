@@ -1,313 +1,64 @@
 # Compilers, libraries and MPI
 
-3. MPI or Multi-threaded Programs
-    1. Building and Running MPI Programs
-    2. Building and Running Multi-threaded Programs
-
+This page lists the compilers, numerical libraries and MPI implementations installed on Hydra, the modules that provide them, and the flags for OpenMP. How to submit the resulting program is under [Submit a parallel job](../jobs/parallel.md).
 
 ## Compilers
 
+| Family | Module | Compilers | Versions | Default |
+|---|---|---|---|---|
+| GNU | `gcc` | `gcc`, `g++`, `gfortran` | 4.9.1 to 15.2.0 | 8.5.0 |
+| Intel oneAPI | `intel` | `icx`, `icpx`, `ifx`; classic `icc`, `icpc`, `ifort` in older versions | 2021.3 to 2025.3 | 2024.0 |
+| NVIDIA HPC SDK | `nvidia` | `nvc`, `nvc++`, `nvfortran`, `nvcc` | 21.9 to 25.9 | 23.9 |
 
-We support the following three different compilers:
+`module load gcc` loads the default; `module load gcc/13.2.0` a specific version. `module -t avail 2>&1 | grep '^gcc/'` lists every version of a family (`intel/`, `nvidia/` likewise). A program is compiled, linked and run with the same family and version; libraries and runtimes from different compilers do not mix.
 
+Intel renamed its compilers with oneAPI in 2021 (`icx`, `icpx`, `ifx`); the classic names remain in the versions that ship them. The NVIDIA compilers are the former PGI compilers; there is no separate PGI module. `nvcc`, the CUDA compiler, is part of the NVIDIA module; see [GPUs](gpus.md).
 
-1. The GNU compilers (`gcc, g++, gfortran`)
-2. The Intel compilers`(i``cc, icpc, ifort`, and the new LLVM ones:`icx, icpx`and `ifx`)
-3. The NVIDIA compilers (`nvcc, nvc++, nvfortran`).
+## Libraries
 
+| Library | Provides | Examples |
+|---|---|---|
+| BLAS and LAPACK | linear algebra, one build per compiler family | `~hpc/examples/lapack` |
+| Intel MKL | BLAS, LAPACK, FFT and more, with the Intel compilers | `~hpc/examples/lapack/intel` |
+| GSL | GNU Scientific Library | `~hpc/examples/gsl` |
 
-Some form of MPI is available for each compiler (although not all flavors for all versions of each compiler).
+The NVIDIA LAPACK build hangs or crashes in some cases; `~hpc/examples/lapack/nvidia/README` describes them.
 
+## MPI
 
-To access a compiler, use the corresponding module:
+Each MPI implementation is built for each compiler family. Load the module that matches the compiler the program was built with and the implementation it was linked against; the module also defines `mpirun` for that build.
 
+| Module | Implementation | Parallel environment |
+|---|---|---|
+| `gcc/V.R/openmpi`, `intel/YY/openmpi`, `nvidia/YY/openmpi` | OpenMPI, default version; `openmpi4` and `openmpi5` select a major version, `openmpi4.1.6-13.2.0` an exact build | `-pe orte N` |
+| `gcc/V.R/mvapich`, `intel/YY/mvapich`, `nvidia/YY/mvapich` | MVAPICH 2, over InfiniBand | `-pe mpich N` |
+| `intel/YY/mpi` | Intel MPI | as in `~hpc/examples/mpi/intel` |
+| `nvidia/YY/mpi` | NVIDIA's bundled OpenMPI | `-pe ompi N` |
 
-|  | GNU | Intel | NVIDIA |
-| --- | --- | --- | --- |
-|  | `module load gcc` | `module load intel` | `module load nvidia` |
-| Available
+`V.R` is the GCC major and minor version (`gcc/13.2/openmpi`); `YY` is the Intel or NVIDIA release year (`intel/24/openmpi`, `nvidia/24/mvapich`). The current module names are on the [Job script reference](../jobs/job-scripts.md#mpi-modules).
 
+Build and run with the module loaded:
 
-versions | 4.9.1, 4.9.2, 5.3.0, 6.1.0, 7.3.0,
+```console
+$ module load gcc/13.2/openmpi
+$ mpicc -O2 -o hello hello.c        # mpif90 for Fortran, mpicxx for C++
+$ mpirun -np 4 ./hello               # a short test on a login node; anything longer is a job
+```
 
+In a job, the slot count comes from `$NSLOTS` and the node list from `$PE_HOSTFILE` (OpenMPI) or `$TMPDIR/machines` (MVAPICH); see [Submit an MPI job](../jobs/parallel.md#submit-an-mpi-job). `~hpc/examples/mpi` has a hello-world build for every compiler and implementation, described in its `README`.
 
-**8.5.0,**9.2.0, 9.3.0,
+## OpenMP
 
+| Compiler | Flag |
+|---|---|
+| GNU | `-fopenmp` |
+| Intel | `-qopenmp` |
+| NVIDIA | `-mp` |
 
-10.1.0, 11.2.0,
+An OpenMP program reads its thread count from `OMP_NUM_THREADS`; in a job, set it from the slots requested with `-pe mthread N`:
 
+```sh
+export OMP_NUM_THREADS=$NSLOTS
+```
 
-12.2.0, 13.2.0, 14.2.0
-
-
-15.2.0 | 2021.3, 2021.4,
-
-
-2022.1, 2022.2,
-
-
-2023.1,
-
-
-**2024.0**, 2024.1, 2024.2
-
-
-2025.3 | 21.9, 22.9,
-
-
-23.5, **23.9,**23.11,
-
-
-24.3, 24.5, 24.7
-
-
-25.3, 25.9 |
-| Default version | **8.5.0** | **2024.0** | **23.9** |
-
-
-To use a specific version, add the version number as in
-
-
-`% module load gcc/12.2.0`
-
-
-or
-
-
-`% module load intel/2024.1`
-
-
-etc.
-
-
-!!! note
-    - The default values and the list of available values might change before this documentation page is updated.
-    - To check what versions are available, use something like 
-    `% ( module -t avail ) | & grep gcc`
-    - In most cases, you cannot mix and match compilers, their respective libraries, and the associated run-time environment, doing so may lead to unpredictable results.
-    - As of 2020 NVIDIA has acquired PGI and repackaged their compilers as the NVIDIA compilers.
-     - The old PGI compilers are no longer available since Hydra upgrade to Rocky 8.9 (May 2024)
-    - As of 2021 Intel has repackaged their compilers as `OneAPI`and has changed the compilers names in their most recent releases.
-
-
-
-### Libraries
-
-
-The following libraries are available:
-
-
-<table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh">Library</th><th class="confluenceTh">Description</th><th class="confluenceTh">Where to find examples</th></tr><tr><td class="confluenceTd"><p>BLAS &amp; LAPACK</p></td><td class="confluenceTd">Linear Algebra libraries</td><td class="confluenceTd"><code>~hpc/examples/lapack</code></td></tr><tr><td class="confluenceTd" colspan="1">MKL</td><td class="confluenceTd" colspan="1">Intel's Math Kernel Library</td><td class="confluenceTd" colspan="1"><code>~hpc/examples/lapack/intel</code></td></tr><tr><td class="confluenceTd" colspan="1">GSL</td><td class="confluenceTd" colspan="1">GNU Scientific Library</td><td class="confluenceTd" colspan="1"><code><span style="color:var(--ds-text,#172b4d);">~hpc/examples/gsl</span></code></td></tr></tbody></table>
-
-
-The NVIDIA LAPACK library crashes or hangs in some situations (see README under `~hpc/examples/lapack/nvidia)`.
-
-## Building & Running MPI
-
-### How to Build and Run MPI Programs
-
-
-|  | GNU | Intel | NVIDIA |
-| --- | --- | --- | --- |
-| modules | ``
-
-
-`gcc/V.R/openmpi`
-
-
-`gcc/V.R/mvapich` | `intel/YY/mpi`(vendor's version)
-
-
-`intel/YY/openmpi`
-
-
-`intel/YY/mvapich` | `nvidia/YY/mpi`(vendor's version)
-
-
-`nvidia/YY/openmpi`
-
-
-`nvidia/YY/mvapich` |
-| Notes | `where V.R` is the version and release numbers:
-
-
-`gcc/8.5/openmpi`
-
-
-you can also specify the OpenMPI version:
-
-
-`gcc/8.5/openmpi4`
-
-
-or use the full OpenMPI and GNU versions:
-
-
-`gcc/8.5/openmpi4.1.6-8.5.0` | Where YY is the version (year):
-
-
-`intel/24/mpi`
-
-
-you can also specify the OpenMPI version:
-
-
-`intel/24/openmpi4`
-
-
-or use the full OpenMPI and Intel versions:
-
-
-`intel/24/openmpi5.0.1-24.0` | Where YY is the version (year):
-
-
-`nvidia/24/mpi`
-
-
-you can also specify the OpenMPI version:
-
-
-`nvidia/24/openmpi4`
-
-
-or use the full OpenMPI and NVIDIA versions:
-
-
-`nvidia/24/mmvapich2.3.7-24.3` |
-| Examples
-
-
-under
-
-
-~hpc/examples | `mpi/openmpi3/gcc`
-
-
-`mpi/openmpi4/gcc`
-
-
-`mpi/openmpi5/gcc`
-
-
-`mpi/mvapich/gcc` | `mpi/intel` (vendor's version)
-
-
-`mpi/openmpi3/intel`
-
-
-`mpi/openmpi4/intel`
-
-
-`mpi/openmpi5/intel`
-
-
-`mpi/mvapich/intel` | `mpi/nvidia`(vendor's version)
-`mpi/openmpi3/nvidia`
-
-
-`mpi/openmpi4/nvidia`
-
-
-`mpi/openmpi5/nvidia`
-
-
-`mpi/mvapich/nvidia` |
-
-
-Note
-
-
-- MPI jobs must request either the `orte, mpich` or `ompi` parallel environment with the number of slots (CPUs, computing elements, etc)
-    - OpenMPI uses `orte`,
-    - MVAPICH uses `mpich`,
-    - *except* that NVIDIA supplied openmpi uses/needs `ompi`.
-- The job script should use the environment variable `NSLOTS` (via `$NSLOTS`) to access the assigned number of CPUs (slots), 
-that number should not be hardwired.
-- the list of nodes set aside for your MPI job is compiled by the jobs scheduler (GE) and passed to the job script via a machine file 
-that file is either
-    - `$PE_HOSTFILE`
-
-
-or
-
-
-- 
-    - `$TMPDIR/machines`
-- Whether you build or run an MPI program, you must first load the corresponding module, before invoking `mpirun`.
-- I recommend to log what computes nodes your MPI job is using with commands listed on the "info" line
-
-
-| | ORTE | MPICH | OMPI |
-| --- | --- | --- | --- |
-| qsub | `-pe orte N` | `-pe mpich N` | `-pe ompi N` |
-| info | `echo using $NSLOTS slots on:`
-
-
-`cat $PE_HOSTFILE` | `echo using $NSLOTS slots on:`
-
-
-`sort $TMPDIR/machines \| uniq -c` | `echo using $NSLOTS slots on:`
-
-
-`sort $TMPDIR/hostfile` |
-| module | `module load XXX/YYY/ZZZ` | `module load XXX/YYY/ZZZ` | `module load nvidia/YY/mpi` |
-| run | `mpirun -np $NSLOTS ./code` | `mpirun -np $NSLOTS -machinefile $TMPDIR/machines ./code` | `mpirun -np $NSLOTS -hostfile $TMPDIR/hostfile ./code` |
-
-
-where
-    - XXX/YYY/ZZZ is the right module name, and
-    - N is the number of slots you want your code to use,
-        - it can also be specified as "`N-M"`, meaning at least `N` and at most `M` CPUs (slots, ...)
-
-
-This can be confusing, so look at the examples for the compiler/mpi-flavor you use. You can find more information under [Submitting Distributed Parallel Jobs with Explicit Message Passing](../jobs/parallel.md).
-
-## Building & Running Multi-threaded Programs
-
-### How to Build Multi-Threaded Programs
-
-
-- You can build and run multi-threaded programs on the cluster;
-- You can either write, or use, a program that starts separate threads to parallelize tasks, or
-- you can use the compilers to produce multi-threaded code, using OpenMP directives, known as pragmas. 
-A pragma is a directive that looks like a comment, but get parsed by the compiler when invoking it with the appropriate flag.
-- or you can write code that explicitly create multiple threads (via fork), etc.
-
-
-- A multi-threaded code (application) must run on a single compute node and usually uses a shared memory model;
-    - The total cumulative available memory of a multi-threaded code is thus limited to the largest amount of memory available on any compute node; 
-by contrast MPI code uses a distributed memory model, and can thus access a much larger cumulative amount of memory.
-    - Similarly, the total number of threads (CPUs) available to a multi-threaded code is thus limited to the largest amount of CPUs available on any compute node; 
-by contrast MPI code uses a distributed model, and can thus make use of a much larger total number of CPUs.
-
-
-### How to Run a Multi-Threaded Program
-
-
-- To submit a job that will use a multi-threaded application, you must
-    - request a number of CPUs via the qsub option `-pe mthread N`, where `N` is the number of CPUs
-    - The number of requested CPUs can also be specified as `N-M`, meaning at least `N` and at most `M` CPUs
-    - The more CPUs you request, the less likely it is that many machines will have that many CPUs and/or that many free CPUs,
-    - The maximum number of available CPUs (in the regular queues) is 64, and drops to 40 or 24 for some special nodes.
-- The job script should use the environment variable `NSLOTS` (via `$NSLOTS`) to access the allocated number of CPUs (slots), that number should not be hardwired.
-
-
-### Compiling Using OpenMP
-
-
-- The following compiler flags enable `OpenMP`pragmas in your code:``
-
-
-<table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh">Compiler</th><th class="confluenceTh">Flag</th><th class="confluenceTh" colspan="1"><br/></th></tr><tr><td class="confluenceTd">GNU</td><td class="confluenceTd"><code><span style="color:var(--ds-text-accent-blue,#0055cc);">-fopenmp</span></code></td><td class="confluenceTd" colspan="1"><br/></td></tr><tr><td class="confluenceTd">Intel</td><td class="confluenceTd"><code><span style="color:var(--ds-text-accent-blue,#0055cc);">-qopenmp<br/></span></code></td><td class="confluenceTd" colspan="1"><code><span style="color:var(--ds-text-accent-blue,#0055cc);"> -openmp <span style="color:var(--ds-text,#172b4d);">is deprecated</span></span></code></td></tr><tr><td class="confluenceTd" colspan="1">PGI/NVIDIA</td><td class="confluenceTd" colspan="1"><code><span style="color:var(--ds-text-accent-blue,#0055cc);">-mp</span></code></td><td class="confluenceTd" colspan="1"><br/></td></tr></tbody></table>
-
-
-How to parallelize a code using `OpenMP` directives is beyond the scope of this set of documentation.
-- `OpenMP` code uses the environment variable `OMP_NUM_THREADS` to specify the number of threads, it should thus be set to `NSLOTS`:
-
-
-| C-shell (csh) syntax | Bourne shell (sh) syntax |
-| --- | --- |
-| `setenv OMP_NUM_THREADS $NSLOTS` | `export OMP_NUM_THREADS=$NSLOTS` |
-
-
-You can find more information under [Submitting Parallel Jobs](../jobs/job-scripts.md).
+A multi-threaded program runs on one node, so its threads and memory are bounded by the largest node; an MPI program spans nodes. `~hpc/examples/openmp` has an OpenMP build for each compiler. NVIDIA's compilers also accept OpenACC directives and CUDA Fortran for GPU code; see [GPUs](gpus.md).

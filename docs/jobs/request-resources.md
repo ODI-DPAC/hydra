@@ -15,7 +15,7 @@ This page covers the options that decide where a job runs and what it may use: t
     | more than 2 GB per CPU | `-l mres=X,h_data=X,h_vmem=X` (see [Reserve memory](#reserve-memory)) |
     | more than 8 GB per CPU | the same, plus `-l himem` |
     | more than 450 GB per CPU | `-q uTxlM.rq -l himem`, restricted queue |
-    | a GPU | `-l gpu` (see [GPUs](../software/gpus.md)) |
+    | a GPU | `-l gpu,ngpus=N` (see [GPUs](../software/gpus.md)) |
     | an unknown or unlimited amount of CPU time | `-q uThC.q -l lopri` |
     | more than one CPU | `-pe PE N` (see [Submit a parallel job](parallel.md)) |
     | to read or write `/store` | `-q lTIO.sq -l ioq` (see [Use /store and the I/O queue](../storage/store.md)) |
