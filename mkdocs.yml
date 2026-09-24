@@ -131,10 +131,11 @@ nav:
       - Cluster hardware: jobs/hardware.md
   - Interactive Use:
       - interactive/index.md
-      - qrsh sessions: interactive/qrsh.md
+      - Start an interactive session: interactive/qrsh.md
       - Jupyter: interactive/jupyter.md
       - VS Code: interactive/vscode.md
-      - RStudio: interactive/rstudio.md
+      - RStudio server: interactive/rstudio.md
+      - RStudio on a compute node: interactive/rstudio-node.md
   - Storage:
       - storage/index.md
       - Check usage and quotas: storage/quotas.md
