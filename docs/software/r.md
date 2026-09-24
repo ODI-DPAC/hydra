@@ -1,6 +1,6 @@
 # R
 
-This page covers running R from the command line and in jobs on Hydra: the module, installing packages in your own library, and keeping R to the CPUs a job requested. RStudio, on the RStudio server or on a compute node, is under [RStudio](../interactive/rstudio.md).
+R runs from the command line and in jobs through the `bio/R` module. Packages install into your own library, and R has to be kept to the CPUs a job requested. RStudio, on the RStudio server or on a compute node, is under [RStudio](../interactive/rstudio.md).
 
 ## Load R
 
@@ -21,7 +21,7 @@ $ R --version
 
     R reports that the system library is not writable and offers to create a personal library under your home directory; accept. Every package you install from then on goes there, and every job on every node sees it.
 
-2. For a package that compiles C or Fortran code, install from a login node or an interactive session. The system development libraries such packages need are installed there and not on the compute nodes, so an install started inside a batch job fails at the compile step.
+2. For a package that compiles C or Fortran code, install from a login node or an interactive session. Those nodes have the system development libraries such packages need and the compute nodes do not, so an install started inside a batch job fails at the compile step.
 
 ## Use the requested CPUs
 
@@ -32,7 +32,7 @@ numcores <- as.integer(Sys.getenv("NSLOTS"))
 cl <- makeCluster(numcores, type = "FORK")
 ```
 
-`type = "FORK"` is required on Hydra: without it, the worker processes are killed by the cluster's cleanup of orphaned processes.
+`type = "FORK"` is required on Hydra: without it, the cluster's cleanup of orphaned processes kills the workers.
 
 R's linear-algebra libraries start one thread per CPU on the node unless told otherwise, which oversubscribes the node. Set `OMP_NUM_THREADS` in the job file before starting R:
 

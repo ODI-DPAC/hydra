@@ -1,6 +1,6 @@
 # QSub Generator
 
-The QSub Generator is a web form that writes a job file. You fill in the resources the job needs and the commands it runs; the form produces a `.job` file with the matching embedded directives, which you upload to Hydra and submit with `qsub`.
+The QSub Generator is a web form that writes a job file. You fill in the resources the job needs and the commands it runs. The form produces a `.job` file with the matching embedded directives, which you upload to Hydra and submit with `qsub`.
 
 Open <https://hydra.si.edu/tools/QSubGen/> from the SI network, the SI VPN, or telework.si.edu. Use Chrome or Firefox; Safari is not supported. The question-mark icon next to each field explains it and its format.
 
@@ -8,7 +8,7 @@ Open <https://hydra.si.edu/tools/QSubGen/> from the SI network, the SI VPN, or t
 
 ### Time and memory
 
-**CPU time** is the CPU time allowed to the job, per CPU. Type a value or pick one from the menu; the menu sets the text box. The job is killed when it reaches this limit. CPU time is time the processor spends on the job, not elapsed time; for a job with several CPUs the limit is multiplied by the number of CPUs, while the elapsed-time limit is not. See [Time classes](queues.md#time-classes).
+**CPU time** is the CPU time allowed to the job, per CPU. Type a value or pick one from the menu; the menu sets the text box. The job is killed when it reaches this limit. CPU time is time the processor spends on the job, not elapsed time. For a job with several CPUs the scheduler multiplies the CPU limit by the number of CPUs and leaves the elapsed-time limit alone. See [Time classes](queues.md#time-classes).
 
 **Memory** is the maximum memory the job uses, per CPU. Some programs come with a memory estimator; the form links to one for RAxML.
 

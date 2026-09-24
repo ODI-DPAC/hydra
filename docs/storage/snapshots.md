@@ -1,9 +1,9 @@
 # Recover a file from a snapshot
 
-This page covers getting back a file you deleted or overwrote on `/home`, `/data` or a project `/store` partition. Those partitions keep read-only snapshots of their contents: `/home` for 4 weeks, `/data` for 2 weeks, `/store` for 8 weeks. 
+`/home`, `/data` and the project `/store` partitions keep read-only snapshots of their contents: `/home` for 4 weeks, `/data` for 2 weeks, `/store` for 8 weeks. You copy a file you deleted or overwrote within that time back from the snapshot. 
 !!! danger "`/scratch` has no snapshots"
 
-    A file you delete from `/scratch` cannot be recovered. Only files removed by the [scrubber](scrubber.md) can be restored, and only for about ten days.
+    A file you delete from `/scratch` cannot be recovered. The HPC team can restore only files the [scrubber](scrubber.md) removed, and only for about ten days.
 
 ## Recover a file on /home or /data
 
@@ -46,4 +46,4 @@ $ cp -pi /store/PROJECT/.zfs/snapshot/auto-260917.0230-8w/USERNAME/data.tar /sto
 
 `/store` is mounted on the login and interactive nodes only.
 
-A snapshot lives on the same storage system as the partition, so it does not protect against a failure of that system; what does is described under [Backups](backups.md).
+A snapshot lives on the same storage system as the partition, so it does not protect against a failure of that system; [Backups](backups.md) describes what does.

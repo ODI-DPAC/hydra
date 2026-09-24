@@ -1,6 +1,6 @@
 # Python and conda
 
-This page covers the Python installations on Hydra, keeping NumPy and similar packages to the CPUs a job requested, and using conda to install packages in your own space and in jobs. How conda itself works is in the conda documentation at <https://docs.conda.io/>; this page covers only what is specific to Hydra.
+Modules provide several Python installations, and conda installs anything else into your own space. What is specific to Hydra is below: the modules, keeping NumPy and similar packages to the CPUs a job requested, and using conda in sessions and jobs. How conda itself works is in the conda documentation at <https://docs.conda.io/>.
 
 ## Use an installed Python
 
@@ -14,7 +14,7 @@ This page covers the Python installations on Hydra, keeping NumPy and similar pa
 | `tools/python/2.7` | 2.7.16, Anaconda | |
 | `intel/python/39-24.0` | 3.9.18, Intel | with the Intel 2024.0 compilers |
 
-`module load tools/python` in a session or a job file; `module -t avail 2>&1 | grep python` lists every version. The Anaconda builds include NumPy, SciPy, pandas, matplotlib and the rest of the Anaconda distribution; `pip list` after loading shows what is there. Packages you install with `pip install --user` go to `~/.local` and are seen by that Python version only.
+`module load tools/python` in a session or a job file; `module -t avail 2>&1 | grep python` lists every version. The Anaconda builds include NumPy, SciPy, pandas, matplotlib and the rest of the Anaconda distribution; `pip list` after loading shows what is there. Packages you install with `pip install --user` go to `~/.local`, where only that Python version finds them.
 
 ## Keep NumPy to the requested CPUs
 
@@ -41,7 +41,7 @@ echo = `date` job $JOB_NAME done
 
 ## Use conda
 
-Two ways to get conda, which do not mix: the preinstalled conda or mamba through a module, or a Miniconda you install yourself. Pick one. A `conda init` from one installation writes a block into `~/.bashrc` that breaks the other; if you switch, delete the block between `# >>> conda initialize >>>` and `# <<< conda initialize <<<`.
+Two ways to get conda, which do not mix: the preinstalled conda or mamba through a module, or a Miniconda you install yourself. Pick one. A `conda init` from one installation writes a block into `~/.bashrc` that breaks the other. If you switch, delete the block between `# >>> conda initialize >>>` and `# <<< conda initialize <<<`.
 
 !!! warning "Run `conda install` under `qrsh`, not on a login node"
 

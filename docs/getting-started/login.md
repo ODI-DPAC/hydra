@@ -1,6 +1,6 @@
 # Logging in and passwords
 
-You reach Hydra with an ssh client from a computer on the Smithsonian network or the SI VPN, or through a web terminal on telework.si.edu. This page covers both, and how to change or reset your password.
+You can connect to Hydra with an ssh client from a computer on the Smithsonian network or the SI VPN, or through a web terminal on telework.si.edu. Both are described below, with how to change or reset your password.
 
 ## Where you can connect from
 
@@ -85,7 +85,7 @@ Do the same for `hydra-login02.si.edu`, or add both nodes to `~/.ssh/config` on 
 
 ## Passwords
 
-The initial password must be changed when the account is created, and every 180 days after that. An email notification is sent before a password expires. Change it before then, using either method below; email requests for a reset are handled only after the self-service grace period has passed.
+You set your initial password from the link in your welcome email. A password is valid for 180 days; Hydra emails you before it expires. Change it before then, either with `passwd` on a login node or on the self-service page. The self-service page also resets a password you have forgotten, and one that has expired, for 14 days after the expiry date. After those 14 days the account locks and only the HPC team can reset it. The three procedures follow.
 
 !!! note "Password requirements"
 
@@ -107,16 +107,16 @@ The change applies to both login nodes immediately.
 
 ### Change or reset your password on the self-service page
 
-The self-service page handles both a change (you know the current password) and a reset (you don't), including up to 14 days after the password has expired.
+Use the self-service page to change a password you know, to reset one you have forgotten, or to reset one that expired less than 14 days ago.
 
 1. Open the page. From the SI network or VPN, go directly to <https://hydra.si.edu/ssp/>. From telework.si.edu, choose **Hydra** under IT Tools, then **Change Password on Hydra-7** or **Reset Password on Hydra-7**.
-2. To reset, enter your Hydra username and click **Send**. A link is emailed to your canonical address, usually the one ending in `.edu`.
+2. To reset, enter your Hydra username and click **Send**. The page emails a link to your canonical address, usually the one ending in `.edu`.
 3. Follow the link. From telework, paste it into the **Enter internal resource** box on the telework home page instead of opening it directly.
 
     ![The internal resource box on the telework home page](../assets/Screenshot_2024-05-24_at_9.54.56_AM.png)
 
 4. Enter your new password.
 
-### After the 14-day grace period
+### Unlock an account after 14 days
 
-Once a password has been expired for more than 14 days the account is locked. Email [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) to request a reset; you will receive instructions at your work email address.
+Once a password has been expired for more than 14 days the account is locked and the self-service page no longer works for it. Email [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) to request a reset; the instructions come to your work email address.

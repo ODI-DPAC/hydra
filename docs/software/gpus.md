@@ -1,6 +1,6 @@
 # GPUs
 
-This page covers requesting a GPU for a job or an interactive session, what the scheduler gives the job, and the tools for building and watching GPU code. It is for programs written for NVIDIA GPUs (CUDA, or frameworks built on it); a program that does not use a GPU gains nothing from a GPU queue.
+A job requests a GPU like any other resource, and the scheduler assigns it specific cards. What follows is the request, what the job gets, and the tools for building and watching GPU code. Only a program written for NVIDIA GPUs (CUDA, or a framework built on it) benefits; a program that does not use a GPU gains nothing from a GPU queue.
 
 Hydra has 8 GPUs on three nodes:
 
@@ -11,7 +11,7 @@ Hydra has 8 GPUs on three nodes:
 
 ## Request a GPU
 
-1. Add the two required resources to the job: `gpu`, which admits the job to a GPU queue, and `ngpus=N`, the number of GPUs the job uses. Both are required; a job with `gpu` but no `ngpus` goes into `Eqw` and never runs.
+1. Add the two required resources to the job: `gpu`, which admits the job to a GPU queue, and `ngpus=N`, the number of GPUs the job uses. The scheduler requires both; a job with `gpu` but no `ngpus` goes into `Eqw` and never runs.
 
     ```sh
     #$ -q sTgpu.q
@@ -55,7 +55,7 @@ $ qrsh -l gpu,ngpus=1
 
 !!! warning "`ngpu` without an s is the old resource; delete it"
 
-    Old job files may request `num_gpu` or its alias `ngpu`. That resource is being retired and does nothing; once it is removed, a job that still names it is rejected with `unknown resource`. `ngpus`, with an s, is the current one. Delete `num_gpu=…` or `ngpu=…` from the `-l` list and keep `ngpus=N`; if a file has both, delete only the one without the s.
+    Old job files may request `num_gpu` or its alias `ngpu`. That resource does nothing and is on its way out; once the HPC team removes it, the scheduler rejects a job that still names it with `unknown resource`. `ngpus`, with an s, is the current one. Delete `num_gpu=…` or `ngpu=…` from the `-l` list and keep `ngpus=N`; if a file has both, delete only the one without the s.
 
 ## What the job gets
 
@@ -77,7 +77,7 @@ The GPUs run in exclusive-process mode: each GPU serves one process at a time. A
 
 ## Build GPU code
 
-`module load nvidia` provides `nvcc` (CUDA C++) and the NVIDIA C, C++ and Fortran compilers, which also accept OpenACC directives and CUDA Fortran; `nvidia/YY/cuda` adds the full CUDA toolkit of release `YY`. `module -t avail 2>&1 | grep '^nvidia/'` lists them, 21.9 to 25.9.
+`module load nvidia` provides `nvcc` (CUDA C++) and the NVIDIA C, C++ and Fortran compilers, which also accept OpenACC directives and CUDA Fortran. `nvidia/YY/cuda` adds the full CUDA toolkit of release `YY`. `module -t avail 2>&1 | grep '^nvidia/'` lists them, 21.9 to 25.9.
 
 The two GPU models take different drivers, which bounds the CUDA toolkit a program may be built with:
 
@@ -86,7 +86,7 @@ The two GPU models take different drivers, which bounds the CUDA toolkit a progr
 | `compute-50-01` (L40S) | 595.71.05 | 13.2 |
 | `compute-79-01`, `-02` (GV100) | 550.54.15 | 12.4 |
 
-CUDA 13 dropped the Volta architecture, so code for the GV100 nodes is built with a CUDA 12.x toolkit; one binary that runs on both cards is built with `-gencode arch=compute_70,code=sm_70 -gencode arch=compute_89,code=sm_89`. `~hpc/examples/gpu` holds CUDA, Python, IDL and MATLAB examples with their job files, and `~hpc/examples/gpu/cuda` the OpenACC and CUDA Fortran variants.
+CUDA 13 dropped the Volta architecture, so build code for the GV100 nodes with a CUDA 12.x toolkit. For one binary that runs on both cards, build with `-gencode arch=compute_70,code=sm_70 -gencode arch=compute_89,code=sm_89`. `~hpc/examples/gpu` holds CUDA, Python, IDL and MATLAB examples with their job files, and `~hpc/examples/gpu/cuda` the OpenACC and CUDA Fortran variants.
 
 ## Watch a GPU
 

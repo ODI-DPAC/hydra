@@ -1,12 +1,12 @@
 # Use /store and the I/O queue
 
-This page covers moving data between `/store` and the partitions jobs can read. `/store` holds the project partitions on the NAS, a large and inexpensive near-line system that is not mounted on the compute nodes. It holds data waiting to be processed or already processed, and it is not backed up. Groups with a `/store` partition are set up by [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
+`/store` holds the project partitions on the NAS, a large and inexpensive near-line system that is not mounted on the compute nodes, so data moves between it and the partitions jobs can read. It holds data waiting to be processed or already processed, and it is not backed up. [SI-HPC@si.edu](mailto:SI-HPC@si.edu) sets up the groups that have a `/store` partition.
 
 !!! note "`/store/public` is being phased out"
 
     `/store/public` is no longer available. Use `/data/public`. A cloud-based cold-storage service is being evaluated as the replacement.
 
-`/store` is mounted on the login nodes, the head node and the interactive nodes. A job on any other node cannot see it, so data is copied from `/store` to `/scratch` or `/data` before a job uses it, and copied back afterwards.
+`/store` is mounted on the login nodes, the head node and the interactive nodes. A job on any other node cannot see it, so you copy data from `/store` to `/scratch` or `/data` before a job uses it, and copy it back afterwards.
 
 !!! warning "`/store` is not mounted on the compute nodes"
 

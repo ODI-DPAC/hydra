@@ -1,6 +1,6 @@
 # Cluster hardware
 
-This page lists the nodes of the cluster, the slots behind each queue, and the network and storage systems. `qhost` on a login node prints the current node list; `qstat -g c` prints the slots per queue.
+The tables below list the nodes of the cluster, the slots behind each queue, and the network and storage systems. `qhost` on a login node prints the current node list; `qstat -g c` prints the slots per queue.
 
 ## Head and login nodes
 
@@ -10,7 +10,7 @@ This page lists the nodes of the cluster, the slots behind each queue, and the n
 | `hydra-login01.si.edu`, `hydra-login02.si.edu` | login nodes: edit, compile, submit and monitor jobs, transfer data. 48 cores, 128 GB each; use either. |
 | `hydra-globus01`, `hydra-globus02` | Globus endpoint nodes behind the Hydra collections; see [Globus](../data-transfer/globus.md). |
 
-Computations run on the login nodes are slowed, then killed; see [Warning emails](efficiency.md#high-cpu-use-on-a-login-node).
+The login nodes slow, then [kill](efficiency.md#high-cpu-use-on-a-login-node), computations run on them.
 
 ## Compute nodes
 
@@ -33,7 +33,7 @@ Computations run on the login nodes are slowed, then killed; see [Warning emails
 | `compute-93-05` | 1 | 96 | 2 TB | Intel Xeon E7 (`haswell`, `broadwell`) | extra-large memory |
 | `compute-93-06` | 1 | 56 | 3 TB | Intel Xeon E7 (`haswell`, `broadwell`) | extra-large memory |
 
-The name in parentheses is the `cpu_arch` value for restricting a job to that architecture; see [Restrict the job to certain nodes](request-resources.md#restrict-the-job-to-certain-nodes). A few nodes are set aside for [interactive sessions](../interactive/qrsh.md) and the [I/O queue](../storage/store.md). The GPUs are described under [GPUs](../software/gpus.md).
+The name in parentheses is the `cpu_arch` value for restricting a job to that architecture; see [Restrict the job to certain nodes](request-resources.md#restrict-the-job-to-certain-nodes). A few nodes are set aside for [interactive sessions](../interactive/qrsh.md) and the [I/O queue](../storage/store.md). [GPUs](../software/gpus.md) describes the cards.
 
 ## Hardware behind each queue
 

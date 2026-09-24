@@ -1,6 +1,6 @@
 # Monitor and manage jobs
 
-This page covers watching a job, changing or deleting it, reading what it used after it finished, and looking at the nodes and the cluster. The commands and their output fields are listed under [Monitoring tools](tools.md).
+`qstat` watches a job, `qalter` changes it, `qdel` deletes it, and `qacct` reports on it after it finishes; the nodes and the cluster have commands of their own. The procedures follow; [Monitoring tools](tools.md) lists the commands and their output fields.
 
 ## Check on a job
 
@@ -95,15 +95,15 @@ Read the accounting record after every new kind of job and set the memory and CP
 
     `qacct -j JOBID -t TASKID` reports one task of an array. `qacct+ -j JOBID` reads the same data from a database, faster for old jobs, with selectable fields.
 
-2. Read `maxvmem` against the memory you reserved, `cpu` against `ru_wallclock × slots`, and `failed` and `exit_status` (both `0` when the job completed). The fields are listed under [qacct fields](tools.md#qacct-fields).
+2. Read `maxvmem` against the memory you reserved, `cpu` against `ru_wallclock × slots`, and `failed` and `exit_status` (both `0` when the job completed). [qacct fields](tools.md#qacct-fields) lists them.
 
-3. Adjust the request. A job that used 6.3 GB with 32 GB reserved held 25 GB back from everyone else; a job whose `cpu` is a quarter of `ru_wallclock × slots` ran on one CPU of the four requested.
+3. Adjust the request. A job that used 6.3 GB with 32 GB reserved held 25 GB back from everyone else. A job whose `cpu` is a quarter of `ru_wallclock × slots` ran on one CPU of the four requested.
 
 `qacct -d 3 -o $USER -j > qacct.log` saves every job of the past three days for filtering with `egrep`.
 
 ## Watch a high-memory job over time
 
-Jobs in the high-memory queues are sampled every five minutes.
+A sampler records every job in the high-memory queues every five minutes.
 
 1. Plot the memory and CPU of a job as a PNG:
 
@@ -148,7 +148,7 @@ Jobs in the high-memory queues are sampled every five minutes.
     ...
     ```
 
-    `qstat+ -gc` adds node counts and the percentage in use; `show-qslots` prints only the free slots; `qstat+ -es` lists empty slots and `qstat+ -down` nodes that are down; `check-gpu-use` shows the GPUs.
+    `qstat+ -gc` adds node counts and the percentage in use. `show-qslots` prints only the free slots, `qstat+ -es` lists empty slots, `qstat+ -down` lists nodes that are down, and `check-gpu-use` shows the GPUs.
 
 2. One node, or a set of nodes:
 

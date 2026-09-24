@@ -1,6 +1,6 @@
 # Write a module file
 
-This page covers writing a module file for software you installed yourself, so that a `module load` line puts it on your path in a session or a job, whichever shell you use. It is for anyone who has built a package under their home directory or installed Miniconda.
+Software you installed yourself, a package built under your home directory or a Miniconda, gets a module file of its own, so that one `module load` line puts it on your path in a session or a job, in either shell.
 
 A module file is a text file in Tcl. Most need three or four lines: the first line must be `#%Module1.0`, and the rest set or extend environment variables. `man modulefile` lists every command.
 

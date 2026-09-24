@@ -1,6 +1,6 @@
 # Monitoring tools
 
-This page lists the commands for watching jobs, nodes and the cluster, and what their output means. How to use them is under [Monitor and manage jobs](monitoring.md). `qstat`, `qdel`, `qalter`, `qacct`, `qhost` and `qconf` are Grid Engine commands; the rest are Hydra's, in the `tools/local-user` module, which every session loads.
+`qstat`, `qdel`, `qalter`, `qacct`, `qhost` and `qconf` are Grid Engine commands; `qstat+`, `qacct+` and the other tools below are Hydra's, in the `tools/local-user` module, which every session loads. The tables give their options and output fields; [Monitor and manage jobs](monitoring.md) shows how to use them.
 
 ## qstat
 
@@ -52,7 +52,7 @@ This page lists the commands for watching jobs, nodes and the cluster, and what 
 
 ## qacct fields
 
-`qacct -j JOBID` prints the accounting record of a finished job; `-t TASKID` selects one array task; `qacct -d DAYS -o USERNAME [-j]` covers a user's jobs over DAYS days.
+`qacct -j JOBID` prints the accounting record of a finished job, and `-t TASKID` selects one array task. `qacct -d DAYS -o USERNAME [-j]` covers a user's jobs over DAYS days.
 
 | Field | Meaning |
 |---|---|
@@ -72,7 +72,7 @@ This page lists the commands for watching jobs, nodes and the cluster, and what 
 
 ## qacct+
 
-The accounting data is loaded into a PostgreSQL database within about a minute of each job finishing. `qacct+` queries the database, with selectable fields and derived values. Some fields are not loaded correctly from the Grid Engine 8.8.1 records; when a value looks wrong, compare it with `qacct -j JOBID`. `qacct+ -help` and `qacct+ -show help` list the options; `man qacct+` has the details.
+A loader copies the accounting data into a PostgreSQL database within about a minute of each job finishing. `qacct+` queries the database, with selectable fields and derived values. Some fields are not loaded correctly from the Grid Engine 8.8.1 records; when a value looks wrong, compare it with `qacct -j JOBID`. `qacct+ -help` and `qacct+ -show help` list the options; `man qacct+` has the details.
 
 | Command | Shows |
 |---|---|
@@ -106,7 +106,7 @@ The built-in formats are `simple`, `simple+`, `tab`, `tab+`, `gpu`, `gpu+`, `raw
 
 ## Hydra tools
 
-`tools/local-user` is loaded in every session. `tools/local` adds `tools/local-admin`; `tools/local+` and `tools/misc` add more. Every tool has a man page; `module help tools/local-user` lists them.
+Every session loads `tools/local-user`. `tools/local` adds `tools/local-admin`; `tools/local+` and `tools/misc` add more. Every tool has a man page; `module help tools/local-user` lists them.
 
 | Tool | Module | Purpose |
 |---|---|---|

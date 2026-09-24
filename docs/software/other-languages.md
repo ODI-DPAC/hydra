@@ -1,6 +1,6 @@
 # Julia, MATLAB, IDL and Java
 
-This page covers the four languages that need something Hydra-specific to run in a job: a module, a runtime license, or a start-up option that keeps the program to the memory and CPUs the job requested.
+Four languages need something Hydra-specific to run in a job: a module, a runtime license, or a start-up option that keeps the program to the memory and CPUs the job requested.
 
 ## Julia
 
@@ -88,7 +88,7 @@ $ module load tools/java          # default
 $ module load tools/java/21
 ```
 
-Versions 8, 17, 18 and 21 are installed. Java sizes its heap and thread pool for the whole node unless told otherwise, and a job without a heap limit fails with:
+Hydra has versions 8, 17, 18 and 21. Java sizes its heap and thread pool for the whole node unless told otherwise, and a job without a heap limit fails with:
 
 ```text
 Error occurred during initialization of VM

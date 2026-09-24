@@ -1,6 +1,6 @@
 # Quick start
 
-This page covers submitting a job on Hydra: creating a working directory, writing a job file, submitting it with `qsub`, checking it with `qstat`, and reading its output. It assumes you have an [account](account.md) and can [log in](login.md). The example job needs no input data.
+A first job on Hydra takes five steps: a working directory, a job file, `qsub` to submit it, `qstat` to check it, and the output file at the end. You need an [account](account.md) and a [login](login.md); the example job needs no input data.
 
 Replace `USERNAME` with your Hydra username throughout.
 
@@ -13,8 +13,6 @@ ssh USERNAME@hydra-login01.si.edu
 mkdir -p /scratch/genomics/USERNAME/quickstart
 cd /scratch/genomics/USERNAME/quickstart
 ```
-
-
 
 ## 2. Write a job file
 
@@ -62,7 +60,7 @@ The number is the job ID. `qstat`, `qdel` and `qacct` refer to jobs by this ID.
 $ qstat
 job-ID  prior   name   user     state submit/start at     queue                slots
 ------------------------------------------------------------------------------------
-825184  0.55500 hello  USERNAME r     09/22/2025 10:18:01 mThC.q@compute-81-01   1
+825184  0.55500 hello  USERNAME r     09/22/2026 10:18:01 mThC.q@compute-64-11   1
 ```
 
 State `qw` is queued and waiting; `r` is running. A job with an error in its job file usually fails within seconds, so check `qstat` during the first minute after submitting. When the job has finished, `qstat` prints nothing.
@@ -73,15 +71,13 @@ You can log out with `exit` while a job is running.
 
 ```console
 $ cat hello.log
-+ Mon Sep 22 10:18:01 EDT 2025 job hello started in mThC.q with jobID=825184 on compute-81-01
-= Mon Sep 22 10:18:31 EDT 2025 job hello done
++ Tue Sep 22 10:18:01 EDT 2026 job hello started in mThC.q with jobID=825184 on compute-64-11
+= Tue Sep 22 10:18:31 EDT 2026 job hello done
 ```
-
-<!-- Sample output above is illustrative; replace with a capture from the cluster before publishing. -->
 
 !!! warning "`/scratch` is not permanent storage"
 
-    Files older than 180 days are deleted. Move results off the cluster when an analysis is complete. See [Storage](../storage/index.md).
+    The scrubber deletes files older than 180 days. Move results off the cluster when an analysis is complete. See [Storage](../storage/index.md).
 
 ## Next steps
 

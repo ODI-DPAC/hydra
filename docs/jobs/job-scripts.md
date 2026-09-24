@@ -1,6 +1,6 @@
 # Job script reference
 
-A job file is a shell script whose `#$` lines carry options for `qsub`. This page lists the options, variables and parallel environments a job file uses. How to put them together is under [Write and submit a job](submit.md).
+A job file is a shell script whose `#$` lines carry options for `qsub`. The tables below list the options, the variables the scheduler sets, the parallel environments and the MPI modules; [Write and submit a job](submit.md) shows how they go together.
 
 ## Options
 
@@ -28,7 +28,7 @@ A job file is a shell script whose `#$` lines carry options for `qsub`. This pag
 
 ## Where options come from
 
-Options are collected in this order; each step overrides the previous one.
+`qsub` collects options in this order; each step overrides the previous one.
 
 1. the system-wide file `$SGE_ROOT/$SGE_CELL/common/sge_request`
 2. `.sge_request` in the current directory
@@ -89,7 +89,7 @@ In a `#$` line, and only there, `$TASK_ID` expands to the task ID.
 
 ## MPI modules
 
-Each MPI implementation is built for each compiler. Load the module that matches the compiler the program was built with and the implementation it was linked against.
+Every MPI implementation has a build for each compiler. Load the module that matches the compiler the program was built with and the implementation it was linked against.
 
 | GCC | Intel | NVIDIA | Provides |
 |---|---|---|---|

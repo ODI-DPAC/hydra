@@ -1,6 +1,6 @@
 # Request a queue, memory and CPUs
 
-This page covers the options that decide where a job runs and what it may use: the queue, the memory reservation, the number of CPUs, and the nodes it may run on. It is for any job that needs more than the default: 7 hours of CPU, 8 GB of memory, one CPU, in `sThC.q`. The queues and their limits are listed under [Queues](queues.md).
+Four options decide where a job runs and what it may use: the queue, the memory reservation, the number of CPUs, and the nodes it may run on. A job that needs more than the default (7 hours of CPU, 8 GB of memory, one CPU, in `sThC.q`) sets one or more of them. The queues and their limits are under [Queues](queues.md).
 
 ## Choose the queue
 
@@ -23,7 +23,7 @@ This page covers the options that decide where a job runs and what it may use: t
 
 3. Check the request before submitting (see [Check a request](#check-a-request-before-submitting)).
 
-`himem`, `gpu` and `lopri` are required so that the scheduler does not place an ordinary job in a high-memory, GPU or unlimited queue only because that queue is less busy. The more a job requests, the fewer similar jobs you can run at once under the [resource limits](limits.md).
+The scheduler requires `himem`, `gpu` and `lopri` so that it does not place an ordinary job in a high-memory, GPU or unlimited queue only because that queue is less busy. The more a job requests, the fewer similar jobs you can run at once under the [resource limits](limits.md).
 
 Some complete requests are:
 
@@ -41,7 +41,7 @@ Access to a restricted queue is by request to [SI-HPC@si.edu](mailto:SI-HPC@si.e
 
 ## Reserve memory
 
-`mres` reserves memory for the job: the scheduler tracks reserved memory on every node and does not start a job on a node with less free, unreserved memory than the request. `h_data` and `h_vmem` are the limits at which the job is killed. Reserve memory whenever the job uses more than 2 GB per CPU; a job without a reservation can fail when the node runs short of memory, or crash the node.
+`mres` reserves memory for the job: the scheduler tracks reserved memory on every node and does not start a job on a node with less free, unreserved memory than the request. `h_data` and `h_vmem` are the limits at which the scheduler kills the job. Reserve memory whenever the job uses more than 2 GB per CPU. A job without a reservation can fail when the node runs short of memory, or crash the node.
 
 1. Set the three values. `mres` is the job total; `h_data` and `h_vmem` are per CPU. For a serial job the three are equal; for a parallel job, divide the total by the number of slots:
 
@@ -72,7 +72,7 @@ MPI jobs set `h_data` and `h_vmem` only, without `mres`. Reserved memory that a 
     #$ -q mThC.q@@ib-hosts
     ```
 
-    The queue name can be a pattern: `-q '?ThC.q@@ib-hosts'` means any high-CPU queue on nodes with InfiniBand. The groups are listed under [Queues](queues.md#host-groups); `qconf -shgrp @gpu-hosts` prints the nodes in one.
+    The queue name can be a pattern: `-q '?ThC.q@@ib-hosts'` means any high-CPU queue on nodes with InfiniBand. [Queues](queues.md#host-groups) lists the groups; `qconf -shgrp @gpu-hosts` prints the nodes in one.
 
 2. To run only on one CPU architecture, request `cpu_arch`:
 
@@ -82,7 +82,7 @@ MPI jobs set `h_data` and `h_vmem` only, without `mres`. Reserved memory that a 
     qsub -l cpu_arch='haswell|skylake' job.sh    # either architecture
     ```
 
-    The architectures are listed under [Queues](queues.md#cpu-architectures).
+    [Queues](queues.md#cpu-architectures) lists the architectures.
 
 3. To run one binary per architecture, read the architecture inside the job:
 
@@ -110,17 +110,17 @@ MPI jobs set `h_data` and `h_vmem` only, without `mres`. Reserved memory that a 
 
 2. Submit only when the check passes.
 
-Jobs are submitted with `-w e` by default, which rejects a request that can never be satisfied with:
+`qsub` applies `-w e` by default, which rejects a request the cluster can never satisfy with:
 
 ```text
 Unable to run job: error: no suitable queues.
 ```
 
-Do not override this with `-w w` or `-w n`: the job is accepted and waits forever.
+Do not override this with `-w w` or `-w n`: the scheduler accepts the job and it waits forever.
 
 ## If the job is rejected
 
-A job is rejected when its request is inconsistent (more CPU time or memory than the queue allows), impossible (more CPUs or memory on one node than any node has), or over a [resource limit](limits.md) (more slots than one user may hold in that queue). `qsub -w v` or `qsub -verify` on the job file says which.
+The scheduler rejects a job when its request is inconsistent (more CPU time or memory than the queue allows), impossible (more CPUs or memory on one node than any node has), or over a [resource limit](limits.md) (more slots than one user may hold in that queue). `qsub -w v` or `qsub -verify` on the job file says which.
 
 ## If the job waits and does not start
 

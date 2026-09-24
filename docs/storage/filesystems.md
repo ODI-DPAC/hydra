@@ -1,6 +1,6 @@
 # Filesystems
 
-This page lists the partitions on Hydra with their quotas and retention rules. Sizes and quotas are adjusted as needed; `disk-usage -d all+ -quotas` on a login node prints the current values (see [Check your disk usage and quotas](quotas.md)).
+Hydra has four public partitions and a number of project partitions, each with its own quotas and retention rules. The HPC team adjusts sizes and quotas as needed; `disk-usage -d all+ -quotas` on a login node prints the current values ([Check your disk usage and quotas](quotas.md)).
 
 ## Public partitions
 
@@ -43,6 +43,6 @@ Groups with their own funding have dedicated partitions under `/scratch` and `/s
 
     `/scratch` has no snapshots and no backup. Move anything you need to keep to `/data` or off Hydra before it is 180 days old.
 
-Files on `/scratch/public` older than 180 days, and old empty directories, are removed by a scrubber that runs weekly. Removed files are held in a staging area for about ten days before permanent deletion; during that time they still count against your quota and can be restored on request. See [Find scrubbed files and request a restore](scrubber.md). A restored file's change time (`ctime`) is reset, so it is safe for another 180 days.
+A scrubber runs weekly and removes files on `/scratch/public` older than 180 days, and old empty directories. It holds the removed files in a staging area for about ten days before deleting them. During that time they still count against your quota, and the HPC team can restore them on request. See [Find scrubbed files and request a restore](scrubber.md). A restored file's change time (`ctime`) is reset, so it is safe for another 180 days.
 
-None of the storage systems on Hydra are meant for archival storage; see [Backups](backups.md#long-term-storage). Delete what you no longer need. Compress or archive sets of small files: `tar -czf archive.tgz dir/` replaces a directory with one file, and `tar -xf archive.tgz` unpacks it.
+None of the storage systems on Hydra are meant for [archival storage](backups.md#long-term-storage). Delete what you no longer need. Compress or archive sets of small files: `tar -czf archive.tgz dir/` replaces a directory with one file, and `tar -xf archive.tgz` unpacks it.
