@@ -177,4 +177,4 @@ A `~/.forward` file is created for each new account, using the user *canonical* 
 ## **Whom to Contact**
 
 
-- All questions should be send to [si-hpc\@si.edu](mailto:si-hpc@si.edu)
+- All questions should be send to [si-hpc@si.edu](mailto:si-hpc@si.edu)
