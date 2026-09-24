@@ -7,7 +7,8 @@
 # A weekly cron on hydra-login04 (/home/hpc/bin/check_module_list.sh) fetches
 # this script from the repo, runs it, and mails SI-HPC-Admin when the result
 # differs from the committed page, so the output must be deterministic: no dates,
-# hostnames or anything else that changes between runs.
+# hostnames, or per-user state (the <L> and <S> tags module puts on modules the
+# running user has loaded are stripped below).
 set -euo pipefail
 PREFIXES="${*:-bio tools}"   # module prefixes to list, in order
 
@@ -23,7 +24,7 @@ for PREFIX in $PREFIXES; do
   printf '\n## `%s/`\n\n| Module | Versions |\n|---|---|\n' "$PREFIX"
   module -t avail "${PREFIX}" 2>&1 \
     | grep -E "^${PREFIX}/" \
-    | sed -E "s#^${PREFIX}/##" \
+    | sed -E "s#^${PREFIX}/##; s# *<[A-Za-z]+>##g" \
     | awk -F/ '{ name=$1; ver=(NF>1)?substr($0, length(name)+2):"";
                  if (!((name SUBSEP ver) in seen)) { seen[name SUBSEP ver]=1; v[name]=(name in v)?v[name] ", " ver:ver } }
                END { for (n in v) print "| `" n "` | " v[n] " |" }' \
