@@ -1,6 +1,6 @@
 # RStudio server
 
-Hydra has a dedicated RStudio server at <https://galaxy.si.edu/R4>: a browser opens an RStudio session on a node with 192 CPU cores and 1.5 TB of memory, with your Hydra home directory, `/data` and `/scratch` mounted. It runs R 4.5.3 and RStudio Server 2024.12.0+467, the same for every user, and needs no tunnel and no `qrsh`. `/store` is not mounted on it.
+Hydra has a dedicated RStudio server at <https://galaxy.si.edu/R4>: a browser opens an RStudio session on a node with 192 CPU cores and 1.5 TB of memory, with your Hydra home directory, `/data`, `/scratch` and `/store` mounted. It runs R 4.5.3 and RStudio Server 2024.12.0+467, the same for every user, and needs no tunnel and no `qrsh`.
 
 ## Log in
 

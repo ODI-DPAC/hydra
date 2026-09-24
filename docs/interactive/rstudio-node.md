@@ -1,6 +1,6 @@
 # RStudio on a compute node
 
-RStudio can also run on a compute node of your choosing, with the CPUs and memory of an [interactive session](qrsh.md), served to your browser through an ssh tunnel. Use it when the [RStudio server](rstudio.md) does not fit: for `/store`, for a different R, or for more than one session.
+RStudio can also run on a compute node of your choosing, with the CPUs and memory of an [interactive session](qrsh.md), served to your browser through an ssh tunnel. Use it when the [RStudio server](rstudio.md) does not fit: for a different R, for more than one session, or for CPUs and memory scheduled to you alone.
 
 ## Start RStudio in a session
 
