@@ -12,7 +12,7 @@ The license allows one execution of the command-line program at a time, on one n
 
 ## Job file
 
-Request the queue and the `b2g` resource; the queue allows 36 GB of memory and two slots per job, with the time limits of the long queues (30 days of CPU, 60 days elapsed). The module defines `runblast2go`, which sets the Java options, and `hydracliprop`, which copies a `cli.prop` template configured for the local database into the current directory (overwriting an existing one; run it once).
+Request the queue and the `b2g` resource. The queue allows 36 GB of memory and two slots per job, with the time limits of the long queues (30 days of CPU, 60 days elapsed). The module defines two commands. `runblast2go` starts Blast2GO with the Java options set. `hydracliprop` copies a `cli.prop` template configured for the local database into the current directory; it overwrites an existing one, so run it once.
 
 ```sh title="b2g.job"
 #$ -S /bin/sh
@@ -41,7 +41,7 @@ echo = `date` job $JOB_NAME done
 | `BLAST2GO_TEMP` | the directory you are in when the module loads | `-tempfolder`, where logs and temporary files go; in a job with `-cwd` that is the job's directory |
 | `BLAST2GO_OBO` | set by the module | the OBO file matching the local mapping database, from [biobam](http://resources.biobam.com/b2g_res/obo_files/index.html) |
 
-The mapping database is large and old versions are not kept; when it is updated, the previous version is gone.
+The mapping database is large and the HPC team keeps only the current version; an update removes the previous one.
 
 ## Graphs and statistics
 

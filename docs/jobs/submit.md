@@ -1,6 +1,6 @@
 # Write and submit a job
 
-This page covers writing a job file for a program that runs on one CPU, submitting it, and finding its output. Every other kind of job starts from the same file with more options: [Request a queue, memory and CPUs](request-resources.md), [Submit a job array](arrays.md), [Submit a parallel job](parallel.md).
+The simplest job runs a program on one CPU: a job file, `qsub`, and an output file. Every other kind of job starts from the same file with more options: [Request a queue, memory and CPUs](request-resources.md), [Submit a job array](arrays.md), [Submit a parallel job](parallel.md).
 
 ## Submit a job
 
@@ -47,7 +47,7 @@ This page covers writing a job file for a program that runs on one CPU, submitti
 
 The two `echo` lines record which node and queue the job ran in and when it started and finished. Keep them in every job file. Without `-cwd`, the job runs in your home directory; without `-o` and `-j y`, its output goes to `~/crunch.oJOBID` and `~/crunch.eJOBID`. [Job script reference](job-scripts.md) lists every option.
 
-With no queue or resource options the job runs in `sThC.q`: 7 hours of CPU, 8 GB of memory. Add options for anything larger; see [Request a queue, memory and CPUs](request-resources.md).
+With no queue or resource options the job runs in `sThC.q`: 7 hours of CPU, 8 GB of memory. Anything larger needs a [queue, memory or CPU request](request-resources.md).
 
 ## Pass arguments to the job
 
@@ -119,7 +119,7 @@ Each queue has a soft and a hard time limit 15 minutes apart. At the soft limit 
 
 2. Replace the `echo` in `warn` with whatever saves the state of the run.
 
-The trap runs when the signal arrives, but the command already running continues until it exits. Put checkpointing inside the program where possible. `csh` scripts cannot catch signals; use `-S /bin/sh`. The signals are listed in [Job script reference](job-scripts.md#signals-at-the-time-limits).
+The trap runs when the signal arrives, but the command already running continues until it exits. Put checkpointing inside the program where possible. `csh` scripts cannot catch signals; use `-S /bin/sh`. [Job script reference](job-scripts.md#signals-at-the-time-limits) lists the signals.
 
 ## Run jobs in sequence
 

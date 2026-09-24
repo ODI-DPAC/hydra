@@ -1,6 +1,6 @@
 # Use a node's local SSD
 
-This page covers running a job on a compute node's local solid-state disk. It is for jobs that read and write intensively on their working files; a job whose time goes to computation gains nothing and takes a limited resource. The SSD is visible only to the job, only while it runs, and only from the node it runs on, so the job copies its input in at the start and its results out at the end.
+Some compute nodes have a local solid-state disk that a job can use for its working files. It pays only for a job that reads and writes intensively; a job whose time goes to computation gains nothing and takes a limited resource. The SSD is visible only to the job, only while it runs, and only from the node it runs on, so the job copies its input in at the start and its results out at the end.
 
 !!! danger "Everything on the SSD is deleted when the job is killed"
 
@@ -27,7 +27,7 @@ This page covers running a job on a compute node's local solid-state disk. It is
     tar -xf /scratch/genomics/USERNAME/project-a.tgz
     ```
 
-4. Run the analysis with its input and output paths under `$SSD_DIR`. For a program that takes paths as options, use `$SSD_DIR` in the options; for one that reads them from a configuration file, write the file at run time from a template in which the path is a placeholder:
+4. Run the analysis with its input and output paths under `$SSD_DIR`. For a program that takes paths as options, use `$SSD_DIR` in the options. For one that reads them from a configuration file, write the file at run time from a template in which the path is a placeholder:
 
     ```sh
     sed "s=XXXX=$SSD_DIR=" wow.gen > wow.conf
@@ -81,7 +81,7 @@ rm -rf *
 
 ## What happens to the SSD when the job ends
 
-If the job ends normally with less than 50 GB left on the SSD, the leftover is archived as a compressed tar file; with more, it is deleted. If the job is killed, it is deleted. Two variables, passed with `-v`, change this:
+If the job ends normally with less than 50 GB left on the SSD, the node archives the leftover as a compressed tar file; with more, it deletes it. If the job is killed, the node deletes it. Two variables, passed with `-v`, change this:
 
 | Variable | Effect |
 |---|---|

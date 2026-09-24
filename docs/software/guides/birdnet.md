@@ -1,12 +1,12 @@
 # BirdNET
 
-[BirdNET-Analyzer](https://birdnet-team.github.io/BirdNET-Analyzer/) identifies bird species in audio recordings with a deep-learning model covering more than 6,000 species. Two modules provide version 2.4.0: `bio/birdnet` (the default) for analysis, on CPUs, and `bio/birdnet/2.4.0-gpu` for training custom classifiers on a GPU. Both provide `birdnet-analyze`, `birdnet-segments`, `birdnet-species`, `birdnet-train`, `birdnet-evaluate`, `birdnet-embeddings`, `birdnet-search` and `ffprobe`; the model is installed with them, so jobs need no network access.
+[BirdNET-Analyzer](https://birdnet-team.github.io/BirdNET-Analyzer/) identifies bird species in audio recordings with a deep-learning model covering more than 6,000 species. Two modules provide version 2.4.0: `bio/birdnet` (the default) for analysis, on CPUs, and `bio/birdnet/2.4.0-gpu` for training custom classifiers on a GPU. Both provide `birdnet-analyze`, `birdnet-segments`, `birdnet-species`, `birdnet-train`, `birdnet-evaluate`, `birdnet-embeddings`, `birdnet-search` and `ffprobe`; the model comes with them, so jobs need no network access.
 
 The models are licensed CC BY-NC-SA 4.0, for non-commercial use. Cite Kahl, Wood, Eibl and Klinck (2021), *Ecological Informatics* 61:101236.
 
 ## Size the dataset
 
-Analysis processes 30 to 60 hours of audio per CPU-hour, so the hours of audio divided by the slots requested gives the expected run time; the number of files matters only as the upper bound on useful slots. Count the hours with the module's `ffprobe`:
+Analysis processes 30 to 60 hours of audio per CPU-hour, so the hours of audio divided by the slots requested gives the expected run time. The number of files matters only as the upper bound on useful slots. Count the hours with the module's `ffprobe`:
 
 ```console
 $ module load bio/birdnet
@@ -38,7 +38,7 @@ echo = `date` job $JOB_NAME done
 
 `set -e` stops the job at the first failed command, so the final `done` line prints only on success. The example is at `/share/apps/bioinformatics/birdnet/2.4.0/examples/birdnet.job`.
 
-For more than about 200 hours of audio, split the recordings into directories and run one [array task](../../jobs/arrays.md) per directory rather than one large job; each recording is analysed independently.
+For more than about 200 hours of audio, split the recordings into directories and run one [array task](../../jobs/arrays.md) per directory rather than one large job. Each recording is analysed independently, so the split costs nothing.
 
 ## Train a custom classifier
 
@@ -67,7 +67,7 @@ echo = `date` job $JOB_NAME done
 
     TensorFlow and CUDA map about 40 GB of virtual memory for the smallest training run. With a smaller `h_vmem` the job fails at start with `cudaSetDevice ... out of memory`, which refers to the job's virtual-memory limit, not to GPU memory, and exits with status 0. `set -e` is what makes the job report the failure.
 
-Give `-o` an absolute path; a relative path crashes when the classifier is saved. The three `export` lines keep TensorFlow's CPU thread pools inside the one slot the job requested. Training has been run on the L40S node, which the `gpuarch=L40S` request selects; CPU slots can be added with `-pe mthread Z` (see [GPUs](../gpus.md)), but training is GPU-bound and gains little from them. The example is at `/share/apps/bioinformatics/birdnet/2.4.0-gpu/examples/birdnet-train.job`.
+Give `-o` an absolute path; a relative path crashes when the classifier is saved. The three `export` lines keep TensorFlow's CPU thread pools inside the one slot the job requested. Training has run on the L40S node so far, which the `gpuarch=L40S` request selects. CPU slots can be added with `-pe mthread Z` (see [GPUs](../gpus.md)), but training is GPU-bound and gains little from them. The example is at `/share/apps/bioinformatics/birdnet/2.4.0-gpu/examples/birdnet-train.job`.
 
 To analyse recordings with the trained classifier, run `birdnet-analyze` from the CPU module, as above, with `--classifier` pointing at the saved model.
 

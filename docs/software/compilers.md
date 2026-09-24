@@ -1,6 +1,6 @@
 # Compilers, libraries and MPI
 
-This page lists the compilers, numerical libraries and MPI implementations installed on Hydra, the modules that provide them, and the flags for OpenMP. How to submit the resulting program is under [Submit a parallel job](../jobs/parallel.md).
+Hydra has three compiler families, each with its own numerical libraries and MPI builds. The tables below list the modules that provide them and the flags for OpenMP; [Submit a parallel job](../jobs/parallel.md) covers running the result.
 
 ## Compilers
 
@@ -10,7 +10,7 @@ This page lists the compilers, numerical libraries and MPI implementations insta
 | Intel oneAPI | `intel` | `icx`, `icpx`, `ifx`; classic `icc`, `icpc`, `ifort` in older versions | 2021.3 to 2025.3 | 2024.0 |
 | NVIDIA HPC SDK | `nvidia` | `nvc`, `nvc++`, `nvfortran`, `nvcc` | 21.9 to 25.9 | 23.9 |
 
-`module load gcc` loads the default; `module load gcc/13.2.0` a specific version. `module -t avail 2>&1 | grep '^gcc/'` lists every version of a family (`intel/`, `nvidia/` likewise). A program is compiled, linked and run with the same family and version; libraries and runtimes from different compilers do not mix.
+`module load gcc` loads the default; `module load gcc/13.2.0` a specific version. `module -t avail 2>&1 | grep '^gcc/'` lists every version of a family (`intel/`, `nvidia/` likewise). Compile, link and run a program with the same family and version; libraries and runtimes from different compilers do not mix.
 
 Intel renamed its compilers with oneAPI in 2021 (`icx`, `icpx`, `ifx`); the classic names remain in the versions that ship them. The NVIDIA compilers are the former PGI compilers; there is no separate PGI module. `nvcc`, the CUDA compiler, is part of the NVIDIA module; see [GPUs](gpus.md).
 
@@ -26,7 +26,7 @@ The NVIDIA LAPACK build hangs or crashes in some cases; `~hpc/examples/lapack/nv
 
 ## MPI
 
-Each MPI implementation is built for each compiler family. Load the module that matches the compiler the program was built with and the implementation it was linked against; the module also defines `mpirun` for that build.
+Every MPI implementation has a build for each compiler family. Load the module that matches the compiler the program was built with and the implementation it was linked against; the module also defines `mpirun` for that build.
 
 | Module | Implementation | Parallel environment |
 |---|---|---|

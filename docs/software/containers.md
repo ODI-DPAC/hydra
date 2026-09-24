@@ -1,6 +1,6 @@
 # Containers
 
-This page covers running a Singularity container on Hydra. Singularity CE 4.4 is installed on the login, interactive and compute nodes; no module is needed.
+The login, interactive and compute nodes have Singularity CE 4.4, with no module to load. You pull a container image on a login node and run it in a job.
 
 1. Pull or copy the image on a login node, into a directory under `/scratch` or `/data`. Pulling downloads and converts the image, which takes minutes and up to several gigabytes:
 

@@ -1,6 +1,6 @@
 # Check your disk usage and quotas
 
-This page covers finding out how much space and how many files you are using on each partition, how close you are to a quota, and which directories hold the most. Every partition has a per-user quota (see [Filesystems](filesystems.md)); once you reach the hard limit, writes to that partition fail until you delete something.
+Every partition has a per-user quota on space and on the number of files ([Filesystems](filesystems.md) lists them). `quota+` shows where you stand, `disk-usage` how full each partition is, and `dus-report` which directories hold the most.
 
 ## Check your quotas
 
@@ -25,7 +25,7 @@ This page covers finding out how much space and how many files you are using on 
 
     Every write to that partition fails, including the log file of a running job. Free space before submitting more jobs.
 
-A warning email goes out when your usage passes 95% of a quota; see [Warning emails](../jobs/efficiency.md#disk-quota-over-95). Above the hard limit, jobs that write to the partition fail.
+A [warning email](../jobs/efficiency.md#disk-quota-over-95) goes out when your usage passes 95% of a quota.
 
 ## See how full a partition is
 
@@ -79,6 +79,6 @@ nas1:/mnt/pool/PROJECT                 175.00T   94.03T   80.97T  54%/1%   /stor
 
     This frees inodes as well as space. `tar -xf project-a.tgz` unpacks it.
 
-4. Move data that is finished with off Hydra; see [Data transfer](../data-transfer/index.md).
+4. Move data that is finished with [off Hydra](../data-transfer/index.md).
 
-On `/data` and `/home`, space from deleted files is not freed until the snapshots holding them age out (2 and 4 weeks); see [Recover a file from a snapshot](snapshots.md). On `/scratch` it is freed at once.
+On `/data` and `/home`, space from deleted files is not freed until the snapshots holding them age out (2 and 4 weeks); see [Recover a file from a snapshot](snapshots.md). `/scratch` frees it at once.

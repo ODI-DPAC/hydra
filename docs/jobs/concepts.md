@@ -1,6 +1,6 @@
 # How the scheduler works
 
-Hydra runs Grid Engine (Siemens HPCWorks Grid Engine; formerly Sun, Univa and Altair Grid Engine). Documentation and forum posts under any of those names apply. Every computation runs as a job: a shell script that you submit from a login node with `qsub`, together with a request for the memory, CPU time and number of CPUs it needs. The scheduler places the job on one or more compute nodes, runs it without a terminal, and kills it if it exceeds a limit of the queue it runs in.
+Hydra runs Grid Engine (Siemens HPCWorks Grid Engine; formerly Sun, Univa and Altair Grid Engine). Documentation and forum posts under any of those names apply. Every computation runs as a job: a shell script that you submit from a login node with `qsub`, together with a request for the memory, CPU time and number of CPUs it needs. The scheduler places the job on one or more compute nodes and runs it without a terminal.
 
 ## The parts of the cluster
 
@@ -11,7 +11,7 @@ The cluster consists of:
 - the compute nodes, where jobs run;
 - the storage systems, described under [Storage](../storage/index.md).
 
-All nodes are connected by 10 Gb Ethernet and by InfiniBand. The nodes run Rocky Linux 8.9, deployed with Bright Cluster Manager 10.
+10 Gb Ethernet and InfiniBand connect all the nodes. The nodes run Rocky Linux 8.9, deployed with Bright Cluster Manager 10.
 
 ## What happens to a job
 
@@ -37,7 +37,7 @@ A few compute nodes are set aside for interactive sessions, reached with `qrsh`.
 
 ## Queues
 
-Every job runs in a queue, and each queue has limits on CPU time, elapsed time and memory per CPU. The queues form a matrix: sets of queues for high-CPU, high-memory, very-high-memory and GPU jobs, each set with short, medium, long and unlimited time limits, plus single queues for interactive use, I/O to `/store`, and workflow managers. The scheduler picks a queue from the resources you request; you can also name one with `-q`. If you request the wrong queue or resources, the job is rejected, waits forever, or starts and is killed. [Queues](queues.md) lists them; [Request a queue, memory and CPUs](request-resources.md) explains how to choose.
+Every job runs in a queue, and each queue has limits on CPU time, elapsed time and memory per CPU. The queues form a matrix: sets of queues for high-CPU, high-memory, very-high-memory and GPU jobs, each set with short, medium, long and unlimited time limits, plus single queues for interactive use, I/O to `/store`, and workflow managers. The scheduler picks a queue from the resources you request; you can also name one with `-q`. If you request the wrong queue or resources, the scheduler rejects the job, leaves it waiting forever, or starts it and kills it. [Queues](queues.md) lists them; [Request a queue, memory and CPUs](request-resources.md) explains how to choose.
 
 ## Limits
 
@@ -50,7 +50,7 @@ Jobs that would exceed a cluster-wide limit wait in the queue until your other j
 
 ## Rules for a shared cluster
 
-**Do not compute on the login nodes.** Use them for editing, compiling, short tests and submitting jobs. Processes that compute on a login node are slowed and then killed; [Warning emails](efficiency.md#high-cpu-use-on-a-login-node) gives the thresholds. Run anything longer in an [interactive session](../interactive/qrsh.md) or as a job.
+**Do not compute on the login nodes.** Use them for editing, compiling, short tests and submitting jobs. The login nodes slow and then kill processes that compute on them; [Warning emails](efficiency.md#high-cpu-use-on-a-login-node) gives the thresholds. Run anything longer in an [interactive session](../interactive/qrsh.md) or as a job.
 
 **Start every computation through the scheduler.** Do not log in to a compute node and start a program by hand. Use `qsub` or `qrsh`.
 
@@ -62,13 +62,13 @@ Jobs that would exceed a cluster-wide limit wait in the queue until your other j
 
 **Give concurrent jobs distinct names and output files.** Jobs run at the same time on different nodes, and jobs that write to the same file overwrite each other.
 
-**Checkpoint long jobs.** Nodes crash, networks fail, and jobs that exceed a limit are killed. Save intermediate results so a computation can resume from where it stopped. Check whether the software you use supports checkpointing and how to enable it.
+**Checkpoint long jobs.** Nodes crash, networks fail, and the scheduler kills jobs that exceed a limit. Save intermediate results so a computation can resume from where it stopped. Check whether the software you use supports checkpointing and how to enable it.
 
 **Test before you scale up.** Run one job, check its CPU and memory use with `qacct`, adjust the request, then submit the rest.
 
-**Treat the disks as working space.** Public disks are scrubbed and are not backed up. Move results off the cluster when an analysis is complete. See [Storage](../storage/index.md).
+**Treat the disks as working space.** The scrubber empties the public disks and nothing backs them up. Move results off the cluster when an analysis is complete. See [Storage](../storage/index.md).
 
-Jobs that use far fewer CPUs than requested, more CPUs than requested, or far less memory than reserved trigger [warning emails](efficiency.md) and can be killed. The [usage policies](../policies/usage.md) state the thresholds and what is expected of you.
+Jobs that use far fewer CPUs than requested, more CPUs than requested, or far less memory than reserved trigger [warning emails](efficiency.md) and can be killed. The [usage policies](../policies/usage.md) state the thresholds and what they expect of you.
 
 ## If you know Slurm
 
@@ -93,4 +93,4 @@ Hydra's commands and options differ from Slurm's. The closest equivalents are:
 | `$SLURM_ARRAY_TASK_ID` | `$SGE_TASK_ID` |
 | `$SLURM_NTASKS` | `$NSLOTS` |
 
-Grid Engine limits CPU time as well as elapsed time. For a parallel job the CPU limit is multiplied by the number of slots; the elapsed limit is not.
+Grid Engine limits CPU time as well as elapsed time. For a parallel job the scheduler multiplies the CPU limit by the number of slots and leaves the elapsed limit alone.

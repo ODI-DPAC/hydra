@@ -1,8 +1,8 @@
 # Submit a parallel job
 
-This page covers jobs that use more than one CPU: threads on one node, MPI processes across nodes, or both. It is for programs written for one of those; a program that runs on one CPU is parallelized by running many copies as a [job array](arrays.md). The program's documentation says which kind it supports.
+A parallel job uses more than one CPU: threads on one node, MPI processes across nodes, or both. The program has to be written for one of those, and its documentation says which. A program that runs on one CPU is parallelized by running many copies as a [job array](arrays.md).
 
-A parallel job requests a parallel environment (PE) and a number of slots with `-pe PE N` (`N-M` accepts a range) and reads the number it was given from `$NSLOTS`. Memory limits are per slot, so a job with N slots may use N times the queue's per-slot limit; reserve it as described under [Reserve memory](request-resources.md#reserve-memory). Only the high-CPU queues run MPI and hybrid jobs. The PEs and MPI modules are listed in [Job script reference](job-scripts.md#parallel-environments).
+A parallel job requests a parallel environment (PE) and a number of slots with `-pe PE N` (`N-M` accepts a range) and reads the number it was given from `$NSLOTS`. Memory limits are per slot, so a job with N slots may use N times the queue's per-slot limit; reserve it as described under [Reserve memory](request-resources.md#reserve-memory). Only the high-CPU queues run MPI and hybrid jobs. [Job script reference](job-scripts.md#parallel-environments) lists the PEs and MPI modules.
 
 !!! warning "Tell the program how many CPUs it was given"
 

@@ -1,6 +1,6 @@
 # Training and workshops
 
-New Hydra users are required to watch the introduction video before using the cluster. Workshops on specific topics run several times a year and their materials stay online.
+New Hydra users must watch the introduction video before using the cluster. Workshops on specific topics run several times a year and their materials stay online.
 
 ## Introduction to Hydra (required)
 
@@ -14,7 +14,7 @@ The slides and hands-on material from the introduction are in the [Hydra-introdu
 
 ## Workshops
 
-Introductory workshops run quarterly and are announced on the HPCC-L mailing list. Advanced workshops run less regularly; their slides, exercises and recordings are in the [advanced-hydra-workshops](https://github.com/SmithsonianWorkshops/advanced-hydra-workshops) repository:
+Introductory workshops run quarterly; the HPCC-L mailing list announces them. Advanced workshops run less regularly; their slides, exercises and recordings are in the [advanced-hydra-workshops](https://github.com/SmithsonianWorkshops/advanced-hydra-workshops) repository:
 
 | Topic | Date |
 |---|---|

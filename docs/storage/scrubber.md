@@ -1,6 +1,6 @@
 # Find scrubbed files and request a restore
 
-This page covers checking which of your files on `/scratch/public` the weekly scrubber will remove, finding out what it removed, and asking for some of it back. The scrubber removes files older than 180 days and old empty directories, moves the files to a staging area, and deletes them permanently about ten days later; the rules are under [Filesystems](filesystems.md#scrubbing). You receive an email when any of your files are scrubbed.
+Every week the scrubber removes files older than 180 days, and old empty directories, from `/scratch/public`. It moves the files to a staging area and deletes them permanently about ten days later. The rules are under [Filesystems](filesystems.md#scrubbing). Three procedures follow: checking what it will remove, finding out what it removed, and asking for some of it back. You receive an email when any of your files are scrubbed.
 
 The scrubber tools are in the `tools/scrubber` module. `module help tools/scrubber` lists them; each has a man page.
 
@@ -41,7 +41,7 @@ The scrubber tools are in the `tools/scrubber` module. `module help tools/scrubb
 
 ## Request a restore
 
-Restores are granted only while the files are in the staging area, for a list you have trimmed to what you need, and not for everything that was scrubbed.
+The HPC team restores files only while they are in the staging area, for a list you have trimmed to what you need, and not for everything that was scrubbed.
 
 1. Write the list of scrubbed files under the directory you want back:
 

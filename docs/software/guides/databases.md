@@ -1,10 +1,10 @@
 # Local bioinformatics databases
 
-Reference databases that are large and widely used are kept on Hydra under `/scratch/dbs`, so that each user does not download a copy. Email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) to request a database.
+Hydra keeps large, widely used reference databases under `/scratch/dbs`, so that each user does not download a copy. Email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) to request a database.
 
 !!! warning "Old versions are not kept"
 
-    When a database is updated, the previous copy is removed. A pipeline that depends on a particular version records the version from the `README` in the database directory.
+    An update removes the previous copy. A pipeline that depends on a particular version records the version from the `README` in the database directory.
 
 ## `/scratch/dbs/blast`
 

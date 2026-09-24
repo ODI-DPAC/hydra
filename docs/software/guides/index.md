@@ -1,6 +1,6 @@
 # Software guides
 
-These pages cover running specific packages on Hydra: the module to load, the queue and memory to request, and a job file.
+Each guide gives, for one package, the module to load, the queue and memory to request, and a job file.
 
 - [BEAST](beast.md)
 - [BirdNET](birdnet.md)

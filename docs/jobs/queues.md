@@ -13,7 +13,7 @@ The high-CPU, high-memory and GPU queues each come in four time classes, named b
 | long | `l` | 30 d | 60 d |
 | unlimited | `u` | none | none |
 
-The hard limits are 15 minutes longer than the soft ones. At a soft limit the scheduler signals the job; at the hard limit it kills the job. For a parallel job the CPU limit is multiplied by the number of slots; the elapsed limit is not.
+The hard limits are 15 minutes longer than the soft ones. At a soft limit the scheduler signals the job; at the hard limit it kills the job. For a parallel job the scheduler multiplies the CPU limit by the number of slots and leaves the elapsed limit alone.
 
 ## Queue sets
 
@@ -30,7 +30,7 @@ The hard limits are 15 minutes longer than the soft ones. At a soft limit the sc
 
 Memory limits are per slot: a job with `-pe mthread 4` in a high-CPU queue may use 4 × 8 GB. Only the high-CPU queues run multi-node (MPI and hybrid) jobs; in every other queue a parallel job fits on one node.
 
-The interactive queues are described under [qrsh sessions](../interactive/qrsh.md), the I/O queue under [Use /store and the I/O queue](../storage/store.md), the GPU queues under [GPUs](../software/gpus.md). Jobs in `lTWFM.sq` run on the `@wfm-hosts` nodes, which can run `qsub`; one such job per user at a time.
+[qrsh sessions](../interactive/qrsh.md) describes the interactive queues, [Use /store and the I/O queue](../storage/store.md) the I/O queue, and [GPUs](../software/gpus.md) the GPU queues. Jobs in `lTWFM.sq` run on the `@wfm-hosts` nodes, which can run `qsub`; one such job per user at a time.
 
 ## Host groups
 

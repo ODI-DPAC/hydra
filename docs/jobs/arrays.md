@@ -1,6 +1,6 @@
 # Submit a job array
 
-This page covers running the same job file many times with a different task ID each time. It is for anyone with more than a handful of similar runs: one job file, one `qsub`, one job ID, and the scheduler starts the tasks as slots become free.
+A job array runs one job file many times, each run with a different task ID. For more than a handful of similar runs it replaces a loop of `qsub` commands: one job file, one `qsub`, one job ID, and the scheduler starts the tasks as slots become free.
 
 ## Submit an array
 
@@ -123,6 +123,6 @@ Starting a task costs the scheduler time; an array of 5,000 three-minute tasks s
     chmod +x model.sh
     ```
 
-3. Submit `domodel.job`. `-t 1-1000:20` starts 50 tasks with IDs 1, 21, 41, ..., 981, each running 20 models; the array finishes 1,000 models as 50 one-hour tasks instead of 1,000 three-minute ones.
+3. Submit `domodel.job`. `-t 1-1000:20` starts 50 tasks with IDs 1, 21, 41, ..., 981, each running 20 models. The array finishes 1,000 models as 50 one-hour tasks instead of 1,000 three-minute ones.
 
 Choose the step to match the run time of one model; a step of 1 is right when each model runs for hours.

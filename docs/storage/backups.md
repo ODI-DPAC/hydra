@@ -16,7 +16,7 @@ Use snapshots to recover a file you deleted or overwrote within the retention pe
 
 ## Disaster recovery
 
-The Glacier copy of `/home` and `/data` is for rebuilding a partition after a storage failure. It is not for restoring individual files: a restore from Glacier takes staff time and is billed by Amazon, so a request needs a justification, and the requester may be asked to contribute to the cost. Copies are kept for up to a year.
+The Glacier copy of `/home` and `/data` is for rebuilding a partition after a storage failure. It is not for restoring individual files: a restore from Glacier takes staff time and is billed by Amazon, so a request needs a justification, and the requester may be asked to contribute to the cost. The HPC team keeps the copies for up to a year.
 
 ## Long-term storage
 

@@ -1,10 +1,10 @@
 # SPAdes
 
-The [SPAdes](https://github.com/ablab/spades) assembler is used for microbial and organelle genomes and for target-enrichment data such as UCE and exon capture. The module is `bio/spades`.
+The [SPAdes](https://github.com/ablab/spades) assembler handles microbial and organelle genomes and target-enrichment data such as UCE and exon capture. The module is `bio/spades`.
 
 ## Memory
 
-Give `spades.py` the memory the job reserved, in GB, with `-m`: a job with `-l mres=96G` runs `spades.py -m 96`. Without `-m`, SPAdes assumes 250 GB and is killed when it exceeds the job's limit.
+Give `spades.py` the memory the job reserved, in GB, with `-m`: a job with `-l mres=96G` runs `spades.py -m 96`. Without `-m`, SPAdes assumes 250 GB and the scheduler kills it when it exceeds the job's limit.
 
 ## Temporary files
 

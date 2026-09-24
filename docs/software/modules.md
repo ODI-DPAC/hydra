@@ -1,6 +1,6 @@
 # Find and load software
 
-This page covers finding a package among the installed modules, loading it in a session or a job, and switching versions. A module file sets the environment (`PATH`, `MANPATH`, `LD_LIBRARY_PATH` and any variables the package needs) for one package and version, and works the same under `bash` and `csh`. Modules for the packages the cluster provides are maintained by the HPC team; [Write a module file](custom-modules.md) covers your own.
+A module file sets the environment (`PATH`, `MANPATH`, `LD_LIBRARY_PATH` and any variables the package needs) for one package and version, and works the same under `bash` and `csh`. Finding a package, loading it in a session or a job, and switching versions are below. The HPC team maintains the modules for the packages the cluster provides; [Write a module file](custom-modules.md) covers your own.
 
 Modules are grouped by prefix: `bio/` for bioinformatics packages (`bioinformatics/` is an alias), `tools/` for general tools and languages, `gcc/`, `intel/` and `nvidia/` for the compilers and their MPI builds, `idl/` and `matlab/` for those runtimes, `gis/` and `jupyter/` for a few more. The [list of module files](https://hydra.si.edu/tools/QSubGen/module-avail.html) is the complete inventory; the [installed modules](module-list.md) page lists the `bio/` and `tools/` prefixes.
 
@@ -13,7 +13,7 @@ Modules are grouped by prefix: `bio/` for bioinformatics packages (`bioinformati
     bio/samtools/1.19.2(default)
     ```
 
-    `module -t avail` prints one module per line; `2>&1` is needed because it writes to standard error. Without a pattern, `module avail` prints everything.
+    `module -t avail` prints one module per line; `2>&1` is there because it writes to standard error. Without a pattern, `module avail` prints everything.
 
 2. Read what the module provides and how to run it:
 
@@ -71,4 +71,4 @@ $ module load nvidia/24.3
 
 Load or unload these like any other module. `tools/manpath` restores the default `man` page locations if loading a module has hidden them.
 
-The module command can also be called from Perl, Python and CMake scripts; `man module` describes how. The Modules documentation at <https://modules.readthedocs.io/en/v5.3.1/> covers the version installed on Hydra.
+Perl, Python and CMake scripts can also call the module command; `man module` describes how. The Modules documentation at <https://modules.readthedocs.io/en/v5.3.1/> covers the version installed on Hydra.

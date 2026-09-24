@@ -1,6 +1,6 @@
 # BLAST
 
-BLAST matches query nucleotide or protein sequences against a database. The module is `bio/blast`, and loading it sets `BLASTDB` to the local copy of the NCBI databases under `/scratch/dbs/blast/v5` (nr, nt, refseq_protein, swissprot, taxdb, mito, core_nt; see [Local databases](databases.md)), so `-db nt` needs no path. NCBI's manual at <https://www.ncbi.nlm.nih.gov/books/NBK279675/> describes every option.
+BLAST matches query nucleotide or protein sequences against a database. The module is `bio/blast`. Loading it sets `BLASTDB` to the local copy of the NCBI databases under `/scratch/dbs/blast/v5`, so `-db nt` needs no path; the copies (nr, nt, refseq_protein, swissprot, taxdb, mito, core_nt) are listed under [Local databases](databases.md). NCBI's manual at <https://www.ncbi.nlm.nih.gov/books/NBK279675/> describes every option.
 
 ## Search a database
 
