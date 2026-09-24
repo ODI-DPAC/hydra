@@ -22,9 +22,9 @@ The hard limits are 15 minutes longer than the soft ones. At a soft limit the sc
 | `sThC.q` `mThC.q` `lThC.q` `uThC.q` | 8 GB / 64 GB | `mthread`, `orte`, `ompi`, `mpich`, `hN` | serial or parallel jobs needing less than 8 GB per CPU | `-l lopri` for `uThC.q` |
 | `sThM.q` `mThM.q` `lThM.q` `uThM.q` | 450 GB / 900 GB | `mthread` | jobs needing 8 GB to 450 GB per CPU | `-l himem`; `-l lopri` for `uThM.q` |
 | `uTxlM.rq` | 2 TB / 2 TB | `mthread` | jobs needing more than 450 GB; approved users only | `-l himem` |
-| `sTgpu.q` `mTgpu.q` `lTgpu.q` | 64 GB / 128 GB | `mthread` | jobs that use a GPU | `-l gpu` |
+| `sTgpu.q` `mTgpu.q` `lTgpu.q` | 64 GB / 128 GB | `mthread` | jobs that use a GPU | `-l gpu,ngpus=N` |
 | `qrsh.iq` | 8 GB / 64 GB | `mthread` | interactive sessions; 12 h CPU, 24 h elapsed | started with `qrsh` |
-| `qgpu.iq` | 64 GB / 65 GB | `mthread` | interactive sessions with a GPU; approved users only | `qrsh -l gpu` |
+| `qgpu.iq` | 64 GB / 128 GB | `mthread` | interactive sessions with a GPU | `qrsh -l gpu,ngpus=N` |
 | `lTIO.sq` | 8 GB / 64 GB | `mthread` | jobs that read or write `/store`; 12 h CPU, 72 h elapsed | `-q lTIO.sq -l ioq` |
 | `lTWFM.sq` | 8 GB / 64 GB | `mthread` | a workflow manager that submits jobs; 6 d CPU, 30 d elapsed, 2 slots | `-q lTWFM.sq -l wfmq` |
 
@@ -45,6 +45,9 @@ A host group is a named list of nodes. `-q QUEUE@@GROUP` restricts a job to the 
 | `@io-hosts` | nodes in the I/O queue |
 | `@wfm-hosts` | nodes in the workflow-manager queue |
 | `@gpu-hosts` | nodes with GPUs |
+| `@qrsh-hosts` | nodes in the interactive queue |
+| `@himemx-hosts` | the largest-memory nodes |
+| `@b2g-hosts` | the Blast2GO node |
 | `@ssd-hosts` | nodes with a local SSD |
 | `@ib-hosts` | nodes with InfiniBand |
 | `@24c-hosts`, `@NNc-hosts` | nodes with NN CPUs, up to 192 |
@@ -56,6 +59,7 @@ A host group is a named list of nodes. `-q QUEUE@@GROUP` restricts a job to the 
 
 | Nodes | `cpu_arch` | CPU |
 |---|---|---|
+| `compute-50-*` | `icelake` | Intel Xeon (four L40S GPUs) |
 | `compute-64-*` | `skylake` | Intel Xeon Gold 6148, 2.40 GHz |
 | `compute-65-*` | `zen` | AMD EPYC 7713P 64-core, 1.94 GHz |
 | `compute-75-*` | `zen` | AMD EPYC 7H12 64-core, 2.53 GHz |

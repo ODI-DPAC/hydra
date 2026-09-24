@@ -18,7 +18,7 @@ Computations run on the login nodes are slowed, then killed; see [Warning emails
 
 | Nodes | Count | Cores per node | Memory per node | CPU | Note |
 |---|---|---|---|---|---|
-| `compute-50-01` | 1 | 64 | 512 GB | | four NVIDIA L40S GPUs |
+| `compute-50-01` | 1 | 64 | 512 GB | Intel Xeon (`icelake`) | four NVIDIA L40S GPUs |
 | `compute-64-03` to `-16` | 13 | 40 | 384 GB | Intel Xeon Gold 6148 (`skylake`) | |
 | `compute-64-17`, `-18` | 2 | 32 | 512 GB | Intel Xeon Gold 6148 (`skylake`) | |
 | `compute-65-02` to `-30` | 28 | 64 | 512 GB | AMD EPYC 7713P (`zen`) | |

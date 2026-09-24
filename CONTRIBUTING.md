@@ -95,6 +95,6 @@ Don't edit these by hand; run the script and commit the result.
 
 | File | Script | Where to run it |
 |---|---|---|
-| `docs/software/bio-modules.md` | `scripts/gen_module_list.sh` | a Hydra login node |
+| `docs/software/module-list.md` | `scripts/gen_module_list.sh` | a Hydra login node |
 | News card on `docs/index.md` | `scripts/build_home_news.py` | anywhere |
 | "Last updated" line on each page | `scripts/stamp_dates.py` | CI only; never commit its output |

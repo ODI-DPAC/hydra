@@ -20,7 +20,7 @@ This page lists the partitions on Hydra with their quotas and retention rules. S
 
     `/store/public` is no longer available. Use `/data/public`. A cloud-based cold-storage service is being evaluated as the replacement. Project `/store` partitions are not affected.
 
-A soft limit can be exceeded for a grace period; at the hard limit writes fail. The file quota counts inodes: many small files reach it before the space quota does. `/scratch/dbs` (10 TB) holds the shared bioinformatics databases; see [Local databases](../software/bio-guides/databases.md).
+A soft limit can be exceeded for a grace period; at the hard limit writes fail. The file quota counts inodes: many small files reach it before the space quota does. `/scratch/dbs` (10 TB) holds the shared bioinformatics databases; see [Local databases](../software/guides/databases.md).
 
 `/scratch/public` is divided by unit or discipline: `biology`, `genomics`, `humanities`, `nasm`, `odi` and `sao`. Your directory is under one of them, `/scratch/public/genomics/USERNAME` for example. The shorter form `/scratch/genomics` is a link to `/scratch/public/genomics`, and either works.
 
