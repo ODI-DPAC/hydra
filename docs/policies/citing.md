@@ -1,22 +1,15 @@
 # Citing Hydra
 
-If you have used Hydra for work that will be a part of a scholarly or professional publication, please cite it.
+Hydra has a DOI, [10.25572/SIHPC](https://doi.org/10.25572/SIHPC). If work you did on Hydra becomes part of a paper, a presentation or a poster, please cite it, either in the references or in the acknowledgments. The citations are how we show what the cluster produces, and that record is what we argue from when we ask for resources.
 
+As a citation:
 
-- We have a DOI for Hydra: [https://doi.org/10.25572/SIHPC](https://doi.org/10.25572/SIHPC), This means that you are now able (and encouraged) to cite Hydra in papers, presentations, or posters whenever research has benefited from its use and add a DOI link to that citation or acknowledgment.
-- If you have used Hydra for work that will be a part of a scholarly or professional publication, we ask you to mention it in the acknowledgments section of papers, adding the DOI will allow us to track citations and thus have better statistics for HPC scientific output, which in turn will help us lobby for resources for the cluster.
+> Smithsonian Institution High Performance Computing Cluster. Smithsonian Institution. https://doi.org/10.25572/SIHPC
 
+As an acknowledgment:
 
-**Here is a citation example:**
+> The computations in this paper were conducted on the Smithsonian High Performance Cluster (SI/HPC), Smithsonian Institution. https://doi.org/10.25572/SIHPC
 
+Use "Some of the computations" if only part of the work ran on Hydra.
 
-"*Smithsonian Institution High Performance Computing Cluster. Smithsonian Institution. [https://doi.org/10.25572/SIHPC](https://doi.org/10.25572/SIHPC)*"
-
-
-**Or as an acknowledgment:**
-
-
-"*(Some of) [Tt]he computations in this paper were conducted on the Smithsonian High Performance Cluster (SI/HPC), Smithsonian Institution. [https://doi.org/10.25572/SIHPC](https://doi.org/10.25572/SIHPC)*".
-
-
-We also would very much appreciate being notified of such citations, so please [email us](mailto:SI-HPC@si.edu) the reference to the citation, and if you can think of one, add a nice illustration with a short caption in layperson's terms.
+We would like to know about the publication. Please [email us](mailto:SI-HPC@si.edu) the reference. An illustration from the work, with a short caption for a general audience, is welcome too.

@@ -1,180 +1,79 @@
 # Usage policies
 
-**Existing Smithsonian General Policies and SI Computer and Network Usage Policies**
+Hydra is an official Smithsonian asset. Everything on it is subject to the Institution's directives on computer and network use, in particular [SD-931](https://sinet.sharepoint.com/:b:/r/sites/PRISM2/SIOrganization/OCFO/opmb/SD/SD931.pdf?csf=1&web=1&e=48KSeY). You agreed to those directives when you received your Smithsonian network account, and a Hydra account adds the rules on this page. We ask new account holders to reread SD-931, and we expect every Hydra user to keep their computer security awareness training (CSAT) up to date.
 
+## Accounts
 
-The Smithsonian Institution High Performance Computing resources (i.e., SI/HPC: the `Hydra` cluster and its associated resources) is an official SI asset and, as such, is subject to all of the regulations and policies outlined in SI's official directives, such as SD-931.
+Anyone with an active Smithsonian network account can request a Hydra account through the [HPC Account Request](https://smithsonianprod.servicenowservices.com/si?id=sc_cat_item&sys_id=962e05331b96e05078932f41f54bcb3b&sysparm_category=8b5b9d421b601410520ba82eac4bcb65) form. The form collects your name, your unit or department, your supervisor's name and approval, and a sentence or two on the work you plan to do on Hydra. Keep that information current; if your supervisor changes or leaves, or someone else should be contacted about your account and data, tell us.
 
+Accounts for temporary appointments (students, postdocs, fellows, contractors) are renewed once a year. When an account expires we email the user and the supervisor at the address in the user's `~/.forward` file. If neither replies within 30 days, the account's data is subject to deletion.
 
-Since all SI/HPC users must have a Smithsonian network account before being granted an account, they have already agreed to the policies described in [SD-931](https://sinet.sharepoint.com/:b:/r/sites/PRISM2/SIOrganization/OCFO/opmb/SD/SD931.pdf?csf=1&web=1&e=48KSeY).
+Two things are prohibited, and either can cost you the account:
 
+- **Sharing credentials.** Your Hydra username and password are yours alone. Nobody else logs in as you, and you log in as nobody else.
+- **Borrowing disk space.** Sharing data with collaborators is fine. Storing your data under someone else's account to get around your quota is not. If you need more space or a higher limit for a piece of work, ask us.
 
-New SI/HPC account holders should consider reacquainting themselves with [SD-931](https://sinet.sharepoint.com/:b:/r/sites/PRISM2/SIOrganization/OCFO/opmb/SD/SD931.pdf?csf=1&web=1&e=48KSeY). In addition, it is expected that SI/HPC users' computer security awareness training (CSAT) is up to date.
+We run an introduction to Hydra workshop every quarter; see [Training](../getting-started/training.md).
 
+## Using a shared cluster
 
+As with every system on the Smithsonian network, you have no expectation of privacy in your use of Hydra. Rule 5 of SD-931 on appropriate computer and network use applies.
 
+We reserve the right to suspend, cancel or modify accounts, quotas on the public disks, queue configuration and other settings, without warning, when the integrity of the cluster or its fair use requires it.
 
+Hydra is shared by more than a hundred users, and the cluster works only if each of them treats it that way. In practice that means:
 
+- Do not run analyses on the login nodes or the head node. The login nodes are for editing, compiling, transfers and short tests; the [scheduler](../jobs/concepts.md) is how work reaches the compute nodes. Processes that compute on a login node are slowed, then killed.
+- Watch your own jobs. You are responsible for monitoring their state and progress, and you should be reachable while they run, so that you can adjust them if something is wrong.
+- Start small. Before submitting many similar jobs, run one or a few, check what they used with `qacct`, and size the rest from that.
+- Estimate what you need. CPU time, memory and disk space are all limited, and a request far above what a job uses holds the excess back from everyone else. Know roughly how your needs scale with the size of your analysis.
+- Everyone's work matters as much as yours. If you wonder whether something is within the spirit of a shared system, ask whether the cluster would still work if dozens of people did the same thing at once.
 
+Systematic abuse of a scarce resource (memory, disk space, and the local SSDs in particular) or bypassing the resource limits is grounds for suspending or cancelling an account.
 
-## **User accounts**
+## Disks
 
+Hydra's disks are not archival storage. They are reliable, but the Smithsonian is not responsible for data lost on Hydra, and you should have no expectation that files stored there will survive in the long term. Keep a copy of anything you cannot afford to lose somewhere else.
 
-Individuals who have been granted a Smithsonian network account are eligible for a `Hydra` account.
+- `/home` and `/data` have snapshots, and a disaster-recovery copy exists so that the partitions can be rebuilt after a storage failure. That copy is not a backup you can restore files from; see [Backups](../storage/backups.md).
+- `/scratch/public` is not backed up, and files older than 180 days are removed by the scrubber every week; see [Scrubbed files and restores](../storage/scrubber.md).
+- Every public disk has a quota; see [Filesystems](../storage/filesystems.md).
+- Put large files and the working data of analyses on `/scratch`. `/home` and `/data` have small quotas for a reason.
+- When an account expires, its data is subject to deletion 30 days later unless something else has been agreed. A user leaving the Smithsonian either saves their data or hands responsibility for it to their supervisor before they go.
 
+## Oversubscribed and inefficient jobs
 
-In addition, it is expected that each SI/HPC user will provide and keep up to date the following, which will be gathered through an [online form](https://smithsonianprod.servicenowservices.com/si?id=sc_cat_item&sys_id=962e05331b96e05078932f41f54bcb3b&sysparm_category=8b5b9d421b601410520ba82eac4bcb65):
+We monitor the cluster for jobs that use the compute nodes badly, and email the owner. The conditions, and what the email looks like, are under [Warning emails](../jobs/efficiency.md).
 
+| Condition | Threshold |
+|---|---|
+| Oversubscribed job | more than 133% of the CPUs it requested in use |
+| Hosed job | under 10% efficiency after 36 hours |
+| Inefficient job | under 33% of the CPUs it requested in use |
+| Memory over-reserved | reserved more than 2.5 times what it uses |
+| Overloaded node | load above 133% of the node's capacity |
 
-- Name
-- Unit/Department
-- Supervisor name
-- Supervisor approval via online interface
-- 1-2 sentence description of the work they plan to conduct on Hydra.
+For an overloaded node we identify the jobs behind the load, end them, and tell their owners. Most of these are programs that start a thread for every CPU on the node regardless of what was requested. We will help you find the right setting.
 
-Introduction to Hydra workshops are held quarterly; contact [SI-HPC\@si.edu](mailto:SI-HPC@si.edu) for more information.
+What we ask of you when a warning arrives:
 
+- For a hosed or oversubscribed job, reply to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) within 24 hours where you can, so that we can decide together whether the job should be killed. An oversubscribed job with more than 24 hours still to run should be killed and resubmitted with the right request.
+- For an inefficient or memory-over-reserved job, look at what the job is doing, do not ignore the warning, and write to us if you do not understand why it fired or how to fix it for the next job.
 
-#### Note:
+When the cluster is busy, or an oversubscription is large, the administrators kill such jobs at their discretion. When the load is above 70%, users with many inefficient jobs have some of them killed automatically, down to 100 unused slots per user, and receive a warning.
 
+Our goal is to get every job through the queue and to help you use a shared system well. An oversubscribed job slows down whoever shares its node. An inefficient or over-reserved job holds CPUs or memory that the scheduler cannot give to the jobs waiting behind it.
 
-- The sharing of credentials on SI/HPC assets (like `Hydra`) is strictly prohibited.
-- *Borrowing* disk space from other users to bypass quota is also prohibited. While it is, of course, OK to share data with collaborators, users should not try to bypass quota limit by having their data stored by others.
-    - Either policy violation may/will result in suspension/cancellation of the user's account. Users should contact us if they need more resources to complete some specific task.
-- Users who have temporary appointments (students, postdocs, fellows, contractors, etc.) will need to renew their accounts annually (including SAO's postdocs/fellows).
-- Users and their supervisors will be contacted upon account expiration (via the email in their `~/.forward` file). If there is no response for the user or their supervisor within 30 days, the data will be subject to deletion. 
-If someone else should be contacted regarding a user's account/data, or the user's supervisor has changed or left, it is the user's responsibility to notify their SI/HPC contact person.
+## Email
 
+We communicate by email, and we expect you to read it. We use it to announce new features, configuration changes and policy changes, and to warn you about jobs that use resources badly, files about to be scrubbed, and accounts about to expire.
 
+All of that goes to the address in the `~/.forward` file in your Hydra home directory. We create the file when the account is created, with your canonical Smithsonian address. If you would rather receive mail elsewhere, put one address on the first line of that file:
 
+```console
+$ echo you@si.edu > ~/.forward
+```
 
+## Contact
 
-
-
-## **Hydra Use**
-
-
-As with all assets on the Smithsonian network, `Hydra` users should have no expectation of privacy concerning their use of `Hydra`. Users should adhere to "*Rule 5*" of SD-931 regarding appropriate computer and network use.
-
-
-`Hydra`'s administrators reserve the right to suspend, cancel, or modify user accounts, quotas on the public disks, queue configuration, and other configuration settings, without warning and as needed to maintain the cluster integrity and optimal use as a *shared resource*.
-
-
-Users should keep in mind that `Hydra` is a *shared resource*. As such, users should avoid conducting analyses on the login nodes or the head node, be mindful that others are using the cluster, and understand that others' work is no less important than yours.
-
-
-If you are wondering whether your behavior is in violation of "the spirit" of shared-use, consider whether dozens of people doing the same thing as you would adversely affect the functioning of the cluster.
-
-
-Users are responsible for monitoring the status and the progress of their jobs. Users who plan to conduct many similar operations should start with a small (set of) test job(s) before scaling up their use. Users who have jobs running on `Hydra` should be able to access the cluster while their jobs are running, so they can adjust their use if need be.
-
-
-Since the SI/HPC resources are a shared resource, users are expected to do a best effort to estimate their needs (CPU time, memory, disk space) and have a handle on how it scales with the size of their analysis.
-
-
-Users are subject to suspension or cancellation of their accounts if they systematically abuse a scarce or depleted resource (memory -aka RAM- disk space, especially high throughput disks like SSDs, etc.) or bypass the resource limits in place.
-
-
-
-
-
-
-
-## **Disk Use on Hydra**
-
-
-Disk storage on `Hydra` is not to be used for archival storage. Users should have no expectation of the long-term viability of their files stored on `Hydra`. While the disk system on `Hydra` is highly reliable, the Smithsonian is not responsible for any data that are lost on `Hydra`.
-
-
-Data on disks on Hydra are not backed up, except for the `/home` and `/data` disks, and old data on the public disks will be regularly removed (scrubbed) according to the following model:
-
-
-- Files and directories on `/scratch/public` (aka `/scratch`/`{biology|genomics|nasm|sao})` will be scrubbed after 180 days.
-- Files and directories on `/pool/public` (aka `/pool/{biology|genomics|nasm|sao})`will be scrubbed after 180 days.
-- The backups of `/home` and `/data` are mainly for disaster recovery, since we have snapshots enabled on these disks.
-
-
-Remember:
-
-
-- All public disks have quotas and are scrubbed.
-- Analyses on large files and data-sets should be conducted using the `/scratch` disk.
-- The `/home` and `/data` disks should not be used for large files, their low quota will prevent users from storing large files.
-- All data associated with an expired account is subject to deletion 30 days after the account expires, unless agreed otherwise.
-- It is the responsibility of the user leaving SI to either save her/his data or pass on the responsibility of her/his data to her/his supervisor.
-
-
-
-
-
-
-
-## **Oversubscribed and Inefficient Jobs**
-
-
-We monitor the cluster usage for the following conditions:
-
-
-- Oversubscribed jobs: scaled CPU usage > 133%;
-- Very inefficient or “hosed” jobs: efficiency (CPU/age) < 10% and age > 36hr;
-- Inefficient jobs: scaled CPU usage < 33%;
-- Jobs that over-reserved memory: >2.5x actual RAM use;
-- Nodes whose load exceeds 133% of its capacity.
-
-
-Users with such jobs receive warning emails (sent to the email listed in their `~/.forward` file), while for nodes with excessive load, we will identify the jobs responsible for the load spike.
-
-
-- These jobs will be promptly terminated and user(s) will be notified. We will help finding the right configuration, as some programs end up creating an excessive number of threads, hence despite a nominal CPU usage, the load becomes excessively high.
-
-
-**User responsibility to respond to warnings:**
-
-
-For “hosed” and oversubscribed jobs, users should respond to warnings by emailing si-hpc-admin\@si.edu within 24 hours of receiving the warnings, whenever possible, to help determine whether jobs should be killed. Oversubscribed jobs that are expected to run for over 24 hours after receiving the first warning should be killed and resubmitted with the correct parameters.
-
-
-When Hydra’s usage is high, or when the over-subscription is excessive, jobs may get killed promptly by the system administrator team at their discretion. When the cluster load is very high, users with a lot of inefficient jobs will have some of their jobs automatically killed and will receive a warning. Currently the load threshold for this is 70% and users will have their inefficient jobs trimmed down to have on only 100 'unused' slots per user.
-
-
-For inefficient and memory over-reserved jobs, users should monitor their jobs, not ignore the warnings and contact the support staff if they do not know or understand why the warnings are occurring and/or how to fix the problem for future jobs.
-
-
-Our overarching goal is to support all users: to get all jobs through the queue and help users learn how to best make use of a shared resource. Remember that oversubscribed jobs are likely to slow down someone else’s job(s) running on the same compute node(s), while inefficient or memory over-reserved jobs are clobbering the system and preventing the scheduler from starting the jobs waiting in the queue.
-
-
-As a reminder, all users are expected to read messages sent to the email address listed in their ~/.forward file.
-
-
-**Communication**
-
-
-All users are expected to check and read their email regularly.
-
-
-The SI/HPC admins use email to:
-
-
-1. announce new features (e.g. on `Hydra`),
-2. warn users when their jobs are improperly using resources,
-3. warn users when their files will be scrubbed,
-4. warn users whose accounts are expiring,
-5. announce configuration changes, and
-6. announce new policies or changes to existing policies.
-
-
-Users should be sure that the file `~/.forward` (in their home directory on `Hydra`) contains a working email address that is regularly checked.
-
-
-A `~/.forward` file is created for each new account, using the user *canonical* email. See [here](https://kb.iu.edu/d/ablm) about creating a `~/.forward` file.
-
-
-
-
-
-
-
-## **Whom to Contact**
-
-
-- All questions should be send to [si-hpc@si.edu](mailto:si-hpc@si.edu)
+Questions and requests go to [SI-HPC@si.edu](mailto:SI-HPC@si.edu). Two things go to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu): replies to warning emails about hosed and oversubscribed jobs, and requests to unlock an account whose password has expired. [Getting help](index.md#getting-help) says what to include.

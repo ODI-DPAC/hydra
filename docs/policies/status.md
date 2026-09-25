@@ -1,6 +1,6 @@
 # Cluster status
 
-The status page at <https://hydra.si.edu/tools/status/> shows what the cluster is doing now and over the past 30 days. It opens only from the SI network or the SI VPN, and reloads itself every hour; links at the top switch to a 5 or 20 minute refresh.
+The status page at <https://hydra.si.edu/tools/status/> shows what the cluster is doing now and over the past 30 days. It opens only from the SI network or the SI VPN. The page reloads itself every hour, and links at the top switch it to a 5 or 20 minute refresh.
 
 | Tab | Shows |
 |---|---|
