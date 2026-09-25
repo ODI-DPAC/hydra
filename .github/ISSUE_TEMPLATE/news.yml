@@ -1,5 +1,5 @@
-name: News item
-description: Announce something on the Hydra docs site. An automated pull request adds it to the News page and, if you ask, the banner at the top of every page.
+name: News item (Hydra admin team)
+description: For the Hydra admin team. Announce something on the Hydra docs site; an automated pull request adds it to the News page and, if you ask, the banner at the top of every page. If you are not on the Hydra admin team, please don't use this template.
 title: "News: "
 labels: ["news"]
 body:
