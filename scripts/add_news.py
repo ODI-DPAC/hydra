@@ -53,7 +53,7 @@ def set_banner(kind, text, link, until):
     sub("kind", kind)
     sub("text", '"' + text.replace('"', "'") + '"')
     sub("link", link)
-    sub("until", until if until else '""')
+    sub("until", f'"{until}"' if until else '""')
     CONF.write_text(conf)
     print("banner:", kind, "until", until or "cleared by hand")
 

@@ -89,7 +89,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
           git add -A
-          git commit -m "News: $TITLE"
+          git commit -m "$TITLE"
           git push -u origin "$BRANCH"
           gh pr create --base main --head "$BRANCH" --title "$TITLE" --assignee "$FILER" \
             --body "Adds the News entry from #$ISSUE. Review the wording on docs/news/index.md, then merge. Closes #$ISSUE."
