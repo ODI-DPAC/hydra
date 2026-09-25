@@ -38,7 +38,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh issue comment ${{ github.event.issue.number }} --repo ${{ github.repository }} \
-            --body "Thanks. News items are published by the Hydra admin team; we will read this and post it if it belongs on the site."
+            --body "Thanks. News items are published by the HPC team; we will read this and post it if it belongs on the site."
       - uses: actions/checkout@v4
         if: steps.allowed.outputs.ok == 'true'
       - uses: actions/setup-python@v5
@@ -78,16 +78,21 @@ jobs:
           python3 scripts/add_news.py "${args[@]}"
       - name: Open a pull request
         if: steps.allowed.outputs.ok == 'true'
-        uses: peter-evans/create-pull-request@v7
-        with:
-          branch: news/${{ steps.form.outputs.date }}-${{ github.event.issue.number }}
-          commit-message: "News: ${{ github.event.issue.title }}"
-          title: "${{ github.event.issue.title }}"
-          body: |
-            Adds the News entry from #${{ github.event.issue.number }}.
-            Review the wording on `docs/news/index.md`, then merge. Closes #${{ github.event.issue.number }}.
-          assignees: ${{ github.event.issue.user.login }}
-          delete-branch: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: news/${{ steps.form.outputs.date }}-${{ github.event.issue.number }}
+          TITLE: ${{ github.event.issue.title }}
+          ISSUE: ${{ github.event.issue.number }}
+          FILER: ${{ github.event.issue.user.login }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "News: $TITLE"
+          git push -u origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" --title "$TITLE" --assignee "$FILER" \
+            --body "Adds the News entry from #$ISSUE. Review the wording on docs/news/index.md, then merge. Closes #$ISSUE."
 
   expire-banner:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
@@ -115,11 +120,15 @@ jobs:
           PY
       - name: Open a pull request
         if: hashFiles('.banner-cleared') != ''
-        uses: peter-evans/create-pull-request@v7
-        with:
-          branch: news/clear-banner
-          commit-message: "Clear the expired announcement banner"
-          title: "Clear the expired announcement banner"
-          body: The banner's end date has passed. Merge to take it down.
-          add-paths: mkdocs.yml
-          delete-branch: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -f .banner-cleared
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b news/clear-banner
+          git add mkdocs.yml docs/index.md
+          git commit -m "Clear the expired announcement banner"
+          git push -u origin news/clear-banner
+          gh pr create --base main --head news/clear-banner --title "Clear the expired announcement banner" \
+            --body "The banner's end date has passed. Merge to take it down."
