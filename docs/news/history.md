@@ -128,15 +128,14 @@ The production RStudio server will be offline on Tuesday December 16, 2025 for t
     - All scrubbed files will be permanently deleted *ten days after being scrubbed*, except for what is scrubbed during the last 2 weeks prior to the shutdown, so *do not delay requests to restore files*.
 - **May 21, 2025**
     - OCIO had to decommission the listserv we used to communicate with our users (aka HPCC-L) as of Friday 5/16 at COB.
-    - We have set up a Google group email hosted at SAO ([hppc-l\@cfa.harvard.edu](mailto:hpcc-l@cfa.harvard.edu)) to send such emails.
+    - We have set up a Google group email hosted at SAO ([hppc-l@cfa.harvard.edu](mailto:hpcc-l@cfa.harvard.edu)) to send such emails.
         - You should have received a test email saying "New HPCC distribution list/method"
         - Please make sure that your mail reader is not sending those to spam.
     - This is a moderated groups email, hence users can post messages/questions to everyone on the list, and
         - the group moderator will distribute the message if deemed appropriate.
     - As before, you can still contact the Hydra support team via the following email addresses, based on your needs: 
- [SI-HPC-Admin\@si.edu](mailto:SI-HPC-Admin@si.edu) for SysAdmin related issues, 
- [SI-HPC\@si.edu](mailto:SI-HPC@si.edu) for Bioinformatic/Genomics questions, 
- [hpc\@cfa.harvard.edu](mailto:hpc@cfa.harvard.edu) for SAO/CfA users who need help.
+ [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) for SysAdmin related issues, 
+
 - **Mar 5, 2025**
     - Hydra will be down while moving to a new data center location.
     - Current best guess
