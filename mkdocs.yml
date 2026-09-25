@@ -61,9 +61,10 @@ extra:
   # Announcement bar and status pill. kind: maintenance | outage | info.
   # Blank text = no banner, pill shows Operational.
   announce:
+    until: 2026-09-26
     kind: info
-    text: ""
-    link: news/
+    text: "This is a test for our new issues system."
+    link: news/#2026-10-25
   status_url: https://hydra.si.edu/tools/status/
   support_email: SI-HPC@si.edu
   social:
