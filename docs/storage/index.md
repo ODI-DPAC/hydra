@@ -1,11 +1,11 @@
 # Storage
 
-Hydra has four kinds of disk space: `/home` for scripts and configuration, `/data` for results, `/scratch` for the working files of jobs, and `/store` for project near-line storage. Each has its own quota and retention rules, listed under [Filesystems](filesystems.md).
+Hydra has four kinds of disk space. Keep scripts and configuration in `/home`, results in `/data`, the working files of jobs in `/scratch`, and project data waiting for analysis in `/store`. Each has its own quota and retention rules; see [Filesystems](filesystems.md).
 
-To see where you stand, [check your usage and quotas](quotas.md). To get a file back, [recover it from a snapshot](snapshots.md) on `/home`, `/data` or `/store`, or [request a restore](scrubber.md) if the scrubber removed it from `/scratch`. Jobs that read and write intensively can [use a node's local SSD](ssd.md); data on `/store` is [copied with the I/O queue](store.md) before a job uses it.
+To see how much space you are using, [check your usage and quotas](quotas.md). If you deleted or overwrote a file on `/home`, `/data` or `/store`, you can [recover it from a snapshot](snapshots.md). If the scrubber removed a file from `/scratch`, you can [request a restore](scrubber.md) for about ten days. If your job reads and writes intensively, it can [use the node's local SSD](ssd.md). If your data is on `/store`, you [copy it with the I/O queue](store.md) before a job uses it.
 
 !!! danger "Files on `/scratch` older than 180 days are deleted every week"
 
     `/scratch` has no snapshots and no backup. Keep results on `/data` or off Hydra; the [scrubber](scrubber.md) can restore a file for about ten days after removing it, and not after.
 
-None of the storage systems on Hydra are meant for archival storage; [Backups](backups.md) lists the snapshot and disaster-recovery coverage of each partition. Moving data on and off the cluster is under [Data transfer](../data-transfer/index.md).
+None of the storage systems on Hydra are meant for archival storage. [Backups](backups.md) explains what is protected against what, so that you can decide where else to keep a copy. To move data on and off the cluster, see [Data transfer](../data-transfer/index.md).

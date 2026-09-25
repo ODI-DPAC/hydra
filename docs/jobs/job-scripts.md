@@ -1,6 +1,6 @@
 # Job script reference
 
-A job file is a shell script whose `#$` lines carry options for `qsub`. The tables below list the options, the variables the scheduler sets, the parallel environments and the MPI modules; [Write and submit a job](submit.md) shows how they go together.
+A job file is a shell script whose `#$` lines carry options for `qsub`. When you need to look up an option, an environment variable, a parallel environment or an MPI module, this is the page. If you are writing your first job file, start with [Write and submit a job](submit.md) instead, which shows how the pieces go together.
 
 ## Options
 

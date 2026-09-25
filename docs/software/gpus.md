@@ -1,6 +1,6 @@
 # GPUs
 
-A job requests a GPU like any other resource, and the scheduler assigns it specific cards. What follows is the request, what the job gets, and the tools for building and watching GPU code. Only a program written for NVIDIA GPUs (CUDA, or a framework built on it) benefits; a program that does not use a GPU gains nothing from a GPU queue.
+A job requests a GPU like any other resource, and the scheduler assigns it specific cards. This page shows you how to make the request, what your job is given, and how to build and watch GPU code. A GPU helps only a program written for NVIDIA GPUs, through CUDA or a framework built on it; a program that does not use a GPU gains nothing from a GPU queue.
 
 Hydra has 8 GPUs on three nodes:
 

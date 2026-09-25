@@ -1,6 +1,6 @@
 # Write and submit a job
 
-The simplest job runs a program on one CPU: a job file, `qsub`, and an output file. Every other kind of job starts from the same file with more options: [Request a queue, memory and CPUs](request-resources.md), [Submit a job array](arrays.md), [Submit a parallel job](parallel.md).
+The simplest job runs a program on one CPU: a job file, `qsub`, and an output file. Every other kind of job starts from the same file with more options. If you need more memory, CPUs or time, see [Request a queue, memory and CPUs](request-resources.md). If you have many similar runs, see [Submit a job array](arrays.md). If your program is threaded or uses MPI, see [Submit a parallel job](parallel.md).
 
 ## Submit a job
 

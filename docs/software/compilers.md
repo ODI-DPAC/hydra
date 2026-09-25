@@ -1,6 +1,6 @@
 # Compilers, libraries and MPI
 
-Hydra has three compiler families, each with its own numerical libraries and MPI builds. The tables below list the modules that provide them and the flags for OpenMP; [Submit a parallel job](../jobs/parallel.md) covers running the result.
+Hydra has three compiler families, each with its own numerical libraries and MPI builds. When you need the module name for a compiler or an MPI, or the flag that turns on OpenMP, look it up here. Once the program is built, [Submit a parallel job](../jobs/parallel.md) shows you how to run it.
 
 ## Compilers
 

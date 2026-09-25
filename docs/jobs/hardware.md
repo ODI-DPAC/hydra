@@ -1,6 +1,6 @@
 # Cluster hardware
 
-The tables below list the nodes of the cluster, the slots behind each queue, and the network and storage systems. `qhost` on a login node prints the current node list; `qstat -g c` prints the slots per queue.
+Hydra has 74 compute nodes, two login nodes and three storage systems, connected by Ethernet and InfiniBand. If you want to know which nodes a queue runs on or what a node has, the tables on this page answer that. For the live picture, `qhost` on a login node prints the node list and `qstat -g c` prints the slots per queue.
 
 ## Head and login nodes
 

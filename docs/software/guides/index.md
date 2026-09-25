@@ -1,6 +1,6 @@
 # Software guides
 
-Each guide gives, for one package, the module to load, the queue and memory to request, and a job file.
+We provide a guide for each of the packages below. Each one tells you which module to load, which queue and how much memory to request, and gives you a job file to start from.
 
 - [BEAST](beast.md)
 - [BirdNET](birdnet.md)
@@ -12,6 +12,4 @@ Each guide gives, for one package, the module to load, the queue and memory to r
 - [SPAdes](spades.md)
 - [Local databases](databases.md): BLAST, Dfam and Kraken databases kept on Hydra
 
-[Installed modules](../module-list.md) lists every `bio/` and `tools/` package. `module help bio/NAME` on a login node prints a package's executables and how to run it; `module avail bio/NAME` lists its versions.
-
-Packages on Bioconda or conda-forge install into your own environment; see [Python and conda](../python.md). For software that needs a license, a build against the cluster's MPI or CUDA libraries, or a shared database, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
+If your package is not here, it may still be installed. [Installed modules](../module-list.md) lists every `bio/` and `tools/` package, and `module help bio/NAME` on a login node tells you what a module provides and how to run it. If it is on Bioconda or conda-forge, you can install it yourself; see [Python and conda](../python.md). If it needs a license, a build against the cluster's MPI or CUDA libraries, or a shared database, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu).

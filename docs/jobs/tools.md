@@ -1,6 +1,6 @@
 # Monitoring tools
 
-`qstat`, `qdel`, `qalter`, `qacct`, `qhost` and `qconf` are Grid Engine commands; `qstat+`, `qacct+` and the other tools below are Hydra's, in the `tools/local-user` module, which every session loads. The tables give their options and output fields; [Monitor and manage jobs](monitoring.md) shows how to use them.
+`qstat`, `qdel`, `qalter`, `qacct`, `qhost` and `qconf` are Grid Engine commands. `qstat+`, `qacct+` and the other tools on this page are Hydra's own, in the `tools/local-user` module, which every session loads. When you need an option or want to know what a field in the output means, look it up here. If you want to see the commands used in order, see [Monitor and manage jobs](monitoring.md).
 
 ## qstat
 

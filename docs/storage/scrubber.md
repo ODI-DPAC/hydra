@@ -1,6 +1,6 @@
 # Find scrubbed files and request a restore
 
-Every week the scrubber removes files older than 180 days, and old empty directories, from `/scratch/public`. It moves the files to a staging area and deletes them permanently about ten days later. The rules are under [Filesystems](filesystems.md#scrubbing). Three procedures follow: checking what it will remove, finding out what it removed, and asking for some of it back. You receive an email when any of your files are scrubbed.
+Every week the scrubber removes files older than 180 days, and old empty directories, from `/scratch/public`. It moves the files to a staging area and deletes them permanently about ten days later. The rules are under [Filesystems](filesystems.md#scrubbing). This page shows you how to check what the scrubber will remove, how to find out what it removed, and how to ask for some of it back. You receive an email when any of your files are scrubbed.
 
 The scrubber tools are in the `tools/scrubber` module. `module help tools/scrubber` lists them; each has a man page.
 

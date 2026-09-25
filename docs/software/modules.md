@@ -1,6 +1,6 @@
 # Find and load software
 
-A module file sets the environment (`PATH`, `MANPATH`, `LD_LIBRARY_PATH` and any variables the package needs) for one package and version, and works the same under `bash` and `csh`. Finding a package, loading it in a session or a job, and switching versions are below. The HPC team maintains the modules for the packages the cluster provides; [Write a module file](custom-modules.md) covers your own.
+A module file sets the environment (`PATH`, `MANPATH`, `LD_LIBRARY_PATH` and any variables the package needs) for one package and version, and works the same under `bash` and `csh`. This page shows you how to find a package, load it in a session or a job, and switch between versions. The HPC team maintains the modules for the packages the cluster provides; [Write a module file](custom-modules.md) covers your own.
 
 Modules are grouped by prefix: `bio/` for bioinformatics packages (`bioinformatics/` is an alias), `tools/` for general tools and languages, `gcc/`, `intel/` and `nvidia/` for the compilers and their MPI builds, `idl/` and `matlab/` for those runtimes, `gis/` and `jupyter/` for a few more. The [list of module files](https://hydra.si.edu/tools/QSubGen/module-avail.html) is the complete inventory; the [installed modules](module-list.md) page lists the `bio/` and `tools/` prefixes.
 
