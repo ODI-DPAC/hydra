@@ -1,4 +1,4 @@
-# Cluster upgrades
+# Cluster Upgrade History
 
 - [2025 data center move](2025-data-center-move.md)
 - [2024 upgrade to Hydra-7](2024-hydra-7.md)
