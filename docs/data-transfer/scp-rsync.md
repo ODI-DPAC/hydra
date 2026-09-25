@@ -1,39 +1,72 @@
 # scp, sftp and rsync
 
-The login nodes accept `scp`, `sftp` and `rsync` from any computer on the Smithsonian network or the SI VPN, and any graphical client that speaks the sftp protocol works the same way. From Hydra outward, the same tools reach any host that accepts an ssh connection from the login nodes. Give a transfer a destination under `/scratch` or `/data`, never `/home` or `/tmp`.
+**scp**, **sftp** and **rsync** are the standard Unix tools for copying files over an ssh connection. `scp` copies files with a single command. `sftp` opens a session in which you move around and copy files one at a time. `rsync` copies whole directories and, on a second run, only what has changed. Hydra's login nodes accept all three from any computer on the Smithsonian network or the SI VPN. Graphical clients such as WinSCP and FileZilla use the same protocol and work the same way. From Hydra outward, the same tools reach any host that accepts an ssh connection from the login nodes.
 
-For anything over about 70 GB, use `rsync` and cap the rate with `--bwlimit=20000` (20 MB/s, 70 GB per hour), so that one transfer does not fill the link for everyone. Email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) if a transfer needs more than that.
+The three tools are installed by default on macOS and Linux. Windows 10 (version 1803 and later) and Windows 11 include `scp` and `sftp`. `rsync` is not part of Windows; use it through the Windows Subsystem for Linux (WSL), or use a graphical client instead.
+
+!!! tip "Use rsync for anything over about 70 GB"
+
+    `rsync` can resume an interrupted copy and limit its own speed. For large transfers we ask you to cap the rate at 20 MB/s (about 70 GB per hour) with `--bwlimit=20000`, so that one transfer does not fill the link for everyone. If that limit is a problem for your work, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
+
+Give every transfer a destination under `/scratch` or `/data`. The home directory has a small quota, and `/tmp` is small and shared.
 
 ## Copy files with scp
 
-`scp` comes with macOS, Linux and Windows 10 and later. Open a terminal (Terminal on macOS; Command Prompt or PowerShell on Windows), `cd` to the directory the files are in, and copy to Hydra:
+Open a terminal. On macOS that is Terminal, in `/Applications/Utilities`. On Windows it is Command Prompt or PowerShell. Use `cd` to go to the directory the files are in.
+
+Copy one file to a directory on Hydra:
 
 ```console
 $ scp -p results.tar USERNAME@hydra-login01.si.edu:/scratch/genomics/USERNAME/project/
+```
+
+Copy several files at once, with a wildcard:
+
+```console
 $ scp -p reads_*.fastq.gz USERNAME@hydra-login01.si.edu:/scratch/genomics/USERNAME/project/
 ```
 
-The destination directory must exist. `-p` keeps the files' modification times. Copy from Hydra by reversing the arguments; quote a wildcard so that Hydra expands it, not your shell:
+Copy a file from Hydra to the current directory on your computer:
 
 ```console
 $ scp -p USERNAME@hydra-login01.si.edu:/scratch/genomics/USERNAME/project/results.tar .
+```
+
+Copy several files from Hydra with a wildcard. The quotes make Hydra expand the wildcard rather than your own shell.
+
+```console
 $ scp -p 'USERNAME@hydra-login01.si.edu:/scratch/genomics/USERNAME/project/*.log' .
 ```
 
+The destination directory must exist. `-p` keeps the files' modification times, which is useful when you later want to know which copy is newer. `man scp` lists the other options.
+
 ## Copy or synchronise with rsync
 
-`rsync` comes with macOS and Linux (on Windows, through WSL or Cygwin). It copies only files that are new or changed, so a second run after an interruption finishes the job rather than starting over, and it takes a rate limit.
+`rsync` copies only the files that are new or have changed since the last run. A second run after an interruption finishes the job rather than starting over, and a run over a directory you have already copied moves only what you changed.
+
+Copy a directory to Hydra, at a limited rate:
 
 ```console
 $ rsync -avz --bwlimit=20000 project/ USERNAME@hydra-login01.si.edu:/scratch/genomics/USERNAME/project/
+```
+
+Copy results back from Hydra:
+
+```console
 $ rsync -avz USERNAME@hydra-login01.si.edu:/scratch/genomics/USERNAME/project/results/ results/
 ```
 
-`-a` copies directories recursively with permissions and times, `-v` lists each file, `-z` compresses in transit. A trailing slash on the source copies its contents; without it, the directory itself. `-n` lists what the run would copy and copies nothing. `man rsync` lists the rest.
+See what a run would copy without copying anything:
+
+```console
+$ rsync -avzn project/ USERNAME@hydra-login01.si.edu:/scratch/genomics/USERNAME/project/
+```
+
+The options mean the following. `-a` copies directories recursively and keeps permissions and times. `-v` lists each file as it goes. `-z` compresses in transit. `-n` is the dry run. A trailing slash on the source copies the directory's contents; without it, `rsync` copies the directory itself into the destination. `man rsync` covers the rest.
 
 ## Use sftp
 
-`sftp` opens a session and takes commands; it is on the same systems as `scp`:
+`sftp` opens a session on Hydra and takes commands, which suits a few files here and there.
 
 ```console
 $ sftp USERNAME@hydra-login01.si.edu
@@ -43,17 +76,17 @@ sftp> get summary.csv
 sftp> exit
 ```
 
-`cd` and `lcd` change the remote and local directories; `put` uploads, `get` downloads.
+You will use four commands most. `cd` changes the directory on Hydra. `lcd` changes the directory on your computer. `put` uploads a file and `get` downloads one. `man sftp` lists the rest.
 
 ## Use WinSCP on Windows
 
-[WinSCP](https://winscp.net/) copies files by drag and drop over sftp.
+[WinSCP](https://winscp.net/) is a free Windows program that copies files by drag and drop over sftp.
 
-1. In the Login window, set the file protocol to SFTP, the host name to `hydra-login01.si.edu`, the port to 22, and your Hydra username; leave the password blank and click **Login**:
+1. In the Login window, set the file protocol to SFTP, the host name to `hydra-login01.si.edu`, the port to 22, and your Hydra username. Leave the password blank and click **Login**:
 
     ![WinSCP session settings with the host, port and username filled in](../assets/winscp00.jpg)
 
-2. Accept the host key the first time, then enter your Hydra password when the login dialog asks for it:
+2. Accept the host key the first time. Then enter your Hydra password when the login dialog asks for it:
 
     ![WinSCP asking for the password while connecting](../assets/winscp0.jpg)
 
@@ -65,28 +98,36 @@ sftp> exit
 
     ![WinSCP after a transfer, both panes listed](../assets/winscp2.jpg)
 
+WinSCP can also show only the Hydra side ("Explorer" mode), in which case you drag files from Windows File Explorer. Its Preferences say which.
+
 ## Use FileZilla on any system
 
-[FileZilla](https://filezilla-project.org/) works the same way on macOS, Windows and Linux.
+[FileZilla](https://filezilla-project.org/) is a free client for macOS, Windows and Linux. The screenshots are from a Mac; the other systems look the same.
 
-1. In the Quickconnect bar, enter the host `hydra-login01.si.edu`, your Hydra username, your password and port 22, and click **Quickconnect**:
+1. In the Quickconnect bar, enter the host `hydra-login01.si.edu`, your Hydra username, your password and port 22, then click **Quickconnect**:
 
     ![The FileZilla Quickconnect bar with the host, username, password and port filled in](../assets/Screen_Shot_2018-02-21_at_9.54.56_AM.png)
 
-2. The first time, FileZilla asks whether to save passwords; choose **Do not save passwords**:
+2. The first time, FileZilla asks whether to save passwords. Choose **Do not save passwords**:
 
     ![The FileZilla dialog asking whether to remember passwords](../assets/Screen_Shot_2018-02-21_at_9.49.14_AM.png)
 
-3. Accept the host key when FileZilla shows it:
+3. Accept the host key when FileZilla shows it. Tick **Always trust this host** so it does not ask again:
 
     ![The FileZilla unknown host key dialog](../assets/Screen_Shot_2018-02-21_at_9.49.32_AM.png)
 
-4. Your computer is on the left and Hydra on the right. Navigate the right side to a directory under `/scratch` or `/data`, then drag files between the two sides:
+4. Your computer is on the left and Hydra on the right. Navigate the right side to a directory under `/scratch` or `/data`, or type the path into the **Remote site** box, then drag files between the two sides:
 
     ![FileZilla with a local directory on the left and a Hydra directory on the right](../assets/Screen_Shot_2018-02-21_at_9.50.53_AM.png)
 
-Cyberduck is not recommended: it keeps a process busy on the login node, which the login-node limits then kill.
+We do not recommend Cyberduck. It keeps a process busy on the login node, and the login-node limits then kill it.
 
 ## Keep the load down
 
-`rm`, `mv` and `cp` on thousands of files load the file servers as much as a transfer does. Run large file operations one after another rather than several at once, and run anything that takes more than a few minutes under `qrsh` or as a job rather than on a login node.
+`rm`, `mv` and `cp` on thousands of files load the file servers as much as a transfer does. Run large file operations one after another rather than several at once. Anything that takes more than a few minutes on a login node should run under `qrsh` or as a job instead. See [Start an interactive session](../interactive/qrsh.md).
+
+## Further reading
+
+- [Filesystems](../storage/filesystems.md), for the partitions and their quotas
+- [Globus](globus.md), for transfers too large or too long for `rsync`
+- [Logging in and passwords](../getting-started/login.md), for ssh keys, which let `scp` and `rsync` run without a password
