@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or problem with Hydra
+    url: mailto:SI-HPC@si.edu
+    about: For help with the cluster itself, email SI-HPC@si.edu. Issues here are about the documentation site.
