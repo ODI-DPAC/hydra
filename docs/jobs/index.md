@@ -1,4 +1,4 @@
-# Running jobs
+# Running Jobs
 
 Hydra runs Grid Engine. You submit work as jobs from a login node with `qsub`. The scheduler runs each one on the compute nodes and kills it if it exceeds the limits of its queue.
 
