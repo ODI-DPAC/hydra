@@ -1,4 +1,4 @@
-# Getting started
+# Getting Started
 
 A new user reads these pages in order:
 
