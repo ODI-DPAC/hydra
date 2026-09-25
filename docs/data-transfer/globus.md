@@ -1,167 +1,88 @@
 # Globus
 
-## Introduction
+[Globus](https://www.globus.org/) is a service for moving data between storage systems. You set a transfer up in a web browser, and Globus runs it for you. It retries after network failures, checks that every file arrived intact, and emails you when it is done. Nothing has to stay logged in while it runs. We recommend it for transfers of hundreds of gigabytes, for data at another institution, and for any transfer that has to survive a closed laptop.
 
+More in-depth instructions for using Globus beyond Hydra are available at <https://smithsonian.github.io/globus-docs/>. This page covers the Hydra side: signing in with your SI account, finding the Hydra collections, and running a transfer.
 
-Globus is a web-based file transfer service that allows SI researchers to move large amounts of data between storage locations served up by endpoints connected to the Globus network. This service is particularly useful for transferring data to storage devices connected to Hydra. Data can originate from storage located within the SI network or from outside the network where data is served on another Globus endpoint. This service can be used both in a simple manner to move files from one storage device to another or in a more sophisticated set up where automatic data transfers are performed on a scheduled basis. Globus has sophisticated capabilities - below we review the procedure for logging in, a quick review of simple features for making data transfers, and a glossary of important concepts. Globus provides a number of more in depth tutorials at [https://docs.globus.org/how-to](https://docs.globus.org/how-to).
+Four terms come up in every step.
 
+| Term | Meaning |
+|---|---|
+| **Collection** | A storage system that Globus can reach, with a name you search for. Hydra's are `SI_hydra_scratch` and the others listed below. |
+| **Endpoint** | The computer that serves a collection. Hydra's endpoints are `hydra-globus01` and `hydra-globus02`. You never address them directly. |
+| **Globus Connect Personal** | A program that turns your own computer into a collection, so you can transfer to and from it. |
+| **Transfer** | A copy between two collections that Globus runs for you. |
 
-## Getting started with Globus on Hydra
+## Sign in
 
+1. Open [app.globus.org](https://app.globus.org) and choose **Smithsonian Institution** as your organization:
 
-### Using the proper credentials
+    ![The Globus sign-in page with the organization menu](../assets/globus_CI_logon.png)
 
+2. Sign in on the Smithsonian page with your SI network username and password. The username is the part of your email address before `@si.edu`. This is your SI account, not your Hydra account:
 
-First, you will need to login to the Globus web app. Navigate to [app.globus.org](https://app.globus.org) and select the appropriate institution from the drop down menu. For Hydra users located at the Astrophysical Observatory in Cambridge, please use select “Harvard University” and proceed with your Harvard institutional credentials. For all other hydra users please select "Smithsonian Institution" as shown below.
+    ![The Smithsonian Institution sign-in page](../assets/SI_CILogon.png)
 
+3. The first time, Globus asks whether you have an existing Globus account to link. If you do not, choose **Continue** and complete the sign-up:
 
-| ![](../assets/globus_CI_logon.png) |
-| --- |
-| The Globus login page |
+    ![The first-login page asking whether to link an existing Globus account](../assets/welcome.png)
 
+4. Allow the Globus web app to manage data on your behalf when it asks:
 
-Select continue and you will be routed to a secure login page hosted by SI. Enter your SI account name (the portion of your email address before '\@si.edu') and password, NOT your hydra credentials. If you have any trouble at this stage, you will need to follow the instructions to contact the OCIO Service Desk.
+    ![The consent page listing what the Globus web app will do](../assets/consent.png)
 
+## Open your Hydra directory
 
-| ![](../assets/SI_CILogon.png) |
-| --- |
-| Use your regular SI credentials here |
+1. In the File Manager, type `Smithsonian` in the **Collection** search box:
 
+    ![The Collection search box with Smithsonian typed in](../assets/collection_search.png)
 
-### Linking to existing accounts and completing signup
+    The Hydra collections begin with `SI_hydra_`:
 
+    ![The three SI_hydra collections in a search result](../assets/si_colls.png)
 
-After you login, you will be asked whether you'd like to link to an existing Globus account - if you are already a Globus user you can do this. If you are logging in for the first time, select continue. You will then be asked to complete your signup by providing some additional information. Please fill out the form and continue to the Globus web app.
+    | Collection | Path on Hydra |
+    |---|---|
+    | `SI_hydra_scratch` | `/scratch` |
+    | `SI_hydra_scratch_SAO` | `/scratch`, the SAO project partitions |
+    | `SI_hydra_store/public` | `/store/public` |
 
+2. The first time you open a collection, Globus asks you to allow access to it:
 
-## Accessing your data on Hydra
+    ![The File Manager asking for consent to access a collection](../assets/auth.png)
 
+3. Navigate to your directory, for example `/scratch/genomics/USERNAME`:
 
-All of your activity on Globus can be managed using your web browser with the Globus web app. You can move data between two different Globus "collections" (i.e. hosted storage locations), manage your Globus collections and how they are shared with collaborators, and run automated data transfer workflows with more complex stipulations. All of these features are accessible by navigating to the proper tab on the left side of your browser window in the Globus web app.
+    ![The File Manager showing a directory under /scratch](../assets/scratch.png)
 
+Globus sees files with the same permissions as your Hydra account. What you cannot read on a login node, you cannot read here either.
 
-Below we will briefly describe how to access your data on Hydra using the File Manager.
+## Transfer
 
+1. With your Hydra directory open in one pane, switch the File Manager to two panes. The layout buttons are at the top right; the middle one gives two panes:
 
-** *Note* ** *Your permissions to access and view files in this file manager operates exactly as it does when accessing hydra in the terminal. You will not be able to view folders and files for which you do not have read/write permissions. Your Globus account is automatically updated with your Hydra user read/write permissions once you authorize access to any of the collections described below.*
+    ![The File Manager in two-pane view, ready for a second collection](../assets/panel.png)
 
+2. In the second pane, open the other collection. That can be another institution's collection, your own computer through Globus Connect Personal, or the `Globus Tutorial Endpoint` collections if you want to try a transfer with nothing at stake.
 
-| ![](../assets/file_manager.png) |
-| --- |
-| You will navigate to your Hydra storage in the File Manager |
+3. Select files or directories in the source pane and click **Start**. The arrow on the button shows which way the transfer goes:
 
+    ![Files selected in the right pane, ready to transfer to the Hydra collection on the left](../assets/transfer.png)
 
-### Navigating to your files
+    Globus confirms the request at the top of the page:
 
+    ![The transfer request submitted notice](../assets/submitted.png)
 
-At the top of the page, select the "Collection" search bar, and search using the keyword "Smithsonian".
+4. Follow the transfer under **Activity** in the left bar. Globus emails you when it finishes, and also if it fails:
 
+    ![The Activity page listing a completed transfer](../assets/activity.png)
 
-| ![](../assets/collection_search.png) |
-| --- |
-| Search for SI Hydra collections here |
+## Transfer to and from your own computer
 
+Your computer becomes a collection when it runs Globus Connect Personal. On a machine you administer, install it from Globus's instructions for [macOS](https://docs.globus.org/how-to/globus-connect-personal-mac), [Windows](https://docs.globus.org/how-to/globus-connect-personal-windows) or [Linux](https://docs.globus.org/how-to/globus-connect-personal-linux). On a Smithsonian-administered machine, install it from Software Center. Once it is running, your computer appears in the collection search under the name you gave it, and transfers work as above.
 
-In the results you will see the Smithsonian Hydra collections (beginning with "SI_hydra_") that are currently managed by Hydra admins.
+## Further reading
 
-
-| ![](../assets/si_colls.png) |
-| --- |
-| Collections connected to Hydra storage |
-
-
-Select the appropriate collection according to your needs. Most users will need to access one of the scratch collections, either `SI_hydra_scratch` or `SI_hydra_scratch_SAO`. All individual user directories will be accessible via these collections. A small number of users may need to access storage devices at the `SI_hydra_store/public` collection.
-
-
-The first time you select a collection, you will see a message requesting authorization for Globus to access and manage your data at that location. "Continue" and "allow" to proceed and navigate to your files.
-
-
-| ![](../assets/auth.png) | ![](../assets/consent.png) |
-| --- | --- |
-
-
-Once you land at the root path of your collection (depending on the collection, e.g., `/scratch/`) you can navigate to your user directory as you would in any other file explorer or finder window. Many users will navigate to their user directory in `/scratch/genomics/` or `/scratch/sao/`. You will be able to view all other directories below the root path just as you would when connecting to Hydra via the terminal, but you will only be able to modify or transfer files or directories for which you already have read/write permissions with your Hydra user account (see note above).
-
-
-| ![](../assets/scratch.png) |
-| --- |
-|  |
-
-
-### Transferring data
-
-
-At this point you are able to access your files, but to transfer files or to bring files from another source, you need to navigate to another Globus collection. In the top right-hand corner of the browser window, select the middle pane of the 3 paneled illustration marked `Panels`.
-
-
-| ![](../assets/panel.png) |
-| --- |
-|  |
-
-
-You will notice another Collection search bar is now available. Here is where you will navigate to either the source or destination of the files that you will transfer to/from your Hydra storage. Most collections that are publicly searchable will still have restrictions for access or for read/write permissions. For a tutorial, Globus makes `Globus Tutorial Endpoint 1` available to transfer small .txt files for testing. To test transfer these files, search for `Globus Tutorial Endpoint 1` and select this collection. You will not see any files in the root folder. Replace the `/~/` path with `/share/godata/` and you will see 3 .txt files available to transfer.
-
-
-| ![](../assets/transfer.png) |
-| --- |
-|  |
-
-
-Once you select these 3 files you can select the start button to initiate a test transfer (the arrow of the start button will show the direction of file transfer). In the image above, 3 files in the `Globus Tutorial Endpoint 1` collection are selected to transfer to the `SI_hydra_scratch` collection in the `/scratch/genomics/whiteae/test/` directory. Select the start button and you will see a message appear that a transfer request was submitted successfully. You will likely receive a notice of a successful transfer in your \@si.edu email inbox within a minute.
-
-
-| ![](../assets/submitted.png) |
-| --- |
-|  |
-
-
-You can monitor your transfers by navigating to the "Activity" tab on the left side of the browser window. Here you will see the recent transfer named `Globus Tutorial Endpoint 1 to SI_hydra_scratch`. Select the transfer and you can inspect transfer details and monitor progress for ongoing transfers.
-
-
-| ![](../assets/activity.png) | ![](../assets/act_deets.png) |
-| --- | --- |
-
-
-### Moving files to/from your computer
-
-
-In order to move files to/from a desktop or laptop, you need to set up Globus Connect Personal on your personal machine. On any machine where you have administrative permissions, please refer to the Globus docs which provide in-depth instructions for installing and configuring Globus Connect Personal for [Mac OS X](https://docs.globus.org/how-to/globus-connect-personal-mac), [Windows](https://docs.globus.org/how-to/globus-connect-personal-windows), and [Linux](https://docs.globus.org/how-to/globus-connect-personal-linux) machines. Once configured, you will be able to navigate to your Globus Connect Personal collections and use them as indicated above.
-
-
-On Smithsonian administered machines, you will need to download Globus Connect Personal via the Software Center.
-
-
-** *Note* ** *You will not be able to connect to the Globus Personal Connect client while connected to the SI-Internal and SI-Staff networks. You must connect to the Eduroam network instead. This is due to firewall restrictions that prevent a connection to the Globus client on SI networks.
-
-
-## Glossary of key concepts:
-
-
-###### Definitions from [https://docs.globus.org/how-to/get-started/](https://docs.globus.org/how-to/get-started/)
-
-
-**Collection**
-
-
-> A collection is a named location containing data you can access with Globus. Collections can be hosted on many different kinds of systems, including campus storage, HPC clusters, laptops, Amazon S3 buckets, Google Drive, and scientific instruments. When you use Globus, you don’t need to know a physical location or details about storage. You only need a collection name. A collection allows authorized Globus users to browse and transfer files. Collections can also be used for sharing data with others and for enabling discovery by other Globus users. Globus Connect is used to host collections.
-
-
-**Fire-And-Forget Data Transfer**
-
-
-> After you request a file transfer, Globus takes over and does the work on your behalf. You can navigate away from the File Manager, close the browser window, and even logout. Globus will optimize the transfer for performance, monitor the transfer for completion and correctness, and recover from network errors and collection downtime.
-> 
-> 
-> The Globus service routinely achieves high availability, providing nearly uninterrupted oversight of data transfers taking place on much less reliable networks and collection hosts. When a problem is encountered part-way through the transfer, Globus resumes from the point of failure and does not retransmit all of the data specified in the original request.
-> 
-> 
-> Globus can handle extremely large data transfers, even those that don’t complete within the authentication expiration period of a collection (which is controlled by the collection administrator). If your credentials expire before the transfer completes, Globus will notify you to re-authenticate on the collection, after which Globus will continue the transfer from where it was paused.
-
-
-**Endpoint**
-
-
-> An endpoint is a server that hosts collections. If you want to be able to access, share, transfer, or manage data using Globus, the first step is to create an endpoint on the system where the data is (or will be) stored.
-> 
-> 
-> Globus Connect is used to create endpoints. An endpoint can be a laptop, a personal desktop system, a laboratory server, a campus data storage service, a cloud service, or an HPC cluster. As explained below, it’s easy to set up your own Globus endpoint on a laptop or other personal system using Globus Connect Personal. Administrators of shared services (like campus storage servers) can set up multi-user endpoints using Globus Connect Server. You can use endpoints set up by others as long as you’re authorized by the endpoint administrator or by a collection manager.
+- [Smithsonian Globus documentation](https://smithsonian.github.io/globus-docs/), for sharing, group access and everything beyond Hydra
+- [Globus documentation](https://docs.globus.org/), from Globus itself
+- [Filesystems](../storage/filesystems.md), for where to put the data once it arrives
