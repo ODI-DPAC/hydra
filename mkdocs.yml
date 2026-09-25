@@ -176,8 +176,6 @@ nav:
       - policies/index.md
       - Usage policies: policies/usage.md
       - Citing Hydra: policies/citing.md
-      - Getting help: policies/help.md
-      - FAQ: policies/faq.md
       - Cluster status: policies/status.md
   - News:
       - news/index.md
