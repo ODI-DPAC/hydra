@@ -1,6 +1,6 @@
 # Monitor and manage jobs
 
-`qstat` watches a job, `qalter` changes it, `qdel` deletes it, and `qacct` reports on it after it finishes; the nodes and the cluster have commands of their own. The procedures follow; [Monitoring tools](tools.md) lists the commands and their output fields.
+Once a job is submitted, you watch it with `qstat`, change it with `qalter`, delete it with `qdel`, and read what it used with `qacct` after it finishes. This page shows you how to do each of those, and how to look at a node or the whole cluster. If you need the full list of options and output fields, see [Monitoring tools](tools.md).
 
 ## Check on a job
 

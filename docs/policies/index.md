@@ -1,4 +1,4 @@
-# Policies and support
+# Policies & Support
 
 Hydra is a shared system. We require every user to follow the [usage policies](usage.md); please read them before you begin. We also provide instructions for [citing Hydra](citing.md) in your publications.
 

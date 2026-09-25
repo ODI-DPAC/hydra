@@ -1,4 +1,4 @@
-# Data transfer
+# Data Transfer
 
 There are three ways to move files to and from Hydra. Which one to use depends on how much data you are moving and where it is.
 

@@ -1,6 +1,6 @@
 # Resource limits
 
-Each queue limits what one job may use; these cluster-wide limits cap how much of the cluster one user may hold at once. A job that would exceed one waits in the queue until your other jobs finish. The commands at the end print the current values.
+Each queue limits what one job may use; these cluster-wide limits cap how much of the cluster one user may hold at once. If a job would push you over one of these limits, it waits in the queue until your other jobs finish. The commands at the end of the page print the current values.
 
 ## Queued jobs
 
