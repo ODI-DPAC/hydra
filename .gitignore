@@ -9,3 +9,4 @@
 **/*.quarto_ipynb
 *.log
 .DS_Store
+__pycache__/

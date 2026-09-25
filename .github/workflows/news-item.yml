@@ -1,0 +1,125 @@
+name: News item
+
+on:
+  issues:
+    types: [opened, labeled]
+  schedule:
+    - cron: "15 11 * * *"      # 07:15 US Eastern in summer; clears an expired banner
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+# GitHub usernames allowed to publish news. Anyone else's "News item" issue
+# stays an ordinary issue for the HPC team to read.
+env:
+  NEWS_PUBLISHERS: '["aewhite100", "mwfiedler", "ajs6f", "MikeTrizna"]'
+
+jobs:
+  add:
+    if: >-
+      github.event_name == 'issues' &&
+      contains(github.event.issue.labels.*.name, 'news')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the filer is allowed to publish
+        id: allowed
+        run: |
+          if echo '${{ env.NEWS_PUBLISHERS }}' | grep -q "\"${{ github.event.issue.user.login }}\""; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Leave a note on an issue from someone not on the list
+        if: steps.allowed.outputs.ok != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} --repo ${{ github.repository }} \
+            --body "Thanks. News items are published by the Hydra admin team; we will read this and post it if it belongs on the site."
+      - uses: actions/checkout@v4
+        if: steps.allowed.outputs.ok == 'true'
+      - uses: actions/setup-python@v5
+        if: steps.allowed.outputs.ok == 'true'
+        with:
+          python-version: "3.12"
+      - name: Parse the issue form
+        if: steps.allowed.outputs.ok == 'true'
+        id: form
+        env:
+          BODY: ${{ github.event.issue.body }}
+        run: |
+          python3 - << 'PY'
+          import os, re
+          body = os.environ["BODY"]
+          def field(name):
+              m = re.search(rf"### {re.escape(name)}\s*\n+(.*?)(?=\n### |\Z)", body, re.S)
+              v = m.group(1).strip() if m else ""
+              return "" if v == "_No response_" else v
+          date = field("Date"); text = field("Text").replace("\r", " ").replace("\n", " ")
+          link = field("Page with the details (optional)")
+          banner = field("Show a banner at the top of every page?")
+          until = field("Banner end date (if showing a banner)")
+          kinds = {"maintenance": "maintenance", "outage": "outage", "information": "info"}
+          kind = next((v for key, v in kinds.items() if key in banner.lower()), "")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"date={date}\nlink={link}\nkind={kind}\nuntil={until}\n")
+              f.write("text<<EOT\n" + text + "\nEOT\n")
+          PY
+      - name: Add the entry
+        if: steps.allowed.outputs.ok == 'true'
+        run: |
+          args=(--date "${{ steps.form.outputs.date }}" --text "${{ steps.form.outputs.text }}")
+          [ -n "${{ steps.form.outputs.link }}" ] && args+=(--link "${{ steps.form.outputs.link }}")
+          [ -n "${{ steps.form.outputs.kind }}" ] && args+=(--banner "${{ steps.form.outputs.kind }}")
+          [ -n "${{ steps.form.outputs.until }}" ] && args+=(--until "${{ steps.form.outputs.until }}")
+          python3 scripts/add_news.py "${args[@]}"
+      - name: Open a pull request
+        if: steps.allowed.outputs.ok == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: news/${{ steps.form.outputs.date }}-${{ github.event.issue.number }}
+          commit-message: "News: ${{ github.event.issue.title }}"
+          title: "${{ github.event.issue.title }}"
+          body: |
+            Adds the News entry from #${{ github.event.issue.number }}.
+            Review the wording on `docs/news/index.md`, then merge. Closes #${{ github.event.issue.number }}.
+          assignees: ${{ github.event.issue.user.login }}
+          delete-branch: true
+
+  expire-banner:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Clear the banner if its end date has passed
+        run: |
+          python3 - << 'PY'
+          import datetime, pathlib, re, subprocess, sys
+          conf = pathlib.Path("mkdocs.yml").read_text()
+          text = re.search(r"^  announce:\n(?:    .*\n)*?    text: \"(.*)\"", conf, re.M)
+          until = re.search(r"^  announce:\n(?:    .*\n)*?    until: \"?([0-9-]*)\"?", conf, re.M)
+          if not text or not text.group(1) or not until or not until.group(1):
+              print("no banner, or no end date"); sys.exit(0)
+          if datetime.date.fromisoformat(until.group(1)) < datetime.date.today():
+              subprocess.run([sys.executable, "scripts/add_news.py", "--clear-banner"], check=True)
+              pathlib.Path(".banner-cleared").write_text("yes")
+              print("banner cleared")
+          else:
+              print("banner still current")
+          PY
+      - name: Open a pull request
+        if: hashFiles('.banner-cleared') != ''
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: news/clear-banner
+          commit-message: "Clear the expired announcement banner"
+          title: "Clear the expired announcement banner"
+          body: The banner's end date has passed. Merge to take it down.
+          add-paths: mkdocs.yml
+          delete-branch: true

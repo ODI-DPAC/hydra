@@ -1,0 +1,45 @@
+name: News item
+description: Announce something on the Hydra docs site. An automated pull request adds it to the News page and, if you ask, the banner at the top of every page.
+title: "News: "
+labels: ["news"]
+body:
+  - type: input
+    id: date
+    attributes:
+      label: Date
+      description: The date of the event or the notice, as YYYY-MM-DD.
+      placeholder: "2026-10-07"
+    validations:
+      required: true
+  - type: textarea
+    id: text
+    attributes:
+      label: Text
+      description: One to three sentences. No Markdown needed. The first sentence is what shows on the home page card and in the banner.
+      placeholder: "Hydra is unavailable on Tuesday October 7 from 8 am to noon ET for maintenance. Running jobs will be terminated when maintenance begins. Please prepare accordingly."
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Page with the details (optional)
+      description: A page on the site, as a path such as jobs/queues.md, or a full URL.
+      placeholder: "jobs/queues.md"
+  - type: dropdown
+    id: banner
+    attributes:
+      label: Show a banner at the top of every page?
+      options:
+        - "No"
+        - "Yes, as maintenance (yellow)"
+        - "Yes, as outage (red)"
+        - "Yes, as information (blue)"
+      default: 0
+    validations:
+      required: true
+  - type: input
+    id: until
+    attributes:
+      label: Banner end date (if showing a banner)
+      description: The banner clears itself the morning after this date, as YYYY-MM-DD.
+      placeholder: "2026-10-07"

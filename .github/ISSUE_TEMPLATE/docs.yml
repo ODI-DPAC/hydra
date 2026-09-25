@@ -1,0 +1,19 @@
+name: Documentation problem
+description: Something on the site is wrong, missing or unclear.
+labels: ["docs"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: The address or the title of the page.
+      placeholder: "https://…/jobs/queues/"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong
+      description: What the page says, and what it should say, if you know.
+    validations:
+      required: true
