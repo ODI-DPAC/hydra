@@ -180,7 +180,7 @@ nav:
   - News:
       - news/index.md
       - Older notices: news/history.md
-      - Cluster upgrades:
+      - Cluster Upgrade History:
           - news/upgrades/index.md
           - 2025 data center move: news/upgrades/2025-data-center-move.md
           - 2024 upgrade to Hydra-7: news/upgrades/2024-hydra-7.md

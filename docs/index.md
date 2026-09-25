@@ -20,19 +20,19 @@ The SI HPC cluster contains 74 compute nodes, including GPU nodes, with 5,840 CP
 
 <div class="grid cards" markdown>
 
--   :material-rocket-launch:{ .lg .middle } [**Getting started**](getting-started/index.md)
+-   :material-rocket-launch:{ .lg .middle } [**Getting Started**](getting-started/index.md)
 
     ---
 
     Request an account, log in, submit your first job.
 
--   :material-format-list-checks:{ .lg .middle } [**Running jobs**](jobs/index.md)
+-   :material-format-list-checks:{ .lg .middle } [**Running Jobs**](jobs/index.md)
 
     ---
 
     Queues, job scripts, memory and CPU requests.
 
--   :material-monitor:{ .lg .middle } [**Interactive use**](interactive/index.md)
+-   :material-monitor:{ .lg .middle } [**Interactive Use**](interactive/index.md)
 
     ---
 
@@ -44,17 +44,17 @@ The SI HPC cluster contains 74 compute nodes, including GPU nodes, with 5,840 CP
 
     Which filesystem to use, quotas, snapshots, the scrubber.
 
--   :material-swap-horizontal:{ .lg .middle } [**Data transfer**](data-transfer/index.md)
-
-    ---
-
-    Moving data on and off the cluster with scp, rsync, Globus, or rclone.
-
 -   :material-package-variant:{ .lg .middle } [**Software**](software/index.md)
 
     ---
 
     Modules, compilers, Python and R, bioinformatics packages, and CUDA for GPUs.
+
+-   :material-swap-horizontal:{ .lg .middle } [**Data Transfer**](data-transfer/index.md)
+
+    ---
+
+    Moving data on and off the cluster with scp, rsync, Globus, or rclone.
 
 </div>
 
