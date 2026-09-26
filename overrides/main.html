@@ -15,11 +15,27 @@
 {% block header %}
   {{ super() }}
   {% set a = config.extra.announce %}
-  {% if a and a.text and a.kind == "outage" %}
-    <style>:root{--hydra-status-label:"Outage";--hydra-status-bg:#fbd7da;--hydra-status-fg:#8a1d24;}</style>
-  {% elif a and a.text and a.kind == "maintenance" %}
-    <style>:root{--hydra-status-label:"Maintenance";--hydra-status-bg:#fff1c2;--hydra-status-fg:#7a5a00;}</style>
-  {% else %}
-    <style>:root{--hydra-status-label:"Operational";--hydra-status-bg:#d9f2e3;--hydra-status-fg:#0f6b3a;}</style>
+  {# The status pill defaults to Operational. When a maintenance or outage banner is
+     up, the script below switches it on for the window between "from" and "until",
+     using the reader's clock, so an announced maintenance shows as Operational until
+     it starts and as Operational again once it ends. #}
+  <style>:root{--hydra-status-label:"Operational";--hydra-status-bg:#d9f2e3;--hydra-status-fg:#0f6b3a;}</style>
+  {% if a and a.text and a.kind in ("maintenance", "outage") %}
+  <script>
+  (function () {
+    var kind = "{{ a.kind }}";
+    var from = "{{ a['from'] | default('') }}";
+    var until = "{{ a.until | default('') }}";
+    var now = Date.now();
+    var started = !from || Date.parse(from) <= now;
+    var ended = until && Date.parse(until) <= now;
+    if (!started || ended) return;
+    var s = document.createElement("style");
+    s.textContent = kind === "outage"
+      ? ':root{--hydra-status-label:"Outage";--hydra-status-bg:#fbd7da;--hydra-status-fg:#8a1d24;}'
+      : ':root{--hydra-status-label:"Maintenance";--hydra-status-bg:#fff1c2;--hydra-status-fg:#7a5a00;}';
+    document.head.appendChild(s);
+  })();
+  </script>
   {% endif %}
 {% endblock %}

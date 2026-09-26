@@ -26,20 +26,36 @@ body:
       description: A page on the site, as a path such as jobs/queues.md, or a full URL.
       placeholder: "jobs/queues.md"
   - type: dropdown
+    id: post
+    attributes:
+      label: Post this on the News page?
+      description: "No" makes it banner only, for a notice that does not need a permanent line, or for putting a banner back that was already posted.
+      options:
+        - "Yes"
+        - "No"
+      default: 0
+    validations:
+      required: true
+  - type: dropdown
     id: banner
     attributes:
       label: Show a banner at the top of every page?
       options:
         - "No"
-        - "Yes, as maintenance (yellow)"
-        - "Yes, as outage (red)"
-        - "Yes, as information (blue)"
-      default: 0
+        - "Yes: maintenance (planned downtime)"
+        - "Yes: outage (unplanned downtime)"
+        - "Yes: information (cluster is fine)"
     validations:
       required: true
   - type: input
+    id: start
+    attributes:
+      label: Downtime starts (maintenance only)
+      description: Eastern time, as YYYY-MM-DD HH:MM. The status pill says Operational until this moment. Leave blank for an outage (it starts now) and for information.
+      placeholder: "2026-10-07 08:00"
+  - type: input
     id: until
     attributes:
-      label: Banner end date (if showing a banner)
-      description: The banner clears itself the morning after this date, as YYYY-MM-DD.
-      placeholder: "2026-10-07"
+      label: Banner comes down (optional)
+      description: Eastern time, as YYYY-MM-DD HH:MM, or a date. For maintenance, the end of the window. Leave blank to take the banner down yourself with the "Take down the banner" form.
+      placeholder: "2026-10-07 12:00"
