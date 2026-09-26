@@ -1,6 +1,6 @@
 name: Documentation problem
 description: Something on the site is wrong, missing or unclear.
-labels: ["docs"]
+labels: ["documentation"]
 body:
   - type: input
     id: page

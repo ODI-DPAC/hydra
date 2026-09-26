@@ -4,7 +4,7 @@ on:
   issues:
     types: [opened, labeled]
   schedule:
-    - cron: "15 11 * * *"      # 07:15 US Eastern in summer; clears an expired banner
+    - cron: "15 11 * * *"      # 07:15 US Eastern in summer; clears an expired banner, nudges about an old one
   workflow_dispatch:
 
 permissions:
@@ -12,8 +12,8 @@ permissions:
   pull-requests: write
   issues: write
 
-# GitHub usernames allowed to publish news. Anyone else's "News item" issue
-# stays an ordinary issue for the HPC team to read.
+# GitHub usernames allowed to publish news and take the banner down. Anyone
+# else's issue stays an ordinary issue for the Hydra admin team to read.
 env:
   NEWS_PUBLISHERS: '["aewhite100", "mwfiedler", "ajs6f", "MikeTrizna"]'
 
@@ -21,10 +21,10 @@ jobs:
   add:
     if: >-
       github.event_name == 'issues' &&
-      contains(github.event.issue.labels.*.name, 'news')
+      (contains(github.event.issue.labels.*.name, 'news') || contains(github.event.issue.labels.*.name, 'banner-down'))
     runs-on: ubuntu-latest
     steps:
-      - name: Check the filer is allowed to publish
+      - name: Check the filer is allowed
         id: allowed
         run: |
           if echo '${{ env.NEWS_PUBLISHERS }}' | grep -q "\"${{ github.event.issue.user.login }}\""; then
@@ -38,10 +38,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh issue comment ${{ github.event.issue.number }} --repo ${{ github.repository }} \
-            --body "Thanks. News items are published by the HPC team; we will read this and post it if it belongs on the site."
-      - uses: actions/checkout@v4
+            --body "Thanks. News items and banners are published by the Hydra admin team; we will read this and post it if it belongs on the site."
+      - uses: actions/checkout@v5
         if: steps.allowed.outputs.ok == 'true'
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         if: steps.allowed.outputs.ok == 'true'
         with:
           python-version: "3.12"
@@ -50,6 +50,7 @@ jobs:
         id: form
         env:
           BODY: ${{ github.event.issue.body }}
+          LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
         run: |
           python3 - << 'PY'
           import os, re
@@ -58,65 +59,101 @@ jobs:
               m = re.search(rf"### {re.escape(name)}\s*\n+(.*?)(?=\n### |\Z)", body, re.S)
               v = m.group(1).strip() if m else ""
               return "" if v == "_No response_" else v
-          date = field("Date"); text = field("Text").replace("\r", " ").replace("\n", " ")
-          link = field("Page with the details (optional)")
-          banner = field("Show a banner at the top of every page?")
-          until = field("Banner end date (if showing a banner)")
           kinds = {"maintenance": "maintenance", "outage": "outage", "information": "info"}
-          kind = next((v for key, v in kinds.items() if key in banner.lower()), "")
+          banner = field("Show a banner at the top of every page?")
+          out = {
+              "mode": "down" if "banner-down" in os.environ["LABELS"].split(",") else "add",
+              "date": field("Date"),
+              "link": field("Page with the details (optional)"),
+              "post": "no" if field("Post this on the News page?").strip().lower() == "no" else "yes",
+              "kind": next((v for key, v in kinds.items() if key in banner.lower()), ""),
+              "start": field("Downtime starts (maintenance only)"),
+              "until": field("Banner comes down (optional)"),
+          }
           with open(os.environ["GITHUB_OUTPUT"], "a") as f:
-              f.write(f"date={date}\nlink={link}\nkind={kind}\nuntil={until}\n")
-              f.write("text<<EOT\n" + text + "\nEOT\n")
+              for k, v in out.items(): f.write(f"{k}={v}\n")
+              f.write("text<<EOT\n" + field("Text").replace("\r", " ").replace("\n", " ") + "\nEOT\n")
+              f.write("note<<EOT\n" + field("Closing line (optional)").replace("\r", " ").replace("\n", " ") + "\nEOT\n")
           PY
-      - name: Add the entry
+      - name: Apply the change
         if: steps.allowed.outputs.ok == 'true'
         run: |
-          args=(--date "${{ steps.form.outputs.date }}" --text "${{ steps.form.outputs.text }}")
-          [ -n "${{ steps.form.outputs.link }}" ] && args+=(--link "${{ steps.form.outputs.link }}")
-          [ -n "${{ steps.form.outputs.kind }}" ] && args+=(--banner "${{ steps.form.outputs.kind }}")
-          [ -n "${{ steps.form.outputs.until }}" ] && args+=(--until "${{ steps.form.outputs.until }}")
+          if [ "${{ steps.form.outputs.mode }}" = "down" ]; then
+            args=(--clear-banner)
+            [ -n "${{ steps.form.outputs.note }}" ] && args+=(--note "${{ steps.form.outputs.note }}")
+          else
+            args=(--text "${{ steps.form.outputs.text }}" --issue "${{ github.event.issue.number }}")
+            [ "${{ steps.form.outputs.post }}" = "no" ] && args+=(--no-news) || args+=(--date "${{ steps.form.outputs.date }}")
+            [ -n "${{ steps.form.outputs.link }}" ]  && args+=(--link "${{ steps.form.outputs.link }}")
+            [ -n "${{ steps.form.outputs.kind }}" ]  && args+=(--banner "${{ steps.form.outputs.kind }}")
+            [ -n "${{ steps.form.outputs.start }}" ] && args+=(--from "${{ steps.form.outputs.start }}")
+            [ -n "${{ steps.form.outputs.until }}" ] && args+=(--until "${{ steps.form.outputs.until }}")
+          fi
           python3 scripts/add_news.py "${args[@]}"
       - name: Open a pull request
         if: steps.allowed.outputs.ok == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          BRANCH: news/${{ steps.form.outputs.date }}-${{ github.event.issue.number }}
+          BRANCH: news/issue-${{ github.event.issue.number }}
           TITLE: ${{ github.event.issue.title }}
           ISSUE: ${{ github.event.issue.number }}
           FILER: ${{ github.event.issue.user.login }}
+          MODE: ${{ steps.form.outputs.mode }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
           git add -A
           git commit -m "$TITLE"
-          git push -u origin "$BRANCH"
-          gh pr create --base main --head "$BRANCH" --title "$TITLE" --assignee "$FILER" \
-            --body "Adds the News entry from #$ISSUE. Review the wording on docs/news/index.md, then merge. Closes #$ISSUE."
+          git push -f -u origin "$BRANCH"
+          if [ "$MODE" = "down" ]; then
+            body="Takes the banner down, from #$ISSUE. Merge to apply. Closes #$ISSUE."
+          else
+            body="Adds the News entry and/or banner from #$ISSUE. Review the wording on docs/news/index.md, then merge. Closes #$ISSUE."
+          fi
+          gh pr create --base main --head "$BRANCH" --title "$TITLE" --assignee "$FILER" --body "$body"
 
   expire-banner:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - name: Clear the banner if its end date has passed
+      - name: Clear an expired banner, or nudge about an old one with no end
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
         run: |
           python3 - << 'PY'
-          import datetime, pathlib, re, subprocess, sys
+          import datetime, os, pathlib, re, subprocess, sys
           conf = pathlib.Path("mkdocs.yml").read_text()
-          text = re.search(r"^  announce:\n(?:    .*\n)*?    text: \"(.*)\"", conf, re.M)
-          until = re.search(r"^  announce:\n(?:    .*\n)*?    until: \"?([0-9-]*)\"?", conf, re.M)
-          if not text or not text.group(1) or not until or not until.group(1):
-              print("no banner, or no end date"); sys.exit(0)
-          if datetime.date.fromisoformat(until.group(1)) < datetime.date.today():
-              subprocess.run([sys.executable, "scripts/add_news.py", "--clear-banner"], check=True)
-              pathlib.Path(".banner-cleared").write_text("yes")
-              print("banner cleared")
+          def get(key):
+              m = re.search(rf"^  announce:\n(?:    .*\n)*?    {key}: \"?([^\"\n]*)\"?", conf, re.M)
+              return m.group(1).strip() if m else ""
+          text, until, since, issue = get("text"), get("until"), get("since"), get("issue")
+          if not text:
+              print("no banner"); sys.exit(0)
+          now = datetime.datetime.now(datetime.timezone.utc)
+          if until:
+              end = datetime.datetime.fromisoformat(until)
+              if end.tzinfo is None: end = end.replace(tzinfo=datetime.timezone.utc)
+              if end < now:
+                  subprocess.run([sys.executable, "scripts/add_news.py", "--clear-banner"], check=True)
+                  pathlib.Path(".banner-cleared").write_text("yes"); print("banner cleared")
+              else:
+                  print("banner still current until", until)
+          elif since and issue:
+              days = (datetime.date.today() - datetime.date.fromisoformat(since)).days
+              if days >= 7 and days % 7 == 0:
+                  subprocess.run(["gh", "issue", "comment", issue, "--repo", os.environ["REPO"], "--body",
+                      f"The banner from this issue has been up for {days} days with no end date. If it is no longer needed, file a \"Take down the banner\" issue."], check=False)
+                  print(f"nudged issue {issue} at {days} days")
+              else:
+                  print(f"banner has no end date; up {days} days")
           else:
-              print("banner still current")
+              print("banner has no end date and no issue to nudge")
           PY
       - name: Open a pull request
         if: hashFiles('.banner-cleared') != ''
@@ -129,6 +166,6 @@ jobs:
           git checkout -b news/clear-banner
           git add mkdocs.yml docs/index.md
           git commit -m "Clear the expired announcement banner"
-          git push -u origin news/clear-banner
+          git push -f -u origin news/clear-banner
           gh pr create --base main --head news/clear-banner --title "Clear the expired announcement banner" \
-            --body "The banner's end date has passed. Merge to take it down."
+            --body "The banner's end time has passed. Merge to take it down."

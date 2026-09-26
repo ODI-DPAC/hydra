@@ -67,27 +67,15 @@ Content tabs (`=== "macOS and Linux"`) are for the same procedure on different s
 - A hand-typed "Last updated" line is not necessary. The build adds one from git.
 - A new page must be in `nav` in `mkdocs.yml` (the strict build catches this) or must be linked from its section's index page.
 
-## News and announcements
+## News and the banner
 
-News is one page, `docs/news/index.md`, newest first under `## YYYY`. An entry is one paragraph, and its first sentence has to stand on its own because the home page shows only that:
+To announce something, file a "News item" issue from the Issues tab. Give the date, one to three sentences, a page to link if there is one, and whether to show a banner. A pull request appears within a minute. Approve and merge it.
 
-```markdown
-<a id="2025-12-16"></a>**December 16.** The RStudio server was upgraded to a newer OS and R. See [RStudio](../interactive/rstudio.md).
-```
+For maintenance, give the downtime start and end. The status pill on the home page turns to Maintenance only during that window. An outage starts now.
 
-Don't rewrite old entries; add new ones. After editing, run `python scripts/build_home_news.py` so the home page card matches (CI runs it too, so forgetting only affects your preview).
+A banner with an end time comes down by itself the morning after. A banner without one comes down when you file a "Take down the banner" issue. That form has an optional closing line, which is added to the News entry. There is one banner at a time, and a new one replaces the old.
 
-The yellow banner at the top of every page and the status pill on the home page come from one block in `mkdocs.yml`:
-
-```yaml
-extra:
-  announce:
-    kind: maintenance     # maintenance | outage | info
-    text: "Hydra is down for scheduled maintenance Tue Oct 7, 08:00 to 17:00 ET."
-    link: news/#2026-10-07
-```
-
-Blank `text` means no banner and a green pill. Change it in a PR and add the matching News entry in the same PR.
+The same thing by hand is `python scripts/add_news.py --date YYYY-MM-DD --text "…"`, with `--link PAGE`, `--banner maintenance --from "YYYY-MM-DD HH:MM" --until "YYYY-MM-DD HH:MM"` as needed, or `--clear-banner --note "…"`. Then a pull request. Entries live on `docs/news/index.md`, newest year first, one bold date per entry with an `<a id="YYYY-MM-DD">` anchor. `scripts/build_home_news.py` copies the newest three to the home page and runs in CI.
 
 ## Generated files
 
