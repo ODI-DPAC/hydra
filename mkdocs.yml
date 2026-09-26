@@ -61,7 +61,7 @@ extra:
   # Announcement bar and status pill. kind: maintenance | outage | info.
   # Blank text = no banner, pill shows Operational.
   announce:
-    until: "2026-09-26"
+    until: "2026-09-25"
     kind: info
     text: "This is a test for our new issues system."
     link: news/#2026-10-25
