@@ -26,19 +26,14 @@
     var from = "{{ a['from'] | default('') }}";
     var until = "{{ a.until | default('') }}";
     if (kind !== "maintenance" && kind !== "outage") return;
-    var css = kind === "outage"
-      ? ':root{--hydra-status-label:"Outage";--hydra-status-bg:#fbd7da;--hydra-status-fg:#8a1d24;}'
-      : ':root{--hydra-status-label:"Maintenance";--hydra-status-bg:#fff1c2;--hydra-status-fg:#7a5a00;}';
+    var vars = kind === "outage"
+      ? {"--hydra-status-label": '"Outage"', "--hydra-status-bg": "#fbd7da", "--hydra-status-fg": "#8a1d24"}
+      : {"--hydra-status-label": '"Maintenance"', "--hydra-status-bg": "#fff1c2", "--hydra-status-fg": "#7a5a00"};
+    var root = document.documentElement.style;
     function check() {
       var now = Date.now();
       var active = (!from || Date.parse(from) <= now) && (!until || Date.parse(until) > now);
-      var s = document.getElementById("hydra-status-window");
-      if (active && !s) {
-        s = document.createElement("style"); s.id = "hydra-status-window"; s.textContent = css;
-        document.head.appendChild(s);
-      } else if (!active && s) {
-        s.remove();
-      }
+      for (var k in vars) { if (active) root.setProperty(k, vars[k]); else root.removeProperty(k); }
     }
     check();
     setInterval(check, 30000);
