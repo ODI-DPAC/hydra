@@ -76,11 +76,11 @@ The SI HPC cluster contains 74 compute nodes, including GPU nodes, with 5,840 CP
 ## [News](news/index.md)
 
 <!-- news:start -->
+**September 28, 2026.** Maintenance test, delete me.
+
 **December 16, 2025.** The production RStudio server was upgraded with an updated OS and R version.
 
 **December 8, 2025.** QSubGen now includes virtual memory and GPU options.
-
-**December 5, 2025.** Scrubbing of files older than 180 days on the public disks resumes Sunday Dec 7; it had been suspended before the move to Ashburn.
 <!-- news:end -->
 
 </div>
