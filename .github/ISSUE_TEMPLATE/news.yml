@@ -29,7 +29,7 @@ body:
     id: post
     attributes:
       label: Post this on the News page?
-      description: "No" makes it banner only, for a notice that does not need a permanent line, or for putting a banner back that was already posted.
+      description: Choose No to show a banner without a permanent News line, or to put back a banner that was already posted.
       options:
         - "Yes"
         - "No"
