@@ -27,8 +27,8 @@
     var until = "{{ a.until | default('') }}";
     if (kind !== "maintenance" && kind !== "outage") return;
     var vars = kind === "outage"
-      ? {"--hydra-status-label": '"Outage"', "--hydra-status-bg": "#fbd7da", "--hydra-status-fg": "#8a1d24"}
-      : {"--hydra-status-label": '"Maintenance"', "--hydra-status-bg": "#fff1c2", "--hydra-status-fg": "#7a5a00"};
+      ? {"--hydra-status-label": '"Unplanned outage"', "--hydra-status-bg": "#fbd7da", "--hydra-status-fg": "#8a1d24"}
+      : {"--hydra-status-label": '"Down for maintenance"', "--hydra-status-bg": "#fff1c2", "--hydra-status-fg": "#7a5a00"};
     var root = document.documentElement.style;
     function check() {
       var now = Date.now();
