@@ -2,6 +2,10 @@
 
 Change notices, upgrades, outages and new features, newest first. Major upgrades have their own pages under [Cluster upgrades](upgrades/index.md).
 
+## 2026
+
+<a id="2026-09-28"></a>**September 28.** Maintenance test, delete me.
+
 ## 2025
 
 <a id="2025-12-16"></a>**December 16.** The production RStudio server was upgraded with an updated OS and R version. See [RStudio](../interactive/rstudio.md).
