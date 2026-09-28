@@ -61,7 +61,7 @@ def append_note(note):
         src = src[:j] + " " + note + src[j:]
         NEWS.write_text(src); print("note appended to", m.group(1))
     else:
-        add_entry(datetime.date.today().isoformat(), note, "")
+        add_entry(datetime.datetime.now(TZ).date().isoformat(), note, "")
 
 def set_banner(kind, text, link, start, until, issue):
     conf = CONF.read_text()
@@ -76,7 +76,7 @@ def set_banner(kind, text, link, start, until, issue):
     sub("text", '"' + text.replace('"', "'") + '"')
     sub("link", link)
     sub("from", f'"{start}"'); sub("until", f'"{until}"')
-    sub("since", f'"{datetime.date.today().isoformat()}"' if text else '""')
+    sub("since", f'"{datetime.datetime.now(TZ).date().isoformat()}"' if text else '""')
     sub("issue", f'"{issue}"' if text and issue else '""')
     CONF.write_text(conf)
     print("banner:", kind or "cleared", start or "", until or "")
