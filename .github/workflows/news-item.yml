@@ -2,7 +2,7 @@ name: News item
 
 on:
   issues:
-    types: [opened, labeled]
+    types: [labeled]
   schedule:
     - cron: "15 11 * * *"      # 07:15 US Eastern in summer; clears an expired banner, nudges about an old one
   workflow_dispatch:
@@ -16,6 +16,10 @@ permissions:
 # else's issue stays an ordinary issue for the Hydra admin team to read.
 env:
   NEWS_PUBLISHERS: '["aewhite100", "mwfiedler", "ajs6f", "MikeTrizna"]'
+
+concurrency:
+  group: news-${{ github.event.issue.number || 'schedule' }}
+  cancel-in-progress: false
 
 jobs:
   add:
@@ -111,7 +115,11 @@ jobs:
           else
             body="Adds the News entry and/or banner from #$ISSUE. Review the wording on docs/news/index.md, then merge. Closes #$ISSUE."
           fi
-          gh pr create --base main --head "$BRANCH" --title "$TITLE" --assignee "$FILER" --body "$body"
+          if gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number' | grep -q .; then
+            echo "pull request already open for $BRANCH; branch updated"
+          else
+            gh pr create --base main --head "$BRANCH" --title "$TITLE" --assignee "$FILER" --body "$body"
+          fi
 
   expire-banner:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
