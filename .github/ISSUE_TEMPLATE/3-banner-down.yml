@@ -1,4 +1,4 @@
-name: Take down the banner (Hydra admin team)
+name: Admin team - Remove banner
 description: Hydra admin team only. Clears the banner on every page. Optionally adds a closing line to the News entry it belongs to.
 title: "Banner down"
 labels: ["banner-down"]

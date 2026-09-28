@@ -1,4 +1,4 @@
-name: News item (Hydra admin team)
+name: Admin team - News item
 description: Hydra admin team only. Announce something on the docs site; a pull request adds it to News and, if you ask, to the banner on every page.
 title: "News: "
 labels: ["news"]
