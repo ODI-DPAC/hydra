@@ -1,4 +1,4 @@
-name: Documentation problem
+name: Users - Documentation problem
 description: Something on the site is wrong, missing or unclear.
 labels: ["documentation"]
 body:
