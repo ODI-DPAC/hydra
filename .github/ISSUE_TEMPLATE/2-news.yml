@@ -1,5 +1,5 @@
 name: Admin team - News item
-description: Hydra admin team only. Announce something on the docs site; a pull request adds it to News and, if you ask, to the banner on every page.
+description: Hydra admin team only. Add a News item, with or without a banner.
 title: "News: "
 labels: ["news"]
 body:
@@ -57,5 +57,5 @@ body:
     id: until
     attributes:
       label: Banner comes down (optional)
-      description: Eastern time, as YYYY-MM-DD HH:MM, or a date. For maintenance, the end of the window. Leave blank to take the banner down yourself with the "Take down the banner" form.
+      description: Eastern time, as YYYY-MM-DD HH:MM, or a date. For maintenance, the end of the window. Leave blank to take the banner down yourself with the "Admin team - Remove banner" form.
       placeholder: "2026-10-07 12:00"
