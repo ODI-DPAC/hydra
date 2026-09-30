@@ -1,6 +1,6 @@
 # How the scheduler works
 
-Hydra runs Grid Engine (Siemens HPCWorks Grid Engine; formerly Sun, Univa and Altair Grid Engine). Documentation and forum posts under any of those names apply. Every computation runs as a job: a shell script that you submit from a login node with `qsub`, together with a request for the memory, CPU time and number of CPUs it needs. The scheduler places the job on one or more compute nodes and runs it without a terminal.
+Hydra runs Grid Engine (Siemens HPCWorks Grid Engine; formerly Sun, Univa and Altair Grid Engine). Documentation and forum posts under any of those names apply. Every computation runs as a **job**, a shell script that you submit from a login node with `qsub`, together with a request for the memory, CPU time and number of CPUs it needs. The scheduler places the job on one or more compute nodes and runs it without a terminal.
 
 ## The parts of the cluster
 
@@ -11,14 +11,14 @@ The cluster consists of:
 - the compute nodes, where jobs run;
 - the storage systems, described under [Storage](../storage/index.md).
 
-10 Gb Ethernet and InfiniBand connect all the nodes. The nodes run Rocky Linux 8.9, deployed with Bright Cluster Manager 10.
+10 Gb Ethernet and InfiniBand connect all the nodes. The nodes run Rocky Linux 8.10, deployed with Bright Cluster Manager 10.
 
 ## What happens to a job
 
 1. You submit a job file with `qsub`. The scheduler assigns a job ID and puts the job in a queue.
 2. The job waits until the resources it requested are free and until you are below your [resource limits](limits.md).
 3. The scheduler starts the job on the compute node or nodes it selects. You do not choose the node.
-4. The job runs in batch mode: it reads no terminal input, and its standard output and error go to files.
+4. The job runs in batch mode. It reads no terminal input, and its standard output and error go to files.
 5. If the job exceeds the memory or time limits of its queue, the scheduler kills it.
 
 You check on a job with `qstat` and, after it finishes, with `qacct`. See [Monitor and manage jobs](monitoring.md).
@@ -37,7 +37,7 @@ A few compute nodes are set aside for interactive sessions, reached with `qrsh`.
 
 ## Queues
 
-Every job runs in a queue, and each queue has limits on CPU time, elapsed time and memory per CPU. The queues form a matrix: sets of queues for high-CPU, high-memory, very-high-memory and GPU jobs, each set with short, medium, long and unlimited time limits, plus single queues for interactive use, I/O to `/store`, and workflow managers. The scheduler picks a queue from the resources you request; you can also name one with `-q`. If you request the wrong queue or resources, the scheduler rejects the job, leaves it waiting forever, or starts it and kills it. [Queues](queues.md) lists them; [Request a queue, memory and CPUs](request-resources.md) explains how to choose.
+Every job runs in a queue, and each queue has limits on CPU time, elapsed time and memory per CPU. The queues form a matrix. There is a set of queues each for high-CPU, high-memory, very-high-memory and GPU jobs, and each set has short, medium, long and unlimited time limits. Single queues serve interactive use, I/O to `/store`, and workflow managers. The scheduler picks a queue from the resources you request, or you can name one with `-q`. If you request the wrong queue or resources, the scheduler rejects the job, leaves it waiting forever, or starts it and kills it. [Queues](queues.md) lists them, and [Request a queue, memory and CPUs](request-resources.md) explains how to choose.
 
 ## Limits
 

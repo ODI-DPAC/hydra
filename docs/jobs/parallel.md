@@ -1,8 +1,8 @@
 # Submit a parallel job
 
-A parallel job uses more than one CPU: threads on one node, MPI processes across nodes, or both. The program has to be written for one of those, and its documentation says which. A program that runs on one CPU is parallelized by running many copies as a [job array](arrays.md).
+A **parallel job** uses more than one CPU, as threads on one node, as MPI processes across nodes, or both. The program has to be written for one of those, and its documentation says which. A program that runs on one CPU is parallelized by running many copies as a [job array](arrays.md).
 
-A parallel job requests a parallel environment (PE) and a number of slots with `-pe PE N` (`N-M` accepts a range) and reads the number it was given from `$NSLOTS`. Memory limits are per slot, so a job with N slots may use N times the queue's per-slot limit; reserve it as described under [Reserve memory](request-resources.md#reserve-memory). Only the high-CPU queues run MPI and hybrid jobs. [Job script reference](job-scripts.md#parallel-environments) lists the PEs and MPI modules.
+A parallel job requests a parallel environment (PE) and a number of slots with `-pe PE N` (`N-M` accepts a range) and reads the number it was given from `$NSLOTS`. Memory limits are per slot, so a job with N slots may use N times the queue's per-slot limit. Reserve it as described under [Reserve memory](request-resources.md#reserve-memory). Only the high-CPU queues run MPI and hybrid jobs. [Job script reference](job-scripts.md#parallel-environments) lists the PEs and MPI modules.
 
 !!! warning "Tell the program how many CPUs it was given"
 
@@ -58,7 +58,7 @@ A parallel job requests a parallel environment (PE) and a number of slots with `
 
 ## Submit an MPI job
 
-1. Load the MPI module the program was built with (see [MPI modules](job-scripts.md#mpi-modules)) and request the matching PE: `orte` for OpenMPI, `ompi` for NVIDIA's bundled OpenMPI, `mpich` for MVAPICH.
+1. Load the MPI module the program was built with (see [MPI modules](job-scripts.md#mpi-modules)) and request the matching PE. That is `orte` for OpenMPI, `ompi` for NVIDIA's bundled OpenMPI, and `mpich` for MVAPICH.
 
 2. Start the program with the `mpirun` the module defines and `-np $NSLOTS`. With OpenMPI:
 
@@ -117,7 +117,7 @@ If the log shows
 
 A hybrid job runs K MPI processes on K nodes, each with M threads, for N = K × M slots. The program must be written for it, usually MPI between processes and OpenMP within each.
 
-1. Request the hybrid PE for M threads per node, `hM`, with N a multiple of M. `-pe h8 64` is 8 nodes with 8 slots each; `-pe h12 48` is 4 nodes with 12 each.
+1. Request the hybrid PE for M threads per node, `hM`, with N a multiple of M. `-pe h8 64` is 8 nodes with 8 slots each, and `-pe h12 48` is 4 nodes with 12 each.
 
 2. Source the configuration file the scheduler writes before `mpirun`. It resets `NSLOTS` to K, sets `OMP_NUM_THREADS` to M, and rewrites the host file (`$HOSTFILE`, OpenMPI) and machine file (`$MACHINEFILE`, MVAPICH) to one entry per node. The `if` lets the same file run as an ordinary MPI job when no hybrid PE was requested:
 
@@ -152,3 +152,10 @@ A hybrid job runs K MPI processes on K nodes, each with M threads, for N = K × 
     The last line appears only after the configuration file has been sourced.
 
 `~hpc/examples/hybrid` builds and runs a hello-world hybrid program with the GNU, Intel and NVIDIA compilers, with OpenMPI and MVAPICH.
+
+## Further reading
+
+- [Compilers, libraries and MPI](../software/compilers.md) for building a program against the cluster's MPI
+- [Job script reference](job-scripts.md#parallel-environments) for the full list of parallel environments
+- [GPUs](../software/gpus.md) for jobs that use a GPU
+- [Examples](examples.md) for tested OpenMP, MPI and hybrid jobs under `~hpc/examples`

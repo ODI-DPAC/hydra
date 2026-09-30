@@ -1,10 +1,10 @@
 # Request a queue, memory and CPUs
 
-Four options decide where a job runs and what it may use: the queue, the memory reservation, the number of CPUs, and the nodes it may run on. A job that needs more than the default (7 hours of CPU, 8 GB of memory, one CPU, in `sThC.q`) sets one or more of them. The queues and their limits are under [Queues](queues.md).
+Four options decide where a job runs and what it may use. They are the queue, the memory reservation, the number of CPUs, and the nodes it may run on. A job that needs more than the default (7 hours of CPU, 8 GB of memory, one CPU, in `sThC.q`) sets one or more of them. The queues and their limits are under [Queues](queues.md).
 
 ## Choose the queue
 
-1. Estimate the CPU time the job needs per CPU and the memory it needs per CPU. Run one job first if you do not know; `qacct -j JOBID` reports both afterwards (see [Monitor and manage jobs](monitoring.md#check-a-finished-job)).
+1. Estimate the CPU time the job needs per CPU and the memory it needs per CPU. Run one job first if you do not know. `qacct -j JOBID` reports both afterwards (see [Monitor and manage jobs](monitoring.md#check-a-finished-job)).
 
 2. Add the options for the row that fits, as `#$` lines in the job file or on the `qsub` command line:
 
@@ -41,9 +41,11 @@ Access to a restricted queue is by request to [SI-HPC@si.edu](mailto:SI-HPC@si.e
 
 ## Reserve memory
 
-`mres` reserves memory for the job: the scheduler tracks reserved memory on every node and does not start a job on a node with less free, unreserved memory than the request. `h_data` and `h_vmem` are the limits at which the scheduler kills the job. Reserve memory whenever the job uses more than 2 GB per CPU. A job without a reservation can fail when the node runs short of memory, or crash the node.
+Three numbers come up around memory, and they are three different things. The default queue allows a job 8 GB per slot, and the scheduler kills a job that uses more. A job that uses up to 2 GB per slot needs no reservation. A job that uses more than that reserves it with `mres`, so that the scheduler places it on a node with that much memory free.
 
-1. Set the three values. `mres` is the job total; `h_data` and `h_vmem` are per CPU. For a serial job the three are equal; for a parallel job, divide the total by the number of slots:
+`mres` reserves memory for the job. The scheduler tracks reserved memory on every node and does not start a job on a node with less free, unreserved memory than the request. `h_data` and `h_vmem` are the limits at which the scheduler kills the job. A job without a reservation can fail when the node runs short of memory, or crash the node.
+
+1. Set the three values. `mres` is the job total, and `h_data` and `h_vmem` are per CPU. For a serial job the three are equal. For a parallel job, divide the total by the number of slots:
 
     ```sh
     #$ -l mres=8G,h_data=8G,h_vmem=8G
@@ -116,7 +118,7 @@ MPI jobs set `h_data` and `h_vmem` only, without `mres`. Reserved memory that a 
 Unable to run job: error: no suitable queues.
 ```
 
-Do not override this with `-w w` or `-w n`: the scheduler accepts the job and it waits forever.
+Do not override this with `-w w` or `-w n`, because the scheduler then accepts the job and it waits forever.
 
 ## If the job is rejected
 
@@ -140,4 +142,11 @@ A job stays in state `qw` when the resources it requested are not free or when y
 
     The reason is in the `scheduling info` lines at the end.
 
-A job that waits for hours or days while you are under the limits has requested a scarce resource; email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) with the job ID.
+A job that waits for hours or days while you are under the limits has requested a scarce resource. Email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) with the job ID.
+
+## Further reading
+
+- [Queues](queues.md) for the limits of every queue
+- [Resource limits](limits.md) for how much of the cluster one user may hold at once
+- [Cluster hardware](hardware.md) for the nodes behind each queue and their memory
+- [Warning emails](efficiency.md) for what happens when a job uses far less or far more than it asked for

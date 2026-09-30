@@ -48,7 +48,7 @@
 | `qstat+ -es` | empty slots |
 | `qstat+ -down` | nodes that are down |
 
-`cpu%` is CPU time divided by age and by the number of slots; 100% means every requested slot is busy.
+`cpu%` is CPU time divided by age and by the number of slots, so 100% means every requested slot is busy.
 
 ## qacct fields
 
@@ -72,7 +72,7 @@
 
 ## qacct+
 
-A loader copies the accounting data into a PostgreSQL database within about a minute of each job finishing. `qacct+` queries the database, with selectable fields and derived values. Some fields are not loaded correctly from the Grid Engine 8.8.1 records; when a value looks wrong, compare it with `qacct -j JOBID`. `qacct+ -help` and `qacct+ -show help` list the options; `man qacct+` has the details.
+A loader copies the accounting data into a PostgreSQL database within about a minute of each job finishing. `qacct+` queries the database, with selectable fields and derived values. Some fields are not loaded correctly from the Grid Engine 8.8.1 records. When a value looks wrong, compare it with `qacct -j JOBID`. `qacct+ -help` and `qacct+ -show help` list the options; `man qacct+` has the details.
 
 | Command | Shows |
 |---|---|

@@ -162,3 +162,9 @@ A sampler records every job in the high-memory queues every five minutes.
     `qhost` takes no patterns; filter with `egrep`.
 
 The [status page](../policies/status.md) shows the same as graphs, with past usage and disk space.
+
+## Further reading
+
+- [Monitoring tools](tools.md) for every option and output field of `qstat`, `qstat+`, `qacct` and `qacct+`
+- [Warning emails](efficiency.md) for the checks that run on your jobs and what the emails mean
+- [Cluster status](../policies/status.md) for the live view of the queues and nodes

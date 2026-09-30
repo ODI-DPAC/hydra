@@ -1,6 +1,6 @@
 # Warning emails
 
-Automated checks watch the login nodes, running jobs and the disks, and email you when something you own is outside the limits. The mail goes to the address in your `~/.forward` file on Hydra. The [usage policies](../policies/usage.md) state the thresholds and require you to act on the warnings; administrators can kill jobs that are not corrected.
+Automated checks watch the login nodes, running jobs and the disks, and email you when something you own is outside the limits. The mail goes to the address in your `~/.forward` file on Hydra. The [usage policies](../policies/usage.md) state the thresholds and require you to act on the warnings. We kill jobs that are not corrected.
 
 | Subject | Trigger | Check |
 |---|---|---|
@@ -17,7 +17,7 @@ Automated checks watch the login nodes, running jobs and the disks, and email yo
 
 ## High CPU use on a login node
 
-The login nodes are for editing, compiling, short tests, transfers and submitting jobs. A process that runs on one for more than 20 minutes at more than 45% CPU has its priority lowered (`renice +5`); this happens twice. A process that reaches 85% CPU or 55% of the node's memory gets `kill -9`.
+The login nodes are for editing, compiling, short tests, transfers and submitting jobs. A process that runs on one for more than 20 minutes at more than 45% CPU has its priority lowered (`renice +5`), and this happens twice. A process that reaches 85% CPU or 55% of the node's memory gets `kill -9`.
 
 ```text
 Subject: Process 1259315 priority was lowered on hydra-login01.si.edu
@@ -53,7 +53,7 @@ $ check-qlogs ineff -from -7d -user $USER
 | `cpu%` | the share of those slots in use; 50% means half the requested CPUs were busy on average |
 | `unused CPUs` | CPU-days requested and not used |
 
-A `cpu%` near `100/nPEs` means the program ran on one CPU: the thread or process count was not passed to it. Check the program's option for the number of threads and set it from `$NSLOTS`; see [Submit a parallel job](parallel.md). Programs whose CPU use varies by stage, as in pipelines where only some steps are parallel, also show low efficiency. Split such pipelines into [jobs run in sequence](submit.md#run-jobs-in-sequence) that each request what they use.
+A `cpu%` near `100/nPEs` means the program ran on one CPU because the thread or process count was not passed to it. Check the program's option for the number of threads and set it from `$NSLOTS`, as shown under [Submit a parallel job](parallel.md). Programs whose CPU use varies by stage, as in pipelines where only some steps are parallel, also show low efficiency. Split such pipelines into [jobs run in sequence](submit.md#run-jobs-in-sequence) that each request what they use.
 
 Correct the request in the next jobs you submit. A running job does not need to be deleted for this warning alone. When the cluster load is over 70%, users with many inefficient jobs have jobs killed automatically down to 100 unused slots per user.
 
@@ -67,13 +67,13 @@ The following job is running but using almost no CPU cycles i.e.: efficiency (CP
  1234570     job4   USER   +3:13    10   9.9%  lThM.q  64-17
 ```
 
-Either the program has stalled after doing some work, in which case kill it with `qdel`, or it is running on one CPU of the ten requested: in the example above, `cpu%` is 9.9 against a `100/nPEs` of 10. Reply to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) within 24 hours to say whether the job should be killed.
+Either the program has stalled after doing some work, in which case kill it with `qdel`, or it is running on one CPU of the ten requested. In the example above, `cpu%` is 9.9 against a `100/nPEs` of 10. Reply to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) within 24 hours to say whether the job should be killed.
 
 ## Oversubscribed jobs
 
 A job is oversubscribed when it uses more than 133% of the CPUs it requested. It slows every other job on the node. The weekly mail lists such jobs with the excess CPU-days each used, from `check-qlogs osub -from -7d -user $USER`.
 
-The usual cause is a program that uses every CPU on the node unless told otherwise. Pass `$NSLOTS` to its thread option, or request the slots it uses with `-pe mthread N`. Kill an oversubscribed job that will run for more than another 24 hours and resubmit it with the correct request; reply to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) within 24 hours. Administrators kill oversubscribed jobs when the cluster is busy.
+The usual cause is a program that uses every CPU on the node unless told otherwise. Pass `$NSLOTS` to its thread option, or request the slots it uses with `-pe mthread N`. Kill an oversubscribed job that will run for more than another 24 hours and resubmit it with the correct request. Reply to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) within 24 hours. Administrators kill oversubscribed jobs when the cluster is busy.
 
 ## Memory over-reservation
 
