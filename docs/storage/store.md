@@ -62,4 +62,10 @@ Large or repeated copies run as jobs in the I/O queue, `lTIO.sq`, which runs on 
 
     `hqw` is a job waiting on a hold. `qchain getData.job analyze.job saveNClean.job` submits the three with the holds set; see [Run jobs in sequence](../jobs/submit.md#run-jobs-in-sequence).
 
-`/store` snapshots and quotas are on the [Filesystems](filesystems.md) page; `quota+` shows your `/store` usage (the Linux `quota` command does not). Recovering a file from a `/store` snapshot is under [Recover a file from a snapshot](snapshots.md#recover-a-file-on-store).
+`/store` snapshots and quotas are on the [Filesystems](filesystems.md) page. `quota+` shows your `/store` usage, which the Linux `quota` command does not. Recovering a file from a `/store` snapshot is under [Recover a file from a snapshot](snapshots.md#recover-a-file-on-store).
+
+## Further reading
+
+- [Filesystems](filesystems.md) for the `/store` partitions, their quotas and snapshots
+- [Queues](../jobs/queues.md) for the I/O queue's limits
+- [Globus](../data-transfer/globus.md) for moving data between `/store` and other institutions

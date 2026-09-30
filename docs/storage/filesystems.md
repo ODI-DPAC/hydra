@@ -1,6 +1,6 @@
 # Filesystems
 
-Hydra has four public partitions and a number of project partitions, each with its own quotas and retention rules. The HPC team adjusts sizes and quotas as needed; `disk-usage -d all+ -quotas` on a login node prints the current values ([Check your disk usage and quotas](quotas.md)).
+Hydra has four public partitions and a number of project partitions, each with its own quotas and retention rules. We adjust sizes and quotas as needed. `disk-usage -d all+ -quotas` on a login node prints the current values ([Check your disk usage and quotas](quotas.md)).
 
 ## Public partitions
 
@@ -20,9 +20,9 @@ Hydra has four public partitions and a number of project partitions, each with i
 
     `/store/public` is no longer available. Use `/data/public`. A cloud-based cold-storage service is being evaluated as the replacement. Project `/store` partitions are not affected.
 
-A soft limit can be exceeded for a grace period; at the hard limit writes fail. The file quota counts inodes: many small files reach it before the space quota does. `/scratch/dbs` (10 TB) holds the shared bioinformatics databases; see [Local databases](../software/guides/databases.md).
+A soft limit can be exceeded for a grace period; at the hard limit writes fail. The file quota counts inodes, so many small files reach it before the space quota does. `/scratch/dbs` (10 TB) holds the shared bioinformatics databases; see [Local databases](../software/guides/databases.md).
 
-`/scratch/public` is divided by unit or discipline: `biology`, `genomics`, `humanities`, `nasm`, `odi` and `sao`. Your directory is under one of them, `/scratch/public/genomics/USERNAME` for example. The shorter form `/scratch/genomics` is a link to `/scratch/public/genomics`, and either works.
+`/scratch/public` is divided by unit or discipline into `biology`, `genomics`, `humanities`, `nasm`, `odi` and `sao`. Your directory is under one of them, `/scratch/public/genomics/USERNAME` for example. The shorter form `/scratch/genomics` is a link to `/scratch/public/genomics`, and either works.
 
 ## Project partitions
 
@@ -45,4 +45,4 @@ Groups with their own funding have dedicated partitions under `/scratch` and `/s
 
 A scrubber runs weekly and removes files on `/scratch/public` older than 180 days, and old empty directories. It holds the removed files in a staging area for about ten days before deleting them. During that time they still count against your quota, and the HPC team can restore them on request. See [Find scrubbed files and request a restore](scrubber.md). A restored file's change time (`ctime`) is reset, so it is safe for another 180 days.
 
-None of the storage systems on Hydra are meant for [archival storage](backups.md#long-term-storage). Delete what you no longer need. Compress or archive sets of small files: `tar -czf archive.tgz dir/` replaces a directory with one file, and `tar -xf archive.tgz` unpacks it.
+None of the storage systems on Hydra are meant for [archival storage](backups.md#long-term-storage). Delete what you no longer need. Compress or archive sets of small files. `tar -czf archive.tgz dir/` replaces a directory with one file, and `tar -xf archive.tgz` unpacks it.
