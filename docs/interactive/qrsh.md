@@ -41,7 +41,7 @@ For a program that opens X11 windows, use `qlogin` in place of `qrsh` and connec
 | Limit | Value |
 |---|---|
 | CPU time per session | 12 h per slot |
-| Elapsed time per session | 24 h |
+| Elapsed time per session | 48 h |
 | Memory per slot | 8 GB resident, 64 GB virtual |
 | Sessions per user at once | 12 |
 | Slots per user across sessions | 64 |
