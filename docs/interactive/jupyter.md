@@ -10,7 +10,7 @@ Jupyter Lab runs on a compute node, and an ssh tunnel brings it to a browser on 
     $ qrsh -pe mthread 4
     ```
 
-2. On the compute node, change to the directory the notebooks live in, or above it; the server serves that tree.
+2. On the compute node, change to the directory the notebooks live in, or above it, because the server serves that tree.
 
 3. Load a Python. Either the Python module:
 
@@ -47,7 +47,7 @@ Jupyter Lab runs on a compute node, and an ssh tunnel brings it to a browser on 
 
 ## Stop the server
 
-1. In the browser, **File** and then **Shut Down**; this stops the notebook and the server on the node.
+1. In the browser, choose **File** and then **Shut Down**. This stops the notebook and the server on the node.
 2. `Ctrl-C` in the tunnel's terminal.
 3. `exit` in the interactive session.
 
@@ -71,3 +71,8 @@ $ python -m ipykernel install --user --name=ENVIRONMENT
 ```
 
 The environment then appears in Jupyter's kernel list. A registered kernel also lets a notebook run as a batch job with [Papermill](https://papermill.readthedocs.io/en/latest/).
+
+## Further reading
+
+- [Python and conda](../software/python.md) for installing packages and kernels in your own environment
+- [Start an interactive session](qrsh.md) for the session and tunnel this page builds on
