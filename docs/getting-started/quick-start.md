@@ -1,12 +1,14 @@
 # Quick start
 
-A first job on Hydra takes five steps: a working directory, a job file, `qsub` to submit it, `qstat` to check it, and the output file at the end. You need an [account](account.md) and a [login](login.md); the example job needs no input data.
+A first job on Hydra takes five steps. You make a working directory, write a job file, submit it with `qsub`, check on it with `qstat`, and read the output file at the end. You need an [account](account.md) and to be [logged in](login.md). The example job needs no input data and runs for 30 seconds.
 
 Replace `USERNAME` with your Hydra username throughout.
 
 ## 1. Log in and create a working directory
 
-Jobs run from a directory under `/scratch`; the home directory has a small quota and is not for job input and output.
+Jobs run from a directory under `/scratch`. The home directory has a small quota and is not for job input and output.
+
+Your directory on `/scratch` is under a group directory such as `/scratch/genomics`, `/scratch/sao` or `/scratch/odi`. Your welcome email tells you which one is yours. The examples on this site use `/scratch/genomics/USERNAME`; substitute your own path.
 
 ```bash
 ssh USERNAME@hydra-login01.si.edu
@@ -16,12 +18,11 @@ cd /scratch/genomics/USERNAME/quickstart
 
 ## 2. Write a job file
 
-A job file is a shell script. Lines beginning with `#$` are options to the scheduler. Create `hello.job` with a text editor (`nano hello.job` if you have no preference):
+A **job file** is a shell script with extra lines at the top. Lines beginning with `#$` are options to the scheduler, and the rest is what the job runs. Create `hello.job` with a text editor (`nano hello.job` if you have no preference):
 
 ```sh title="hello.job"
 #!/bin/sh
 #$ -S /bin/sh
-#$ -q mThC.q
 #$ -l mres=2G,h_data=2G,h_vmem=2G
 #$ -cwd
 #$ -j y
@@ -36,14 +37,13 @@ echo = `date` job $JOB_NAME done
 | Option | Effect |
 |---|---|
 | `-S /bin/sh` | Shell used to run the script |
-| `-q mThC.q` | Queue. `mThC.q` is the medium-time, high-CPU queue |
 | `-l mres=2G,h_data=2G,h_vmem=2G` | Reserve 2 GB of memory |
 | `-cwd` | Run in the directory the job was submitted from |
 | `-j y` | Write error output to the same file as standard output |
 | `-N hello` | Job name |
 | `-o hello.log` | Output file |
 
-[Job scripts](../jobs/job-scripts.md) describes all options. The [QSub Generator](../jobs/qsubgen.md) produces a job file from a web form.
+There is no `-q` line, so the job goes to the default queue, `sThC.q`, which allows up to 7 hours of CPU time and is right for most first jobs. [Job scripts](../jobs/job-scripts.md) lists every option, and the [QSub Generator](../jobs/qsubgen.md) writes a job file for you from a web form.
 
 ## 3. Submit the job
 
@@ -52,7 +52,7 @@ $ qsub hello.job
 Your job 825184 ("hello") has been submitted
 ```
 
-The number is the job ID. `qstat`, `qdel` and `qacct` refer to jobs by this ID.
+The number is the **job ID**. `qstat`, `qdel` and `qacct` refer to jobs by this ID, and so will we if you write to us about a job.
 
 ## 4. Check the job
 
@@ -60,18 +60,18 @@ The number is the job ID. `qstat`, `qdel` and `qacct` refer to jobs by this ID.
 $ qstat
 job-ID  prior   name   user     state submit/start at     queue                slots
 ------------------------------------------------------------------------------------
-825184  0.55500 hello  USERNAME r     09/22/2026 10:18:01 mThC.q@compute-64-11   1
+825184  0.55500 hello  USERNAME r     09/22/2026 10:18:01 sThC.q@compute-64-11   1
 ```
 
-State `qw` is queued and waiting; `r` is running. A job with an error in its job file usually fails within seconds, so check `qstat` during the first minute after submitting. When the job has finished, `qstat` prints nothing.
+State `qw` means queued and waiting, `r` means running. A job with an error in its job file usually fails within seconds, so check `qstat` during the first minute after submitting. When the job has finished, `qstat` prints nothing.
 
-You can log out with `exit` while a job is running.
+You can log out with `exit` while a job is running. The job belongs to the scheduler, not to your session.
 
 ## 5. Read the output
 
 ```console
 $ cat hello.log
-+ Tue Sep 22 10:18:01 EDT 2026 job hello started in mThC.q with jobID=825184 on compute-64-11
++ Tue Sep 22 10:18:01 EDT 2026 job hello started in sThC.q with jobID=825184 on compute-64-11
 = Tue Sep 22 10:18:31 EDT 2026 job hello done
 ```
 
@@ -79,8 +79,8 @@ $ cat hello.log
 
     The scrubber deletes files older than 180 days. Move results off the cluster when an analysis is complete. See [Storage](../storage/index.md).
 
-## Next steps
+## Further reading
 
-- Copying data to Hydra and results back: [Data transfer](../data-transfer/index.md).
-- Choosing a queue and memory for a production job: [Queues](../jobs/queues.md).
-- Loading software: [Modules](../software/modules.md).
+- [Data transfer](../data-transfer/index.md) for copying data to Hydra and results back
+- [Request a queue, memory and CPUs](../jobs/request-resources.md) for a production job that needs more than the default
+- [Find and load software](../software/modules.md) for the programs installed on the cluster

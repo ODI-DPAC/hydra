@@ -1,6 +1,6 @@
 # Training and workshops
 
-New Hydra users must watch the introduction video before using the cluster. Workshops on specific topics run several times a year and their materials stay online.
+We require every new Hydra user to watch the introduction video before using the cluster. Beyond that, we run an introductory workshop each quarter and advanced workshops now and then, and their materials stay online.
 
 ## Introduction to Hydra (required)
 
@@ -10,11 +10,11 @@ Watch the [Introduction to Hydra](https://sinet.sharepoint.com/:v:/s/SI-HydraHPC
 
     It opens only from the SI staff network, the SI-STAFF or CfA VPN, or telework.si.edu.
 
-The slides and hands-on material from the introduction are in the [Hydra-introduction](https://github.com/SmithsonianWorkshops/Hydra-introduction) repository.
+The slides and hands-on material from the introduction are in the [Hydra-introduction](https://github.com/SmithsonianWorkshops/Hydra-introduction) repository, so you can follow the exercises at your own pace after the video.
 
 ## Workshops
 
-Introductory workshops run quarterly; the HPCC-L mailing list announces them. Advanced workshops run less regularly; their slides, exercises and recordings are in the [advanced-hydra-workshops](https://github.com/SmithsonianWorkshops/advanced-hydra-workshops) repository:
+The introductory workshop runs every quarter, and we announce it on the HPCC-L mailing list. Advanced workshops run less regularly. Their slides, exercises and recordings are in the [advanced-hydra-workshops](https://github.com/SmithsonianWorkshops/advanced-hydra-workshops) repository:
 
 | Topic | Date |
 |---|---|
@@ -23,4 +23,4 @@ Introductory workshops run quarterly; the HPCC-L mailing list announces them. Ad
 | [Installing software and writing modules](https://github.com/SmithsonianWorkshops/advanced-hydra-workshops/tree/main/install_sw%2Bm) | 2023-03-22 |
 | [Conda on Hydra](https://github.com/SmithsonianWorkshops/advanced-hydra-workshops/tree/main/conda) | 2023-02-15 |
 
-Send questions about training to [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
+If you would like a workshop on a topic that is not here, or a session for your group, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
