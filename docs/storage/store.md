@@ -6,7 +6,7 @@
 
     `/store/public` is no longer available. Use `/data/public`. A cloud-based cold-storage service is being evaluated as the replacement.
 
-`/store` is mounted on the login nodes, the head node and the interactive nodes. A job on any other node cannot see it, so you copy data from `/store` to `/scratch` or `/data` before a job uses it, and copy it back afterwards.
+`/store` is mounted on the login nodes, the head node, the interactive nodes and the RStudio server node. A job on any other node cannot see it, so you copy data from `/store` to `/scratch` or `/data` before a job uses it, and copy it back afterwards.
 
 !!! warning "`/store` is not mounted on the compute nodes"
 

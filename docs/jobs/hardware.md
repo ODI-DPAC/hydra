@@ -60,8 +60,8 @@ All nodes are on 10 Gb Ethernet. The head, login and compute nodes are also on a
 
 | System | Partitions | Access |
 |---|---|---|
-| NetApp, two controllers, about 900 TB | `/home`, `/data` | all nodes, over NFS on Ethernet |
-| GPFS, two NSD servers, about 2 PB | `/scratch` | all nodes, over InfiniBand |
-| NAS, two systems, about 1.7 PB | `/store` | login, head and interactive nodes only |
+| NetApp FAS8300, two controllers, about 575 TB | `/home`, `/data` | all nodes, over NFS on Ethernet |
+| GPFS, two NSD servers, about 3.2 PB | `/scratch` | all nodes, over InfiniBand |
+| NAS, two systems, about 2.6 PB | `/store` | login, head, interactive and RStudio server nodes only |
 
 The partitions, their quotas and retention rules are under [Filesystems](../storage/filesystems.md).

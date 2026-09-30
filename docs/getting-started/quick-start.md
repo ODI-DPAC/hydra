@@ -49,7 +49,7 @@ There is no `-q` line, so the job goes to the default queue, `sThC.q`, which all
 
 ```console
 $ qsub hello.job
-Your job 825184 ("hello") has been submitted
+Your job 15497588 ("hello") has been submitted
 ```
 
 The number is the **job ID**. `qstat`, `qdel` and `qacct` refer to jobs by this ID, and so will we if you write to us about a job.
@@ -58,9 +58,9 @@ The number is the **job ID**. `qstat`, `qdel` and `qacct` refer to jobs by this 
 
 ```console
 $ qstat
-job-ID  prior   name   user     state submit/start at     queue                slots
-------------------------------------------------------------------------------------
-825184  0.55500 hello  USERNAME r     09/22/2026 10:18:01 sThC.q@compute-64-11   1
+job-ID     prior   name       user         state submit/start at     queue                          jclass                         slots ja-task-ID
+------------------------------------------------------------------------------------------------------------------------------------------------
+  15497588 0.50500 hello      USERNAME     r     09/30/2026 18:48:14 sThC.q@compute-93-02.cm.cluste                                    1
 ```
 
 State `qw` means queued and waiting, `r` means running. A job with an error in its job file usually fails within seconds, so check `qstat` during the first minute after submitting. When the job has finished, `qstat` prints nothing.
@@ -71,8 +71,8 @@ You can log out with `exit` while a job is running. The job belongs to the sched
 
 ```console
 $ cat hello.log
-+ Tue Sep 22 10:18:01 EDT 2026 job hello started in sThC.q with jobID=825184 on compute-64-11
-= Tue Sep 22 10:18:31 EDT 2026 job hello done
++ Wed Sep 30 18:48:14 EDT 2026 job hello started in sThC.q with jobID=15497588 on compute-93-02
+= Wed Sep 30 18:48:44 EDT 2026 job hello done
 ```
 
 !!! warning "`/scratch` is not permanent storage"

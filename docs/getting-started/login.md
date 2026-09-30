@@ -87,7 +87,7 @@ On macOS and Linux you can use an **ssh key pair** instead of a password: a priv
 ssh-copy-id USERNAME@hydra-login01.si.edu
 ```
 
-Do the same for `hydra-login02.si.edu`. From then on `ssh`, `scp` and `rsync` to either node ask for the key's passphrase, or for nothing if your computer's keychain holds it, rather than for your Hydra password.
+The home directory is shared by both login nodes, so one copy serves `hydra-login02.si.edu` too. From then on `ssh`, `scp` and `rsync` to either node ask for the key's passphrase, or for nothing if your computer's keychain holds it, rather than for your Hydra password.
 
 ## Passwords
 
