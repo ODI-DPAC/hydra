@@ -1,6 +1,6 @@
 # VS Code
 
-VS Code reaches Hydra three ways. Remote-SSH connects the VS Code on your own machine to a login node, which is fine for editing files and nothing more; the login-node limits apply to anything it runs. The other two run VS Code itself on a compute node and show it in your browser, through an ssh tunnel or through a tunnel that Microsoft relays.
+VS Code reaches Hydra three ways. Remote-SSH connects the VS Code on your own machine to a login node, which is fine for editing files and nothing more. The login-node limits apply to anything it runs. The other two run VS Code itself on a compute node and show it in your browser, through an ssh tunnel or through a tunnel that Microsoft relays.
 
 | Way | Where VS Code runs | Needs | Use for |
 |---|---|---|---|
@@ -74,4 +74,9 @@ A tunnel registers the compute node with Microsoft's relay under a name, and you
 
 4. When done, `Ctrl-C` in the tunnel's window, then `exit` the session.
 
-If the tunnel fails at start with `error failed to lookup tunnel: connection error`, run `host use.rel.tunnels.api.visualstudio.com` once (it returns an address) and start the tunnel again. To reset the stored credentials, delete `~/.vscode/cli/token.json`.
+If the tunnel fails at start with `error failed to lookup tunnel: connection error`, run `host use.rel.tunnels.api.visualstudio.com` once, which returns an address, and start the tunnel again. To reset the stored credentials, delete `~/.vscode/cli/token.json`.
+
+## Further reading
+
+- [Start an interactive session](qrsh.md) for the session and tunnel this page builds on
+- [Find and load software](../software/modules.md) for the compilers and interpreters VS Code will find on the node

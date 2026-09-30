@@ -1,10 +1,14 @@
 # RStudio server
 
-Hydra has a dedicated RStudio server at <https://galaxy.si.edu/R4>: a browser opens an RStudio session on a node with 192 CPU cores and 1.5 TB of memory, with your Hydra home directory, `/data`, `/scratch` and `/store` mounted. It runs R 4.5.3 and RStudio Server 2024.12.0+467, the same for every user, and needs no tunnel and no `qrsh`.
+Hydra has a dedicated RStudio server at <https://galaxy.si.edu/R4>. A browser opens an RStudio session on a node with 192 CPU cores and 1.5 TB of memory, with your Hydra home directory, `/data`, `/scratch` and `/store` mounted. It runs R 4.5.3 and RStudio Server 2024.12.0+467, the same for every user, and needs no tunnel and no `qrsh`.
 
 ## Log in
 
-1. From the SI network or the SI VPN, open <https://galaxy.si.edu/R4>. From telework.si.edu, enter `https://galaxy.si.edu/R4` in the **Enter an internal resource** box on the telework home page and press Return:
+1. From the SI network or the SI VPN, open <https://galaxy.si.edu/R4> in the browser:
+
+    ![The browser address bar with galaxy.si.edu/R4](../assets/image-2025-5-27_15-14-26.png)
+
+    From telework.si.edu, enter `https://galaxy.si.edu/R4` in the **Enter an internal resource** box on the telework home page and press Return:
 
     ![The internal resource box on the telework home page](../assets/image-2025-5-27_15-17-27.png)
 
@@ -16,13 +20,13 @@ Hydra has a dedicated RStudio server at <https://galaxy.si.edu/R4>: a browser op
 
     ![An RStudio session in the browser](../assets/Screenshot_2025-05-22_at_4.27.46_PM.png)
 
-The **Files** pane shows Hydra's partitions; navigate to a directory under `/scratch` or `/data` to work there:
+The **Files** pane shows Hydra's partitions. Navigate to a directory under `/scratch` or `/data` to work there:
 
 ![The Files pane showing a directory under /scratch](../assets/image-2025-6-4_8-37-21.png)
 
 ## Sessions
 
-The node is shared with every other user. One R session per user runs at a time: logging in from a second browser takes over the existing session rather than starting another. A session keeps running when you close the browser or log off your computer, with its objects in memory and its computations under way. Logging in again reconnects to it. To run several analyses at once inside the one session, use the **Background Jobs** tab ([Posit's guide](https://docs.posit.co/ide/user/ide/guide/tools/jobs.html)).
+The node is shared with every other user. One R session per user runs at a time. Logging in from a second browser takes over the existing session rather than starting another. A session keeps running when you close the browser or log off your computer, with its objects in memory and its computations under way. Logging in again reconnects to it. To run several analyses at once inside the one session, use the **Background Jobs** tab ([Posit's guide](https://docs.posit.co/ide/user/ide/guide/tools/jobs.html)).
 
 !!! warning "Quit the session when you are done"
 
@@ -40,7 +44,7 @@ The **Files** pane transfers files; for anything large or many files, use [Data 
 
     ![The Upload button and dialog in the Files pane](../assets/image-2025-5-27_15-28-13.png)
 
-- Download: tick the files or folders, then **More** and **Export…**; several files or a folder come down as one zip.
+- Download: tick the files or folders, then **More** and **Export…**. Several files or a folder come down as one zip.
 
     ![The Export item under More in the Files pane](../assets/image-2025-5-27_15-29-21.png)
 
@@ -105,3 +109,9 @@ R writes temporary files under `/tmp` on the node, which is small and shared. Pu
 ```text title="~/.Renviron"
 TMPDIR=/scratch/genomics/USERNAME/tmp
 ```
+
+## Further reading
+
+- [R](../software/r.md) for the R modules, packages and how to run R in a batch job
+- [RStudio on a compute node](rstudio-node.md) for a different R or more than one session
+- [Storage](../storage/index.md) for where to keep data and projects

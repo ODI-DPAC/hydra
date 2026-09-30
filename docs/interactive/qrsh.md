@@ -1,6 +1,6 @@
 # Start an interactive session
 
-`qrsh` gives you a shell on a compute node, scheduled like a job into the interactive queue `qrsh.iq`. Use it for anything that runs longer than a few minutes and needs a terminal: compiling, testing a job before submitting it, `conda install`, a notebook or editor served to your browser.
+`qrsh` gives you a shell on a compute node, scheduled like a job into the interactive queue `qrsh.iq`. Use it for anything that runs longer than a few minutes and needs a terminal, such as compiling, testing a job before submitting it, `conda install`, or a notebook or editor served to your browser.
 
 ## Start a session
 
@@ -30,7 +30,7 @@
 
     The session starts in your home directory; `cd` to your working directory under `/scratch`.
 
-3. Work as on a login node: load modules, run programs, edit files.
+3. Work as you would on a login node. Load modules, run programs, edit files.
 
 4. End the session with `exit`. A session also ends when it reaches its time limit.
 
@@ -57,8 +57,14 @@ Jupyter, VS Code and RStudio run on the compute node and listen on a port there.
 $ ssh -N -L PORT:compute-XX-XX:PORT USERNAME@hydra-login01.si.edu
 ```
 
-`-N` opens no shell, `-L` forwards local `PORT` to `PORT` on the node. The command asks for your Hydra password and then prints nothing while the tunnel is open. Leave that terminal alone. Use the login node you connected to (`hydra-login01` or `hydra-login02`); the first `PORT` can be any free port on your machine if the same number is in use locally. To close the tunnel, press `Ctrl-C` in that terminal.
+`-N` opens no shell, `-L` forwards local `PORT` to `PORT` on the node. The command asks for your Hydra password and then prints nothing while the tunnel is open. Leave that terminal alone. Use the login node you connected to (`hydra-login01` or `hydra-login02`). The first `PORT` can be any free port on your machine if the same number is in use locally. To close the tunnel, press `Ctrl-C` in that terminal.
 
 !!! warning "The tunnel does not work from telework.si.edu"
 
     A tunnel runs from your own machine, and the telework web terminal cannot start one. From telework, use the [RStudio server](rstudio.md) or a [VS Code tunnel](vscode.md#use-a-vs-code-tunnel) instead; neither needs an ssh tunnel.
+
+## Further reading
+
+- [Queues](../jobs/queues.md#queue-sets) for the interactive queue's limits
+- [Resource limits](../jobs/limits.md) for how many sessions and slots one user may hold
+- [Write and submit a job](../jobs/submit.md) for work that does not need a terminal

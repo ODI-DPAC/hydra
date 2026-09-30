@@ -1,6 +1,6 @@
 # RStudio on a compute node
 
-RStudio can also run on a compute node of your choosing, with the CPUs and memory of an [interactive session](qrsh.md), served to your browser through an ssh tunnel. Use it when the [RStudio server](rstudio.md) does not fit: for a different R, for more than one session, or for CPUs and memory scheduled to you alone.
+RStudio can also run on a compute node of your choosing, with the CPUs and memory of an [interactive session](qrsh.md), served to your browser through an ssh tunnel. Use it when the [RStudio server](rstudio.md) does not fit, which means a different R, more than one session, or CPUs and memory scheduled to you alone.
 
 ## Start RStudio in a session
 
@@ -29,7 +29,7 @@ RStudio can also run on a compute node of your choosing, with the CPUs and memor
 
 4. When done, sign out in the browser, `Ctrl-C` in the server's window, `Ctrl-C` in the tunnel's terminal, then `exit` the session. Do not leave a server running unattended.
 
-The module loads R 4.4.1 (`tools/R/4.4.1`), not the 4.4.0 that `module load tools/R` gives. If a sign-out leaves you unable to sign back in, stop and restart the server; if that fails, clear the browser's cookies.
+The module loads R 4.4.1 (`tools/R/4.4.1`), not the 4.4.0 that `module load tools/R` gives. If a sign-out leaves you unable to sign back in, stop and restart the server. If that fails, clear the browser's cookies.
 
 ## RStudio desktop over X11
 
