@@ -33,7 +33,7 @@ Stop the process and run it as a [job](submit.md) or in an [interactive session]
 - Analyses: submit them as jobs or run them under `qrsh`.
 - `conda`: the "solving environment" step uses a full CPU. Run `conda` under `qrsh`, use `mamba`, and install into a new environment rather than modifying an existing one. See [Python and conda](../software/python.md).
 - `gzip`, `zip`, `tar`: run them under `qrsh` or as a job.
-- File transfers: some transfer programs use a full CPU. Email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) (SAO users: [hpc@cfa.harvard.edu](mailto:hpc@cfa.harvard.edu)) for alternatives.
+- File transfers: some transfer programs use a full CPU. Email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) for alternatives.
 
 After a kill, check the process's output. A transfer may have left partial files; a `tar` archive being written is incomplete and corrupt.
 

@@ -55,7 +55,7 @@ $ qrsh -l gpu,ngpus=1
 
 !!! warning "`ngpu` without an s is the old resource; delete it"
 
-    Old job files may request `num_gpu` or its alias `ngpu`. That resource does nothing and is on its way out; once the HPC team removes it, the scheduler rejects a job that still names it with `unknown resource`. `ngpus`, with an s, is the current one. Delete `num_gpu=…` or `ngpu=…` from the `-l` list and keep `ngpus=N`; if a file has both, delete only the one without the s.
+    Old job files may request `num_gpu` or its alias `ngpu`. That resource does nothing and is on its way out; once we remove it, the scheduler rejects a job that still names it with `unknown resource`. `ngpus`, with an s, is the current one. Delete `num_gpu=…` or `ngpu=…` from the `-l` list and keep `ngpus=N`; if a file has both, delete only the one without the s.
 
 ## What the job gets
 
