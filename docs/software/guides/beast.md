@@ -4,7 +4,7 @@ BEAST 2 is the module `bio/beast`; `module -t avail 2>&1 | grep beast` lists the
 
 ## Version and packages
 
-The first time BEAST runs it copies `beast.jar` and `beast.src.jar` into `~/.beast/2.x/BEAST/lib`, one subdirectory per version, and later runs load from there. Check the log file of every run for the version it reports; a version left over in `~/.beast` can differ from the module you loaded.
+The first time BEAST runs it copies `beast.jar` and `beast.src.jar` into `~/.beast/2.x/BEAST/lib`, one subdirectory per version, and later runs load from there. Check the log file of every run for the version it reports, because a version left over in `~/.beast` can differ from the module you loaded.
 
 BEAST packages (add-ons) install into `~/.beast` with the package manager, after loading the module:
 
@@ -16,7 +16,7 @@ $ packagemanager -add SNAPP
 
 ## BEAGLE
 
-The [BEAGLE](https://github.com/beagle-dev/beagle-lib) library is the module `bio/beagle`; `bio/beast` does not load it, so add `module load bio/beagle` after `module load bio/beast` in the job file. The default build is for Java 17. The BEAGLE builds do not use the GPUs; email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) if you need that.
+The [BEAGLE](https://github.com/beagle-dev/beagle-lib) library is the module `bio/beagle`. `bio/beast` does not load it, so add `module load bio/beagle` after `module load bio/beast` in the job file. The default build is for Java 17. The BEAGLE builds do not use the GPUs; email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) if you need that.
 
 ## SNAPP path sampling as separate jobs
 

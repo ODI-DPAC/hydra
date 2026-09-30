@@ -4,11 +4,11 @@ The [SPAdes](https://github.com/ablab/spades) assembler handles microbial and or
 
 ## Memory
 
-Give `spades.py` the memory the job reserved, in GB, with `-m`: a job with `-l mres=96G` runs `spades.py -m 96`. Without `-m`, SPAdes assumes 250 GB and the scheduler kills it when it exceeds the job's limit.
+Give `spades.py` the memory the job reserved, in GB, with `-m`. A job with `-l mres=96G` runs `spades.py -m 96`. Without `-m`, SPAdes assumes 250 GB and the scheduler kills it when it exceeds the job's limit.
 
 ## Temporary files
 
-`spades.py` creates many temporary files, over a million with the `--careful` option, whose mismatch-correction stage writes a separate file for each contig. On `/scratch` this is slow and counts against your file quota. Put them on the node's local SSD instead: request the space with `-l ssd_res=SIZE`, load `tools/ssd`, and pass `--tmp-dir $SSD_DIR` (see [Use a node's local SSD](../../storage/ssd.md)). `-v SSD_SAVE_MAX=0` tells the scheduler not to save anything left on the SSD when the job ends; the temporary files are not needed.
+`spades.py` creates many temporary files, over a million with the `--careful` option, whose mismatch-correction stage writes a separate file for each contig. On `/scratch` this is slow and counts against your file quota. Put them on the node's local SSD instead. Request the space with `-l ssd_res=SIZE`, load `tools/ssd`, and pass `--tmp-dir $SSD_DIR` (see [Use a node's local SSD](../../storage/ssd.md)). `-v SSD_SAVE_MAX=0` tells the scheduler not to save anything left on the SSD when the job ends, because the temporary files are not needed.
 
 ```sh title="spades.job"
 #$ -S /bin/sh

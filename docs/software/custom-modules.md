@@ -2,7 +2,7 @@
 
 Software you installed yourself, a package built under your home directory or a Miniconda, gets a module file of its own, so that one `module load` line puts it on your path in a session or a job, in either shell.
 
-A module file is a text file in Tcl. Most need three or four lines: the first line must be `#%Module1.0`, and the rest set or extend environment variables. `man modulefile` lists every command.
+A module file is a text file in Tcl. Most need three or four lines. The first line must be `#%Module1.0`, and the rest set or extend environment variables. `man modulefile` lists every command.
 
 ## Write the file
 
@@ -61,4 +61,4 @@ A module file is a text file in Tcl. Most need three or four lines: the first li
     module load crunch
     ```
 
-The system module files are under `/share/apps/modulefiles` and are the best examples of what a module file can do; `module show NAME` prints what any of them does.
+The system module files are under `/share/apps/modulefiles` and are the best examples of what a module file can do. `module show NAME` prints what any of them does.

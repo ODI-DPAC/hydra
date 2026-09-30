@@ -10,9 +10,9 @@ Hydra has three compiler families, each with its own numerical libraries and MPI
 | Intel oneAPI | `intel` | `icx`, `icpx`, `ifx`; classic `icc`, `icpc`, `ifort` in older versions | 2021.3 to 2025.3 | 2024.0 |
 | NVIDIA HPC SDK | `nvidia` | `nvc`, `nvc++`, `nvfortran`, `nvcc` | 21.9 to 25.9 | 23.9 |
 
-`module load gcc` loads the default; `module load gcc/13.2.0` a specific version. `module -t avail 2>&1 | grep '^gcc/'` lists every version of a family (`intel/`, `nvidia/` likewise). Compile, link and run a program with the same family and version; libraries and runtimes from different compilers do not mix.
+`module load gcc` loads the default; `module load gcc/13.2.0` a specific version. `module -t avail 2>&1 | grep '^gcc/'` lists every version of a family (`intel/`, `nvidia/` likewise). Compile, link and run a program with the same family and version, because libraries and runtimes from different compilers do not mix.
 
-Intel renamed its compilers with oneAPI in 2021 (`icx`, `icpx`, `ifx`); the classic names remain in the versions that ship them. The NVIDIA compilers are the former PGI compilers; there is no separate PGI module. `nvcc`, the CUDA compiler, is part of the NVIDIA module; see [GPUs](gpus.md).
+Intel renamed its compilers with oneAPI in 2021 (`icx`, `icpx`, `ifx`). The classic names remain in the versions that ship them. The NVIDIA compilers are the former PGI compilers; there is no separate PGI module. `nvcc`, the CUDA compiler, is part of the NVIDIA module; see [GPUs](gpus.md).
 
 ## Libraries
 
@@ -26,7 +26,7 @@ The NVIDIA LAPACK build hangs or crashes in some cases; `~hpc/examples/lapack/nv
 
 ## MPI
 
-Every MPI implementation has a build for each compiler family. Load the module that matches the compiler the program was built with and the implementation it was linked against; the module also defines `mpirun` for that build.
+Every MPI implementation has a build for each compiler family. Load the module that matches the compiler the program was built with and the implementation it was linked against. The module also defines `mpirun` for that build.
 
 | Module | Implementation | Parallel environment |
 |---|---|---|
@@ -35,7 +35,7 @@ Every MPI implementation has a build for each compiler family. Load the module t
 | `intel/YY/mpi` | Intel MPI | as in `~hpc/examples/mpi/intel` |
 | `nvidia/YY/mpi` | NVIDIA's bundled OpenMPI | `-pe ompi N` |
 
-`V.R` is the GCC major and minor version (`gcc/13.2/openmpi`); `YY` is the Intel or NVIDIA release year (`intel/24/openmpi`, `nvidia/24/mvapich`). The current module names are on the [Job script reference](../jobs/job-scripts.md#mpi-modules).
+`V.R` is the GCC major and minor version (`gcc/13.2/openmpi`), and `YY` is the Intel or NVIDIA release year (`intel/24/openmpi`, `nvidia/24/mvapich`). The current module names are on the [Job script reference](../jobs/job-scripts.md#mpi-modules).
 
 Build and run with the module loaded:
 
@@ -45,7 +45,7 @@ $ mpicc -O2 -o hello hello.c        # mpif90 for Fortran, mpicxx for C++
 $ mpirun -np 4 ./hello               # a short test on a login node; anything longer is a job
 ```
 
-In a job, the slot count comes from `$NSLOTS` and the node list from `$PE_HOSTFILE` (OpenMPI) or `$TMPDIR/machines` (MVAPICH); see [Submit an MPI job](../jobs/parallel.md#submit-an-mpi-job). `~hpc/examples/mpi` has a hello-world build for every compiler and implementation, described in its `README`.
+In a job, the slot count comes from `$NSLOTS` and the node list from `$PE_HOSTFILE` (OpenMPI) or `$TMPDIR/machines` (MVAPICH). See [Submit an MPI job](../jobs/parallel.md#submit-an-mpi-job). `~hpc/examples/mpi` has a hello-world build for every compiler and implementation, described in its `README`.
 
 ## OpenMP
 
@@ -61,4 +61,10 @@ An OpenMP program reads its thread count from `OMP_NUM_THREADS`; in a job, set i
 export OMP_NUM_THREADS=$NSLOTS
 ```
 
-A multi-threaded program runs on one node, so its threads and memory are bounded by the largest node; an MPI program spans nodes. `~hpc/examples/openmp` has an OpenMP build for each compiler. NVIDIA's compilers also accept OpenACC directives and CUDA Fortran for GPU code; see [GPUs](gpus.md).
+A multi-threaded program runs on one node, so its threads and memory are bounded by the largest node. An MPI program spans nodes. `~hpc/examples/openmp` has an OpenMP build for each compiler. NVIDIA's compilers also accept OpenACC directives and CUDA Fortran for GPU code; see [GPUs](gpus.md).
+
+## Further reading
+
+- [Submit a parallel job](../jobs/parallel.md) for running the result under the scheduler
+- [Examples](../jobs/examples.md) for a tested build and job file per compiler and MPI
+- [Write a module file](custom-modules.md) for making your build loadable in jobs

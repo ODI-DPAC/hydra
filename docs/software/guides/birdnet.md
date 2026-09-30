@@ -1,6 +1,6 @@
 # BirdNET
 
-[BirdNET-Analyzer](https://birdnet-team.github.io/BirdNET-Analyzer/) identifies bird species in audio recordings with a deep-learning model covering more than 6,000 species. Two modules provide version 2.4.0: `bio/birdnet` (the default) for analysis, on CPUs, and `bio/birdnet/2.4.0-gpu` for training custom classifiers on a GPU. Both provide `birdnet-analyze`, `birdnet-segments`, `birdnet-species`, `birdnet-train`, `birdnet-evaluate`, `birdnet-embeddings`, `birdnet-search` and `ffprobe`; the model comes with them, so jobs need no network access.
+[BirdNET-Analyzer](https://birdnet-team.github.io/BirdNET-Analyzer/) identifies bird species in audio recordings with a deep-learning model covering more than 6,000 species. Two modules provide version 2.4.0. `bio/birdnet` (the default) is for analysis, on CPUs, and `bio/birdnet/2.4.0-gpu` is for training custom classifiers on a GPU. Both provide `birdnet-analyze`, `birdnet-segments`, `birdnet-species`, `birdnet-train`, `birdnet-evaluate`, `birdnet-embeddings`, `birdnet-search` and `ffprobe`. The model comes with them, so jobs need no network access.
 
 The models are licensed CC BY-NC-SA 4.0, for non-commercial use. Cite Kahl, Wood, Eibl and Klinck (2021), *Ecological Informatics* 61:101236.
 
@@ -16,7 +16,7 @@ $ for f in /scratch/genomics/USERNAME/audio/*; do ffprobe -v error -show_entries
 
 ## Analyse recordings
 
-Analysis runs on CPUs; do not request a GPU. `--threads` parallelises across files, one file per thread, so request no more slots than the directory has files. TensorFlow needs about 6 GB of virtual memory even for one file: keep slots × `h_data` at 8 GB or more (for one slot, `-l mres=8G,h_data=8G,h_vmem=8G`).
+Analysis runs on CPUs; do not request a GPU. `--threads` parallelises across files, one file per thread, so request no more slots than the directory has files. TensorFlow needs about 6 GB of virtual memory even for one file, so keep slots × `h_data` at 8 GB or more (for one slot, `-l mres=8G,h_data=8G,h_vmem=8G`).
 
 ```sh title="birdnet.job"
 #$ -S /bin/sh
@@ -73,4 +73,4 @@ To analyse recordings with the trained classifier, run `birdnet-analyze` from th
 
 ## Errors
 
-BirdNET writes its error log to `~/birdnet_error_log.txt`; read it when a run fails without a clear message in the job log. `BUILD_INFO.txt` in each installation directory records the patches applied to the upstream package on Hydra.
+BirdNET writes its error log to `~/birdnet_error_log.txt`. Read it when a run fails without a clear message in the job log. `BUILD_INFO.txt` in each installation directory records the patches applied to the upstream package on Hydra.

@@ -1,6 +1,6 @@
 # GPUs
 
-A job requests a GPU like any other resource, and the scheduler assigns it specific cards. This page shows you how to make the request, what your job is given, and how to build and watch GPU code. A GPU helps only a program written for NVIDIA GPUs, through CUDA or a framework built on it; a program that does not use a GPU gains nothing from a GPU queue.
+A job requests a GPU like any other resource, and the scheduler assigns it specific cards. This page shows you how to make the request, what your job is given, and how to build and watch GPU code. A GPU helps only a program written for NVIDIA GPUs, through CUDA or a framework built on it. A program that does not use a GPU gains nothing from a GPU queue.
 
 Hydra has 8 GPUs on three nodes:
 
@@ -11,16 +11,16 @@ Hydra has 8 GPUs on three nodes:
 
 ## Request a GPU
 
-1. Add the two required resources to the job: `gpu`, which admits the job to a GPU queue, and `ngpus=N`, the number of GPUs the job uses. The scheduler requires both; a job with `gpu` but no `ngpus` goes into `Eqw` and never runs.
+1. Add the two required resources to the job. `gpu` admits the job to a GPU queue, and `ngpus=N` is the number of GPUs the job uses. The scheduler requires both; a job with `gpu` but no `ngpus` goes into `Eqw` and never runs.
 
     ```sh
     #$ -q sTgpu.q
     #$ -l gpu,ngpus=1
     ```
 
-2. Add CPU slots on the same node if the program uses more than one CPU, with `-pe mthread Z`. Leave it off for a serial program. `ngpus` is per job, not per slot: `-pe mthread 8 -l gpu,ngpus=2` is 8 CPUs and 2 GPUs.
+2. Add CPU slots on the same node if the program uses more than one CPU, with `-pe mthread Z`. Leave it off for a serial program. `ngpus` is per job, not per slot, so `-pe mthread 8 -l gpu,ngpus=2` is 8 CPUs and 2 GPUs.
 
-3. Pick the queue by the time the job needs: `sTgpu.q` (7 h CPU, 14 h elapsed), `mTgpu.q` (6 d, 12 d) or `lTgpu.q` (30 d, 60 d), each with 64 GB resident and 128 GB virtual memory per slot. Memory limits multiply by `Z`, and the GV100 nodes have 125 GB in total, so a large per-slot request with several slots fits only on `compute-50-01`.
+3. Pick the queue by the time the job needs. `sTgpu.q` allows 7 hours of CPU time and 14 hours elapsed, `mTgpu.q` 6 and 12 days, and `lTgpu.q` 30 and 60 days, each with 64 GB resident and 128 GB virtual memory per slot. Memory limits multiply by `Z`, and the GV100 nodes have 125 GB in total, so a large per-slot request with several slots fits only on `compute-50-01`.
 
 4. To require a specific card, add `gpuarch`:
 
@@ -59,9 +59,9 @@ $ qrsh -l gpu,ngpus=1
 
 ## What the job gets
 
-The scheduler assigns specific GPUs and sets two variables: `SGE_HGR_GPUS`, the assigned devices as `gpu0 gpu1`, and `CUDA_VISIBLE_DEVICES`, the same as `0,1`. CUDA programs and frameworks read `CUDA_VISIBLE_DEVICES` and see only those GPUs. The scheduler does not confine the job to them: a program that addresses a GPU by absolute index instead of through `CUDA_VISIBLE_DEVICES` collides with another job's GPU.
+The scheduler assigns specific GPUs and sets two variables. `SGE_HGR_GPUS` holds the assigned devices as `gpu0 gpu1`, and `CUDA_VISIBLE_DEVICES` holds the same as `0,1`. CUDA programs and frameworks read `CUDA_VISIBLE_DEVICES` and see only those GPUs. The scheduler does not confine the job to them, so a program that addresses a GPU by absolute index instead of through `CUDA_VISIBLE_DEVICES` collides with another job's GPU.
 
-The GPUs run in exclusive-process mode: each GPU serves one process at a time. A program that starts more processes than the job has GPUs fails with `all CUDA-capable devices are busy or unavailable`. Request CPU slots in proportion to the GPUs the job uses; a job that holds most of a node's CPUs with one GPU leaves the node's other GPUs unusable.
+The GPUs run in exclusive-process mode, in which each GPU serves one process at a time. A program that starts more processes than the job has GPUs fails with `all CUDA-capable devices are busy or unavailable`. Request CPU slots in proportion to the GPUs the job uses. A job that holds most of a node's CPUs with one GPU leaves the node's other GPUs unusable.
 
 ## Limits
 
@@ -107,3 +107,9 @@ $ nvidia-smi --query-gpu=name,index,memory.used,utilization.gpu --format=csv -l 
 ```
 
 `man nvidia-smi` is on the login nodes. `qacct+ -j JOBID -show +gpus,gpu_usage` reports a finished job's GPU assignment and use (see [Monitoring tools](../jobs/tools.md#qacct)).
+
+## Further reading
+
+- [Queues](../jobs/queues.md) for the GPU queues' limits
+- [Cluster hardware](../jobs/hardware.md) for the nodes and their GPUs
+- [Examples](../jobs/examples.md) for the tested GPU jobs under `~hpc/examples/gpu`
