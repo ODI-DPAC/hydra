@@ -1,6 +1,6 @@
 # Backups
 
-No partition on Hydra is backed up in a way you can restore from yourself. Two mechanisms exist, with different purposes: snapshots, which you use to get back a recently deleted or overwritten file, and a disaster-recovery copy of `/home` and `/data`, which exists to rebuild those partitions if the storage system fails.
+No partition on Hydra is backed up in a way you can restore from yourself. Two mechanisms exist, with different purposes. Snapshots are what you use to get back a recently deleted or overwritten file. The disaster-recovery copy of `/home` and `/data` exists to rebuild those partitions if the storage system fails.
 
 | Partition | Snapshots | Disaster-recovery copy | Scrubbed |
 |---|---|---|---|
@@ -16,7 +16,7 @@ Use snapshots to recover a file you deleted or overwrote within the retention pe
 
 ## Disaster recovery
 
-The Glacier copy of `/home` and `/data` is for rebuilding a partition after a storage failure. It is not for restoring individual files: a restore from Glacier takes staff time and is billed by Amazon, so a request needs a justification, and the requester may be asked to contribute to the cost. The HPC team keeps the copies for up to a year.
+The Glacier copy of `/home` and `/data` is for rebuilding a partition after a storage failure. It is not for restoring individual files. A restore from Glacier takes staff time and is billed by Amazon, so a request needs a justification, and the requester may be asked to contribute to the cost. The HPC team keeps the copies for up to a year.
 
 ## Long-term storage
 

@@ -1,6 +1,6 @@
 # Use a node's local SSD
 
-Some compute nodes have a local solid-state disk that a job can use for its working files. It pays only for a job that reads and writes intensively; a job whose time goes to computation gains nothing and takes a limited resource. The SSD is visible only to the job, only while it runs, and only from the node it runs on, so the job copies its input in at the start and its results out at the end.
+Some compute nodes have a local solid-state disk that a job can use for its working files. It pays only for a job that reads and writes intensively. A job whose time goes to computation gains nothing and takes a limited resource. The SSD is visible only to the job, only while it runs, and only from the node it runs on, so the job copies its input in at the start and its results out at the end.
 
 !!! danger "Everything on the SSD is deleted when the job is killed"
 
@@ -17,7 +17,7 @@ Some compute nodes have a local solid-state disk that a job can use for its work
 
     Files the job only reads occasionally, and configuration files, can stay on `/scratch`.
 
-2. Request the SSD space the job needs, as `-l ssd_res=SIZE`. The scheduler then places the job on a node with an SSD and reserves that much; the job cannot write more than it reserved.
+2. Request the SSD space the job needs, as `-l ssd_res=SIZE`. The scheduler then places the job on a node with an SSD and reserves that much. The job cannot write more than it reserved.
 
 3. In the job file, load `tools/ssd` and copy or unpack the input into `$SSD_DIR`, the directory the module points at:
 
@@ -103,3 +103,8 @@ $ plot-qssduse-summary            # SSD use across the cluster
 ```
 
 `JOBID.TASKID` selects one task of an array. `man plot-qssduse` has the options.
+
+## Further reading
+
+- [Request a queue, memory and CPUs](../jobs/request-resources.md) for the other resources a job can request
+- [Examples](../jobs/examples.md) for the tested SSD job under `~hpc/examples/ssd`

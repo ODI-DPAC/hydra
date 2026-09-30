@@ -1,6 +1,6 @@
 # Recover a file from a snapshot
 
-`/home`, `/data` and the project `/store` partitions keep read-only snapshots of their contents: `/home` for 4 weeks, `/data` for 2 weeks, `/store` for 8 weeks. You copy a file you deleted or overwrote within that time back from the snapshot. 
+`/home`, `/data` and the project `/store` partitions keep read-only snapshots of their contents, for 4 weeks on `/home`, 2 weeks on `/data` and 8 weeks on `/store`. You copy a file you deleted or overwrote within that time back from the snapshot. 
 !!! danger "`/scratch` has no snapshots"
 
     A file you delete from `/scratch` cannot be recovered. The HPC team can restore only files the [scrubber](scrubber.md) removed, and only for about ten days.
@@ -32,7 +32,7 @@
     cp -pi results.csv /data/genomics/USERNAME/analysis/results/results-old.csv
     ```
 
-Files under `.snapshot` can be read and copied (with `cp`, `tar` or `rsync`) but not moved or deleted. `/home` works the same way: `/home/.snapshot/`.
+Files under `.snapshot` can be read and copied (with `cp`, `tar` or `rsync`) but not moved or deleted. `/home` works the same way, under `/home/.snapshot/`.
 
 ## Recover a file on /store
 
@@ -46,4 +46,9 @@ $ cp -pi /store/PROJECT/.zfs/snapshot/auto-260917.0230-8w/USERNAME/data.tar /sto
 
 `/store` is mounted on the login and interactive nodes only.
 
-A snapshot lives on the same storage system as the partition, so it does not protect against a failure of that system; [Backups](backups.md) describes what does.
+A snapshot lives on the same storage system as the partition, so it does not protect against a failure of that system. [Backups](backups.md) describes what does.
+
+## Further reading
+
+- [Backups](backups.md) for the disaster-recovery copy and what it is for
+- [Filesystems](filesystems.md) for the snapshot schedule of each partition

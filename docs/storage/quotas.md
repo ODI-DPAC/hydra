@@ -69,7 +69,7 @@ nas1:/mnt/pool/PROJECT                 175.00T   94.03T   80.97T  54%/1%   /stor
 ## Reduce your usage
 
 1. Delete input and intermediate files from finished jobs.
-2. Compress large files that are not being read: `gzip FILE`.
+2. Compress large files that are not being read, with `gzip FILE`.
 3. Archive a directory of small files into one file, then delete the directory:
 
     ```bash
@@ -81,4 +81,10 @@ nas1:/mnt/pool/PROJECT                 175.00T   94.03T   80.97T  54%/1%   /stor
 
 4. Move data that is finished with [off Hydra](../data-transfer/index.md).
 
-On `/data` and `/home`, space from deleted files is not freed until the snapshots holding them age out (2 and 4 weeks); see [Recover a file from a snapshot](snapshots.md). `/scratch` frees it at once.
+On `/data` and `/home`, space from deleted files is not freed until the snapshots holding them age out, after 2 and 4 weeks. See [Recover a file from a snapshot](snapshots.md). `/scratch` frees it at once.
+
+## Further reading
+
+- [Filesystems](filesystems.md) for the quota of each partition and what it is for
+- [Recover a file from a snapshot](snapshots.md) for why deleted files on `/home` and `/data` do not free space at once
+- [Data transfer](../data-transfer/index.md) for moving results off the cluster

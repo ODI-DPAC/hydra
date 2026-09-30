@@ -17,7 +17,7 @@ The scrubber tools are in the `tools/scrubber` module. `module help tools/scrubb
 
 2. Move anything you still need to `/data`, or off Hydra, before the next Sunday.
 
-`find-scrub` reads every file in the tree, which loads the file server; run it on the directories you care about, not on all of `/scratch`.
+`find-scrub` reads every file in the tree, which loads the file server. Run it on the directories you care about, not on all of `/scratch`.
 
 ## Find out what was scrubbed
 
@@ -69,3 +69,8 @@ The HPC team restores files only while they are in the staging area, for a list 
     After that no restore is possible. Files in the staging area still count against your quota until then.
 
 A restored file gets a new change time (`ctime`), which is what the scrubber measures, so it is safe for another 180 days. `stat FILE` shows it.
+
+## Further reading
+
+- [Filesystems](filesystems.md#scrubbing) for the scrubbing rules
+- [Backups](backups.md) for what is and is not protected
