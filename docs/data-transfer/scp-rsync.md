@@ -2,7 +2,7 @@
 
 **scp**, **sftp** and **rsync** are the standard Unix tools for copying files over an ssh connection. `scp` copies files with a single command. `sftp` opens a session in which you move around and copy files one at a time. `rsync` copies whole directories and, on a second run, only what has changed. Hydra's login nodes accept all three from any computer on the Smithsonian network or the SI VPN. Graphical clients such as WinSCP and FileZilla use the same protocol and work the same way. From Hydra outward, the same tools reach any host that accepts an ssh connection from the login nodes.
 
-The three tools are installed by default on macOS and Linux. Windows 10 (version 1803 and later) and Windows 11 include `scp` and `sftp`. `rsync` is not part of Windows; use it through the Windows Subsystem for Linux (WSL), or use a graphical client instead.
+The three tools are installed by default on macOS and Linux. Windows 10 (version 1803 and later) and Windows 11 include `scp` and `sftp`. `rsync` is not part of Windows. Use it through the Windows Subsystem for Linux (WSL), or use a graphical client instead.
 
 !!! tip "Use rsync for anything over about 70 GB"
 
@@ -62,7 +62,7 @@ See what a run would copy without copying anything:
 $ rsync -avzn project/ USERNAME@hydra-login01.si.edu:/scratch/genomics/USERNAME/project/
 ```
 
-The options mean the following. `-a` copies directories recursively and keeps permissions and times. `-v` lists each file as it goes. `-z` compresses in transit. `-n` is the dry run. A trailing slash on the source copies the directory's contents; without it, `rsync` copies the directory itself into the destination. `man rsync` covers the rest.
+The options mean the following. `-a` copies directories recursively and keeps permissions and times. `-v` lists each file as it goes. `-z` compresses in transit. `-n` is the dry run. A trailing slash on the source copies the directory's contents. Without it, `rsync` copies the directory itself into the destination. `man rsync` covers the rest.
 
 ## Use sftp
 
