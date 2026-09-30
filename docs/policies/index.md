@@ -13,7 +13,7 @@ Email [SI-HPC@si.edu](mailto:SI-HPC@si.edu). Include the following, so that we c
 - the full command or the job file, and the error message copied exactly
 - what you expected to happen instead
 
-Two things go to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) instead: replies to warning emails about hosed or oversubscribed jobs (see [Usage policies](usage.md#oversubscribed-and-inefficient-jobs)), and requests to unlock an account whose password expired more than 14 days ago (see [Logging in and passwords](../getting-started/login.md)). For a new account or VPN access, see [Requesting an account](../getting-started/account.md).
+Two things go to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) instead. One is a reply to a warning email about a hosed or oversubscribed job (see [Usage policies](usage.md#oversubscribed-and-inefficient-jobs)). The other is a request to unlock an account whose password expired more than 14 days ago (see [Logging in and passwords](../getting-started/login.md)). For a new account or VPN access, see [Requesting an account](../getting-started/account.md).
 
 ## Before you write
 

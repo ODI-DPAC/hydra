@@ -2,7 +2,7 @@
 
 [Globus](https://www.globus.org/) is a service for moving data between storage systems. You set a transfer up in a web browser, and Globus runs it for you. It retries after network failures, checks that every file arrived intact, and emails you when it is done. Nothing has to stay logged in while it runs. We recommend it for transfers of hundreds of gigabytes, for data at another institution, and for any transfer that has to survive a closed laptop.
 
-More in-depth instructions for using Globus beyond Hydra are available at <https://smithsonian.github.io/globus-docs/>. This page covers the Hydra side: signing in with your SI account, finding the Hydra collections, and running a transfer.
+More in-depth instructions for using Globus beyond Hydra are available at <https://smithsonian.github.io/globus-docs/>. This page covers the Hydra side, which is signing in with your SI account, finding the Hydra collections, and running a transfer.
 
 Four terms come up in every step.
 

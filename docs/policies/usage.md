@@ -4,7 +4,7 @@ Hydra is an official Smithsonian asset. Everything on it is subject to the Insti
 
 ## Accounts
 
-Anyone with an active Smithsonian network account can request a Hydra account through the [HPC Account Request](https://smithsonianprod.servicenowservices.com/si?id=sc_cat_item&sys_id=962e05331b96e05078932f41f54bcb3b&sysparm_category=8b5b9d421b601410520ba82eac4bcb65) form. The form collects your name, your unit or department, your supervisor's name and approval, and a sentence or two on the work you plan to do on Hydra. Keep that information current; if your supervisor changes or leaves, or someone else should be contacted about your account and data, tell us.
+Anyone with an active Smithsonian network account can request a Hydra account through the [HPC Account Request](https://smithsonianprod.servicenowservices.com/si?id=sc_cat_item&sys_id=962e05331b96e05078932f41f54bcb3b&sysparm_category=8b5b9d421b601410520ba82eac4bcb65) form. The form collects your name, your unit or department, your supervisor's name and approval, and a sentence or two on the work you plan to do on Hydra. Keep that information current. If your supervisor changes or leaves, or someone else should be contacted about your account and data, tell us.
 
 Accounts for temporary appointments (students, postdocs, fellows, contractors) are renewed once a year. When an account expires we email the user and the supervisor at the address in the user's `~/.forward` file. If neither replies within 30 days, the account's data is subject to deletion.
 
@@ -23,7 +23,7 @@ We reserve the right to suspend, cancel or modify accounts, quotas on the public
 
 Hydra is shared by more than a hundred users, and the cluster works only if each of them treats it that way. In practice that means:
 
-- Do not run analyses on the login nodes or the head node. The login nodes are for editing, compiling, transfers and short tests; the [scheduler](../jobs/concepts.md) is how work reaches the compute nodes. Processes that compute on a login node are slowed, then killed.
+- Do not run analyses on the login nodes or the head node. The login nodes are for editing, compiling, transfers and short tests. The [scheduler](../jobs/concepts.md) is how work reaches the compute nodes. Processes that compute on a login node are slowed, then killed.
 - Watch your own jobs. You are responsible for monitoring their state and progress, and you should be reachable while they run, so that you can adjust them if something is wrong.
 - Start small. Before submitting many similar jobs, run one or a few, check what they used with `qacct`, and size the rest from that.
 - Estimate what you need. CPU time, memory and disk space are all limited, and a request far above what a job uses holds the excess back from everyone else. Know roughly how your needs scale with the size of your analysis.
@@ -36,7 +36,7 @@ Systematic abuse of a scarce resource (memory, disk space, and the local SSDs in
 Hydra's disks are not archival storage. They are reliable, but the Smithsonian is not responsible for data lost on Hydra, and you should have no expectation that files stored there will survive in the long term. Keep a copy of anything you cannot afford to lose somewhere else.
 
 - `/home` and `/data` have snapshots, and a disaster-recovery copy exists so that the partitions can be rebuilt after a storage failure. That copy is not a backup you can restore files from; see [Backups](../storage/backups.md).
-- `/scratch/public` is not backed up, and files older than 180 days are removed by the scrubber every week; see [Scrubbed files and restores](../storage/scrubber.md).
+- `/scratch/public` is not backed up, and files older than 180 days are removed by the scrubber every week. See [Scrubbed files and restores](../storage/scrubber.md).
 - Every public disk has a quota; see [Filesystems](../storage/filesystems.md).
 - Put large files and the working data of analyses on `/scratch`. `/home` and `/data` have small quotas for a reason.
 - When an account expires, its data is subject to deletion 30 days later unless something else has been agreed. A user leaving the Smithsonian either saves their data or hands responsibility for it to their supervisor before they go.
@@ -76,4 +76,4 @@ $ echo you@si.edu > ~/.forward
 
 ## Contact
 
-Questions and requests go to [SI-HPC@si.edu](mailto:SI-HPC@si.edu). Two things go to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu): replies to warning emails about hosed and oversubscribed jobs, and requests to unlock an account whose password has expired. [Getting help](index.md#getting-help) says what to include.
+Questions and requests go to [SI-HPC@si.edu](mailto:SI-HPC@si.edu). Two things go to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu). One is a reply to a warning email about a hosed or oversubscribed job. The other is a request to unlock an account whose password has expired. [Getting help](index.md#getting-help) says what to include.
