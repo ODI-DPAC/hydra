@@ -21,3 +21,8 @@ The login, interactive and compute nodes have Singularity CE 4.4, with no module
     ```
 
 A container that uses a GPU needs `--nv` on the `singularity` command and a [GPU request](gpus.md) on the job. `~hpc/examples/containers` has working examples (`lolcow.job`, `test1.job`, `test2.job`) with their logs. The Singularity CE user guide at <https://docs.sylabs.io/guides/latest/user-guide/> covers the command itself.
+
+## Further reading
+
+- [Examples](../jobs/examples.md) for the tested container job under `~hpc/examples/containers`
+- [Singularity documentation](https://docs.sylabs.io/) from the project

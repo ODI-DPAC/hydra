@@ -1,6 +1,6 @@
 # Julia, MATLAB, IDL and Java
 
-Four languages need something Hydra-specific to run in a job: a module, a runtime license, or a start-up option that keeps the program to the memory and CPUs the job requested.
+Four languages need something Hydra-specific to run in a job, whether a module, a runtime license, or a start-up option that keeps the program to the memory and CPUs the job requested.
 
 ## Julia
 
@@ -13,7 +13,7 @@ $ module load tools/julia/1.6.3
 
 ## MATLAB
 
-MATLAB itself is not installed: there is no MATLAB license on Hydra. The MATLAB Runtime is, so a MATLAB program compiled elsewhere with the MATLAB Compiler runs here.
+MATLAB itself is not installed, because there is no MATLAB license on Hydra. The MATLAB Runtime is, so a MATLAB program compiled elsewhere with the MATLAB Compiler runs here.
 
 1. Compile the program with MATLAB Compiler on a machine that has it, for the runtime version you will load.
 2. In the job file, load the matching runtime (`module load matlab/R2025b`) and start the compiled program through the launcher script the compiler produced. The module sets the runtime location the launcher needs; `~hpc/examples/matlab/README` shows a complete job.
@@ -22,7 +22,7 @@ MATLAB itself is not installed: there is no MATLAB license on Hydra. The MATLAB 
 
 ## IDL
 
-Hydra has 5 interactive IDL licenses and 128 runtime licenses, for IDL 8.7 to 9.2. The interactive licenses are for preparing and checking code on a login node; jobs use the runtime licenses, which the scheduler counts (see [Resource limits](../jobs/limits.md)).
+Hydra has 5 interactive IDL licenses and 128 runtime licenses, for IDL 8.7 to 9.2. The interactive licenses are for preparing and checking code on a login node. Jobs use the runtime licenses, which the scheduler counts (see [Resource limits](../jobs/limits.md)).
 
 1. Compile the procedure and everything it calls into a save file, on a login node:
 

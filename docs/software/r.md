@@ -9,7 +9,7 @@ $ module load bio/R
 $ R --version
 ```
 
-`bio/R` loads R 4.4.0; `bio/R/4.4.1` selects another version, and `module -t avail 2>&1 | grep 'bio/R/'` lists them. `tools/R` and `bioinformatics/R` are aliases of `bio/R`. For a newer R than the modules provide, install it in a conda environment (see [Python and conda](python.md)) with `conda create -n r-env -c conda-forge r-base`.
+`bio/R` loads R 4.4.0. `bio/R/4.4.1` selects another version, and `module -t avail 2>&1 | grep 'bio/R/'` lists them. `tools/R` and `bioinformatics/R` are aliases of `bio/R`. For a newer R than the modules provide, install it in a conda environment (see [Python and conda](python.md)) with `conda create -n r-env -c conda-forge r-base`.
 
 ## Install packages
 
@@ -32,7 +32,7 @@ numcores <- as.integer(Sys.getenv("NSLOTS"))
 cl <- makeCluster(numcores, type = "FORK")
 ```
 
-`type = "FORK"` is required on Hydra: without it, the cluster's cleanup of orphaned processes kills the workers.
+`type = "FORK"` is required on Hydra, because without it the cluster's cleanup of orphaned processes kills the workers.
 
 R's linear-algebra libraries start one thread per CPU on the node unless told otherwise, which oversubscribes the node. Set `OMP_NUM_THREADS` in the job file before starting R:
 
@@ -58,7 +58,7 @@ echo = `date` job $JOB_NAME done
 
 ## R in a conda environment
 
-Several jobs activating the same R conda environment at once can hang: the environment's `activate.d/activate-r-base.sh` runs `R CMD javareconf`, and concurrent runs overwrite each other's files. Either edit that script so the line reads
+Several jobs activating the same R conda environment at once can hang. The environment's `activate.d/activate-r-base.sh` runs `R CMD javareconf`, and concurrent runs overwrite each other's files. Either edit that script so the line reads
 
 ```sh
 R CMD javareconf > /dev/null 2>&1 || true
@@ -67,3 +67,9 @@ R CMD javareconf > /dev/null 2>&1 || true
 or put the environment's `bin` directory on `PATH` in the job file instead of activating it, which works for most packages but skips the other variables activation sets.
 
 For help, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) with the full error message and whether you were using the RStudio server, RStudio on a node, or R from the command line.
+
+## Further reading
+
+- [RStudio server](../interactive/rstudio.md) for R in a browser on the dedicated node
+- [Python and conda](python.md) for conda environments, which also work for R packages
+- [Submit a parallel job](../jobs/parallel.md) for jobs that use several CPUs

@@ -1,6 +1,6 @@
 # BLAST
 
-BLAST matches query nucleotide or protein sequences against a database. The module is `bio/blast`. Loading it sets `BLASTDB` to the local copy of the NCBI databases under `/scratch/dbs/blast/v5`, so `-db nt` needs no path; the copies (nr, nt, refseq_protein, swissprot, taxdb, mito, core_nt) are listed under [Local databases](databases.md). NCBI's manual at <https://www.ncbi.nlm.nih.gov/books/NBK279675/> describes every option.
+BLAST matches query nucleotide or protein sequences against a database. The module is `bio/blast`. Loading it sets `BLASTDB` to the local copy of the NCBI databases under `/scratch/dbs/blast/v5`, so `-db nt` needs no path. The copies (nr, nt, refseq_protein, swissprot, taxdb, mito, core_nt) are listed under [Local databases](databases.md). NCBI's manual at <https://www.ncbi.nlm.nih.gov/books/NBK279675/> describes every option.
 
 ## Search a database
 
@@ -28,7 +28,7 @@ gzip queries.xml
 echo = `date` job $JOB_NAME done
 ```
 
-BLAST output is large and repetitive; compress it in the job, as above. Remove duplicate sequences from the input first. A query file in which most sequences hit uses memory in proportion to the hits and can exceed even a high-memory node; split such files (below).
+BLAST output is large and repetitive; compress it in the job, as above. Remove duplicate sequences from the input first. A query file in which most sequences hit uses memory in proportion to the hits and can exceed even a high-memory node. Split such files, as shown below.
 
 ## Build a database
 
@@ -48,7 +48,7 @@ echo = `date` job $JOB_NAME done
 
 ## Split a large search across jobs
 
-`-num_threads` parallelises one search on one node. For a large input, splitting the FASTA into files of 1,000 to 10,000 sequences and searching each in its own job finishes sooner and uses less memory per job. Concatenate the results afterwards. A [job array](../../jobs/arrays.md) does this from one job file; the loop below does it with one job per file.
+`-num_threads` parallelises one search on one node. For a large input, splitting the FASTA into files of 1,000 to 10,000 sequences and searching each in its own job finishes sooner and uses less memory per job. Concatenate the results afterwards. A [job array](../../jobs/arrays.md) does this from one job file. The loop below does it with one job per file.
 
 ```sh title="blast-part.job"
 #$ -S /bin/sh
@@ -66,4 +66,4 @@ echo = `date` job $JOB_NAME done
 $ for x in *.fa; do qsub -N blast-$x -o $x.log blast-part.job $x; done
 ```
 
-`$1` is the file name passed after the job file on the `qsub` line; see [Pass arguments to the job](../../jobs/submit.md#pass-arguments-to-the-job).
+`$1` is the file name passed after the job file on the `qsub` line. See [Pass arguments to the job](../../jobs/submit.md#pass-arguments-to-the-job).

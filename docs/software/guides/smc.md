@@ -1,6 +1,6 @@
 # SMC++
 
-[SMC++](https://github.com/popgenmethods/smcpp) infers population size history from whole-genome sequences. The module `bio/smc++` provides release 1.15.2; the developers publish later releases only as a [Docker image](https://hub.docker.com/r/terhorst/smcpp), which runs on Hydra under Singularity (see [Containers](../containers.md)).
+[SMC++](https://github.com/popgenmethods/smcpp) infers population size history from whole-genome sequences. The module `bio/smc++` provides release 1.15.2. The developers publish later releases only as a [Docker image](https://hub.docker.com/r/terhorst/smcpp), which runs on Hydra under Singularity (see [Containers](../containers.md)).
 
 ## Run the current version from the container
 
@@ -29,4 +29,4 @@
 
     This is the container form of `smc++ vcf2smc vcf.gz chr1.smc.gz chr1 CEU:NA12878,NA12879` with `vcf.gz` in the current directory.
 
-Put step 3 in a job file for anything longer than a test; a `singularity run` line needs no module.
+Put step 3 in a job file for anything longer than a test. A `singularity run` line needs no module.

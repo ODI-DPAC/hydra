@@ -14,7 +14,7 @@ Modules provide several Python installations, and conda installs anything else i
 | `tools/python/2.7` | 2.7.16, Anaconda | |
 | `intel/python/39-24.0` | 3.9.18, Intel | with the Intel 2024.0 compilers |
 
-`module load tools/python` in a session or a job file; `module -t avail 2>&1 | grep python` lists every version. The Anaconda builds include NumPy, SciPy, pandas, matplotlib and the rest of the Anaconda distribution; `pip list` after loading shows what is there. Packages you install with `pip install --user` go to `~/.local`, where only that Python version finds them.
+Run `module load tools/python` in a session or a job file. `module -t avail 2>&1 | grep python` lists every version. The Anaconda builds include NumPy, SciPy, pandas, matplotlib and the rest of the Anaconda distribution. `pip list` after loading shows what is there. Packages you install with `pip install --user` go to `~/.local`, where only that Python version finds them.
 
 ## Keep NumPy to the requested CPUs
 
@@ -41,7 +41,7 @@ echo = `date` job $JOB_NAME done
 
 ## Use conda
 
-Two ways to get conda, which do not mix: the preinstalled conda or mamba through a module, or a Miniconda you install yourself. Pick one. A `conda init` from one installation writes a block into `~/.bashrc` that breaks the other. If you switch, delete the block between `# >>> conda initialize >>>` and `# <<< conda initialize <<<`.
+There are two ways to get conda, and they do not mix. One is the preinstalled conda or mamba through a module. The other is a Miniconda you install yourself. Pick one. A `conda init` from one installation writes a block into `~/.bashrc` that breaks the other. If you switch, delete the block between `# >>> conda initialize >>>` and `# <<< conda initialize <<<`.
 
 !!! warning "Run `conda install` under `qrsh`, not on a login node"
 
@@ -85,7 +85,7 @@ Two ways to get conda, which do not mix: the preinstalled conda or mamba through
     echo = `date` job $JOB_NAME done
     ```
 
-Adding `module load tools/conda` and `start-conda` to `~/.bashrc` enables conda in every session; the job file still needs its own lines.
+Adding `module load tools/conda` and `start-conda` to `~/.bashrc` enables conda in every session. The job file still needs its own lines.
 
 ### Your own Miniconda
 
@@ -117,4 +117,10 @@ For software that needs a compiler, load the compiler module first (see [Compile
 
 ## Jupyter
 
-Jupyter runs on a compute node through an interactive session, with the notebook served to your browser through an SSH tunnel; see [Jupyter](../interactive/jupyter.md).
+Jupyter runs on a compute node through an interactive session, with the notebook served to your browser through an SSH tunnel. See [Jupyter](../interactive/jupyter.md).
+
+## Further reading
+
+- [Jupyter](../interactive/jupyter.md) for notebooks on a compute node
+- [Submit a parallel job](../jobs/parallel.md) for keeping NumPy and similar packages to the CPUs a job requested
+- [conda documentation](https://docs.conda.io/) from the conda project
