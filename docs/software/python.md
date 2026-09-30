@@ -1,6 +1,6 @@
 # Python and conda
 
-Modules provide several Python installations, and conda installs anything else into your own space. This page covers what is specific to Hydra. It tells you which Python modules exist, how to keep NumPy and similar packages to the CPUs a job requested, and how to use conda in sessions and in jobs. How conda itself works is in the conda documentation at <https://docs.conda.io/>.
+Modules provide several Python installations, and conda installs anything else into your own space. What is specific to Hydra is which Python modules exist, how to keep NumPy and similar packages to the CPUs a job requested, and how to use conda in sessions and in jobs. Those three things are below. How conda itself works is in the conda documentation at <https://docs.conda.io/>.
 
 ## Use an installed Python
 

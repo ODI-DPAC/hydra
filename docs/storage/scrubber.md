@@ -41,7 +41,7 @@ The scrubber tools are in the `tools/scrubber` module. `module help tools/scrubb
 
 ## Request a restore
 
-The HPC team restores files only while they are in the staging area, for a list you have trimmed to what you need, and not for everything that was scrubbed.
+We restore files only while they are in the staging area, for a list you have trimmed to what you need, and not for everything that was scrubbed.
 
 1. Write the list of scrubbed files under the directory you want back:
 

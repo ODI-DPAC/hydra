@@ -43,6 +43,6 @@ Groups with their own funding have dedicated partitions under `/scratch` and `/s
 
     `/scratch` has no snapshots and no backup. Move anything you need to keep to `/data` or off Hydra before it is 180 days old.
 
-A scrubber runs weekly and removes files on `/scratch/public` older than 180 days, and old empty directories. It holds the removed files in a staging area for about ten days before deleting them. During that time they still count against your quota, and the HPC team can restore them on request. See [Find scrubbed files and request a restore](scrubber.md). A restored file's change time (`ctime`) is reset, so it is safe for another 180 days.
+A scrubber runs weekly and removes files on `/scratch/public` older than 180 days, and old empty directories. It holds the removed files in a staging area for about ten days before deleting them. During that time they still count against your quota, and we can restore them on request. See [Find scrubbed files and request a restore](scrubber.md). A restored file's change time (`ctime`) is reset, so it is safe for another 180 days.
 
 None of the storage systems on Hydra are meant for [archival storage](backups.md#long-term-storage). Delete what you no longer need. Compress or archive sets of small files. `tar -czf archive.tgz dir/` replaces a directory with one file, and `tar -xf archive.tgz` unpacks it.

@@ -3,7 +3,7 @@
 `/home`, `/data` and the project `/store` partitions keep read-only snapshots of their contents, for 4 weeks on `/home`, 2 weeks on `/data` and 8 weeks on `/store`. You copy a file you deleted or overwrote within that time back from the snapshot. 
 !!! danger "`/scratch` has no snapshots"
 
-    A file you delete from `/scratch` cannot be recovered. The HPC team can restore only files the [scrubber](scrubber.md) removed, and only for about ten days.
+    A file you delete from `/scratch` cannot be recovered. We can restore only files the [scrubber](scrubber.md) removed, and only for about ten days.
 
 ## Recover a file on /home or /data
 
