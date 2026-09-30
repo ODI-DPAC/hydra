@@ -1,6 +1,6 @@
 # Submit a job array
 
-A job array runs one job file many times, each run with a different task ID. For more than a handful of similar runs it replaces a loop of `qsub` commands: one job file, one `qsub`, one job ID, and the scheduler starts the tasks as slots become free.
+A job array runs one job file many times, each run with a different task ID. For more than a handful of similar runs it replaces a loop of `qsub` commands. You submit one job file once, get one job ID, and the scheduler starts the tasks as slots become free.
 
 ## Submit an array
 
@@ -48,7 +48,7 @@ A job array runs one job file many times, each run with a different task ID. For
 | `-t 50-140:10` | 10 tasks, IDs 50, 60, ..., 140 |
 | `-t 20` | one task, ID 20 |
 
-An array has at most 10,000 tasks and counts as one job against the 2,500-job limit (see [Resource limits](limits.md)). `-t` combines with `-pe`: each task then starts as a [parallel job](parallel.md) with the requested slots. Do not add `-m abe` to a large array.
+An array has at most 10,000 tasks and counts as one job against the 2,500-job limit (see [Resource limits](limits.md)). `-t` combines with `-pe`, and each task then starts as a [parallel job](parallel.md) with the requested slots. Do not add `-m abe` to a large array.
 
 ## Turn the task ID into parameters
 
@@ -83,7 +83,7 @@ Most programs need more than an integer. Three ways to map the task ID to a run,
 
 ## Group short tasks into fewer jobs
 
-Starting a task costs the scheduler time; an array of 5,000 three-minute tasks spends a quarter to a half of its time starting and tracking tasks. A step size gives each task a block of IDs to loop over.
+Starting a task costs the scheduler time. An array of 5,000 three-minute tasks spends a quarter to a half of its time starting and tracking tasks. A step size gives each task a block of IDs to loop over.
 
 1. Set `-t` with a step, and compute the block in the job file:
 
@@ -125,4 +125,10 @@ Starting a task costs the scheduler time; an array of 5,000 three-minute tasks s
 
 3. Submit `domodel.job`. `-t 1-1000:20` starts 50 tasks with IDs 1, 21, 41, ..., 981, each running 20 models. The array finishes 1,000 models as 50 one-hour tasks instead of 1,000 three-minute ones.
 
-Choose the step to match the run time of one model; a step of 1 is right when each model runs for hours.
+Choose the step to match the run time of one model. A step of 1 is right when each model runs for hours.
+
+## Further reading
+
+- [Job script reference](job-scripts.md) for `-t`, `-tc` and `$SGE_TASK_ID`
+- [Resource limits](limits.md) for how many tasks may run at once
+- [Monitor and manage jobs](monitoring.md) for watching and deleting tasks

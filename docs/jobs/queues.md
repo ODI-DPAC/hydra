@@ -1,6 +1,6 @@
 # Queues
 
-Every job runs in a queue, and each queue limits CPU time, elapsed time and memory per CPU. The scheduler selects a queue from the resources a job requests unless the job names one with `-q`; with no options a job runs in `sThC.q`. The default Grid Engine queue `all.q` exists but has no slots. If you are deciding which queue to use, see [Request a queue, memory and CPUs](request-resources.md). If you want to know which nodes and how many slots stand behind each queue, see [Cluster hardware](hardware.md).
+Every job runs in a queue, and each queue limits CPU time, elapsed time and memory per CPU. The scheduler selects a queue from the resources a job requests unless the job names one with `-q`. With no options a job runs in `sThC.q`. The default Grid Engine queue `all.q` exists but has no slots. If you are deciding which queue to use, see [Request a queue, memory and CPUs](request-resources.md). If you want to know which nodes and how many slots stand behind each queue, see [Cluster hardware](hardware.md).
 
 ## Time classes
 
@@ -28,9 +28,9 @@ The hard limits are 15 minutes longer than the soft ones. At a soft limit the sc
 | `lTIO.sq` | 8 GB / 64 GB | `mthread` | jobs that read or write `/store`; 12 h CPU, 72 h elapsed | `-q lTIO.sq -l ioq` |
 | `lTWFM.sq` | 8 GB / 64 GB | `mthread` | a workflow manager that submits jobs; 6 d CPU, 30 d elapsed, 2 slots | `-q lTWFM.sq -l wfmq` |
 
-Memory limits are per slot: a job with `-pe mthread 4` in a high-CPU queue may use 4 × 8 GB. Only the high-CPU queues run multi-node (MPI and hybrid) jobs; in every other queue a parallel job fits on one node.
+Memory limits are per slot, so a job with `-pe mthread 4` in a high-CPU queue may use 4 × 8 GB. Only the high-CPU queues run multi-node (MPI and hybrid) jobs. In every other queue a parallel job fits on one node.
 
-[qrsh sessions](../interactive/qrsh.md) describes the interactive queues, [Use /store and the I/O queue](../storage/store.md) the I/O queue, and [GPUs](../software/gpus.md) the GPU queues. Jobs in `lTWFM.sq` run on the `@wfm-hosts` nodes, which can run `qsub`; one such job per user at a time.
+[qrsh sessions](../interactive/qrsh.md) describes the interactive queues, [Use /store and the I/O queue](../storage/store.md) the I/O queue, and [GPUs](../software/gpus.md) the GPU queues. Jobs in `lTWFM.sq` run on the `@wfm-hosts` nodes, which can run `qsub`. One such job per user runs at a time.
 
 ## Host groups
 

@@ -107,7 +107,7 @@ $ module load gcc/13.2/openmpi; ompi_info                 # details of an OpenMP
 $ module load gcc/13.2/mvapich; mpirun -info              # details of an MVAPICH build
 ```
 
-Every MPI module sets `MPILIB`, `MPIINC` and `MPIBIN`, sets one of `OPENMPI`, `MPICH` or `MVAPICH`, and defines `mpirun` as a shell function or alias for the matching version. `declare -f mpirun` (`sh`) or `alias mpirun` (`csh`) shows which one is active. OpenMPI is not OpenMP: OpenMPI passes messages between processes; OpenMP runs threads in one process.
+Every MPI module sets `MPILIB`, `MPIINC` and `MPIBIN`, sets one of `OPENMPI`, `MPICH` or `MVAPICH`, and defines `mpirun` as a shell function or alias for the matching version. `declare -f mpirun` (`sh`) or `alias mpirun` (`csh`) shows which one is active. OpenMPI is not OpenMP. OpenMPI passes messages between processes, and OpenMP runs threads in one process.
 
 ## Do not use `-V`
 

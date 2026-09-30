@@ -1,10 +1,10 @@
 # Write and submit a job
 
-The simplest job runs a program on one CPU: a job file, `qsub`, and an output file. Every other kind of job starts from the same file with more options. If you need more memory, CPUs or time, see [Request a queue, memory and CPUs](request-resources.md). If you have many similar runs, see [Submit a job array](arrays.md). If your program is threaded or uses MPI, see [Submit a parallel job](parallel.md).
+The simplest job runs a program on one CPU. It takes a job file, `qsub`, and an output file. Every other kind of job starts from the same file with more options. If you need more memory, CPUs or time, see [Request a queue, memory and CPUs](request-resources.md). If you have many similar runs, see [Submit a job array](arrays.md). If your program is threaded or uses MPI, see [Submit a parallel job](parallel.md).
 
 ## Submit a job
 
-1. Change to the directory the job runs in, under `/scratch` or `/data`:
+1. Change to the directory the job runs in, under `/scratch` or `/data`. The group directory under `/scratch` (`genomics` in the examples) is the one your welcome email names:
 
     ```bash
     cd /scratch/genomics/USERNAME/demo
@@ -45,9 +45,9 @@ The simplest job runs a program on one CPU: a job file, `qsub`, and an output fi
     = Wed Sep 23 10:09:52 EDT 2026 job crunch done
     ```
 
-The two `echo` lines record which node and queue the job ran in and when it started and finished. Keep them in every job file. Without `-cwd`, the job runs in your home directory; without `-o` and `-j y`, its output goes to `~/crunch.oJOBID` and `~/crunch.eJOBID`. [Job script reference](job-scripts.md) lists every option.
+The two `echo` lines record which node and queue the job ran in and when it started and finished. Keep them in every job file. Without `-cwd`, the job runs in your home directory. Without `-o` and `-j y`, its output goes to `~/crunch.oJOBID` and `~/crunch.eJOBID`. [Job script reference](job-scripts.md) lists every option.
 
-With no queue or resource options the job runs in `sThC.q`: 7 hours of CPU, 8 GB of memory. Anything larger needs a [queue, memory or CPU request](request-resources.md).
+With no queue or resource options the job runs in `sThC.q`, which allows 7 hours of CPU time and 8 GB of memory. Anything larger needs a [queue, memory or CPU request](request-resources.md).
 
 ## Pass arguments to the job
 
@@ -97,7 +97,7 @@ Do not request mail for every task of a large job array.
 
 ## Catch the time limit
 
-Each queue has a soft and a hard time limit 15 minutes apart. At the soft limit the scheduler sends the job a signal; at the hard limit it kills the job. A Bourne-shell script can catch the signal and save its state.
+Each queue has a soft and a hard time limit 15 minutes apart. At the soft limit the scheduler sends the job a signal. At the hard limit it kills the job. A Bourne-shell script can catch the signal and save its state.
 
 1. Put a `trap` before the command that does the work:
 
@@ -185,3 +185,10 @@ One user may have 2,500 jobs queued at once (see [Resource limits](limits.md)). 
     Add `-s p` to `qstat` to count only pending jobs.
 
 A [job array](arrays.md) counts as one job, so an array of 10,000 tasks needs neither.
+
+## Further reading
+
+- [Job script reference](job-scripts.md) for every `#$` option, the variables the scheduler sets, and the signals at the time limits
+- [Request a queue, memory and CPUs](request-resources.md) when the default queue is not enough
+- [Monitor and manage jobs](monitoring.md) for what to do once the job is running
+- [Examples](examples.md) for complete, tested job files under `~hpc/examples`

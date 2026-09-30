@@ -8,6 +8,8 @@ Open <https://hydra.si.edu/tools/QSubGen/> from the SI network, the SI VPN, or t
 
 ### Time and memory
 
+![The CPU time, Memory and VMem fields](../assets/img1.png)
+
 **CPU time** is the CPU time allowed to the job, per CPU. Type a value or pick one from the menu; the menu sets the text box. The job is killed when it reaches this limit. CPU time is time the processor spends on the job, not elapsed time. For a job with several CPUs the scheduler multiplies the CPU limit by the number of CPUs and leaves the elapsed-time limit alone. See [Time classes](queues.md#time-classes).
 
 **Memory** is the maximum memory the job uses, per CPU. Some programs come with a memory estimator; the form links to one for RAxML.
@@ -16,25 +18,37 @@ Open <https://hydra.si.edu/tools/QSubGen/> from the SI network, the SI VPN, or t
 
 ### Parallel environment
 
+![The parallel environment choice and the number of CPUs](../assets/img2.png)
+
 Choose serial (one CPU), multi-thread (several CPUs on one node) or MPI (CPUs spread over nodes), and the number of CPUs. The program's documentation and `module help MODULE` say which kinds of parallelism it supports. See [Parallel jobs](parallel.md).
 
 ### GPUs
+
+![The GPU choice and the number of GPUs](../assets/img3.png)
 
 Choose whether the job uses GPUs, which type, and how many. The program must be written to use a GPU. See [GPUs](../software/gpus.md).
 
 ### Shell
 
+![The shell choice](../assets/img4.png)
+
 Choose `sh`.
 
 ### Modules
+
+![The module search box with a module chosen](../assets/modules.png)
 
 Type the start of a program name to see the matching modules, and pick the one to load. A module without a version, such as `bioinformatics/raxml`, loads the newest installed version. See [Modules](../software/modules.md).
 
 ### Commands
 
+![The job commands box](../assets/commands.png)
+
 Enter the commands the job runs, starting with the executable name and followed by its options and input files. `module help MODULE` on Hydra prints the executables a module provides. For an MPI job, start the line with `mpirun -np $NSLOTS`.
 
 ### Additional options
+
+![The additional options: job name, log and error file names, CWD, join, email](../assets/Additional.png)
 
 | Field | Effect |
 |---|---|
@@ -48,9 +62,11 @@ Enter the commands the job runs, starting with the executable name and followed 
 
 ## Check, save and submit
 
+![The Check if OK and Save it buttons after a successful check](../assets/check.png)
+
 1. Click **Check if OK**. The generated script appears in the grey box, with the total CPU time and memory requested above the **Save it** button.
 2. Click **Save it** to download the `.job` file.
 3. Copy the file to your working directory under `/scratch` or `/data` on Hydra (see [Data transfer](../data-transfer/index.md)).
 4. Log in and submit it with `qsub FILE.job`, as in the [Quick start](../getting-started/quick-start.md).
 
-Edit the file in a text editor on Hydra to change it afterwards; [Job script reference](job-scripts.md) describes every directive it contains.
+To change the file afterwards, edit it in a text editor on Hydra. [Job script reference](job-scripts.md) describes every directive it contains.

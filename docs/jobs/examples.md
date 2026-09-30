@@ -1,6 +1,6 @@
 # Examples
 
-`~hpc/examples` on Hydra holds small, complete test cases: source code, a `Makefile`, a job file and the log the job produced. Copy a directory to your own space, build and submit it, and use it as the starting point for your own job.
+`~hpc/examples` on Hydra holds small, complete test cases, each with source code, a `Makefile`, a job file and the log the job produced. Copy a directory to your own space, build and submit it, and use it as the starting point for your own job.
 
 ```console
 $ find ~hpc/examples -type d
@@ -26,5 +26,5 @@ $ cp -r ~hpc/examples/serial /scratch/genomics/USERNAME/
 | `ssd/` | using a node's local SSD; see [Use a node's local SSD](../storage/ssd.md) |
 | `misc/` | other examples |
 
-Each directory has a `README`. The [Quick start](../getting-started/quick-start.md) walks through a first job; the bio guides under [Software](../software/guides/index.md) show job files for specific packages.
+Each directory has a `README`. The [Quick start](../getting-started/quick-start.md) walks through a first job. The guides under [Software](../software/guides/index.md) show job files for specific packages.
 

@@ -33,7 +33,7 @@ The login nodes slow, then [kill](efficiency.md#high-cpu-use-on-a-login-node), c
 | `compute-93-05` | 1 | 96 | 2 TB | Intel Xeon E7 (`haswell`, `broadwell`) | extra-large memory |
 | `compute-93-06` | 1 | 56 | 3 TB | Intel Xeon E7 (`haswell`, `broadwell`) | extra-large memory |
 
-The name in parentheses is the `cpu_arch` value for restricting a job to that architecture; see [Restrict the job to certain nodes](request-resources.md#restrict-the-job-to-certain-nodes). A few nodes are set aside for [interactive sessions](../interactive/qrsh.md) and the [I/O queue](../storage/store.md). [GPUs](../software/gpus.md) describes the cards.
+The name in parentheses is the `cpu_arch` value for restricting a job to that architecture, as shown under [Restrict the job to certain nodes](request-resources.md#restrict-the-job-to-certain-nodes). A few nodes are set aside for [interactive sessions](../interactive/qrsh.md) and the [I/O queue](../storage/store.md). [GPUs](../software/gpus.md) describes the cards.
 
 ## Hardware behind each queue
 
