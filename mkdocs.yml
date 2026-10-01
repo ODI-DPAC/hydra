@@ -1,9 +1,9 @@
 # Hydra documentation. Build: zensical serve   Deploy: push to main (see .github/workflows/deploy.yml)
 site_name: Smithsonian HPC
 site_description: User documentation for Hydra, the Smithsonian Institution High Performance Computing cluster
-site_url: https://smithsonian.github.io/hydra/
-repo_url: https://github.com/Smithsonian/hydra
-repo_name: Smithsonian/hydra
+site_url: https://computing.si.edu/hydra/
+repo_url: https://github.com/ODI-DPAC/hydra
+repo_name: ODI-DPAC/hydra
 edit_uri: edit/main/docs/
 copyright: 'Smithsonian Institution, Office of Digital and Innovation &middot; <a href="mailto:SI-HPC@si.edu">SI-HPC@si.edu</a>'
 
@@ -72,7 +72,7 @@ extra:
   support_email: SI-HPC@si.edu
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/Smithsonian/hydra
+      link: https://github.com/ODI-DPAC/hydra
 
 plugins:
   - search

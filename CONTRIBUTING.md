@@ -9,7 +9,7 @@ For a typo, a wrong flag or a dead link: open the page on the site, click the ed
 For anything larger, work locally so you can see the result:
 
 ```bash
-git clone git@github.com:Smithsonian/hydra.git && cd hydra
+git clone git@github.com:ODI-DPAC/hydra.git && cd hydra
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 git checkout -b my-change

@@ -67,7 +67,7 @@ The SI HPC cluster contains 74 compute nodes, including GPU nodes, with 5,840 CP
 - Cluster status: [status page](policies/status.md) (SI networks or VPN only)
 - [Getting help](policies/index.md#getting-help) and [usage policies](policies/usage.md)
 - Email **SI-HPC@si.edu** with your username, job ID, and the error text
-- [PDF of this site](https://smithsonian.github.io/hydra/hydra-documentation.pdf), regenerated on every update
+- [PDF of this site](hydra-documentation.pdf), regenerated on every update
 
 </div>
 
