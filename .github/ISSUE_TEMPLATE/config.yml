@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: Question or problem with Hydra
-    url: https://github.com/Smithsonian/hydra/blob/main/docs/policies/index.md#getting-help
+    url: https://github.com/ODI-DPAC/hydra/blob/main/docs/policies/index.md#getting-help
     about: For help with the cluster itself, email SI-HPC@si.edu.
