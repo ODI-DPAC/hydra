@@ -14,6 +14,22 @@
 
 {% block header %}
   {{ super() }}
+  {% if config.extra.homepage %}
+  {# The logo and the site name in the header link to the parent site (extra.homepage)
+     rather than to this site's own home page, which the Home tab covers. #}
+  <script>
+  (function () {
+    var home = "{{ config.extra.homepage }}";
+    document.querySelectorAll(".md-header__button.md-logo").forEach(function (a) { a.href = home; });
+    var topic = document.querySelector(".md-header__title .md-header__topic");
+    if (topic && !topic.querySelector("a")) {
+      var a = document.createElement("a"); a.href = home; a.style.color = "inherit"; a.style.textDecoration = "none";
+      while (topic.firstChild) a.appendChild(topic.firstChild);
+      topic.appendChild(a);
+    }
+  })();
+  </script>
+  {% endif %}
   {% set a = config.extra.announce %}
   {# The status pill defaults to Operational. When a maintenance or outage banner is
      up, the script switches it on between "from" and "until", on the reader's clock,
@@ -27,8 +43,8 @@
     var until = "{{ a.until | default('') }}";
     if (kind !== "maintenance" && kind !== "outage") return;
     var vars = kind === "outage"
-      ? {"--hydra-status-label": '"Unplanned outage"', "--hydra-status-bg": "#fbd7da", "--hydra-status-fg": "#8a1d24"}
-      : {"--hydra-status-label": '"Down for maintenance"', "--hydra-status-bg": "#fff1c2", "--hydra-status-fg": "#7a5a00"};
+      ? {"--hydra-status-label": '"Outage"', "--hydra-status-bg": "#fbd7da", "--hydra-status-fg": "#8a1d24"}
+      : {"--hydra-status-label": '"Maintenance"', "--hydra-status-bg": "#fff1c2", "--hydra-status-fg": "#7a5a00"};
     var root = document.documentElement.style;
     function check() {
       var now = Date.now();

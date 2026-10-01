@@ -1,11 +1,11 @@
 # Hydra documentation. Build: zensical serve   Deploy: push to main (see .github/workflows/deploy.yml)
-site_name: Smithsonian HPC
+site_name: Smithsonian Advanced Computing
 site_description: User documentation for Hydra, the Smithsonian Institution High Performance Computing cluster
 site_url: https://computing.si.edu/hydra/
 repo_url: https://github.com/ODI-DPAC/hydra
 repo_name: ODI-DPAC/hydra
 edit_uri: edit/main/docs/
-copyright: 'Smithsonian Institution, Office of Digital and Innovation &middot; <a href="mailto:SI-HPC@si.edu">SI-HPC@si.edu</a>'
+copyright: <a href="https://www.si.edu">Smithsonian Institution</a> · <a href="https://www.si.edu/privacy">Privacy</a> · <a href="https://www.si.edu/termsofuse">Terms of Use</a>
 
 theme:
   name: material
@@ -13,6 +13,7 @@ theme:
   custom_dir: overrides
   language: en
   favicon: assets/favicon.png
+  logo: assets/si-logo.png
   icon:
     logo: material/server-network
     admonition:
@@ -58,6 +59,8 @@ extra_css:
   - stylesheets/extra.css
 
 extra:
+  generator: false
+  homepage: https://odi-dpac.github.io/      # the header link; computing.si.edu/ at cutover
   # Announcement bar and status pill. kind: maintenance | outage | info.
   # Blank text = no banner, pill shows Operational.
   announce:
