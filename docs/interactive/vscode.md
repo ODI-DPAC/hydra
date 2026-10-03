@@ -30,7 +30,7 @@ The helper process runs on the login node under the login-node limits, so run no
         ssh -N -L 8000:192.168.92.85:8000 USERNAME@hydra-login01.si.edu
       in a terminal window.
     ...
-    Web UI available at http://192.168.92.85:8000?tkn=13cadfb3-a5ea-4f97-bf51-ceb35ff7af6f
+    Web UI available at http://192.168.92.85:8000?tkn=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
     ```
 
     The script prints the tunnel command and waits. Press Enter to start the server. The token changes every start. `-token STRING` fixes it and `-no-token` removes it. `start-vscode-server -help` lists the options.
