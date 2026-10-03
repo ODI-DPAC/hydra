@@ -10,7 +10,7 @@ There are three ways to move files to and from Hydra. Which one to use depends o
 
 A transfer to Hydra starts from a computer on the Smithsonian network or the SI VPN. The login nodes do not accept connections from elsewhere. A transfer from Hydra can go to any host the login nodes can reach.
 
-!!! warning "Copy data to `/scratch` or `/data`"
+!!! warning "Copy data to `/scratch` or `/data`, not to `/home`"
 
     The home directory has a quota of 350 GB and 9 million files, and it is where `scp` puts files when you give no destination. We ask that every transfer name a destination under `/scratch/genomics/USERNAME` or `/data`. Do not use `/tmp`. It is small and shared.
 

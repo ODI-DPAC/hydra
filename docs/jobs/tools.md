@@ -106,7 +106,7 @@ The built-in formats are `simple`, `simple+`, `tab`, `tab+`, `gpu`, `gpu+`, `raw
 
 ## Hydra tools
 
-Every session loads `tools/local-user`. `tools/local` adds `tools/local-admin`. `tools/local+` and `tools/misc` add more. Every tool has a man page. `module help tools/local-user` lists them.
+Every session loads `tools/local-user`. `tools/local` adds `tools/local-admin`, and `tools/local+` and `tools/misc` add more. Every tool has a man page, and `module help tools/local-user` lists them.
 
 | Tool | Module | Purpose |
 |---|---|---|

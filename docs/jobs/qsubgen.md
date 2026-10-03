@@ -10,7 +10,7 @@ Open <https://hydra.si.edu/tools/QSubGen/> from the SI network, the SI VPN, or t
 
 ![The CPU time, Memory and VMem fields](../assets/img1.png)
 
-**CPU time** is the CPU time allowed to the job, per CPU. Type a value or pick one from the menu, which sets the text box. The job is killed when it reaches this limit. CPU time is the time the processor spends on the job. It differs from elapsed time. For a job with several CPUs the scheduler multiplies the CPU limit by the number of CPUs and leaves the elapsed-time limit alone. See [Time classes](queues.md#time-classes).
+**CPU time** is the CPU time allowed to the job, per CPU. Type a value or pick one from the menu, which sets the text box. The job is killed when it reaches this limit. CPU time counts only the time a processor is busy with the job. Elapsed time is the time on the clock from start to finish. A job that waits on files uses less CPU time than elapsed time. A job on several CPUs adds up the time of each, so four CPUs that are each busy for 9 seconds use 36 seconds of CPU time. For a job with several CPUs the scheduler multiplies the CPU limit by the number of CPUs and leaves the elapsed-time limit alone. See [Time classes](queues.md#time-classes).
 
 **Memory** is the maximum memory the job uses, per CPU. Some programs come with a memory estimator. The form links to one for RAxML.
 

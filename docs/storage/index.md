@@ -2,7 +2,11 @@
 
 Hydra has four kinds of disk space. Keep scripts and configuration in `/home`, results in `/data`, the working files of jobs in `/scratch`, and project data waiting for analysis in `/store`. Each has its own quota and retention rules. See [Filesystems](filesystems.md).
 
-To see how much space you are using, [check your usage and quotas](quotas.md). If you deleted or overwrote a file on `/home`, `/data` or `/store`, you can [recover it from a snapshot](snapshots.md). If the scrubber removed a file from `/scratch`, you can [request a restore](scrubber.md) for about ten days. If your job reads and writes intensively, it can [use the node's local SSD](ssd.md). If your data is on `/store`, you [copy it with the I/O queue](store.md) before a job uses it.
+- To see how much space you are using, [check your usage and quotas](quotas.md).
+- To get back a file you deleted or overwrote on `/home`, `/data` or `/store`, [recover it from a snapshot](snapshots.md).
+- To get back a file the scrubber removed from `/scratch`, [request a restore](scrubber.md) within about ten days.
+- For a job that reads and writes intensively, [use the node's local SSD](ssd.md).
+- For data on `/store`, [copy it with the I/O queue](store.md) before a job uses it.
 
 !!! danger "Files on `/scratch/public` older than 180 days are deleted every week"
 

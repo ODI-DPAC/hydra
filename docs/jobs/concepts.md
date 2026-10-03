@@ -1,6 +1,6 @@
 # How the scheduler works
 
-Hydra runs Grid Engine (Siemens HPCWorks Grid Engine, formerly Sun, Univa and Altair Grid Engine). Documentation and forum posts under any of those names apply. Every computation runs as a **job**, a shell script that you submit from a login node with `qsub`, together with a request for the memory, CPU time and number of CPUs it needs. The scheduler places the job on one or more compute nodes and runs it without a terminal.
+Hydra runs Grid Engine (Siemens HPCWorks Grid Engine, formerly Sun, Univa and Altair Grid Engine). Documentation and forum posts under any of those names apply. Every computation runs as a **job**, a shell script that you submit from a login node with `qsub`, together with a request for the memory, CPU time and number of CPUs it needs. Each CPU a job is given is called a **slot**. The scheduler places the job on one or more compute nodes and runs it without a terminal.
 
 ## The parts of the cluster
 

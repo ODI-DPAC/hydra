@@ -43,7 +43,7 @@ echo = `date` job $JOB_NAME done
 
 There are two ways to get conda, and they do not mix. One is the preinstalled conda or mamba through a module. The other is a Miniconda you install yourself. Pick one. A `conda init` from one installation writes a block into `~/.bashrc` that breaks the other. If you switch, delete the block between `# >>> conda initialize >>>` and `# <<< conda initialize <<<`.
 
-!!! warning "Run `conda install` under `qrsh`"
+!!! warning "Run `conda install` under `qrsh`, not on a login node"
 
     Solving an environment uses a full CPU for minutes, which gets the process killed on a login node (see [Warning emails](../jobs/efficiency.md#high-cpu-use-on-a-login-node)). Start an [interactive session](../interactive/qrsh.md) first. `mamba` solves faster than `conda`.
 

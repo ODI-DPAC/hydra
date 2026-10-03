@@ -2,7 +2,11 @@
 
 Hydra provides software through environment modules. You list what is installed with `module avail` and put one package on your path with `module load NAME/VERSION`. Most other packages you install yourself, into a conda environment in your own space.
 
-If the package you need is installed, [find and load its module](modules.md). If it is a Python package, or anything on conda-forge or Bioconda, [set up conda](python.md) and install it there. We have a page each for [R](r.md), for [Julia, MATLAB, IDL and Java](other-languages.md), for [GPUs](gpus.md) and for [containers](containers.md). If you built software yourself, [write a module file](custom-modules.md) for it so that your jobs can load it.
+- For a package that is installed, [find and load its module](modules.md).
+- For a Python package, or anything on conda-forge or Bioconda, [set up conda](python.md) and install it there.
+- For software you built yourself, [write a module file](custom-modules.md) so that your jobs can load it.
+
+We have a page each for [R](r.md), for [Julia, MATLAB, IDL and Java](other-languages.md), for [GPUs](gpus.md) and for [containers](containers.md).
 
 !!! warning "Set the thread count from `$NSLOTS`"
 

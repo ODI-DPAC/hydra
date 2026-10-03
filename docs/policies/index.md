@@ -1,6 +1,6 @@
 # Policies & Support
 
-Hydra is a shared system. We require every user to follow the [usage policies](usage.md). Please read them before you begin. We also provide instructions for [citing Hydra](citing.md) in your publications.
+Hydra is a shared system, and we require every user to follow the [usage policies](usage.md). Please read them before you begin. We also provide instructions for [citing Hydra](citing.md) in your publications.
 
 [Cluster status](status.md) explains where to find the live view of the queues and disks. If you receive a warning email about your jobs, [Warning emails](../jobs/efficiency.md) explains what it means and what to do.
 
