@@ -8,13 +8,14 @@ Once a job is submitted, you watch it with `qstat`, change it with `qalter`, del
 
     ```console
     $ qstat
-    job-ID   prior   name   user      state submit/start at     queue                 slots
-    ------------------------------------------------------------------------------------------
-    8736123  0.50000 crunch USERNAME  r     09/23/2026 10:04:11 sThC.q@compute-64-11      1
-    8736124  0.00000 model  USERNAME  qw    09/23/2026 10:05:32                           4
+    job-ID     prior   name       user         state submit/start at     queue                          jclass                         slots ja-task-ID
+    ------------------------------------------------------------------------------------------------------------------------------------------------
+      15503722 0.50500 model      USERNAME     r     10/03/2026 16:14:03 sThC.q@compute-93-04.cm.cluste                                    1 1
+      15503722 0.50500 model      USERNAME     r     10/03/2026 16:14:03 sThC.q@compute-65-03.cm.cluste                                    1 2
+      15503722 0.00000 model      USERNAME     qw    10/03/2026 16:14:02                                                                   1 3-40:1
     ```
 
-    `r` is running, `qw` is waiting, `Eqw` is waiting in error and will not run. The [state table](tools.md#job-states) has the rest. `qstat -s r` shows only running jobs, `-s p` only pending, `-g d` one line per array task.
+    This is a job array with two tasks running and tasks 3 to 40 waiting. `r` is running, `qw` is waiting, `Eqw` is waiting in error and will not run. The [state table](tools.md#job-states) has the rest. `qstat -s r` shows only running jobs, `-s p` only pending, `-g d` one line per array task.
 
 2. For a running job, see its age and how much of its requested CPU it uses:
 
@@ -80,24 +81,27 @@ Read the accounting record after every new kind of job and set the memory and CP
     ```console
     $ qacct -j JOBID
     ==============================================================
-    qname        mThM.q
-    hostname     compute-65-03
+    qname                    sThC.q
+    hostname                 compute-76-11.cm.cluster
     ...
-    granted_pe   mthread
-    slots        8
-    failed       0
-    exit_status  0
-    ru_wallclock 5187
-    cpu          40912.512
-    mem          61.207
-    maxvmem      6.318G
+    granted_pe               mthread
+    slots                    4
+    ...
+    failed                   0
+    exit_status              0
+    ru_wallclock             9.219
+    ...
+    cpu                      36.362
+    mem                      0.552
+    ...
+    maxvmem                  145.473M
     ```
 
     `qacct -j JOBID -t TASKID` reports one task of an array. `qacct+ -j JOBID` reads the same data from a database, faster for old jobs, with selectable fields.
 
 2. Read `maxvmem` against the memory you reserved, `cpu` against `ru_wallclock × slots`, and `failed` and `exit_status` (both `0` when the job completed). [qacct fields](tools.md#qacct-fields) lists them.
 
-3. Adjust the request. A job that used 6.3 GB with 32 GB reserved held more than 25 GB back from everyone else. A job whose `cpu` is an eighth of `ru_wallclock × slots` ran on one CPU of the eight requested.
+3. Adjust the request. A job that used 6.3 GB with 32 GB reserved held more than 25 GB back from everyone else. A job whose `cpu` is a quarter of `ru_wallclock × slots` ran on one CPU of the four requested. In the record above, `cpu` is 36.4 s against 9.2 s × 4 slots, so all four slots were busy.
 
 `qacct -d 3 -o $USER -j > qacct.log` saves every job of the past three days for filtering with `egrep`.
 

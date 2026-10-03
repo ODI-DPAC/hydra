@@ -70,9 +70,9 @@ One job file serves many runs when the script reads its parameters from the comm
 
     ```console
     $ qsub -N crunch-20-50 -o crunch-20-50.log crunch.job 20 50
-    Your job 8736124 ("crunch-20-50") has been submitted
+    Your job 15503715 ("crunch-20-50") has been submitted
     $ qsub -N crunch-100-150 -o crunch-100-150.log crunch.job 100 150
-    Your job 8736125 ("crunch-100-150") has been submitted
+    Your job 15503716 ("crunch-100-150") has been submitted
     ```
 
 Options on the command line override the `#$` lines. For more than a handful of runs, use a [job array](arrays.md).
@@ -129,17 +129,25 @@ The trap runs when the signal arrives, but the command already running continues
 
     ```console
     $ qsub -N pre pre-process.job
-    Your job 12345678 ("pre") has been submitted
+    Your job 15503717 ("pre") has been submitted
     ```
 
 2. Submit the next step held on the first:
 
     ```console
-    $ qsub -hold_jid 12345678 -N main process.job
-    Your job 12345679 ("main") has been submitted
+    $ qsub -hold_jid 15503717 -N main process.job
+    Your job 15503718 ("main") has been submitted
     ```
 
-3. `qstat` shows the held job in state `hqw` until the first finishes.
+3. `qstat` shows the held job in state `hqw` until the first finishes:
+
+    ```console
+    $ qstat
+    job-ID     prior   name       user         state submit/start at     queue                          jclass                         slots ja-task-ID
+    ------------------------------------------------------------------------------------------------------------------------------------------------
+      15503717 0.50500 pre        USERNAME     r     10/03/2026 15:58:58 sThC.q@compute-65-13.cm.cluste                                    1
+      15503718 0.00000 main       USERNAME     hqw   10/03/2026 15:58:57                                                                   1
+    ```
 
 In a script, capture each job ID with `-terse`, which prints only the ID:
 

@@ -24,22 +24,25 @@ A job array runs one job file many times, each run with a different task ID. For
 
     ```console
     $ qsub model.job
-    Your job-array 8736123.1-1000:1 ("model-1k") has been submitted
+    Your job-array 15503720.1-1000:1 ("model-1k") has been submitted
     ```
 
 3. Watch the tasks:
 
     ```console
     $ qstat -g d
-    job-ID   prior   name      user      state submit/start at     queue                 slots ja-task-ID
-    -----------------------------------------------------------------------------------------------------
-    8736123  0.50000 model-1k  USERNAME  r     09/23/2026 10:04:11 sThC.q@compute-64-11      1 1
-    8736123  0.50000 model-1k  USERNAME  r     09/23/2026 10:04:11 sThC.q@compute-64-12      1 2
+    job-ID     prior   name       user         state submit/start at     queue                          jclass                         slots ja-task-ID
+    ------------------------------------------------------------------------------------------------------------------------------------------------
+      15503720 0.50500 model-1k   USERNAME     r     10/03/2026 16:00:21 sThC.q@compute-75-03.cm.cluste                                    1 5
+      15503720 0.50500 model-1k   USERNAME     r     10/03/2026 16:00:22 sThC.q@compute-75-03.cm.cluste                                    1 15
+      15503720 0.50500 model-1k   USERNAME     r     10/03/2026 16:00:22 sThC.q@compute-76-10.cm.cluste                                    1 17
+      15503720 0.50500 model-1k   USERNAME     r     10/03/2026 16:00:22 sThC.q@compute-75-03.cm.cluste                                    1 24
     ...
-    8736123  0.00000 model-1k  USERNAME  qw    09/23/2026 10:04:01                           1 101-1000:1
+      15503720 0.00000 model-1k   USERNAME     qw    10/03/2026 16:00:20                                                                   1 999
+      15503720 0.00000 model-1k   USERNAME     qw    10/03/2026 16:00:20                                                                   1 1000
     ```
 
-4. Read a task's log, `model.123.log`, once it is done. `qacct -j 8736123 -t 123` reports on one task.
+4. Read a task's log, `model.123.log`, once it is done. `qacct -j 15503720 -t 123` reports on one task.
 
 | `-t` value | Tasks |
 |---|---|
