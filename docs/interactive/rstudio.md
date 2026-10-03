@@ -30,7 +30,7 @@ The node is shared with every other user. One R session per user runs at a time.
 
 !!! warning "Quit the session when you are done"
 
-    An idle session holds memory that other users cannot get. **Session** and then **Quit Session…** ends it; closing the browser does not.
+    An idle session holds memory that other users cannot get. **Session** and then **Quit Session…** ends it. Closing the browser does not.
 
 ![The Quit Session item in the Session menu](../assets/image-2025-5-27_15-40-11.png)
 
@@ -38,9 +38,9 @@ If the server refuses to log you back in after you used its log-off button, clea
 
 ## Move files in and out
 
-The **Files** pane transfers files; for anything large or many files, use [Data transfer](../data-transfer/index.md) instead.
+The **Files** pane transfers files. For anything large or many files, use [Data transfer](../data-transfer/index.md) instead.
 
-- Upload: **Upload** in the Files pane, one file at a time. To upload several, zip them on your computer; the server unzips the archive on arrival.
+- Upload: **Upload** in the Files pane, one file at a time. To upload several, zip them on your computer. The server unzips the archive on arrival.
 
     ![The Upload button and dialog in the Files pane](../assets/image-2025-5-27_15-28-13.png)
 
@@ -52,7 +52,7 @@ The **Files** pane transfers files; for anything large or many files, use [Data 
 
 ## Install packages
 
-`install.packages()` and `BiocManager::install()` work as on a desktop, into your personal library at `~/R/x86_64-redhat-linux-gnu-library/4.5`, which other users do not see. Every package compiles from source on Linux, so installs take minutes; `Ncpus` parallelises them:
+`install.packages()` and `BiocManager::install()` work as on a desktop, into your personal library at `~/R/x86_64-redhat-linux-gnu-library/4.5`, which other users do not see. Every package compiles from source on Linux, so installs take minutes. `Ncpus` parallelises them:
 
 ```r
 install.packages("seqinr", Ncpus = 8)
@@ -63,7 +63,7 @@ BiocManager::install("phyloseq", Ncpus = 8)
 
 Some packages (ade4 and seqinr among them) need a newer compiler than the server's system GCC and fail with missing `GLIBCXX` symbols or OpenMP errors. The server cannot load compiler modules, so point R at one of Hydra's GCC installations with a `~/.R/Makevars` file.
 
-1. If `~/.Renviron` sets compiler paths, remove it; mixed compiler settings are the usual cause of the errors:
+1. If `~/.Renviron` sets compiler paths, remove it. Mixed compiler settings are the usual cause of the errors:
 
     ```console
     $ rm ~/.Renviron
@@ -94,9 +94,9 @@ Some packages (ade4 and seqinr among them) need a newer compiler than the server
     FCFLAGS = -O2 -g -fpic
     ```
 
-    Every line names the same GCC. `14.2.0` can be any of 9.2.0, 9.3.0, 10.1.0 (OpenMP 4.5), 11.2.0, 12.2.0 (OpenMP 5.0), or 13.2.0, 14.2.0, 15.2.0 (OpenMP 5.1); ade4 needs 10.1.0 or newer.
+    Every line names the same GCC. `14.2.0` can be any of 9.2.0, 9.3.0, 10.1.0 (OpenMP 4.5), 11.2.0, 12.2.0 (OpenMP 5.0), or 13.2.0, 14.2.0, 15.2.0 (OpenMP 5.1). The ade4 package needs 10.1.0 or newer.
 
-3. **Session** and then **Restart R**; the compiler settings take effect in the new session.
+3. **Session** and then **Restart R**. The compiler settings take effect in the new session.
 
 4. Install as usual.
 

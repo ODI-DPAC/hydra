@@ -58,7 +58,7 @@ A job array counts as one job. `q-wait` and a counting loop for scripts that sub
 | `lTgpu.q` | 2 |
 | `qgpu.iq` | 1 |
 
-The cluster has 8 GPUs; a group of approved users has higher GPU limits.
+The cluster has 8 GPUs. A group of approved users has higher GPU limits.
 
 ## Other limits
 

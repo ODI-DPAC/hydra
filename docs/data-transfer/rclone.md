@@ -8,7 +8,7 @@ Setting up a cloud account takes two places. rclone has to be authorized with th
 
 ### On Hydra
 
-Load the module and start the configuration. Answer the prompts as shown; `...` marks lines left out.
+Load the module and start the configuration. Answer the prompts as shown. `...` marks lines left out.
 
 ```text title="on Hydra"
 $ module load tools/rclone
@@ -147,6 +147,6 @@ $ rclone sync -i /scratch/genomics/USERNAME/project db:project/
 
 ## Further reading
 
-- [rclone documentation](https://rclone.org/docs/), for every command and option
-- [Filesystems](../storage/filesystems.md), for where to put the data on Hydra
-- [Warning emails](../jobs/efficiency.md#high-cpu-use-on-a-login-node), for the login-node limits
+- [rclone documentation](https://rclone.org/docs/) for every command and option
+- [Filesystems](../storage/filesystems.md) for where to put the data on Hydra
+- [Warning emails](../jobs/efficiency.md#high-cpu-use-on-a-login-node) for the login-node limits

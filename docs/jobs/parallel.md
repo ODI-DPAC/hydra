@@ -6,7 +6,7 @@ A parallel job requests a parallel environment (PE) and a number of slots with `
 
 !!! warning "Tell the program how many CPUs it was given"
 
-    `-pe` reserves slots; it does not make the program use them. Pass `$NSLOTS` to the program's thread option, set `OMP_NUM_THREADS=$NSLOTS`, or run `mpirun -np $NSLOTS`. A job that uses fewer or more CPUs than it requested triggers a [warning email](efficiency.md) and can be killed.
+    `-pe` reserves slots. It does not make the program use them. Pass `$NSLOTS` to the program's thread option, set `OMP_NUM_THREADS=$NSLOTS`, or run `mpirun -np $NSLOTS`. A job that uses fewer or more CPUs than it requested triggers a [warning email](efficiency.md) and can be killed.
 
 ## Submit a multi-threaded job
 
@@ -52,13 +52,13 @@ A parallel job requests a parallel environment (PE) and a number of slots with `
     $ qstat+ +r%
     ```
 
-    A `cpu%` near 100 means every slot is busy; a value near `100/NSLOTS` means the program is running on one CPU.
+    A `cpu%` near 100 means every slot is busy. A value near `100/NSLOTS` means the program is running on one CPU.
 
 `~hpc/examples/openmp` has this example built with the GNU, Intel and NVIDIA compilers.
 
 ## Submit an MPI job
 
-1. Load the MPI module the program was built with (see [MPI modules](job-scripts.md#mpi-modules)) and request the matching PE. That is `orte` for OpenMPI, `ompi` for NVIDIA's bundled OpenMPI, and `mpich` for MVAPICH.
+1. Load the MPI module the program was built with (see [MPI modules](job-scripts.md#mpi-modules)) and request the matching PE. That is `orte` for OpenMPI and for Intel MPI, `ompi` for NVIDIA's bundled OpenMPI, and `mpich` for MVAPICH.
 
 2. Start the program with the `mpirun` the module defines and `-np $NSLOTS`. With OpenMPI:
 
@@ -94,16 +94,27 @@ A parallel job requests a parallel environment (PE) and a number of slots with `
     echo = `date` job $JOB_NAME done
     ```
 
+    With NVIDIA's bundled OpenMPI (`nvidia/24/mpi` and `-pe ompi`), pass the host file the scheduler writes to `$TMPDIR/hostfile`:
+
+    ```sh
+    mpirun -np $NSLOTS -hostfile $TMPDIR/hostfile ./hello
+    ```
+
 3. Submit and read the log. The `cat $PE_HOSTFILE` or `uniq -c` line lists the nodes and the slots on each:
 
     ```text
-    + Wed Sep 23 10:04:11 EDT 2026 job hello started in mThC.q with jobID=8736123 on compute-64-11
+    + Sat Oct 3 13:46:40 EDT 2026 job hello started in sThC.q with jobID=15503711 on compute-65-23
     + NSLOTS = 72 distributed over:
-    compute-64-11.local 40 mThC.q@compute-64-11.local UNDEFINED
-    compute-64-12.local 32 mThC.q@compute-64-12.local UNDEFINED
+    compute-65-23.cm.cluster 55 sThC.q@compute-65-23.cm.cluster <NULL>
+    compute-65-21.cm.cluster 17 sThC.q@compute-65-21.cm.cluster <NULL>
+    Loading gcc/13.2/openmpi
+      Loading requirement: gcc/13.2.0
+    Hello world from process 19 of 72
+    ...
+    = Sat Oct 3 13:46:42 EDT 2026 job hello done
     ```
 
-Do not call `mpirun` by a full path. The module defines `mpirun` for its own version; a mismatched `mpirun` gives unpredictable results. `~hpc/examples/mpi` holds a hello-world job for every compiler and implementation, described in its `README`.
+Do not call `mpirun` by a full path. The module defines `mpirun` for its own version. A mismatched `mpirun` gives unpredictable results. `~hpc/examples/mpi` holds a hello-world job for every compiler and implementation, described in its `README`.
 
 If the log shows
 

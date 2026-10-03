@@ -1,6 +1,6 @@
 # Monitor and manage jobs
 
-Once a job is submitted, you watch it with `qstat`, change it with `qalter`, delete it with `qdel`, and read what it used with `qacct` after it finishes. This page shows you how to do each of those, and how to look at a node or the whole cluster. If you need the full list of options and output fields, see [Monitoring tools](tools.md).
+Once a job is submitted, you watch it with `qstat`, change it with `qalter`, delete it with `qdel`, and read what it used with `qacct` after it finishes. You can also look at one node or at the whole cluster. If you need the full list of options and output fields, see [Monitoring tools](tools.md).
 
 ## Check on a job
 
@@ -14,7 +14,7 @@ Once a job is submitted, you watch it with `qstat`, change it with `qalter`, del
     8736124  0.00000 model  USERNAME  qw    09/23/2026 10:05:32                           4
     ```
 
-    `r` is running, `qw` is waiting, `Eqw` is waiting in error and will not run; the [state table](tools.md#job-states) has the rest. `qstat -s r` shows only running jobs, `-s p` only pending, `-g d` one line per array task.
+    `r` is running, `qw` is waiting, `Eqw` is waiting in error and will not run. The [state table](tools.md#job-states) has the rest. `qstat -s r` shows only running jobs, `-s p` only pending, `-g d` one line per array task.
 
 2. For a running job, see its age and how much of its requested CPU it uses:
 
@@ -22,7 +22,7 @@ Once a job is submitted, you watch it with `qstat`, change it with `qalter`, del
     $ qstat+ +r%
     ```
 
-    A `cpu%` near 100 means the job uses every slot it requested; near `100/NSLOTS`, it runs on one CPU and ignores the rest. `qstat+ +rr%` adds memory and I/O.
+    A `cpu%` near 100 means the job uses every slot it requested. A value near `100/NSLOTS` means it runs on one CPU and ignores the rest. `qstat+ +rr%` adds memory and I/O.
 
 3. For a waiting job, ask why:
 
@@ -58,7 +58,7 @@ Once a job is submitted, you watch it with `qstat`, change it with `qalter`, del
     $ sh qdel.sh
     ```
 
-    `grep rax` keeps the jobs whose name contains `rax`; `-s r` or `-s p` on `qstat` limits the list to running or pending jobs.
+    `grep rax` keeps the jobs whose name contains `rax`. `-s r` or `-s p` on `qstat` limits the list to running or pending jobs.
 
 ## Change a waiting job
 
@@ -97,7 +97,7 @@ Read the accounting record after every new kind of job and set the memory and CP
 
 2. Read `maxvmem` against the memory you reserved, `cpu` against `ru_wallclock × slots`, and `failed` and `exit_status` (both `0` when the job completed). [qacct fields](tools.md#qacct-fields) lists them.
 
-3. Adjust the request. A job that used 6.3 GB with 32 GB reserved held 25 GB back from everyone else. A job whose `cpu` is a quarter of `ru_wallclock × slots` ran on one CPU of the four requested.
+3. Adjust the request. A job that used 6.3 GB with 32 GB reserved held more than 25 GB back from everyone else. A job whose `cpu` is an eighth of `ru_wallclock × slots` ran on one CPU of the eight requested.
 
 `qacct -d 3 -o $USER -j > qacct.log` saves every job of the past three days for filtering with `egrep`.
 
@@ -112,7 +112,7 @@ A sampler records every job in the high-memory queues every five minutes.
     $ plot-qmemuse JOBID
     ```
 
-    `plot-qmemuse JOBID.TASKID` plots one array task; `-o FILE` names the output, `-x` plots on screen over X11 instead.
+    `plot-qmemuse JOBID.TASKID` plots one array task. `-o FILE` names the output, `-x` plots on screen over X11 instead.
 
 2. View the PNG with `display FILE` over an X11 connection, or copy it to your computer.
 
@@ -132,7 +132,7 @@ A sampler records every job in the high-memory queues every five minutes.
     $ rtop+ -u $USER 64-05
     ```
 
-    `rtop+ -50 64-05` shows 50 lines; `rpstree+ 64-05` shows the process tree.
+    `rtop+ -50 64-05` shows 50 lines. `rpstree+ 64-05` shows the process tree.
 
 ## Check the state of the cluster
 
@@ -159,7 +159,7 @@ A sampler records every job in the high-memory queues every five minutes.
     $ qhost | egrep 'LOAD|e-6[45]'              # header plus the compute-64 and compute-65 nodes
     ```
 
-    `qhost` takes no patterns; filter with `egrep`.
+    `qhost` takes no patterns. Filter with `egrep`.
 
 The [status page](../policies/status.md) shows the same as graphs, with past usage and disk space.
 

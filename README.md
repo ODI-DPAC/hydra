@@ -17,22 +17,24 @@ zensical build --strict # what CI runs; fails on broken links and missing pages
 docs/
   index.md            home page
   getting-started/    account, login, quick start, training
-  hydra/              everything specific to the Hydra cluster
-    jobs/ hardware/ interactive/ storage/ software/
+  jobs/               the scheduler, job files, queues, limits, monitoring, hardware
+  interactive/        qrsh, Jupyter, VS Code, RStudio
+  storage/            filesystems, quotas, snapshots, the scrubber, /store, backups
+  software/           modules, languages, GPUs, containers, compilers, guides/
   data-transfer/      scp and rsync, Globus, rclone
-  policies/           usage policies, citing, help, FAQ, status
+  policies/           usage policies, citing, getting help, status
   news/               index.md is the current year, history.md older notices, upgrades/ one page per upgrade
   stylesheets/        extra.css: SI palette, home page, content tabs
   assets/             images
 overrides/            main.html: announcement bar and status pill
-scripts/              build_home_news.py, stamp_dates.py, gen_module_list.sh (see CONTRIBUTING.md)
+scripts/              add_news.py, build_home_news.py, build_pdf.py, stamp_dates.py, gen_module_list.sh (see CONTRIBUTING.md)
 migration/            map.csv: where every page of the old site went
 ```
 
-The nav in `mkdocs.yml` is independent of the directory tree. `hydra/` is a URL prefix so a second platform can be added later as a sibling directory and a new tab without moving files.
+The nav in `mkdocs.yml` is independent of the directory tree. The site is served under `/hydra/`, so the docs tree is flat.
 
 ## Branches
 
-`main` is the site. Every change is a branch and a pull request; the `build` check must pass. 
+`main` is the site. Every change is a branch and a pull request. The `build` check must pass.
 
 Writing conventions are in CONTRIBUTING.md.

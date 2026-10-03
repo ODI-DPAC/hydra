@@ -35,7 +35,7 @@ Jupyter Lab runs on a compute node, and an ssh tunnel brings it to a browser on 
     $ start-jupyter-lab-server
     ```
 
-    `start-jupyter-lab-server --port=N` chooses the port (8000 to 9999; 8888 is the default); `-help` lists the options. Without the script, the command is `jupyter lab --no-browser --ip=$(hostname) --port=8888`, and the output ends with a URL of the form `http://compute-XX-XX.local:8888/?token=…`.
+    `start-jupyter-lab-server --port=N` chooses the port, from 8000 to 9999. The default is 8888. `-help` lists the options. Without the script, the command is `jupyter lab --no-browser --ip=$(hostname) --port=8888`, and the output ends with a URL of the form `http://compute-XX-XX.local:8888/?token=…`.
 
 5. On your own machine, open the tunnel the script printed, in a terminal you then leave alone:
 

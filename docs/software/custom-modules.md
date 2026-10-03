@@ -1,8 +1,8 @@
 # Write a module file
 
-Software you installed yourself, a package built under your home directory or a Miniconda, gets a module file of its own, so that one `module load` line puts it on your path in a session or a job, in either shell.
+A **module file** is a short text file that sets the environment for one package. Write one for software you installed yourself, such as a package built under your home directory or a Miniconda, so that one `module load` line puts it on your path in a session or a job, in either shell.
 
-A module file is a text file in Tcl. Most need three or four lines. The first line must be `#%Module1.0`, and the rest set or extend environment variables. `man modulefile` lists every command.
+Module files are written in Tcl, and most need three or four lines. The first line must be `#%Module1.0`, and the rest set or extend environment variables. `man modulefile` lists every command.
 
 ## Write the file
 
@@ -36,7 +36,7 @@ A module file is a text file in Tcl. Most need three or four lines. The first li
     setenv CRUNCH $base
     ```
 
-    `set` makes a Tcl variable, used only inside the file; `setenv` exports a variable to the shell. `prepend-path` puts the directory first, `append-path` last; `remove-path`, `unsetenv`, `conflict` and `module load` are the other commands used in practice.
+    `set` makes a Tcl variable, used only inside the file. `setenv` exports a variable to the shell. `prepend-path` puts the directory first, `append-path` last. `remove-path`, `unsetenv`, `conflict` and `module load` are the other commands used in practice.
 
 3. Load it by path and check the result:
 

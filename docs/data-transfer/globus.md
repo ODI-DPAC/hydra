@@ -19,7 +19,7 @@ Four terms come up in every step.
 
     ![The Globus sign-in page with the organization menu](../assets/globus_CI_logon.png)
 
-2. Sign in on the Smithsonian page with your SI network username and password. The username is the part of your email address before `@si.edu`. This is your SI account, not your Hydra account:
+2. Sign in on the Smithsonian page with your SI network username and password. The username is the part of your email address before `@si.edu`. This is your SI account. It is separate from your Hydra account:
 
     ![The Smithsonian Institution sign-in page](../assets/SI_CILogon.png)
 
@@ -59,7 +59,7 @@ Globus sees files with the same permissions as your Hydra account. What you cann
 
 ## Transfer
 
-1. With your Hydra directory open in one pane, switch the File Manager to two panes. The layout buttons are at the top right; the middle one gives two panes:
+1. With your Hydra directory open in one pane, switch the File Manager to two panes. The layout buttons are at the top right. The middle one gives two panes:
 
     ![The File Manager in two-pane view, ready for a second collection](../assets/panel.png)
 
@@ -83,6 +83,6 @@ Your computer becomes a collection when it runs Globus Connect Personal. On a ma
 
 ## Further reading
 
-- [Smithsonian Globus documentation](https://smithsonian.github.io/globus-docs/), for sharing, group access and everything beyond Hydra
-- [Globus documentation](https://docs.globus.org/), from Globus itself
-- [Filesystems](../storage/filesystems.md), for where to put the data once it arrives
+- [Smithsonian Globus documentation](https://smithsonian.github.io/globus-docs/) for sharing, group access and everything beyond Hydra
+- [Globus documentation](https://docs.globus.org/) from Globus itself
+- [Filesystems](../storage/filesystems.md) for where to put the data once it arrives

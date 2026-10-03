@@ -5,7 +5,7 @@
 - **Dec 8, 2025**
     - `QSubGen` was updated to include virtual memory and GPU.
     - `qstat+` has new sorting and limiting options.
-- **Dec 5, 2005**
+- **Dec 5, 2025**
     - **1- Scrubber**
 
 

@@ -13,7 +13,7 @@ A job file is a shell script whose `#$` lines carry options for `qsub`. When you
 | `-o FILE` | Standard output file. |
 | `-e FILE` | Standard error file, when not using `-j y`. |
 | `-q QUEUE` | Run in a named [queue](queues.md); `QUEUE@@GROUP` restricts to a host group. |
-| `-l RESOURCE=VALUE,...` | Request resources: `s_cpu`, `s_rt`, `mres`, `h_data`, `h_vmem`, `himem`, `gpu`, `lopri`, `cpu_arch`, `wfmq`. |
+| `-l RESOURCE=VALUE,...` | Request resources: `s_cpu`, `s_rt`, `mres`, `h_data`, `h_vmem`, `himem`, `lopri`, `gpu`, `ngpus`, `gpuarch`, `cpu_arch`, `ioq`, `wfmq`, `ssd_res`, `idlrt`, `b2g`. |
 | `-pe PE N` | Request N slots in a [parallel environment](#parallel-environments); `N-M` accepts a range. |
 | `-t N-M[:S]` | Run as a [job array](arrays.md) with task IDs N to M, step S. |
 | `-tc N` | Run at most N tasks of an array at once. |
@@ -28,7 +28,7 @@ A job file is a shell script whose `#$` lines carry options for `qsub`. When you
 
 ## Where options come from
 
-`qsub` collects options in this order; each step overrides the previous one.
+`qsub` collects options in this order. Each step overrides the previous one.
 
 1. the system-wide file `$SGE_ROOT/$SGE_CELL/common/sge_request`
 2. `.sge_request` in the current directory
@@ -82,7 +82,7 @@ In a `#$` line, and only there, `$TASK_ID` expands to the task ID.
 | PE | Slots are | Queues | Used with |
 |---|---|---|---|
 | `mthread` | all on one node | all | threads, OpenMP, any `-threads N` option |
-| `orte` | spread across nodes | high-CPU | OpenMPI |
+| `orte` | spread across nodes | high-CPU | OpenMPI, Intel MPI |
 | `ompi` | spread across nodes | high-CPU | NVIDIA's bundled OpenMPI |
 | `mpich` | spread across nodes | high-CPU | MVAPICH |
 | `h2` `h4` `h8` `h12` `h16` `h24` `h32` `h48` `h64` | M per node on N/M nodes | high-CPU | hybrid MPI with M threads per process |

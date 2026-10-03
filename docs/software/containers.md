@@ -9,7 +9,7 @@ The login, interactive and compute nodes have Singularity CE 4.4, with no module
     $ singularity pull docker://quay.io/biocontainers/samtools:1.19.2--h50ea8bc_0
     ```
 
-2. Run it in a job. The container sees your home directory and the current directory; bind other directories with `--bind`:
+2. Run it in a job. The container sees your home directory and the current directory. Bind other directories with `--bind`:
 
     ```sh title="samtools.job"
     #$ -S /bin/sh

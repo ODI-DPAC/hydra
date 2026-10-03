@@ -1,6 +1,7 @@
 # Recover a file from a snapshot
 
-`/home`, `/data` and the project `/store` partitions keep read-only snapshots of their contents, for 4 weeks on `/home`, 2 weeks on `/data` and 8 weeks on `/store`. You copy a file you deleted or overwrote within that time back from the snapshot. 
+`/home`, `/data` and the project `/store` partitions keep read-only snapshots of their contents, for 4 weeks on `/home`, 2 weeks on `/data` and 8 weeks on `/store`. You copy a file you deleted or overwrote within that time back from the snapshot.
+
 !!! danger "`/scratch` has no snapshots"
 
     A file you delete from `/scratch` cannot be recovered. We can restore only files the [scrubber](scrubber.md) removed, and only for about ten days.
@@ -20,7 +21,7 @@
     cd /data/genomics/.snapshot/daily.2026-09-23_0010/USERNAME/analysis/results
     ```
 
-3. Copy the file back. `-p` keeps its dates; `-i` refuses to overwrite an existing file:
+3. Copy the file back. `-p` keeps its dates. `-i` asks before overwriting an existing file:
 
     ```bash
     cp -pi results.csv /data/genomics/USERNAME/analysis/results/results.csv
@@ -44,7 +45,7 @@ auto-260916.0230-8w  auto-260917.0230-8w  auto-260918.0230-8w  ...
 $ cp -pi /store/PROJECT/.zfs/snapshot/auto-260917.0230-8w/USERNAME/data.tar /store/PROJECT/USERNAME/
 ```
 
-`/store` is mounted on the login and interactive nodes only.
+`/store` is mounted only on the login nodes, the head node, the interactive nodes and the RStudio server node.
 
 A snapshot lives on the same storage system as the partition, so it does not protect against a failure of that system. [Backups](backups.md) describes what does.
 

@@ -12,7 +12,7 @@ The status page at <https://hydra.si.edu/tools/status/> shows what the cluster i
 | Resource Limits | the per-user limits and how much of each is in use |
 | Disk Usage & Quota | space and file counts on every filesystem |
 
-Two menus under the Usage plots select the snapshot's sort order (name, number of CPUs, usage, load, memory) and the time plot's length (7, 15 or 30 days) and highlight one user's jobs. The same choices go in the URL for bookmarking:
+Two menus under the Usage plots select the snapshot's sort order (name, number of CPUs, usage, load, memory) and the time plot's length (7, 15 or 30 days). You can also highlight one user's jobs. The same choices go in the URL for bookmarking:
 
 ```text
 https://hydra.si.edu/tools/status/?sortby=nCPU&len=15d&user=USERNAME

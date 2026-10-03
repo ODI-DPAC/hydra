@@ -1,6 +1,6 @@
 # BEAST
 
-BEAST 2 is the module `bio/beast`; `module -t avail 2>&1 | grep beast` lists the versions. BEAST's own guidance on performance is at <http://www.beast2.org/performance-suggestions/index.html>.
+[BEAST 2](https://www.beast2.org/) runs Bayesian phylogenetic analyses of molecular sequences. The module is `bio/beast`. `module -t avail 2>&1 | grep beast` lists the versions. BEAST's own guidance on performance is at <http://www.beast2.org/performance-suggestions/index.html>.
 
 ## Version and packages
 
@@ -16,7 +16,7 @@ $ packagemanager -add SNAPP
 
 ## BEAGLE
 
-The [BEAGLE](https://github.com/beagle-dev/beagle-lib) library is the module `bio/beagle`. `bio/beast` does not load it, so add `module load bio/beagle` after `module load bio/beast` in the job file. The default build is for Java 17. The BEAGLE builds do not use the GPUs; email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) if you need that.
+The [BEAGLE](https://github.com/beagle-dev/beagle-lib) library is the module `bio/beagle`. `bio/beast` does not load it, so add `module load bio/beagle` after `module load bio/beast` in the job file. The default build, `4.0.1-j17-cuda`, is for Java 17 and BEAST 2.7.x, and is compiled with GPU and CPU support.
 
 ## SNAPP path sampling as separate jobs
 

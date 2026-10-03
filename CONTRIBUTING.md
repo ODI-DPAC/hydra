@@ -25,9 +25,9 @@ The model is [docs.nersc.gov](https://docs.nersc.gov/). Write the way a senior H
 ````markdown
 # Recover a file from a snapshot
 
-A **snapshot** is a read-only copy of a filesystem taken at a fixed time. `/home` and `/data` keep
-hourly and weekly snapshots for two weeks, under a hidden `.snapshot` directory at the top of each
-partition, so a file you deleted or overwrote in the last two weeks is still there.
+A **snapshot** is a read-only copy of a filesystem taken at a fixed time. `/home` keeps snapshots
+for 4 weeks and `/data` for 2 weeks, under a hidden `.snapshot` directory at the top of each
+partition, so a file you deleted or overwrote in that time is still there.
 
 1. List the snapshots:
 
@@ -67,7 +67,7 @@ What to take from it:
 
 Things we don't do: open a page with "This page covers…", write "currently" or "as of" (it dates the page), say "click here", or use em dashes.
 
-Content tabs (`=== "macOS and Linux"`) are for the same procedure on different systems, as on the login page. Tables are for anything with the same fields on every row. Images only for things that are visual, with alt text, under `docs/assets/`. Section names in the nav and the H1s are in Title Case ("Running Jobs"); headings inside a page are in sentence case.
+Content tabs (`=== "macOS and Linux"`) are for the same procedure on different systems, as on the login page. Tables are for anything with the same fields on every row. Images only for things that are visual, with alt text, under `docs/assets/`. Section names in the nav, and the H1 of each section's index page, are in Title Case ("Running Jobs"). Page titles and the headings inside a page are in sentence case ("Submit a job array").
 
 ## Important to keep in mind
 
@@ -78,7 +78,7 @@ Content tabs (`=== "macOS and Linux"`) are for the same procedure on different s
 
 To announce something, file an "Admin team - News item" issue from the Issues tab. Give the date, one to three sentences, a page to link if there is one, and whether to show a banner. A pull request appears within a minute. Approve and merge it.
 
-For maintenance, give the downtime start and end. The status pill on the home page turns to Maintenance only during that window. An outage starts now.
+For maintenance, give the downtime start and end. The status pill on the home page turns to "Down for maintenance" only during that window. An outage starts now.
 
 A banner with an end time comes down by itself the morning after. A banner without one comes down when you file an "Admin team - Remove banner" issue. That form has an optional closing line, which is added to the News entry. There is one banner at a time, and a new one replaces the old.
 

@@ -81,7 +81,7 @@ rm -rf *
 
 ## What happens to the SSD when the job ends
 
-If the job ends normally with less than 50 GB left on the SSD, the node archives the leftover as a compressed tar file; with more, it deletes it. If the job is killed, the node deletes it. Two variables, passed with `-v`, change this:
+If the job ends normally with less than 50 GB left on the SSD, the node archives the leftover as a compressed tar file. With more, it deletes it. If the job is killed, the node deletes it. Two variables, passed with `-v`, change this:
 
 | Variable | Effect |
 |---|---|
@@ -92,7 +92,7 @@ If the job ends normally with less than 50 GB left on the SSD, the node archives
 #$ -l ssd_res=10G -v SSD_SAVE_DIR=/scratch/genomics/USERNAME/save -v SSD_SAVE_MAX=10M
 ```
 
-Keep `SSD_SAVE_MAX` under 80 GB; saving more takes too long at job exit. Copy large results back in the job script instead.
+Keep `SSD_SAVE_MAX` under 80 GB. Saving more takes too long at job exit. Copy large results back in the job script instead.
 
 ## Watch a job's SSD use
 

@@ -4,7 +4,7 @@ BLAST matches query nucleotide or protein sequences against a database. The modu
 
 ## Search a database
 
-`blastn` for nucleotide queries, `blastp` for protein; the options are the same.
+Use `blastn` for nucleotide queries and `blastp` for protein. The options are the same.
 
 | Option | Meaning |
 |---|---|
@@ -28,11 +28,11 @@ gzip queries.xml
 echo = `date` job $JOB_NAME done
 ```
 
-BLAST output is large and repetitive; compress it in the job, as above. Remove duplicate sequences from the input first. A query file in which most sequences hit uses memory in proportion to the hits and can exceed even a high-memory node. Split such files, as shown below.
+BLAST output is large and repetitive. Compress it in the job, as above. Remove duplicate sequences from the input first. A query file in which most sequences hit uses memory in proportion to the hits and can exceed even a high-memory node. Split such files, as shown below.
 
 ## Build a database
 
-`makeblastdb` builds a database from a FASTA file; `-dbtype nucl` for nucleotide, `prot` for protein.
+`makeblastdb` builds a database from a FASTA file. Give it `-dbtype nucl` for nucleotide or `-dbtype prot` for protein.
 
 ```sh title="makedb.job"
 #$ -S /bin/sh

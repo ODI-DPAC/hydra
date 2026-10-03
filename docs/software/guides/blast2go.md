@@ -8,7 +8,7 @@ The license allows one execution of the command-line program at a time, on one n
 
 !!! warning "Use Blast2GO for mapping and annotation only"
 
-    Because one job runs at a time, do not run the BLAST step inside Blast2GO. Run BLAST separately (see [BLAST](blast.md)), split across many jobs if the input is large, with `-outfmt 5`; Blast2GO reads the XML with `-loadblast31` or `-loadblast`.
+    Because one job runs at a time, do not run the BLAST step inside Blast2GO. Run BLAST separately (see [BLAST](blast.md)), split across many jobs if the input is large, with `-outfmt 5`. Blast2GO reads the XML with `-loadblast31` or `-loadblast`.
 
 ## Job file
 

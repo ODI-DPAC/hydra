@@ -72,7 +72,7 @@
 
 ## qacct+
 
-A loader copies the accounting data into a PostgreSQL database within about a minute of each job finishing. `qacct+` queries the database, with selectable fields and derived values. Some fields are not loaded correctly from the Grid Engine 8.8.1 records. When a value looks wrong, compare it with `qacct -j JOBID`. `qacct+ -help` and `qacct+ -show help` list the options; `man qacct+` has the details.
+A loader copies the accounting data into a PostgreSQL database within about a minute of each job finishing. `qacct+` queries the database, with selectable fields and derived values. Some fields are not loaded correctly from the Grid Engine 8.8.1 records. When a value looks wrong, compare it with `qacct -j JOBID`. `qacct+ -help` and `qacct+ -show help` list the options. `man qacct+` has the details.
 
 | Command | Shows |
 |---|---|
@@ -102,11 +102,11 @@ The built-in formats are `simple`, `simple+`, `tab`, `tab+`, `gpu`, `gpu+`, `raw
 | `qconf -srqs [NAME]` | resource quotas |
 | `qconf -sconf global \| grep max` | cluster-wide job limits |
 
-`qhost` takes no patterns; filter with `egrep`.
+`qhost` takes no patterns. Filter with `egrep`.
 
 ## Hydra tools
 
-Every session loads `tools/local-user`. `tools/local` adds `tools/local-admin`; `tools/local+` and `tools/misc` add more. Every tool has a man page; `module help tools/local-user` lists them.
+Every session loads `tools/local-user`. `tools/local` adds `tools/local-admin`. `tools/local+` and `tools/misc` add more. Every tool has a man page. `module help tools/local-user` lists them.
 
 | Tool | Module | Purpose |
 |---|---|---|

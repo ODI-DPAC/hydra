@@ -1,14 +1,14 @@
 # How the scheduler works
 
-Hydra runs Grid Engine (Siemens HPCWorks Grid Engine; formerly Sun, Univa and Altair Grid Engine). Documentation and forum posts under any of those names apply. Every computation runs as a **job**, a shell script that you submit from a login node with `qsub`, together with a request for the memory, CPU time and number of CPUs it needs. The scheduler places the job on one or more compute nodes and runs it without a terminal.
+Hydra runs Grid Engine (Siemens HPCWorks Grid Engine, formerly Sun, Univa and Altair Grid Engine). Documentation and forum posts under any of those names apply. Every computation runs as a **job**, a shell script that you submit from a login node with `qsub`, together with a request for the memory, CPU time and number of CPUs it needs. The scheduler places the job on one or more compute nodes and runs it without a terminal.
 
 ## The parts of the cluster
 
 The cluster consists of:
 
-- two login nodes, `hydra-login01.si.edu` and `hydra-login02.si.edu`, where you edit files, compile, test briefly, copy data, and submit and monitor jobs;
-- a head node, `hydra-7.si.edu`, which runs the scheduler and is not a login node. Do not log in to it;
-- the compute nodes, where jobs run;
+- two login nodes, `hydra-login01.si.edu` and `hydra-login02.si.edu`, where you edit files, compile, test briefly, copy data, and submit and monitor jobs
+- a head node, `hydra-7.si.edu`, which runs the scheduler. Do not log in to it.
+- the compute nodes, where jobs run
 - the storage systems, described under [Storage](../storage/index.md).
 
 10 Gb Ethernet and InfiniBand connect all the nodes. The nodes run Rocky Linux 8.10, deployed with Bright Cluster Manager 10.
@@ -37,28 +37,28 @@ A few compute nodes are set aside for interactive sessions, reached with `qrsh`.
 
 ## Queues
 
-Every job runs in a queue, and each queue has limits on CPU time, elapsed time and memory per CPU. The queues form a matrix. There is a set of queues each for high-CPU, high-memory, very-high-memory and GPU jobs, and each set has short, medium, long and unlimited time limits. Single queues serve interactive use, I/O to `/store`, and workflow managers. The scheduler picks a queue from the resources you request, or you can name one with `-q`. If you request the wrong queue or resources, the scheduler rejects the job, leaves it waiting forever, or starts it and kills it. [Queues](queues.md) lists them, and [Request a queue, memory and CPUs](request-resources.md) explains how to choose.
+Every job runs in a queue, and each queue has limits on CPU time, elapsed time and memory per CPU. The queues form a matrix. There is a set of queues each for high-CPU, high-memory and GPU jobs. The high-CPU and high-memory sets have short, medium, long and unlimited time limits, and the GPU set has short, medium and long. Single queues serve extra-large-memory jobs, interactive use, I/O to `/store`, and workflow managers. The scheduler picks a queue from the resources you request, or you can name one with `-q`. If you request the wrong queue or resources, the scheduler rejects the job, leaves it waiting forever, or starts it and kills it. [Queues](queues.md) lists them, and [Request a queue, memory and CPUs](request-resources.md) explains how to choose.
 
 ## Limits
 
 Two kinds of limit apply:
 
-- per-queue limits on CPU time, elapsed time and memory, which apply to each job;
+- per-queue limits on CPU time, elapsed time and memory, which apply to each job
 - cluster-wide limits on how many slots, jobs and how much reserved memory one user can hold at once, which decide when your queued jobs start.
 
 Jobs that would exceed a cluster-wide limit wait in the queue until your other jobs finish. See [Resource limits](limits.md).
 
 ## Rules for a shared cluster
 
-**Do not compute on the login nodes.** Use them for editing, compiling, short tests and submitting jobs. The login nodes slow and then kill processes that compute on them; [Warning emails](efficiency.md#high-cpu-use-on-a-login-node) gives the thresholds. Run anything longer in an [interactive session](../interactive/qrsh.md) or as a job.
+**Do not compute on the login nodes.** Use them for editing, compiling, short tests and submitting jobs. The login nodes slow and then kill processes that compute on them. [Warning emails](efficiency.md#high-cpu-use-on-a-login-node) gives the thresholds. Run anything longer in an [interactive session](../interactive/qrsh.md) or as a job.
 
 **Start every computation through the scheduler.** Do not log in to a compute node and start a program by hand. Use `qsub` or `qrsh`.
 
-**Request every CPU your program uses.** A program that starts threads or child processes without a matching `-pe` request overloads the node and slows other people's jobs. If your script starts anything in the background, end the script with `wait` so the job does not exit before its processes do. MPI programs are not started the way they are on a workstation; see [Submit a parallel job](parallel.md).
+**Request every CPU your program uses.** A program that starts threads or child processes without a matching `-pe` request overloads the node and slows other people's jobs. If your script starts anything in the background, end the script with `wait` so the job does not exit before its processes do. MPI programs are not started the way they are on a workstation. See [Submit a parallel job](parallel.md).
 
 **Reserve the memory the job uses, and no more.** Reserved memory that a job does not use is unavailable to everyone else. See [Reserve memory](request-resources.md#reserve-memory).
 
-**Do not submit thousands of very short jobs.** Starting a job has overhead. Ten thousand five-minute jobs cost the system as much time to start as they take to run. Group short tasks into fewer, longer jobs; [job arrays](arrays.md#group-short-tasks-into-fewer-jobs) show how.
+**Do not submit thousands of very short jobs.** Starting a job has overhead. Ten thousand five-minute jobs cost the system as much time to start as they take to run. Group short tasks into fewer, longer jobs. [Job arrays](arrays.md#group-short-tasks-into-fewer-jobs) show how.
 
 **Give concurrent jobs distinct names and output files.** Jobs run at the same time on different nodes, and jobs that write to the same file overwrite each other.
 
@@ -68,7 +68,7 @@ Jobs that would exceed a cluster-wide limit wait in the queue until your other j
 
 **Treat the disks as working space.** The scrubber empties the public disks and nothing backs them up. Move results off the cluster when an analysis is complete. See [Storage](../storage/index.md).
 
-Jobs that use far fewer CPUs than requested, more CPUs than requested, or far less memory than reserved trigger [warning emails](efficiency.md) and can be killed. The [usage policies](../policies/usage.md) state the thresholds and what they expect of you.
+Jobs that use far fewer CPUs than requested, more CPUs than requested, or far less memory than reserved trigger [warning emails](efficiency.md) and can be killed. The [usage policies](../policies/usage.md) state the thresholds and what we expect of you.
 
 ## If you know Slurm
 

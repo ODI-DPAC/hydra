@@ -6,6 +6,6 @@ If the package you need is installed, [find and load its module](modules.md). If
 
 !!! warning "Set the thread count from `$NSLOTS`"
 
-    NumPy, R's linear-algebra libraries, IDL, Java and many other packages start one thread per CPU on the node unless told otherwise. A job that does this is oversubscribed and administrators can kill it; see [Warning emails](../jobs/efficiency.md#oversubscribed-jobs). Each page below says how to set the count for that software.
+    NumPy, R's linear-algebra libraries, IDL, Java and many other packages start one thread per CPU on the node unless told otherwise. A job that does this is oversubscribed and we can kill it. See [Warning emails](../jobs/efficiency.md#oversubscribed-jobs). Each page below says how to set the count for that software.
 
 When you need to look something up, the reference pages cover the [compilers, libraries and MPI implementations](compilers.md) and the [installed modules](module-list.md). For a handful of packages we provide a [guide](guides/index.md) with a working job file. If you need software that requires a license, a build against the cluster's MPI or CUDA libraries, or a shared database, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu).

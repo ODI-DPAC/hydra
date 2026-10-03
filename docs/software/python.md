@@ -1,6 +1,6 @@
 # Python and conda
 
-Modules provide several Python installations, and conda installs anything else into your own space. What is specific to Hydra is which Python modules exist, how to keep NumPy and similar packages to the CPUs a job requested, and how to use conda in sessions and in jobs. Those three things are below. How conda itself works is in the conda documentation at <https://docs.conda.io/>.
+Modules provide several Python installations, and conda installs anything else into your own space. What is specific to Hydra is which Python modules exist, how to keep NumPy and similar packages to the CPUs a job requested, and how to use conda in sessions and in jobs. How conda itself works is in the conda documentation at <https://docs.conda.io/>.
 
 ## Use an installed Python
 
@@ -43,7 +43,7 @@ echo = `date` job $JOB_NAME done
 
 There are two ways to get conda, and they do not mix. One is the preinstalled conda or mamba through a module. The other is a Miniconda you install yourself. Pick one. A `conda init` from one installation writes a block into `~/.bashrc` that breaks the other. If you switch, delete the block between `# >>> conda initialize >>>` and `# <<< conda initialize <<<`.
 
-!!! warning "Run `conda install` under `qrsh`, not on a login node"
+!!! warning "Run `conda install` under `qrsh`"
 
     Solving an environment uses a full CPU for minutes, which gets the process killed on a login node (see [Warning emails](../jobs/efficiency.md#high-cpu-use-on-a-login-node)). Start an [interactive session](../interactive/qrsh.md) first. `mamba` solves faster than `conda`.
 
@@ -57,7 +57,7 @@ There are two ways to get conda, and they do not mix. One is the preinstalled co
     (base) $
     ```
 
-    `tools/conda` loads Miniconda 23.1.0 by default; `tools/conda/25.9.1` is the newest, and `tools/conda/3.13` is the full Anaconda distribution. `tools/mamba` (default 25.9.1) is the same with `mamba` in place of `conda`. `module -t avail 2>&1 | grep -E 'tools/(conda|mamba)'` lists them.
+    `tools/conda` loads Miniconda 23.1.0 by default. `tools/conda/25.9.1` is the newest, and `tools/conda/3.13` is the full Anaconda distribution. `tools/mamba` (default 25.9.1) is the same with `mamba` in place of `conda`. `module -t avail 2>&1 | grep -E 'tools/(conda|mamba)'` lists them.
 
 2. Create an environment for each project or pipeline and install into it. Environments go under `~/.conda/envs`, which counts against your `/home` quota:
 
@@ -67,7 +67,7 @@ There are two ways to get conda, and they do not mix. One is the preinstalled co
     (iqtree-v1) $ iqtree --version
     ```
 
-    `source activate` rather than `conda activate`: it works in job files as well as in sessions.
+    Use `source activate` rather than `conda activate`, because it works in job files as well as in sessions.
 
 3. In a job file, repeat the three lines:
 
@@ -117,7 +117,7 @@ For software that needs a compiler, load the compiler module first (see [Compile
 
 ## Jupyter
 
-Jupyter runs on a compute node through an interactive session, with the notebook served to your browser through an SSH tunnel. See [Jupyter](../interactive/jupyter.md).
+Jupyter runs on a compute node through an interactive session, with the notebook served to your browser through an ssh tunnel. See [Jupyter](../interactive/jupyter.md).
 
 ## Further reading
 

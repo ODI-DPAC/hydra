@@ -1,6 +1,6 @@
 # Requesting an account
 
-Anyone with an active Smithsonian network account can request a Hydra account. The request goes through the SI Service Portal, and the Hydra admin team creates the account, usually within a few working days.
+Anyone with an active Smithsonian network account can request a Hydra account. The request goes through the SI Service Portal, and we create the account, usually within a few working days.
 
 !!! note "A Hydra account is separate from your SI, CfA and VPN accounts"
 

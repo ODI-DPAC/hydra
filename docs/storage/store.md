@@ -1,6 +1,6 @@
 # Use /store and the I/O queue
 
-`/store` holds the project partitions on the NAS, a large and inexpensive near-line system that is not mounted on the compute nodes, so data moves between it and the partitions jobs can read. It holds data waiting to be processed or already processed, and it is not backed up. [SI-HPC@si.edu](mailto:SI-HPC@si.edu) sets up the groups that have a `/store` partition.
+`/store` holds the project partitions on the NAS, a large and inexpensive near-line system. It holds data waiting to be processed or already processed, and it is not backed up. [SI-HPC@si.edu](mailto:SI-HPC@si.edu) sets up the groups that have a `/store` partition.
 
 !!! note "`/store/public` is being phased out"
 
@@ -20,7 +20,7 @@ For a small copy, run `cp` or `rsync` on a login node, or under `qrsh` for anyth
 $ rsync -a /store/PROJECT/USERNAME/run-12/ /scratch/genomics/USERNAME/run-12/
 ```
 
-The login-node limits apply (see [Warning emails](../jobs/efficiency.md#high-cpu-use-on-a-login-node)), and a `qrsh` session ends after 24 hours.
+The login-node limits apply (see [Warning emails](../jobs/efficiency.md#high-cpu-use-on-a-login-node)), and a `qrsh` session ends after 48 hours.
 
 ## Copy data as an I/O job
 
@@ -55,12 +55,12 @@ Large or repeated copies run as jobs in the I/O queue, `lTIO.sq`, which runs on 
     $ qstat+ +a%
     Total running (PEs/jobs) = 1/1, 2 queued (jobs) for user 'USERNAME'.
        jobID name                     stat     age nPEs      cpu% queue     node taskID
-     7437744 getData                     r   00:01    1           lTIO.sq  8-31
+     7437744 getData                     r   00:01    1           lTIO.sq  64-12
      7437745 analyze                   hqw   00:00    1           sThC.q
      7437746 saveNClean                hqw   00:00    1           lTIO.sq
     ```
 
-    `hqw` is a job waiting on a hold. `qchain getData.job analyze.job saveNClean.job` submits the three with the holds set; see [Run jobs in sequence](../jobs/submit.md#run-jobs-in-sequence).
+    `hqw` is a job waiting on a hold. `qchain getData.job analyze.job saveNClean.job` submits the three with the holds set. See [Run jobs in sequence](../jobs/submit.md#run-jobs-in-sequence).
 
 `/store` snapshots and quotas are on the [Filesystems](filesystems.md) page. `quota+` shows your `/store` usage, which the Linux `quota` command does not. Recovering a file from a `/store` snapshot is under [Recover a file from a snapshot](snapshots.md#recover-a-file-on-store).
 

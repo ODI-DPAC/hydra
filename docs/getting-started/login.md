@@ -1,6 +1,6 @@
 # Logging in and passwords
 
-You reach Hydra through an **ssh** connection to one of its two login nodes, `hydra-login01.si.edu` and `hydra-login02.si.edu`. Either one will do; they share your home directory and see the same cluster. From a computer on the Smithsonian network or the SI VPN you connect with an ssh client. From anywhere else you use the web terminal on telework.si.edu.
+You reach Hydra through an **ssh** connection to one of its two login nodes, `hydra-login01.si.edu` and `hydra-login02.si.edu`. Either one will do. They share your home directory and see the same cluster. From a computer on the Smithsonian network or the SI VPN you connect with an ssh client. From anywhere else you use the web terminal on telework.si.edu.
 
 ## Where you can connect from
 
@@ -60,7 +60,7 @@ Replace `USERNAME` with your Hydra username from your welcome email, in lower ca
 
     ![PuTTY configuration window with the host name filled in](../assets/putty-config.png)
 
-    The first time, PuTTY shows a security alert about the server's host key. Click **Yes** to accept it; PuTTY then remembers it.
+    The first time, PuTTY shows a security alert about the server's host key. Click **Yes** to accept it. PuTTY then remembers it.
 
     ![The PuTTY security alert about an unknown host key, with Yes highlighted](../assets/Screen_Shot_2015-09-18_at_1.14.43_PM.png)
 
@@ -81,7 +81,7 @@ You are logged in when the prompt changes to:
 
 ## Log in without a password
 
-On macOS and Linux you can use an **ssh key pair** instead of a password: a private key that stays on your computer and a public key that you copy to Hydra. Generate a pair with `ssh-keygen` (accept the defaults, and give the key a passphrase), then copy the public key to Hydra:
+On macOS and Linux you can use an **ssh key pair** instead of a password. The pair is a private key that stays on your computer and a public key that you copy to Hydra. Generate a pair with `ssh-keygen` (accept the defaults, and give the key a passphrase), then copy the public key to Hydra:
 
 ```bash
 ssh-copy-id USERNAME@hydra-login01.si.edu
@@ -91,7 +91,7 @@ The home directory is shared by both login nodes, so one copy serves `hydra-logi
 
 ## Passwords
 
-You set your initial password from the link in your welcome email. A password is valid for 180 days, and Hydra emails you before it expires. Change it before then, either with `passwd` on a login node or on the self-service page. The self-service page also resets a password you have forgotten, and one that has expired, for 14 days after the expiry date. After those 14 days the account locks and only the Hydra admin team can reset it.
+You set your initial password from the link in your welcome email. A password is valid for 180 days, and Hydra emails you before it expires. Change it before then, either with `passwd` on a login node or on the self-service page. The self-service page also resets a password you have forgotten, and one that has expired, for 14 days after the expiry date. After those 14 days the account locks and only we can reset it.
 
 !!! note "Password requirements"
 

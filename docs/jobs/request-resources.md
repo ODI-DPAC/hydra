@@ -32,7 +32,7 @@ Some complete requests are:
 | `-l s_cpu=48:00:00` | 48 hours of CPU per CPU; the job lands in a medium queue |
 | `-l s_rt=200:00:00` | 200 hours of elapsed time; the job lands in a long queue |
 | `-q mThC.q` | run in `mThC.q` |
-| `-l mres=120G,h_data=12G,h_vmem=12G -pe mthread 10` | 10 CPUs with 12 GB each, 120 GB in total, in a high-CPU queue |
+| `-l mres=60G,h_data=6G,h_vmem=6G -pe mthread 10` | 10 CPUs with 6 GB each, 60 GB in total, in a high-CPU queue |
 | `-q mThM.q -l mres=12G,h_data=12G,h_vmem=12G,himem` | 12 GB in the medium high-memory queue |
 | `-q uThC.q -l lopri` | the unlimited high-CPU queue |
 | `-q uTxlM.rq -l himem` | the unlimited extra-large-memory queue, restricted |
@@ -41,7 +41,7 @@ Access to a restricted queue is by request to [SI-HPC@si.edu](mailto:SI-HPC@si.e
 
 ## Reserve memory
 
-Three numbers come up around memory, and they are three different things. The default queue allows a job 8 GB per slot, and the scheduler kills a job that uses more. A job that uses up to 2 GB per slot needs no reservation. A job that uses more than that reserves it with `mres`, so that the scheduler places it on a node with that much memory free.
+The default queue allows a job 8 GB per slot, and the scheduler kills a job that uses more. A job that uses up to 2 GB per slot needs no reservation. A job that uses more than that reserves it with `mres`, so that the scheduler places it on a node with that much memory free.
 
 `mres` reserves memory for the job. The scheduler tracks reserved memory on every node and does not start a job on a node with less free, unreserved memory than the request. `h_data` and `h_vmem` are the limits at which the scheduler kills the job. A job without a reservation can fail when the node runs short of memory, or crash the node.
 
@@ -64,7 +64,7 @@ Three numbers come up around memory, and they are three different things. The de
 
     `-l h_vmem=5` limits the job to 5 bytes and it dies at once. Write `5G`.
 
-MPI jobs set `h_data` and `h_vmem` only, without `mres`. Reserved memory that a job does not use is unavailable to everyone else, including your own other jobs, and a job that reserves more than 2.5 times what it uses triggers a [warning email](efficiency.md#memory-over-reservation). Break a task into separate jobs when its steps need different resources; see [Run jobs in sequence](submit.md#run-jobs-in-sequence).
+MPI jobs set `h_data` and `h_vmem` only, without `mres`. Reserved memory that a job does not use is unavailable to everyone else, including your own other jobs, and a job that reserves more than 2.5 times what it uses triggers a [warning email](efficiency.md#memory-over-reservation). Break a task into separate jobs when its steps need different resources. See [Run jobs in sequence](submit.md#run-jobs-in-sequence).
 
 ## Restrict the job to certain nodes
 
@@ -74,7 +74,7 @@ MPI jobs set `h_data` and `h_vmem` only, without `mres`. Reserved memory that a 
     #$ -q mThC.q@@ib-hosts
     ```
 
-    The queue name can be a pattern: `-q '?ThC.q@@ib-hosts'` means any high-CPU queue on nodes with InfiniBand. [Queues](queues.md#host-groups) lists the groups; `qconf -shgrp @gpu-hosts` prints the nodes in one.
+    The queue name can be a pattern. `-q '?ThC.q@@ib-hosts'` means any high-CPU queue on nodes with InfiniBand. [Queues](queues.md#host-groups) lists the groups. `qconf -shgrp @gpu-hosts` prints the nodes in one.
 
 2. To run only on one CPU architecture, request `cpu_arch`:
 
@@ -108,7 +108,7 @@ MPI jobs set `h_data` and `h_vmem` only, without `mres`. Reserved memory that a 
     verification: found suitable queue(s)
     ```
 
-    `-w v` checks against an empty cluster; `-w p` checks against the cluster as it is now. `qsub -verify crunch.job` prints what `qstat -j` would show for the job, including the effect of default files and the environment.
+    `-w v` checks against an empty cluster. `-w p` checks against the cluster as it is now. `qsub -verify crunch.job` prints what `qstat -j` would show for the job, including the effect of default files and the environment.
 
 2. Submit only when the check passes.
 

@@ -6,7 +6,7 @@ No partition on Hydra is backed up in a way you can restore from yourself. Two m
 |---|---|---|---|
 | `/home` | yes, 4 weeks | AWS Glacier | no |
 | `/data` | yes, 2 weeks | AWS Glacier | no |
-| `/scratch` | no | no | files older than 180 days |
+| `/scratch` | no | no | on `/scratch/public`, files older than 180 days |
 | `/store` (project partitions) | yes, 8 weeks | no | no |
 | local SSD | no | no | deleted when the job ends |
 

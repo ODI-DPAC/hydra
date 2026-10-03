@@ -33,7 +33,7 @@ The helper process runs on the login node under the login-node limits, so run no
     Web UI available at http://192.168.92.85:8000?tkn=6031bf1b-25cd-4d43-96b1-e02bd3dfa5f3
     ```
 
-    The token changes every start; `-token STRING` fixes it and `-no-token` removes it. `start-vscode-server -help` lists the options.
+    The token changes every start. `-token STRING` fixes it and `-no-token` removes it. `start-vscode-server -help` lists the options.
 
 2. On your own machine, open the tunnel the script printed, in a terminal you leave alone:
 
@@ -41,7 +41,7 @@ The helper process runs on the login node under the login-node limits, so run no
     $ ssh -N -L 8000:192.168.92.85:8000 USERNAME@hydra-login01.si.edu
     ```
 
-3. In a browser, open `http://localhost:8000?tkn=TOKEN` with the token from step 1. Use `localhost`, not the `192.168.…` address the server prints; that address is reachable only inside the cluster.
+3. In a browser, open `http://localhost:8000?tkn=TOKEN` with the token from step 1. Use `localhost`. The `192.168.…` address the server prints is reachable only inside the cluster.
 
     ![VS Code running in a browser through the server](../assets/vscode-server.jpg)
 
@@ -49,7 +49,7 @@ The helper process runs on the login node under the login-node limits, so run no
 
 ## Use a VS Code tunnel
 
-A tunnel registers the compute node with Microsoft's relay under a name, and you open `vscode.dev` with that name. It needs a GitHub account for authentication; SI Microsoft accounts fail because of SI's MFA setup.
+A tunnel registers the compute node with Microsoft's relay under a name, and you open `vscode.dev` with that name. It needs a GitHub account for authentication. SI Microsoft accounts fail because of SI's MFA setup.
 
 1. In an interactive session, load the module and start the tunnel:
 
@@ -68,7 +68,7 @@ A tunnel registers the compute node with Microsoft's relay under a name, and you
 
 2. Choose **GitHub Account** with the arrow keys, open the device-login URL in a browser, and enter the code.
 
-3. Open `https://vscode.dev/tunnel/USERNAME-compute-64-15` in a browser; choose **GitHub** if it asks how to authenticate.
+3. Open `https://vscode.dev/tunnel/USERNAME-compute-64-15` in a browser. Choose **GitHub** if it asks how to authenticate.
 
     ![VS Code running in a browser through a tunnel](../assets/vscode-tunnel.jpg)
 

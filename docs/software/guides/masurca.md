@@ -1,6 +1,6 @@
 # MaSuRCA
 
-[MaSuRCA](https://github.com/alekseyzimin/masurca) assembles genomes by building super-reads from Illumina data and assembling those, with or without long reads (PacBio, Nanopore) for a hybrid assembly. The module is `bio/masurca`. The MaSuRCA manual covers the parameters; what follows is how to run it on Hydra.
+[MaSuRCA](https://github.com/alekseyzimin/masurca) assembles genomes by building super-reads from Illumina data and assembling those, with or without long reads (PacBio, Nanopore) for a hybrid assembly. The module is `bio/masurca`. The MaSuRCA manual covers the parameters. What follows is how to run it on Hydra.
 
 MaSuRCA runs in two jobs. A short one turns the configuration file into an `assemble.sh` script, and a long one runs the script.
 
@@ -37,7 +37,7 @@ MaSuRCA runs in two jobs. A short one turns the configuration file into an `asse
     echo = `date` job $JOB_NAME done
     ```
 
-4. Run the assembly. Memory depends on the genome size. The high-memory queues allow up to 512 GB per job, and `uTxlM.rq` more, by request to [SI-HPC@si.edu](mailto:SI-HPC@si.edu). This job runs for hours to days.
+4. Run the assembly. Memory depends on the genome size. The high-memory queues allow up to 450 GB per slot, and `uTxlM.rq` more, by request to [SI-HPC@si.edu](mailto:SI-HPC@si.edu). This job runs for hours to days.
 
     ```sh title="masurca-assemble.job"
     #$ -S /bin/sh

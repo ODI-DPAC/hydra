@@ -10,7 +10,7 @@ The simplest job runs a program on one CPU. It takes a job file, `qsub`, and an 
     cd /scratch/genomics/USERNAME/demo
     ```
 
-2. Create the job file. The `#$` lines are options for `qsub`; the rest is a shell script.
+2. Create the job file. The `#$` lines are options for `qsub`. The rest is a shell script.
 
     ```sh title="crunch.job"
     #$ -S /bin/sh
@@ -45,7 +45,7 @@ The simplest job runs a program on one CPU. It takes a job file, `qsub`, and an 
     = Wed Sep 23 10:09:52 EDT 2026 job crunch done
     ```
 
-The two `echo` lines record which node and queue the job ran in and when it started and finished. Keep them in every job file. Without `-cwd`, the job runs in your home directory. Without `-o` and `-j y`, its output goes to `~/crunch.oJOBID` and `~/crunch.eJOBID`. [Job script reference](job-scripts.md) lists every option.
+The two `echo` lines record which node and queue the job ran in and when it started and finished. Keep them in every job file. Without `-cwd`, the job runs in your home directory and writes its output there. Without `-o` and `-j y`, the output goes to two files, `crunch.oJOBID` and `crunch.eJOBID`. [Job script reference](job-scripts.md) lists every option.
 
 With no queue or resource options the job runs in `sThC.q`, which allows 7 hours of CPU time and 8 GB of memory. Anything larger needs a [queue, memory or CPU request](request-resources.md).
 
@@ -85,7 +85,7 @@ Options on the command line override the `#$` lines. For more than a handful of 
     #$ -m abe
     ```
 
-    `b` mails when the job begins, `e` when it ends, `a` when it aborts; use any subset.
+    `b` mails when the job begins, `e` when it ends, `a` when it aborts. Use any subset.
 
 2. Mail goes to the address in your `~/.forward` file on Hydra. To send it elsewhere, add:
 
@@ -119,7 +119,7 @@ Each queue has a soft and a hard time limit 15 minutes apart. At the soft limit 
 
 2. Replace the `echo` in `warn` with whatever saves the state of the run.
 
-The trap runs when the signal arrives, but the command already running continues until it exits. Put checkpointing inside the program where possible. `csh` scripts cannot catch signals; use `-S /bin/sh`. [Job script reference](job-scripts.md#signals-at-the-time-limits) lists the signals.
+The trap runs when the signal arrives, but the command already running continues until it exits. Put checkpointing inside the program where possible. `csh` scripts cannot catch signals. Use `-S /bin/sh`. [Job script reference](job-scripts.md#signals-at-the-time-limits) lists the signals.
 
 ## Run jobs in sequence
 
@@ -164,7 +164,7 @@ qchain '-N start first.job 123' '-N crunch second.job 123' '-N post finish.job 1
 
 One user may have 2,500 jobs queued at once (see [Resource limits](limits.md)). A script that submits more has to wait for its own jobs to finish.
 
-1. Load the local tools and use `q-wait`, which pauses until jobs whose name contains a string have left the queue, or until fewer than a given number remain:
+1. Load the local tools and use `q-wait`, which pauses until jobs whose name contains a string have left the queue, or until at most a given number remain:
 
     ```console
     $ module load tools/local

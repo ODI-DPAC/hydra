@@ -13,8 +13,6 @@ Automated checks watch the login nodes, running jobs and the disks, and email yo
 | `Warning: your disk usage is above 95% of your quota` | your usage over 95% of a quota | daily |
 | `Warning: disk usage check found N disk(s) with %Use or %IUse >= 95%` | a disk you have files on is over 95% full | daily |
 
-
-
 ## High CPU use on a login node
 
 The login nodes are for editing, compiling, short tests, transfers and submitting jobs. A process that runs on one for more than 20 minutes at more than 45% CPU has its priority lowered (`renice +5`), and this happens twice. A process that reaches 85% CPU or 55% of the node's memory gets `kill -9`.
@@ -35,7 +33,7 @@ Stop the process and run it as a [job](submit.md) or in an [interactive session]
 - `gzip`, `zip`, `tar`: run them under `qrsh` or as a job.
 - File transfers: some transfer programs use a full CPU. Email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) for alternatives.
 
-After a kill, check the process's output. A transfer may have left partial files; a `tar` archive being written is incomplete and corrupt.
+After a kill, check the process's output. A transfer may have left partial files. A `tar` archive being written is incomplete and corrupt.
 
 ## Inefficient jobs
 
@@ -73,7 +71,7 @@ Either the program has stalled after doing some work, in which case kill it with
 
 A job is oversubscribed when it uses more than 133% of the CPUs it requested. It slows every other job on the node. The weekly mail lists such jobs with the excess CPU-days each used, from `check-qlogs osub -from -7d -user $USER`.
 
-The usual cause is a program that uses every CPU on the node unless told otherwise. Pass `$NSLOTS` to its thread option, or request the slots it uses with `-pe mthread N`. Kill an oversubscribed job that will run for more than another 24 hours and resubmit it with the correct request. Reply to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) within 24 hours. Administrators kill oversubscribed jobs when the cluster is busy.
+The usual cause is a program that uses every CPU on the node unless told otherwise. Pass `$NSLOTS` to its thread option, or request the slots it uses with `-pe mthread N`. Kill an oversubscribed job that will run for more than another 24 hours and resubmit it with the correct request. Reply to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) within 24 hours. We kill oversubscribed jobs when the cluster is busy.
 
 ## Memory over-reservation
 
