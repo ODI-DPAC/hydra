@@ -4,7 +4,7 @@ Hydra keeps large, widely used reference databases under `/scratch/dbs`, so that
 
 !!! warning "Old versions are not kept"
 
-    An update removes the previous copy. A pipeline that depends on a particular version records the version from the `README` in the database directory.
+    An update removes the previous copy. If your pipeline depends on a particular version, record the version from the `README` in the database directory.
 
 ## `/scratch/dbs/blast`
 
@@ -18,7 +18,7 @@ This directory holds the databases for [BLAST](https://www.ncbi.nlm.nih.gov/book
     └── core_nt    # v5 of core_nt
 ```
 
-Loading `bio/blast` sets `BLASTDB` to `/scratch/dbs/blast/v5`, so `-db nt` finds the local copy; see [BLAST](blast.md).
+Loading `bio/blast` sets `BLASTDB` to `/scratch/dbs/blast/v5`, so `-db nt` finds the local copy. See [BLAST](blast.md).
 
 ## `/scratch/dbs/dfam`
 

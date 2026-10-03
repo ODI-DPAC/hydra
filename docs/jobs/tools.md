@@ -61,7 +61,7 @@
 | `taskid` | task ID of an array task |
 | `qsub_time`, `start_time`, `end_time` | when the job was submitted, started, ended |
 | `granted_pe`, `slots` | parallel environment and slots allocated |
-| `failed` | `1` when the scheduler killed the job, for exceeding a memory or time limit |
+| `failed` | `0` when the job ran and exited normally; any other value is a failure code, which `qacct+ -show explain_failed` explains |
 | `exit_status` | exit status of the job script; `0` when it completed |
 | `ru_wallclock` | elapsed time, seconds |
 | `ru_utime`, `ru_stime` | user and system CPU time reported by the OS, seconds |
@@ -72,7 +72,7 @@
 
 ## qacct+
 
-A loader copies the accounting data into a PostgreSQL database within about a minute of each job finishing. `qacct+` queries the database, with selectable fields and derived values. Some fields are not loaded correctly from the Grid Engine 8.8.1 records. When a value looks wrong, compare it with `qacct -j JOBID`. `qacct+ -help` and `qacct+ -show help` list the options; `man qacct+` has the details.
+A loader copies the accounting data into a PostgreSQL database within about a minute of each job finishing. `qacct+` queries the database, with selectable fields and derived values. Some fields are not loaded correctly from the Grid Engine 8.8.1 records. When a value looks wrong, compare it with `qacct -j JOBID`. `qacct+ -help` and `qacct+ -show help` list the options. `man qacct+` has the details.
 
 | Command | Shows |
 |---|---|
@@ -102,11 +102,11 @@ The built-in formats are `simple`, `simple+`, `tab`, `tab+`, `gpu`, `gpu+`, `raw
 | `qconf -srqs [NAME]` | resource quotas |
 | `qconf -sconf global \| grep max` | cluster-wide job limits |
 
-`qhost` takes no patterns; filter with `egrep`.
+`qhost` takes no patterns. Filter with `egrep`.
 
 ## Hydra tools
 
-Every session loads `tools/local-user`. `tools/local` adds `tools/local-admin`; `tools/local+` and `tools/misc` add more. Every tool has a man page; `module help tools/local-user` lists them.
+Every session loads `tools/local-user`. `tools/local` adds `tools/local-admin`, and `tools/local+` and `tools/misc` add more. Every tool has a man page, and `module help tools/local-user` lists them.
 
 | Tool | Module | Purpose |
 |---|---|---|
@@ -116,8 +116,8 @@ Every session loads `tools/local-user`. `tools/local` adds `tools/local-admin`; 
 | `quota+` | local-user | disk quotas on every filesystem; see [Quotas](../storage/quotas.md) |
 | `check-qwait` | local-user | waiting jobs and the quota holding each |
 | `check-gpu-use`, `get-gpu-info` | local-user | GPU use across the cluster; GPUs on the current node |
-| `qchain` | local | submit jobs that run in sequence |
-| `q-wait` | local | pause until jobs leave the queue |
+| `qchain` | local-user | submit jobs that run in sequence |
+| `q-wait` | local-user | pause until jobs leave the queue |
 | `plot-qmemuse`, `show-qmemuse` | local-user | memory and CPU of a high-memory job over time |
 | `plot-qssduse`, `show-qssduse` | local-user | local SSD use of a job over time |
 | `rtop+`, `rpstree+` | local-user | `top` and `pstree` on a compute node |

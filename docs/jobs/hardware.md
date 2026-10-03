@@ -14,24 +14,24 @@ The login nodes slow, then [kill](efficiency.md#high-cpu-use-on-a-login-node), c
 
 ## Compute nodes
 
-74 nodes, 5,840 CPU cores, 49 TB of memory and 8 GPUs. Nodes are named `compute-NN-MM`; the first number groups a model. Jobs reach them only through the scheduler; see [How the scheduler works](concepts.md).
+74 nodes, 5,840 CPU cores, 49 TB of memory and 8 GPUs. Nodes are named `compute-NN-MM`. The first number groups a model. Jobs reach them only through the scheduler. See [How the scheduler works](concepts.md).
 
 | Nodes | Count | Cores per node | Memory per node | CPU | Note |
 |---|---|---|---|---|---|
-| `compute-50-01` | 1 | 64 | 512 GB | Intel Xeon (`icelake`) | four NVIDIA L40S GPUs |
-| `compute-64-03` to `-16` | 13 | 40 | 384 GB | Intel Xeon Gold 6148 (`skylake`) | |
-| `compute-64-17`, `-18` | 2 | 32 | 512 GB | Intel Xeon Gold 6148 (`skylake`) | |
-| `compute-65-02` to `-30` | 28 | 64 | 512 GB | AMD EPYC 7713P (`zen`) | |
+| `compute-50-01` | 1 | 64 | 512 GB | Intel Xeon Gold 6338 (`icelake`) | four NVIDIA L40S GPUs |
+| `compute-64-03` to `-16`, without `-05` | 13 | 40 | 384 GB | Intel Xeon Gold 6148 (`skylake`) | |
+| `compute-64-17`, `-18` | 2 | 32 | 512 GB | Intel Xeon Gold 5218 (`skylake`) | |
+| `compute-65-02` to `-30`, without `-08` | 28 | 64 | 512 GB | AMD EPYC 7713P (`zen`) | |
 | `compute-75-03` to `-07` | 5 | 128 | 768 GB | AMD EPYC 7H12 (`zen`) | |
 | `compute-75-01`, `-02` | 2 | 128 | 1 TB | AMD EPYC 7H12 (`zen`) | |
-| `compute-76-03` to `-14` | 12 | 128 | 1 TB | AMD EPYC 9654 and 9534 (`zen`) | |
+| `compute-76-03` to `-14` | 12 | 128 | 1 TB | AMD EPYC 9534 (`zen`) | |
 | `compute-76-01`, `-02` | 2 | 192 | 1.5 TB | AMD EPYC 9654 (`zen`) | `-02` runs the [RStudio server](../interactive/rstudio.md) |
 | `compute-79-01`, `-02` | 2 | 20 | 128 GB | Intel Xeon Silver 4114 (`skylake`) | two NVIDIA GV100 GPUs each |
 | `compute-84-01` | 1 | 112 | 896 GB | Intel Xeon Platinum 8280 (`skylake`) | |
-| `compute-93-01` | 1 | 64 | 512 GB | Intel Xeon E7 (`haswell`, `broadwell`) | |
-| `compute-93-02` to `-04` | 3 | 72 | 768 GB | Intel Xeon E7 (`haswell`, `broadwell`) | |
-| `compute-93-05` | 1 | 96 | 2 TB | Intel Xeon E7 (`haswell`, `broadwell`) | extra-large memory |
-| `compute-93-06` | 1 | 56 | 3 TB | Intel Xeon E7 (`haswell`, `broadwell`) | extra-large memory |
+| `compute-93-01` | 1 | 64 | 512 GB | Intel Xeon E7-8867 v3 (`haswell`) | |
+| `compute-93-02` to `-04` | 3 | 72 | 768 GB | Intel Xeon E7-8860 v4 (`broadwell`) | |
+| `compute-93-05` | 1 | 96 | 2 TB | Intel Xeon E7-8890 v4 (`broadwell`) | extra-large memory |
+| `compute-93-06` | 1 | 56 | 3 TB | Intel Xeon E7-4850 v3 (`haswell`) | extra-large memory |
 
 The name in parentheses is the `cpu_arch` value for restricting a job to that architecture, as shown under [Restrict the job to certain nodes](request-resources.md#restrict-the-job-to-certain-nodes). A few nodes are set aside for [interactive sessions](../interactive/qrsh.md) and the [I/O queue](../storage/store.md). [GPUs](../software/gpus.md) describes the cards.
 
@@ -43,12 +43,14 @@ Slots are from `qstat -g c`. A node serves several queues, so the same slots app
 |---|---|---|---|---|
 | `sThC.q` `mThC.q` `lThC.q` `uThC.q` | 4,616 to 4,656 | 40 to 128 | more than 4 GB per CPU | high-CPU queues |
 | `sThM.q` `mThM.q` `lThM.q` `uThM.q` | 4,616 to 5,064 | 32 to 192 | 512 GB or more per node | high-memory queues |
-| `uTxlM.rq` | 536 | 96 to 192 | 1 TB or more per node | extra-large-memory queue, restricted |
+| `uTxlM.rq` | 536 | 56 to 192 | 1 TB or more per node | extra-large-memory queue, restricted |
 | `sTgpu.q` `mTgpu.q` `lTgpu.q` | 104, with 8 GPUs | | | GPU queues; `-l gpu,ngpus=N` |
 | `qgpu.iq` | 104, with 8 GPUs | | | interactive GPU queue; `qrsh -l gpu,ngpus=N` |
 | `qrsh.iq` | 292 | | | interactive queue; `qrsh` |
 | `lTIO.sq` | 34 | | | I/O queue for `/store` |
 | `lTWFM.sq` | 18 | | | workflow-manager queue |
+| `lThMuVM.tq` | 384 | | | long high-memory queue with no virtual-memory limit, restricted |
+| `lTb2g.q` | 2 | | | Blast2GO queue; one slot in use at a time |
 
 The per-job limits of each queue are under [Queues](queues.md) and the per-user limits under [Resource limits](limits.md).
 

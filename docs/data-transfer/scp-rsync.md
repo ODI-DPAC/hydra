@@ -102,7 +102,7 @@ WinSCP can also show only the Hydra side ("Explorer" mode), in which case you dr
 
 ## Use FileZilla on any system
 
-[FileZilla](https://filezilla-project.org/) is a free client for macOS, Windows and Linux. The screenshots are from a Mac; the other systems look the same.
+[FileZilla](https://filezilla-project.org/) is a free client for macOS, Windows and Linux. The screenshots are from a Mac. The other systems look the same.
 
 1. In the Quickconnect bar, enter the host `hydra-login01.si.edu`, your Hydra username, your password and port 22, then click **Quickconnect**:
 
@@ -128,6 +128,6 @@ We do not recommend Cyberduck. It keeps a process busy on the login node, and th
 
 ## Further reading
 
-- [Filesystems](../storage/filesystems.md), for the partitions and their quotas
-- [Globus](globus.md), for transfers too large or too long for `rsync`
-- [Logging in and passwords](../getting-started/login.md), for ssh keys, which let `scp` and `rsync` run without a password
+- [Filesystems](../storage/filesystems.md) for the partitions and their quotas
+- [Globus](globus.md) for transfers too large or too long for `rsync`
+- [Logging in and passwords](../getting-started/login.md) for ssh keys, which let `scp` and `rsync` run without a password

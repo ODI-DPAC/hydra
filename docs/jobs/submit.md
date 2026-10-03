@@ -10,7 +10,7 @@ The simplest job runs a program on one CPU. It takes a job file, `qsub`, and an 
     cd /scratch/genomics/USERNAME/demo
     ```
 
-2. Create the job file. The `#$` lines are options for `qsub`; the rest is a shell script.
+2. Create the job file. The `#$` lines are options for `qsub`. The rest is a shell script.
 
     ```sh title="crunch.job"
     #$ -S /bin/sh
@@ -25,27 +25,29 @@ The simplest job runs a program on one CPU. It takes a job file, `qsub`, and an 
 
     ```console
     $ qsub crunch.job
-    Your job 8736123 ("crunch") has been submitted
+    Your job 15503721 ("crunch") has been submitted
     ```
 
 4. Check that it is queued or running:
 
     ```console
     $ qstat
-    job-ID   prior   name   user      state submit/start at     queue          slots
-    ------------------------------------------------------------------------------------
-    8736123  0.50000 crunch USERNAME  r     09/23/2026 10:04:11 sThC.q@compute-64-11    1
+    job-ID     prior   name       user         state submit/start at     queue                          jclass                         slots ja-task-ID
+    ------------------------------------------------------------------------------------------------------------------------------------------------
+      15503721 0.50500 crunch     USERNAME     r     10/03/2026 16:13:58 sThC.q@compute-76-06.cm.cluste                                    1
     ```
 
 5. When the job is gone from `qstat`, read its log:
 
     ```console
     $ cat crunch.log
-    + Wed Sep 23 10:04:11 EDT 2026 job crunch started in sThC.q with jobID=8736123 on compute-64-11
-    = Wed Sep 23 10:09:52 EDT 2026 job crunch done
+    + Sat Oct 3 16:13:59 EDT 2026 job crunch started in sThC.q with jobID=15503721 on compute-76-06
+    crunch running with:
+    result 1.886e+12
+    = Sat Oct 3 16:14:08 EDT 2026 job crunch done
     ```
 
-The two `echo` lines record which node and queue the job ran in and when it started and finished. Keep them in every job file. Without `-cwd`, the job runs in your home directory. Without `-o` and `-j y`, its output goes to `~/crunch.oJOBID` and `~/crunch.eJOBID`. [Job script reference](job-scripts.md) lists every option.
+The two `echo` lines record which node and queue the job ran in and when it started and finished. Keep them in every job file. Without `-cwd`, the job runs in your home directory and writes its output there. Without `-o` and `-j y`, the output goes to two files, `crunch.oJOBID` and `crunch.eJOBID`. [Job script reference](job-scripts.md) lists every option.
 
 With no queue or resource options the job runs in `sThC.q`, which allows 7 hours of CPU time and 8 GB of memory. Anything larger needs a [queue, memory or CPU request](request-resources.md).
 
@@ -70,9 +72,9 @@ One job file serves many runs when the script reads its parameters from the comm
 
     ```console
     $ qsub -N crunch-20-50 -o crunch-20-50.log crunch.job 20 50
-    Your job 8736124 ("crunch-20-50") has been submitted
+    Your job 15503715 ("crunch-20-50") has been submitted
     $ qsub -N crunch-100-150 -o crunch-100-150.log crunch.job 100 150
-    Your job 8736125 ("crunch-100-150") has been submitted
+    Your job 15503716 ("crunch-100-150") has been submitted
     ```
 
 Options on the command line override the `#$` lines. For more than a handful of runs, use a [job array](arrays.md).
@@ -85,7 +87,7 @@ Options on the command line override the `#$` lines. For more than a handful of 
     #$ -m abe
     ```
 
-    `b` mails when the job begins, `e` when it ends, `a` when it aborts; use any subset.
+    `b` mails when the job begins, `e` when it ends, `a` when it aborts. Use any subset.
 
 2. Mail goes to the address in your `~/.forward` file on Hydra. To send it elsewhere, add:
 
@@ -119,7 +121,7 @@ Each queue has a soft and a hard time limit 15 minutes apart. At the soft limit 
 
 2. Replace the `echo` in `warn` with whatever saves the state of the run.
 
-The trap runs when the signal arrives, but the command already running continues until it exits. Put checkpointing inside the program where possible. `csh` scripts cannot catch signals; use `-S /bin/sh`. [Job script reference](job-scripts.md#signals-at-the-time-limits) lists the signals.
+The trap runs when the signal arrives, but the command already running continues until it exits. Put checkpointing inside the program where possible. `csh` scripts cannot catch signals. Use `-S /bin/sh`. [Job script reference](job-scripts.md#signals-at-the-time-limits) lists the signals.
 
 ## Run jobs in sequence
 
@@ -129,17 +131,25 @@ The trap runs when the signal arrives, but the command already running continues
 
     ```console
     $ qsub -N pre pre-process.job
-    Your job 12345678 ("pre") has been submitted
+    Your job 15503717 ("pre") has been submitted
     ```
 
 2. Submit the next step held on the first:
 
     ```console
-    $ qsub -hold_jid 12345678 -N main process.job
-    Your job 12345679 ("main") has been submitted
+    $ qsub -hold_jid 15503717 -N main process.job
+    Your job 15503718 ("main") has been submitted
     ```
 
-3. `qstat` shows the held job in state `hqw` until the first finishes.
+3. `qstat` shows the held job in state `hqw` until the first finishes:
+
+    ```console
+    $ qstat
+    job-ID     prior   name       user         state submit/start at     queue                          jclass                         slots ja-task-ID
+    ------------------------------------------------------------------------------------------------------------------------------------------------
+      15503717 0.50500 pre        USERNAME     r     10/03/2026 15:58:58 sThC.q@compute-65-13.cm.cluste                                    1
+      15503718 0.00000 main       USERNAME     hqw   10/03/2026 15:58:57                                                                   1
+    ```
 
 In a script, capture each job ID with `-terse`, which prints only the ID:
 
@@ -153,10 +163,9 @@ jid3=`qsub -terse -hold_jid $jid2 -N "post-$name" post-process.job $parameter`
 echo submitted $jid1 $jid2 $jid3
 ```
 
-`qchain`, in the `tools/local` module, adds the `-hold_jid` options for you. `qchain *.job` submits the matching job files in alphabetical order, each waiting for the previous one. Quote each argument to pass options to `qsub` and arguments to the scripts:
+`qchain` adds the `-hold_jid` options for you. `qchain *.job` submits the matching job files in alphabetical order, each waiting for the previous one. Quote each argument to pass options to `qsub` and arguments to the scripts:
 
 ```bash
-module load tools/local
 qchain '-N start first.job 123' '-N crunch second.job 123' '-N post finish.job 123'
 ```
 
@@ -164,12 +173,11 @@ qchain '-N start first.job 123' '-N crunch second.job 123' '-N post finish.job 1
 
 One user may have 2,500 jobs queued at once (see [Resource limits](limits.md)). A script that submits more has to wait for its own jobs to finish.
 
-1. Load the local tools and use `q-wait`, which pauses until jobs whose name contains a string have left the queue, or until fewer than a given number remain:
+1. Use `q-wait`, which pauses until jobs whose name contains a string have left the queue, or until at most a given number remain:
 
     ```console
-    $ module load tools/local
     $ q-wait crunch                       # until no job named *crunch* is queued or running
-    $ q-wait -N 125 -wait 3600 crunch     # until at most 125 remain, checking hourly
+    $ q-wait -njobs 125 -wait 3600 crunch # until at most 125 remain, checking hourly
     ```
 
 2. Or count with `qstat` in the submission script:

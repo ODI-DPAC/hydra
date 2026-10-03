@@ -2,7 +2,7 @@
 
 The QSub Generator is a web form that writes a job file. You fill in the resources the job needs and the commands it runs. The form produces a `.job` file with the matching embedded directives, which you upload to Hydra and submit with `qsub`.
 
-Open <https://hydra.si.edu/tools/QSubGen/> from the SI network, the SI VPN, or telework.si.edu. Use Chrome or Firefox; Safari is not supported. The question-mark icon next to each field explains it and its format.
+Open <https://hydra.si.edu/tools/QSubGen/> from the SI network, the SI VPN, or telework.si.edu. Use Chrome or Firefox. Safari is not supported. The question-mark icon next to each field explains it and its format.
 
 ## Fill in the form
 
@@ -10,9 +10,9 @@ Open <https://hydra.si.edu/tools/QSubGen/> from the SI network, the SI VPN, or t
 
 ![The CPU time, Memory and VMem fields](../assets/img1.png)
 
-**CPU time** is the CPU time allowed to the job, per CPU. Type a value or pick one from the menu; the menu sets the text box. The job is killed when it reaches this limit. CPU time is time the processor spends on the job, not elapsed time. For a job with several CPUs the scheduler multiplies the CPU limit by the number of CPUs and leaves the elapsed-time limit alone. See [Time classes](queues.md#time-classes).
+**CPU time** is the CPU time allowed to the job, per CPU. Type a value or pick one from the menu, which sets the text box. The job is killed when it reaches this limit. CPU time counts only the time a processor is busy with the job. Elapsed time is the time on the clock from start to finish. A job that waits on files uses less CPU time than elapsed time. A job on several CPUs adds up the time of each, so four CPUs that are each busy for 9 seconds use 36 seconds of CPU time. For a job with several CPUs the scheduler multiplies the CPU limit by the number of CPUs and leaves the elapsed-time limit alone. See [Time classes](queues.md#time-classes).
 
-**Memory** is the maximum memory the job uses, per CPU. Some programs come with a memory estimator; the form links to one for RAxML.
+**Memory** is the maximum memory the job uses, per CPU. Some programs come with a memory estimator. The form links to one for RAxML.
 
 **VMem** is the virtual-memory limit. It is set to the memory value unless you change it.
 
@@ -38,7 +38,7 @@ Choose `sh`.
 
 ![The module search box with a module chosen](../assets/modules.png)
 
-Type the start of a program name to see the matching modules, and pick the one to load. A module without a version, such as `bioinformatics/raxml`, loads the newest installed version. See [Modules](../software/modules.md).
+Type the start of a program name to see the matching modules, and pick the one to load. A module without a version, such as `bioinformatics/raxml`, loads the default version. See [Modules](../software/modules.md).
 
 ### Commands
 

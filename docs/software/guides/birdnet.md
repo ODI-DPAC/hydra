@@ -16,7 +16,7 @@ $ for f in /scratch/genomics/USERNAME/audio/*; do ffprobe -v error -show_entries
 
 ## Analyse recordings
 
-Analysis runs on CPUs; do not request a GPU. `--threads` parallelises across files, one file per thread, so request no more slots than the directory has files. TensorFlow needs about 6 GB of virtual memory even for one file, so keep slots × `h_data` at 8 GB or more (for one slot, `-l mres=8G,h_data=8G,h_vmem=8G`).
+Analysis runs on CPUs. Do not request a GPU. `--threads` parallelises across files, one file per thread, so request no more slots than the directory has files. TensorFlow needs about 6 GB of virtual memory even for one file, so keep slots × `h_data` at 8 GB or more (for one slot, `-l mres=8G,h_data=8G,h_vmem=8G`).
 
 ```sh title="birdnet.job"
 #$ -S /bin/sh
@@ -67,7 +67,7 @@ echo = `date` job $JOB_NAME done
 
     TensorFlow and CUDA map about 40 GB of virtual memory for the smallest training run. With a smaller `h_vmem` the job fails at start with `cudaSetDevice ... out of memory`, which refers to the job's virtual-memory limit, not to GPU memory, and exits with status 0. `set -e` is what makes the job report the failure.
 
-Give `-o` an absolute path; a relative path crashes when the classifier is saved. The three `export` lines keep TensorFlow's CPU thread pools inside the one slot the job requested. Training has run on the L40S node so far, which the `gpuarch=L40S` request selects. CPU slots can be added with `-pe mthread Z` (see [GPUs](../gpus.md)), but training is GPU-bound and gains little from them. The example is at `/share/apps/bioinformatics/birdnet/2.4.0-gpu/examples/birdnet-train.job`.
+Give `-o` an absolute path. A relative path crashes when the classifier is saved. The three `export` lines keep TensorFlow's CPU thread pools inside the one slot the job requested. Training has run on the L40S node so far, which the `gpuarch=L40S` request selects. CPU slots can be added with `-pe mthread Z` (see [GPUs](../gpus.md)), but training is GPU-bound and gains little from them. The example is at `/share/apps/bioinformatics/birdnet/2.4.0-gpu/examples/birdnet-train.job`.
 
 To analyse recordings with the trained classifier, run `birdnet-analyze` from the CPU module, as above, with `--classifier` pointing at the saved model.
 

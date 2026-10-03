@@ -1,17 +1,17 @@
 # GPUs
 
-A job requests a GPU like any other resource, and the scheduler assigns it specific cards. This page shows you how to make the request, what your job is given, and how to build and watch GPU code. A GPU helps only a program written for NVIDIA GPUs, through CUDA or a framework built on it. A program that does not use a GPU gains nothing from a GPU queue.
+A job requests a GPU like any other resource, and the scheduler assigns it specific cards. A GPU helps only a program written for NVIDIA GPUs, through CUDA or a framework built on it. A program that does not use a GPU gains nothing from a GPU queue.
 
 Hydra has 8 GPUs on three nodes:
 
-| Node | GPUs | GPU memory | CPU slots | Node memory |
+| Node | GPUs | GPU memory | CPU slots | Usable node memory |
 |---|---|---|---|---|
 | `compute-50-01` | 4 × NVIDIA L40S | 48 GB each | 64 | 503 GB |
 | `compute-79-01`, `compute-79-02` | 2 × NVIDIA GV100 each | 32 GB each | 20 | 125 GB each |
 
 ## Request a GPU
 
-1. Add the two required resources to the job. `gpu` admits the job to a GPU queue, and `ngpus=N` is the number of GPUs the job uses. The scheduler requires both; a job with `gpu` but no `ngpus` goes into `Eqw` and never runs.
+1. Add the two required resources to the job. `gpu` admits the job to a GPU queue, and `ngpus=N` is the number of GPUs the job uses. The scheduler requires both. A job with `gpu` but no `ngpus` goes into `Eqw` and never runs.
 
     ```sh
     #$ -q sTgpu.q
@@ -20,7 +20,7 @@ Hydra has 8 GPUs on three nodes:
 
 2. Add CPU slots on the same node if the program uses more than one CPU, with `-pe mthread Z`. Leave it off for a serial program. `ngpus` is per job, not per slot, so `-pe mthread 8 -l gpu,ngpus=2` is 8 CPUs and 2 GPUs.
 
-3. Pick the queue by the time the job needs. `sTgpu.q` allows 7 hours of CPU time and 14 hours elapsed, `mTgpu.q` 6 and 12 days, and `lTgpu.q` 30 and 60 days, each with 64 GB resident and 128 GB virtual memory per slot. Memory limits multiply by `Z`, and the GV100 nodes have 125 GB in total, so a large per-slot request with several slots fits only on `compute-50-01`.
+3. Pick the queue by the time the job needs. `sTgpu.q` allows 7 hours of CPU time and 14 hours elapsed, `mTgpu.q` 6 and 12 days, and `lTgpu.q` 30 and 60 days, each with 64 GB resident and 128 GB virtual memory per slot. Memory limits multiply by `Z`, and the GV100 nodes have 125 GB usable in total, so a large per-slot request with several slots fits only on `compute-50-01`.
 
 4. To require a specific card, add `gpuarch`:
 
@@ -28,7 +28,7 @@ Hydra has 8 GPUs on three nodes:
     #$ -l gpu,ngpus=1,gpuarch=L40S
     ```
 
-    Leave it off otherwise; the job then takes whichever GPU is free first.
+    Leave it off otherwise. The job then takes whichever GPU is free first.
 
 A complete job file is:
 
@@ -53,9 +53,9 @@ For an interactive session with a GPU, in the `qgpu.iq` queue (12 h CPU, 24 h el
 $ qrsh -l gpu,ngpus=1
 ```
 
-!!! warning "`ngpu` without an s is the old resource; delete it"
+!!! warning "Delete `ngpu` without an s from old job files"
 
-    Old job files may request `num_gpu` or its alias `ngpu`. That resource does nothing and is on its way out; once we remove it, the scheduler rejects a job that still names it with `unknown resource`. `ngpus`, with an s, is the current one. Delete `num_gpu=…` or `ngpu=…` from the `-l` list and keep `ngpus=N`; if a file has both, delete only the one without the s.
+    Old job files may request `num_gpu` or its alias `ngpu`. That resource does nothing, and once we remove it the scheduler rejects a job that names it with `unknown resource`. Delete `num_gpu=…` or `ngpu=…` from the `-l` list and keep `ngpus=N`, with an s.
 
 ## What the job gets
 
@@ -73,7 +73,7 @@ The GPUs run in exclusive-process mode, in which each GPU serves one process at 
 | `qgpu.iq` | 1 |
 | all GPU queues together | 4 |
 
-`qquota -u $USER` shows your use against these; the full set is under [Resource limits](../jobs/limits.md).
+`qquota -u $USER` shows your use against these. The full set is under [Resource limits](../jobs/limits.md).
 
 ## Build GPU code
 

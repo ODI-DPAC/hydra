@@ -10,7 +10,7 @@
     $ qrsh
     ```
 
-    For several CPUs on one node, or more memory, request slots; memory limits multiply with the slot count:
+    For several CPUs on one node, or more memory, request slots. Memory limits multiply with the slot count:
 
     ```console
     $ qrsh -pe mthread 4
@@ -28,7 +28,7 @@
     [USERNAME@compute-64-15 ~]$
     ```
 
-    The session starts in your home directory; `cd` to your working directory under `/scratch`.
+    The session starts in your home directory. `cd` to your working directory under `/scratch`.
 
 3. Work as you would on a login node. Load modules, run programs, edit files.
 
@@ -45,13 +45,13 @@ For a program that opens X11 windows, use `qlogin` in place of `qrsh` and connec
 | Memory per slot | 8 GB resident, 64 GB virtual |
 | Sessions per user at once | 12 |
 | Slots per user across sessions | 64 |
-| GPU sessions per user | 1, with 1 GPU |
+| GPU sessions per user | 1, with 1 GPU, for up to 24 h elapsed |
 
-The scheduler kills a session that reaches a limit, with whatever it was running. Save work in files as you go, and run anything longer than a day as a [job](../jobs/submit.md).
+The scheduler kills a session that reaches a limit, with whatever it was running. Save work in files as you go, and run anything longer than 48 hours as a [job](../jobs/submit.md).
 
 ## Reach a service on the node from your browser
 
-Jupyter, VS Code and RStudio run on the compute node and listen on a port there. The compute nodes are not reachable from outside the cluster, so you open an ssh tunnel from your own machine through a login node to that port, then point a browser at the local end. The tools' start scripts print the exact command; its shape is always:
+Jupyter, VS Code and RStudio run on the compute node and listen on a port there. The compute nodes are not reachable from outside the cluster, so you open an ssh tunnel from your own machine through a login node to that port, then point a browser at the local end. The tools' start scripts print the exact command. It always has this shape:
 
 ```console
 $ ssh -N -L PORT:compute-XX-XX:PORT USERNAME@hydra-login01.si.edu
@@ -61,7 +61,7 @@ $ ssh -N -L PORT:compute-XX-XX:PORT USERNAME@hydra-login01.si.edu
 
 !!! warning "The tunnel does not work from telework.si.edu"
 
-    A tunnel runs from your own machine, and the telework web terminal cannot start one. From telework, use the [RStudio server](rstudio.md) or a [VS Code tunnel](vscode.md#use-a-vs-code-tunnel) instead; neither needs an ssh tunnel.
+    A tunnel runs from your own machine, and the telework web terminal cannot start one. From telework, use the [RStudio server](rstudio.md) or a [VS Code tunnel](vscode.md#use-a-vs-code-tunnel) instead. Neither needs an ssh tunnel.
 
 ## Further reading
 

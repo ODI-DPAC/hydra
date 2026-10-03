@@ -8,7 +8,7 @@ Replace `USERNAME` with your Hydra username throughout.
 
 Jobs run from a directory under `/scratch`. The home directory has a small quota and is not for job input and output.
 
-Your directory on `/scratch` is under a group directory such as `/scratch/genomics`, `/scratch/sao` or `/scratch/odi`. Your welcome email tells you which one is yours. The examples on this site use `/scratch/genomics/USERNAME`; substitute your own path.
+Your directory on `/scratch` is under a group directory such as `/scratch/genomics`, `/scratch/sao` or `/scratch/odi`. Your welcome email tells you which one is yours. The examples on this site use `/scratch/genomics/USERNAME`. Substitute your own path.
 
 ```bash
 ssh USERNAME@hydra-login01.si.edu
@@ -65,7 +65,7 @@ job-ID     prior   name       user         state submit/start at     queue      
 
 State `qw` means queued and waiting, `r` means running. A job with an error in its job file usually fails within seconds, so check `qstat` during the first minute after submitting. When the job has finished, `qstat` prints nothing.
 
-You can log out with `exit` while a job is running. The job belongs to the scheduler, not to your session.
+You can log out with `exit` while a job is running. The scheduler owns the job, so it keeps running after you log out.
 
 ## 5. Read the output
 

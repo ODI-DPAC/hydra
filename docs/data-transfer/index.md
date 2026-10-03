@@ -12,12 +12,12 @@ A transfer to Hydra starts from a computer on the Smithsonian network or the SI 
 
 !!! warning "Copy data to `/scratch` or `/data`, not to `/home`"
 
-    The home directory has a quota of 350 GB and 9 million files, and it is where `scp` puts files when you give no destination. We ask that every transfer name a destination under `/scratch/genomics/USERNAME` or `/data`. Do not use `/tmp`; it is small and shared.
+    The home directory has a quota of 350 GB and 9 million files, and it is where `scp` puts files when you give no destination. We ask that every transfer name a destination under `/scratch/genomics/USERNAME` or `/data`. Do not use `/tmp`. It is small and shared.
 
-Transfers to and from `/store` are different, because `/store` is not mounted on the compute nodes. They run as I/O jobs; see [Use /store and the I/O queue](../storage/store.md).
+`/store` is not mounted on the compute nodes. Copies between `/store` and `/scratch` or `/data` run as I/O jobs. See [Use /store and the I/O queue](../storage/store.md).
 
 ## Further reading
 
-- [Filesystems](../storage/filesystems.md), for which partition to put data on
+- [Filesystems](../storage/filesystems.md) for which partition to put data on
 - [Check your disk usage and quotas](../storage/quotas.md)
-- [Logging in and passwords](../getting-started/login.md), for the login-node names and the VPN
+- [Logging in and passwords](../getting-started/login.md) for the login-node names and the VPN

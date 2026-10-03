@@ -19,13 +19,13 @@ $ R --version
     install.packages("vegan")
     ```
 
-    R reports that the system library is not writable and offers to create a personal library under your home directory; accept. Every package you install from then on goes there, and every job on every node sees it.
+    R reports that the system library is not writable and offers to create a personal library under your home directory. Accept. Every package you install from then on goes there, and every job on every node sees it.
 
 2. For a package that compiles C or Fortran code, install from a login node or an interactive session. Those nodes have the system development libraries such packages need and the compute nodes do not, so an install started inside a batch job fails at the compile step.
 
 ## Use the requested CPUs
 
-R functions that run in parallel take the number of workers from `NSLOTS`, so the job uses the slots it requested however it was submitted:
+Give R functions that run in parallel the number of workers from `NSLOTS`, so the job uses the slots it requested however it was submitted:
 
 ```r
 numcores <- as.integer(Sys.getenv("NSLOTS"))

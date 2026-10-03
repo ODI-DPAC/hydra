@@ -58,7 +58,7 @@ A job array counts as one job. `q-wait` and a counting loop for scripts that sub
 | `lTgpu.q` | 2 |
 | `qgpu.iq` | 1 |
 
-The cluster has 8 GPUs; a group of approved users has higher GPU limits.
+The cluster has 8 GPUs. A group of approved users has higher GPU limits.
 
 ## Other limits
 
@@ -87,7 +87,7 @@ $ qconf -srqs max_hC_slots_per_user  # one set
 $ qconf -sconf global | grep max     # cluster-wide job limits
 $ qquota -u $USER                    # your usage against the limits
 $ qquota -u $USER -l mem_res         # one resource
-$ module load tools/local; qquota+ +% -l slots -u $USER   # with percentages
+$ qquota+ +% -l slots -u $USER       # with percentages
 $ check-qwait                        # your waiting jobs and the quota holding each
 ```
 

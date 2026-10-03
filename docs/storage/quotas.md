@@ -11,13 +11,13 @@ Every partition has a per-user quota on space and on the number of files ([Files
     Disk quotas for user USERNAME (uid 12345):
     Mounted on                             Used   Quota   Limit   Grace   Files   Quota   Limit   Grace
     ----------                          ------- ------- ------- ------- ------- ------- ------- -------
-    /data/public                          4.89T  22.50T  23.00T       0  118.0M  280.0M  290.0M       0
-    /home                                14.41G  350.0G  384.0G       0  136.6k   9.00M  10.00M       0
-    /scratch/public                       2.10T  14.00T  15.00T       0    1.2M  37.00M  39.00M       0
+    /data/public                          2.06T   4.28T   4.50T       0   5.47M   9.50M  10.00M       0
+    /home                                71.14G  350.0G  384.0G       0  667.2k   9.00M  10.00M       0
+    /scratch/public                       5.16T  14.00T  15.00T       0   3.35M  37.75M  39.85M       0
     /store/PROJECT                        1.00G    none    none
     ```
 
-    `Quota` is the soft limit and `Limit` the hard limit, for space and for the number of files. `quota+ +%` adds the percentage used; `quota+ -f /scratch/public` shows one partition. The Linux `quota` command works only on `/home` and `/data`.
+    `Quota` is the soft limit and `Limit` the hard limit, for space and for the number of files. `quota+ +%` adds the percentage used. `quota+ -f /scratch/public` shows one partition. The Linux `quota` command works only on `/home` and `/data`.
 
 2. Delete or archive files on any partition where `Used` is close to `Limit` or `Files` is close to its `Limit`.
 
@@ -33,10 +33,10 @@ A [warning email](../jobs/efficiency.md#disk-quota-over-95) goes out when your u
 $ module load tools/local
 $ disk-usage -d all+
 Filesystem                                Size     Used    Avail Capacity  Mounted on
-netapp-fas83:/vol_home                  22.36T   14.45T    7.91T  65%/11%  /home
-netapp-fas83-n02:/vol_data_public      332.50T   40.32T  292.18T  13%/2%   /data/public
-gpfs02:public                          800.00T  349.32T  450.68T  44%/26%  /scratch/public
-nas1:/mnt/pool/PROJECT                 175.00T   94.03T   80.97T  54%/1%   /store/PROJECT
+netapp-fas83:/vol_home                  22.36T   17.19T    5.18T  77%/12%  /home
+netapp-fas83-n01:/vol_data_public      332.50T  176.06T  156.44T  53%/2%   /data/public
+gpfs02:public                          800.00T  511.44T  288.56T  64%/28%  /scratch/public
+...
 ```
 
 `Capacity` is space used / files used. `disk-usage -d all+ -quotas` adds the default quotas of each partition. `df -h /scratch/public` gives the same for one partition without the tool. The [status page](../policies/status.md) plots the same figures over time under Disk Usage & Quota.
@@ -62,9 +62,9 @@ nas1:/mnt/pool/PROJECT                 175.00T   94.03T   80.97T  54%/1%   /stor
     $ dus-report -n 999 -pc 1 /tmp/dus.scratch.genomics.USERNAME.USERNAME
     ```
 
-    `-pc 1` lists everything down to 1% of the total; `-n` caps the number of lines.
+    `-pc 1` lists everything down to 1% of the total. `-n` caps the number of lines.
 
-`du -sh dir/` gives the size of one directory. `quota+` is available in every session; `disk-usage` needs `module load tools/local` and `dus-report` needs `module load tools/local+`. `man quota+`, `disk-usage -help` and `dus-report -help` list their options.
+`du -sh dir/` gives the size of one directory. `quota+` is available in every session. `disk-usage` needs `module load tools/local` and `dus-report` needs `module load tools/local+`. `man quota+`, `disk-usage -help` and `dus-report -help` list their options.
 
 ## Reduce your usage
 

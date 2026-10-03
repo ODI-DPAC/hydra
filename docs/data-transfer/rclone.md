@@ -8,7 +8,7 @@ Setting up a cloud account takes two places. rclone has to be authorized with th
 
 ### On Hydra
 
-Load the module and start the configuration. Answer the prompts as shown; `...` marks lines left out.
+Load the module and start the configuration. Answer the prompts as shown. `...` marks lines left out.
 
 ```text title="on Hydra"
 $ module load tools/rclone
@@ -143,10 +143,10 @@ Make the cloud copy match a directory on Hydra. `-i` asks before each change, wh
 $ rclone sync -i /scratch/genomics/USERNAME/project db:project/
 ```
 
-`--dry-run` on any command shows what it would do and does nothing. rclone runs on the login nodes, because they are the nodes with a route to the internet. A large copy can trip the login-node limits, so cap the rate with `--bwlimit 20M`, and run the copy inside `screen` or `tmux` so that it survives a dropped connection.
+`--dry-run` on any command shows what it would do and does nothing.
 
 ## Further reading
 
-- [rclone documentation](https://rclone.org/docs/), for every command and option
-- [Filesystems](../storage/filesystems.md), for where to put the data on Hydra
-- [Warning emails](../jobs/efficiency.md#high-cpu-use-on-a-login-node), for the login-node limits
+- [rclone documentation](https://rclone.org/docs/) for every command and option
+- [Filesystems](../storage/filesystems.md) for where to put the data on Hydra
+- [Warning emails](../jobs/efficiency.md#high-cpu-use-on-a-login-node) for the login-node limits

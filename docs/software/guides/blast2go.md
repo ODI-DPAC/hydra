@@ -8,11 +8,11 @@ The license allows one execution of the command-line program at a time, on one n
 
 !!! warning "Use Blast2GO for mapping and annotation only"
 
-    Because one job runs at a time, do not run the BLAST step inside Blast2GO. Run BLAST separately (see [BLAST](blast.md)), split across many jobs if the input is large, with `-outfmt 5`; Blast2GO reads the XML with `-loadblast31` or `-loadblast`.
+    Because one job runs at a time, do not run the BLAST step inside Blast2GO. Run BLAST separately (see [BLAST](blast.md)), split across many jobs if the input is large, with `-outfmt 5`. Blast2GO reads the XML with `-loadblast31` or `-loadblast`.
 
 ## Job file
 
-Request the queue and the `b2g` resource. The queue allows 36 GB of memory and two slots per job, with the time limits of the long queues (30 days of CPU, 60 days elapsed). The module defines two commands. `runblast2go` starts Blast2GO with the Java options set. `hydracliprop` copies a `cli.prop` template configured for the local database into the current directory. It overwrites an existing one, so run it once.
+Request the queue and the `b2g` resource. The queue allows 36 GB of memory and one slot per job, with no parallel environment, and has the time limits of the long queues (30 days of CPU, 60 days elapsed). The module defines two commands. `runblast2go` starts Blast2GO with the Java options set. `hydracliprop` copies a `cli.prop` template configured for the local database into the current directory. It overwrites an existing one, so run it once.
 
 ```sh title="b2g.job"
 #$ -S /bin/sh
