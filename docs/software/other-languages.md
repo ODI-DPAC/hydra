@@ -98,7 +98,7 @@ Could not reserve enough space for object heap
 Start Java with an explicit heap limit that fits inside the job's memory reservation:
 
 ```sh
-java -d64 -server -XX:MaxHeapSize=1g -jar program.jar
+java -server -XX:MaxHeapSize=1g -jar program.jar
 ```
 
 Java uses more than the heap. Reserve memory for the job above `MaxHeapSize` (see [Reserve memory](../jobs/request-resources.md#reserve-memory)). Oracle's documentation at <https://docs.oracle.com/en/java/javase/> lists the options.

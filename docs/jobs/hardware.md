@@ -49,6 +49,8 @@ Slots are from `qstat -g c`. A node serves several queues, so the same slots app
 | `qrsh.iq` | 292 | | | interactive queue; `qrsh` |
 | `lTIO.sq` | 34 | | | I/O queue for `/store` |
 | `lTWFM.sq` | 18 | | | workflow-manager queue |
+| `lThMuVM.tq` | 384 | | | long high-memory queue with no virtual-memory limit |
+| `lTb2g.q` | 2 | | | Blast2GO queue; one slot in use at a time |
 
 The per-job limits of each queue are under [Queues](queues.md) and the per-user limits under [Resource limits](limits.md).
 

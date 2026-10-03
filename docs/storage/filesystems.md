@@ -22,7 +22,7 @@ Hydra has public partitions and a number of project partitions, each with its ow
 
 A soft limit can be exceeded for a grace period. At the hard limit writes fail. The file quota counts inodes, so many small files reach it before the space quota does. `/scratch/dbs` (10 TB) holds the shared bioinformatics databases. See [Local databases](../software/guides/databases.md).
 
-`/scratch/public` is divided by unit or discipline into `biology`, `genomics`, `humanities`, `nasm`, `odi` and `sao`. Your directory is under one of them, `/scratch/public/genomics/USERNAME` for example. The shorter form `/scratch/genomics` is a link to `/scratch/public/genomics`, and either works.
+`/scratch/public` is divided by unit or discipline into `biology`, `genomics`, `humanities`, `nasm`, `odi` and `sao`. Your directory is under one of them, `/scratch/public/genomics/USERNAME` for example. The shorter form `/scratch/genomics` is a link to `/scratch/public/genomics`, and either works. On `/data`, `/data/genomics` is the same directory as `/data/public/genomics`.
 
 ## Project partitions
 

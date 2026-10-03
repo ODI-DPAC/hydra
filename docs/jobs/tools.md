@@ -61,7 +61,7 @@
 | `taskid` | task ID of an array task |
 | `qsub_time`, `start_time`, `end_time` | when the job was submitted, started, ended |
 | `granted_pe`, `slots` | parallel environment and slots allocated |
-| `failed` | `1` when the scheduler killed the job, for exceeding a memory or time limit |
+| `failed` | `0` when the job ran and exited normally; any other value is a failure code, which `qacct+ -show explain_failed` explains |
 | `exit_status` | exit status of the job script; `0` when it completed |
 | `ru_wallclock` | elapsed time, seconds |
 | `ru_utime`, `ru_stime` | user and system CPU time reported by the OS, seconds |
@@ -117,7 +117,7 @@ Every session loads `tools/local-user`. `tools/local` adds `tools/local-admin`. 
 | `check-qwait` | local-user | waiting jobs and the quota holding each |
 | `check-gpu-use`, `get-gpu-info` | local-user | GPU use across the cluster; GPUs on the current node |
 | `qchain` | local | submit jobs that run in sequence |
-| `q-wait` | local | pause until jobs leave the queue |
+| `q-wait` | local-user | pause until jobs leave the queue |
 | `plot-qmemuse`, `show-qmemuse` | local-user | memory and CPU of a high-memory job over time |
 | `plot-qssduse`, `show-qssduse` | local-user | local SSD use of a job over time |
 | `rtop+`, `rpstree+` | local-user | `top` and `pstree` on a compute node |

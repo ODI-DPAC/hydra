@@ -164,12 +164,11 @@ qchain '-N start first.job 123' '-N crunch second.job 123' '-N post finish.job 1
 
 One user may have 2,500 jobs queued at once (see [Resource limits](limits.md)). A script that submits more has to wait for its own jobs to finish.
 
-1. Load the local tools and use `q-wait`, which pauses until jobs whose name contains a string have left the queue, or until at most a given number remain:
+1. Use `q-wait`, which pauses until jobs whose name contains a string have left the queue, or until at most a given number remain:
 
     ```console
-    $ module load tools/local
     $ q-wait crunch                       # until no job named *crunch* is queued or running
-    $ q-wait -N 125 -wait 3600 crunch     # until at most 125 remain, checking hourly
+    $ q-wait -njobs 125 -wait 3600 crunch # until at most 125 remain, checking hourly
     ```
 
 2. Or count with `qstat` in the submission script:

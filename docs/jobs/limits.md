@@ -87,7 +87,7 @@ $ qconf -srqs max_hC_slots_per_user  # one set
 $ qconf -sconf global | grep max     # cluster-wide job limits
 $ qquota -u $USER                    # your usage against the limits
 $ qquota -u $USER -l mem_res         # one resource
-$ module load tools/local; qquota+ +% -l slots -u $USER   # with percentages
+$ qquota+ +% -l slots -u $USER       # with percentages
 $ check-qwait                        # your waiting jobs and the quota holding each
 ```
 

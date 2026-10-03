@@ -142,9 +142,13 @@ A sampler records every job in the high-memory queues every five minutes.
     $ qstat -g c
     CLUSTER QUEUE                   CQLOAD   USED    RES  AVAIL  TOTAL aoACDS  cdsuE
     --------------------------------------------------------------------------------
-    lTIO.sq                           0.00      0      0      8      8      0      0
-    lThC.q                            0.38    634      0   4374   5008      0      0
-    lThM.q                            0.37    390      0   4162   4552      0      0
+    all.q                             -nan      0      0      0      0      0      0
+    lTIO.sq                           0.00      0      0     34     34      0      0
+    lTWFM.sq                          0.00      0      0     18     18      0      0
+    lTb2g.q                           0.23      0      0      2      2      0      0
+    lTgpu.q                           0.00      0      0    104    104      0      0
+    lThC.q                            0.16    308      0   4308   4616      0      0
+    lThM.q                            0.16     77      0   4539   4616      0      0
     ...
     ```
 

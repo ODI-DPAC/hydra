@@ -12,13 +12,15 @@
 
     ```console
     $ ls /data/genomics/.snapshot
-    hourly.2026-09-23_1005  hourly.2026-09-23_1105  daily.2026-09-23_0010  weekly.2026-09-21_0015
+    daily.2026-10-02_0010   hourly.2026-10-03_1005  hourly.2026-10-03_1305  weekly.2026-09-27_0015
+    daily.2026-10-03_0010   hourly.2026-10-03_1105  hourly.2026-10-03_1405
+    hourly.2026-10-03_0905  hourly.2026-10-03_1205  weekly.2026-09-20_0015
     ```
 
 2. Change into the snapshot from before the loss, at the path the file had:
 
     ```bash
-    cd /data/genomics/.snapshot/daily.2026-09-23_0010/USERNAME/analysis/results
+    cd /data/genomics/.snapshot/daily.2026-10-02_0010/USERNAME/analysis/results
     ```
 
 3. Copy the file back. `-p` keeps its dates. `-i` asks before overwriting an existing file:

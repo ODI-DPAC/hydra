@@ -30,7 +30,7 @@ The hard limits are 15 minutes longer than the soft ones. At a soft limit the sc
 
 Memory limits are per slot, so a job with `-pe mthread 4` in a high-CPU queue may use 4 × 8 GB. Only the high-CPU queues run multi-node (MPI and hybrid) jobs. In every other queue a parallel job fits on one node.
 
-[qrsh sessions](../interactive/qrsh.md) describes the interactive queues, [Use /store and the I/O queue](../storage/store.md) the I/O queue, and [GPUs](../software/gpus.md) the GPU queues. Jobs in `lTWFM.sq` run on the `@wfm-hosts` nodes, which can run `qsub`. One such job per user runs at a time. `lTb2g.q` is the queue for the one licensed [Blast2GO](../software/guides/blast2go.md) job, with 36 GB of memory, two slots and the long time limits.
+[qrsh sessions](../interactive/qrsh.md) describes the interactive queues, [Use /store and the I/O queue](../storage/store.md) the I/O queue, and [GPUs](../software/gpus.md) the GPU queues. Jobs in `lTWFM.sq` run on the `@wfm-hosts` nodes, which can run `qsub`. One such job per user runs at a time. `lThMuVM.tq` is a long-time, high-memory queue with no virtual-memory limit, for the few applications that a virtual-memory limit breaks. `lTb2g.q` is the queue for the one licensed [Blast2GO](../software/guides/blast2go.md) job, with 36 GB of memory, one slot, no parallel environment and the long time limits.
 
 ## Host groups
 

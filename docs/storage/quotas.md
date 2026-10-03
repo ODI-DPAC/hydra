@@ -33,10 +33,10 @@ A [warning email](../jobs/efficiency.md#disk-quota-over-95) goes out when your u
 $ module load tools/local
 $ disk-usage -d all+
 Filesystem                                Size     Used    Avail Capacity  Mounted on
-netapp-fas83:/vol_home                  22.36T   14.45T    7.91T  65%/11%  /home
-netapp-fas83-n02:/vol_data_public      332.50T   40.32T  292.18T  13%/2%   /data/public
-gpfs02:public                          800.00T  349.32T  450.68T  44%/26%  /scratch/public
-nas1:/mnt/pool/PROJECT                 175.00T   94.03T   80.97T  54%/1%   /store/PROJECT
+netapp-fas83:/vol_home                  22.36T   17.19T    5.18T  77%/12%  /home
+netapp-fas83-n01:/vol_data_public      332.50T  176.06T  156.44T  53%/2%   /data/public
+gpfs02:public                          800.00T  511.44T  288.56T  64%/28%  /scratch/public
+...
 ```
 
 `Capacity` is space used / files used. `disk-usage -d all+ -quotas` adds the default quotas of each partition. `df -h /scratch/public` gives the same for one partition without the tool. The [status page](../policies/status.md) plots the same figures over time under Disk Usage & Quota.
