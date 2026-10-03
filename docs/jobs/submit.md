@@ -10,7 +10,7 @@ The simplest job runs a program on one CPU. It takes a job file, `qsub`, and an 
     cd /scratch/genomics/USERNAME/demo
     ```
 
-2. Create the job file. The `#$` lines are options for `qsub`. The rest is a shell script.
+2. Create the job file. The `#$` lines are options for `qsub`. The rest is a shell script. `crunch` stands for your own program.
 
     ```sh title="crunch.job"
     #$ -S /bin/sh
@@ -47,7 +47,11 @@ The simplest job runs a program on one CPU. It takes a job file, `qsub`, and an 
     = Sat Oct 3 16:14:08 EDT 2026 job crunch done
     ```
 
-The two `echo` lines record which node and queue the job ran in and when it started and finished. Keep them in every job file. Without `-cwd`, the job runs in your home directory and writes its output there. Without `-o` and `-j y`, the output goes to two files, `crunch.oJOBID` and `crunch.eJOBID`. [Job script reference](job-scripts.md) lists every option.
+The two `echo` lines record which node and queue the job ran in and when it started and finished. Keep them in every job file. Without `-o` and `-j y`, the output goes to two files, `crunch.oJOBID` and `crunch.eJOBID`. [Job script reference](job-scripts.md) lists every option.
+
+!!! note "Without `-cwd` the job runs in your home directory"
+
+    Its output files land there too. Keep `-cwd` in the job file to run in the directory you submit from.
 
 With no queue or resource options the job runs in `sThC.q`, which allows 7 hours of CPU time and 8 GB of memory. Anything larger needs a [queue, memory or CPU request](request-resources.md).
 

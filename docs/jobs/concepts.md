@@ -1,6 +1,8 @@
 # How the scheduler works
 
-Hydra runs Grid Engine (Siemens HPCWorks Grid Engine, formerly Sun, Univa and Altair Grid Engine). Documentation and forum posts under any of those names apply. Every computation runs as a **job**, a shell script that you submit from a login node with `qsub`, together with a request for the memory, CPU time and number of CPUs it needs. Each CPU a job is given is called a **slot**. The scheduler places the job on one or more compute nodes and runs it without a terminal.
+Every computation on Hydra runs as a **job**, a shell script that you submit from a login node with `qsub`, together with a request for the memory, CPU time and number of CPUs it needs. Each CPU a job is given is called a **slot**. The scheduler places the job on one or more compute nodes and runs it without a terminal.
+
+The scheduler is Grid Engine (Siemens HPCWorks Grid Engine, formerly Sun, Univa and Altair Grid Engine). Documentation and forum posts under any of those names apply.
 
 ## The parts of the cluster
 
@@ -37,7 +39,9 @@ A few compute nodes are set aside for interactive sessions, reached with `qrsh`.
 
 ## Queues
 
-Every job runs in a queue, and each queue has limits on CPU time, elapsed time and memory per CPU. **CPU time** is the time a processor is busy with the job, and **elapsed time** is the time on the clock from start to finish. [QSub Generator](qsubgen.md#time-and-memory) shows how the two differ. The queues form a matrix. There is a set of queues each for high-CPU, high-memory and GPU jobs. The high-CPU and high-memory sets have short, medium, long and unlimited time limits, and the GPU set has short, medium and long. Single queues serve extra-large-memory jobs, interactive use, I/O to `/store`, and workflow managers. The scheduler picks a queue from the resources you request, or you can name one with `-q`. If you request the wrong queue or resources, the scheduler rejects the job, leaves it waiting forever, or starts it and kills it. [Queues](queues.md) lists them, and [Request a queue, memory and CPUs](request-resources.md) explains how to choose.
+Every job runs in a queue, and each queue has limits on CPU time, elapsed time and memory per CPU. **CPU time** is the time a processor is busy with the job, and **elapsed time** is the time on the clock from start to finish. [QSub Generator](qsubgen.md#time-and-memory) shows how the two differ.
+
+The queues form a matrix. There is a set of queues each for high-CPU, high-memory and GPU jobs. The high-CPU and high-memory sets have short, medium, long and unlimited time limits, and the GPU set has short, medium and long. Single queues serve extra-large-memory jobs, interactive use, I/O to `/store`, and workflow managers. The scheduler picks a queue from the resources you request, or you can name one with `-q`. If you request the wrong queue or resources, the scheduler rejects the job, leaves it waiting forever, or starts it and kills it. [Queues](queues.md) lists them, and [Request a queue, memory and CPUs](request-resources.md) explains how to choose.
 
 ## Limits
 

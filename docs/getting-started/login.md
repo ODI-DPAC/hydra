@@ -12,11 +12,11 @@ The login nodes accept connections only from:
 
 A connection from anywhere else is refused before you are asked for a password.
 
+## Log in
+
 !!! warning "Three failed logins lock the account for 15 minutes"
 
     Wait the 15 minutes before trying again. Retrying during the lockout restarts it.
-
-## Log in
 
 Replace `USERNAME` with your Hydra username from your welcome email, in lower case.
 

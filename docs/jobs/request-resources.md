@@ -41,9 +41,7 @@ Access to a restricted queue is by request to [SI-HPC@si.edu](mailto:SI-HPC@si.e
 
 ## Reserve memory
 
-The default queue allows a job 8 GB per slot, and the scheduler kills a job that uses more. A job that uses up to 2 GB per slot needs no reservation. A job that uses more than that reserves it with `mres`, so that the scheduler places it on a node with that much memory free.
-
-`mres` reserves memory for the job. The scheduler tracks reserved memory on every node and does not start a job on a node with less free, unreserved memory than the request. `h_data` and `h_vmem` are the limits at which the scheduler kills the job. A job without a reservation can fail when the node runs short of memory, or crash the node.
+The default queue allows a job 8 GB per slot, and the scheduler kills a job that uses more. A job that uses up to 2 GB per slot needs no reservation. A job that uses more than that reserves it with `mres`. The scheduler tracks reserved memory on every node and does not start a job on a node with less free, unreserved memory than the request. `h_data` and `h_vmem` are the limits at which the scheduler kills the job. A job without a reservation can fail when the node runs short of memory, or crash the node.
 
 1. Set the three values. `mres` is the job total, and `h_data` and `h_vmem` are per CPU. For a serial job the three are equal. For a parallel job, divide the total by the number of slots:
 
@@ -60,7 +58,7 @@ The default queue allows a job 8 GB per slot, and the scheduler kills a job that
 
 3. After the job finishes, compare `maxvmem` from `qacct -j JOBID` with the reservation and lower it if the job used far less.
 
-!!! danger "A memory value without a unit is in bytes"
+!!! warning "A memory value without a unit is in bytes"
 
     `-l h_vmem=5` limits the job to 5 bytes and it dies at once. Write `5G`.
 
