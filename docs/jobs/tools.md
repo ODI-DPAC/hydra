@@ -116,7 +116,7 @@ Every session loads `tools/local-user`. `tools/local` adds `tools/local-admin`. 
 | `quota+` | local-user | disk quotas on every filesystem; see [Quotas](../storage/quotas.md) |
 | `check-qwait` | local-user | waiting jobs and the quota holding each |
 | `check-gpu-use`, `get-gpu-info` | local-user | GPU use across the cluster; GPUs on the current node |
-| `qchain` | local | submit jobs that run in sequence |
+| `qchain` | local-user | submit jobs that run in sequence |
 | `q-wait` | local-user | pause until jobs leave the queue |
 | `plot-qmemuse`, `show-qmemuse` | local-user | memory and CPU of a high-memory job over time |
 | `plot-qssduse`, `show-qssduse` | local-user | local SSD use of a job over time |

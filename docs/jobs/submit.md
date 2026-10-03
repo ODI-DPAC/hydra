@@ -153,10 +153,9 @@ jid3=`qsub -terse -hold_jid $jid2 -N "post-$name" post-process.job $parameter`
 echo submitted $jid1 $jid2 $jid3
 ```
 
-`qchain`, in the `tools/local` module, adds the `-hold_jid` options for you. `qchain *.job` submits the matching job files in alphabetical order, each waiting for the previous one. Quote each argument to pass options to `qsub` and arguments to the scripts:
+`qchain` adds the `-hold_jid` options for you. `qchain *.job` submits the matching job files in alphabetical order, each waiting for the previous one. Quote each argument to pass options to `qsub` and arguments to the scripts:
 
 ```bash
-module load tools/local
 qchain '-N start first.job 123' '-N crunch second.job 123' '-N post finish.job 123'
 ```
 

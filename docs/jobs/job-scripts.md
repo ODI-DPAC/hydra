@@ -31,8 +31,8 @@ A job file is a shell script whose `#$` lines carry options for `qsub`. When you
 `qsub` collects options in this order. Each step overrides the previous one.
 
 1. the system-wide file `$SGE_ROOT/$SGE_CELL/common/sge_request`
-2. `.sge_request` in the current directory
-3. `~/.sge_request`
+2. `~/.sge_request`
+3. `.sge_request` in the current directory
 4. the `#$` lines in the job file
 5. the `qsub` command line
 
