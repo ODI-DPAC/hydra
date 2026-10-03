@@ -59,11 +59,11 @@ Set by the scheduler in every job. `man qsub` lists the full set.
 | Variable | Meaning | Example |
 |---|---|---|
 | `JOB_NAME` | job name from `-N` | `crunch` |
-| `JOB_ID` | job ID | `8736123` |
+| `JOB_ID` | job ID | `15503724` |
 | `HOSTNAME` | node the job runs on; the master node of a parallel job | `compute-64-11` |
 | `QUEUE` | queue the job runs in | `sThC.q` |
 | `NSLOTS` | slots allocated by `-pe` | `1` |
-| `TMPDIR` | job-specific temporary directory, deleted when the job ends | `/tmp/8736123.1.sThC.q` |
+| `TMPDIR` | job-specific temporary directory, deleted when the job ends | `/tmp/15503724.1.sThC.q` |
 | `PE_HOSTFILE` | file listing the nodes and slots of a parallel job | |
 | `SGE_TASK_ID` | task ID in a job array | `17` |
 | `SGE_TASK_FIRST`, `SGE_TASK_LAST`, `SGE_TASK_STEPSIZE` | the `-t` range of a job array | `1`, `1000`, `20` |

@@ -25,24 +25,26 @@ The simplest job runs a program on one CPU. It takes a job file, `qsub`, and an 
 
     ```console
     $ qsub crunch.job
-    Your job 8736123 ("crunch") has been submitted
+    Your job 15503721 ("crunch") has been submitted
     ```
 
 4. Check that it is queued or running:
 
     ```console
     $ qstat
-    job-ID   prior   name   user      state submit/start at     queue          slots
-    ------------------------------------------------------------------------------------
-    8736123  0.50000 crunch USERNAME  r     09/23/2026 10:04:11 sThC.q@compute-64-11    1
+    job-ID     prior   name       user         state submit/start at     queue                          jclass                         slots ja-task-ID
+    ------------------------------------------------------------------------------------------------------------------------------------------------
+      15503721 0.50500 crunch     USERNAME     r     10/03/2026 16:13:58 sThC.q@compute-76-06.cm.cluste                                    1
     ```
 
 5. When the job is gone from `qstat`, read its log:
 
     ```console
     $ cat crunch.log
-    + Wed Sep 23 10:04:11 EDT 2026 job crunch started in sThC.q with jobID=8736123 on compute-64-11
-    = Wed Sep 23 10:09:52 EDT 2026 job crunch done
+    + Sat Oct 3 16:13:59 EDT 2026 job crunch started in sThC.q with jobID=15503721 on compute-76-06
+    crunch running with:
+    result 1.886e+12
+    = Sat Oct 3 16:14:08 EDT 2026 job crunch done
     ```
 
 The two `echo` lines record which node and queue the job ran in and when it started and finished. Keep them in every job file. Without `-cwd`, the job runs in your home directory and writes its output there. Without `-o` and `-j y`, the output goes to two files, `crunch.oJOBID` and `crunch.eJOBID`. [Job script reference](job-scripts.md) lists every option.

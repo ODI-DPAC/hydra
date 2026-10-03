@@ -4,6 +4,10 @@ RStudio can also run on a compute node of your choosing, with the CPUs and memor
 
 ## Start RStudio in a session
 
+!!! warning "The server asks for no password unless you start it with `-auth`"
+
+    Without `-auth`, anyone with a Hydra account who knows the node and the port can open a tunnel to your session, which has your files. Add `-auth` to the start command, and it asks for your Hydra username and password.
+
 1. On a login node, start an interactive session, load the module and start the server:
 
     ```console
@@ -25,9 +29,9 @@ RStudio can also run on a compute node of your choosing, with the CPUs and memor
     $ ssh -N -L 8123:compute-64-16:8123 USERNAME@hydra-login01.si.edu
     ```
 
-3. Open `http://localhost:8123` in a browser and sign in with your Hydra username and password.
+3. Open `http://localhost:8123` in a browser. If you started the server with `-auth`, sign in with your Hydra username and password.
 
-4. When done, sign out in the browser, `Ctrl-C` in the server's window, `Ctrl-C` in the tunnel's terminal, then `exit` the session. Do not leave a server running unattended.
+4. When done, sign out in the browser if you used `-auth`, then `Ctrl-C` in the server's window, `Ctrl-C` in the tunnel's terminal, then `exit` the session. Do not leave a server running unattended.
 
 The module loads R 4.4.1 (`tools/R/4.4.1`). `module load tools/R` gives 4.4.0. If a sign-out leaves you unable to sign back in, stop and restart the server. If that fails, clear the browser's cookies.
 
