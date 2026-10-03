@@ -1,8 +1,8 @@
 # rclone and cloud storage
 
-[rclone](https://rclone.org/) is a command-line program that copies files between a computer and cloud storage such as Dropbox, OneDrive, Google Drive, Amazon S3 and [many other services](https://rclone.org/#providers). On Hydra it is the module `tools/rclone`. It is the way to reach a cloud account from Hydra, and the way to get data onto Hydra from a computer that cannot connect to the login nodes, such as one on telework.si.edu.
+[rclone](https://rclone.org/) is a command-line program that copies files between a computer and cloud storage such as Dropbox, Google Drive, Amazon S3 and [many other services](https://rclone.org/#providers). On Hydra it is the module `tools/rclone`. It is the way to reach a cloud account from Hydra, and the way to get data onto Hydra from a computer that cannot connect to the login nodes, such as one on telework.si.edu.
 
-Setting up a cloud account takes two places. rclone has to be authorized with the cloud service through a web browser, and the login nodes have none, so you run `rclone config` on Hydra, run `rclone authorize` on your own computer, and paste the result back into the Hydra session. The Dropbox walkthrough below shows every prompt. OneDrive differs in three answers, listed after it.
+Setting up a cloud account takes two places. rclone has to be authorized with the cloud service through a web browser, and the login nodes have none, so you run `rclone config` on Hydra, run `rclone authorize` on your own computer, and paste the result back into the Hydra session. The Dropbox walkthrough below shows every prompt.
 
 ## Set up Dropbox
 
@@ -71,46 +71,6 @@ e/n/d/r/c/s/q> q
 ```
 
 rclone saves the remote in `~/.config/rclone/rclone.conf`. If you later want to withdraw rclone's access, open Dropbox's [connected apps](https://www.dropbox.com/account/connected_apps) settings and remove it.
-
-## Set up OneDrive
-
-!!! warning "OneDrive at the Smithsonian requires an administrator to allow rclone"
-
-    Since December 2024, rclone cannot connect to a Smithsonian OneDrive account until the OneDrive administrators add it as an allowed app. A request is open. Until it is granted, the steps below end with an authorization error.
-
-The procedure is the Dropbox one with three differences.
-
-1. In `rclone config`, choose the `Microsoft OneDrive` storage type and a short name such as `od`. Leave `client_id>` and `client_secret>` blank, as for Dropbox.
-
-2. When rclone asks for the region, choose `Microsoft Cloud Global`. There is an option for `Microsoft Cloud for US Government`, but the Smithsonian does not use that system.
-
-3. On your computer, run `rclone authorize "onedrive"` and sign in with your Smithsonian account. The token is longer, about 3,500 characters. After you paste it on Hydra, rclone asks which drive to use:
-
-    ```text title="on Hydra"
-    config_token> {"access_token":"...","token_type":"bearer","expiry":"..."}
-
-    Option config_type.
-    Type of connection
-     1 / OneDrive Personal or Business
-       \ (onedrive)
-    ...
-    config_type> 1
-
-    Option config_driveid.
-     1 / OneDrive (business)
-       \ (...)
-    config_driveid> 1
-    Drive OK?
-    Found drive "root" of type "business"
-    URL: https://.../Documents
-    y/n> y
-
-    Configuration complete.
-    Keep this "od" remote?
-    y/e/d> y
-    ```
-
-To withdraw rclone's access, open <https://portal.office.com/account>, choose **App permissions**, and revoke rclone.
 
 ## Other services
 

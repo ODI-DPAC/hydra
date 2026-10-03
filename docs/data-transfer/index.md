@@ -6,7 +6,7 @@ There are three ways to move files to and from Hydra. Which one to use depends o
 |---|---|---|
 | `scp`, `sftp`, `rsync` and graphical clients (WinSCP, FileZilla) | files between your computer and Hydra, up to a few tens of gigabytes | [scp, sftp and rsync](scp-rsync.md) |
 | Globus | large transfers, transfers between institutions, and transfers that should keep going after you close your laptop | [Globus](globus.md) |
-| rclone | cloud storage: Dropbox, OneDrive, Google Drive, S3 | [rclone and cloud storage](rclone.md) |
+| rclone | cloud storage: Dropbox, Google Drive, S3 | [rclone and cloud storage](rclone.md) |
 
 A transfer to Hydra starts from a computer on the Smithsonian network or the SI VPN. The login nodes do not accept connections from elsewhere. A transfer from Hydra can go to any host the login nodes can reach.
 
