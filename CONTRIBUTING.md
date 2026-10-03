@@ -65,7 +65,7 @@ What to take from it:
 - **Code blocks have a language** (`bash` for a command, `console` for a prompt and its output, `text` for raw output), and commands, paths, flags and hostnames in prose are in backticks. Placeholders are `USERNAME` and `JOBID`.
 - **Long pages end with "Further reading"**, three or four links with a few words each on why.
 
-Things we don't do: open a page with "This page covers…", write "currently" or "as of" (it dates the page), say "click here", or use em dashes.
+Things we don't do: open a page with "This page covers…", write "currently" or "as of" (it dates the page), say "click here", or use em dashes. We also don't tack ", not Y" onto the end of a sentence for emphasis. Keep the contrast when it is the instruction itself, as in the warning title "Copy data to `/scratch` or `/data`, not to `/home`".
 
 Content tabs (`=== "macOS and Linux"`) are for the same procedure on different systems, as on the login page. Tables are for anything with the same fields on every row. Images only for things that are visual, with alt text, under `docs/assets/`. Section names in the nav, and the H1 of each section's index page, are in Title Case ("Running Jobs"). Page titles and the headings inside a page are in sentence case ("Submit a job array").
 

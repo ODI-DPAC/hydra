@@ -118,8 +118,8 @@ nav:
       - getting-started/index.md
       - Requesting an account: getting-started/account.md
       - Logging in and passwords: getting-started/login.md
-      - Quick start: getting-started/quick-start.md
       - Training and workshops: getting-started/training.md
+      - Quick start: getting-started/quick-start.md
   - Running Jobs:
       - jobs/index.md
       - How the scheduler works: jobs/concepts.md

@@ -3,8 +3,8 @@
 If you are new to Hydra, work through these four pages in order.
 
 1. [Request an account](account.md)
-2. [Watch the introduction video](training.md). We require this of every new user.
-3. [Log in and set your password](login.md)
+2. [Log in and set your password](login.md)
+3. [Watch the required training video](training.md)
 4. [Submit a first job](quick-start.md)
 
 ![Hydra's racks at the Ashburn data center](../assets/hydra-racks.jpg)

@@ -16,6 +16,6 @@ When the account is ready you receive an email with your username and a link to 
 
 The login nodes accept connections only from the Smithsonian network, the SI VPN, or telework.si.edu. If you will work from outside SI, also submit a [VPN account request](https://smithsonianprod.servicenowservices.com/si?id=sc_cat_item&sys_id=cd8bcf38dbaec810faac7c031f961992&sysparm_category=8b5b9d421b601410520ba82eac4bcb65). Telework needs no extra account and works from anywhere, but it gives you a terminal in a browser rather than a full ssh connection, so most people who work off site want the VPN as well.
 
-## Before you log in for the first time
+## When the account is ready
 
-We ask every new user to watch the [introduction to Hydra](training.md) video. It covers the [usage policies](../policies/usage.md), which you agree to by using the cluster. Then set your password from the link in the welcome email and go to [Logging in and passwords](login.md).
+Set your password from the link in the welcome email and go to [Logging in and passwords](login.md). Before you run a job, watch the [introduction to Hydra](training.md) video. We ask this of every new user. It covers the [usage policies](../policies/usage.md), which you agree to by using the cluster.
