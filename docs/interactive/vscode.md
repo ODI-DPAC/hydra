@@ -35,7 +35,7 @@ The `tools/vscode` module also provides `vscode-desktop`, a windowed VS Code ove
     Web UI available at http://192.168.92.85:8000?tkn=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
     ```
 
-    The script prints the tunnel command and waits. Press Enter to start the server. The token changes every start. `-token STRING` fixes it and `-no-token` removes it. `start-vscode-server -help` lists the options.
+    The script prints the tunnel command and waits. Press Enter to start the server, or start the script with `-no-pause` to skip the wait. The token changes every start. `-token STRING` fixes it and `-no-token` removes it. `start-vscode-server -help` lists the options.
 
 2. On your own machine, open the tunnel the script printed, in a terminal you leave alone:
 

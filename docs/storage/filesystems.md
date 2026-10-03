@@ -34,7 +34,7 @@ Groups with their own funding have dedicated partitions under `/scratch` and `/s
 |---|---|---|---|
 | NetApp | `/home`, `/data` | every node | snapshots; disaster-recovery copy to AWS Glacier (see [Backups](backups.md)) |
 | GPFS over InfiniBand | `/scratch` | every node | fastest; no snapshots; scrubbed |
-| NAS | `/store` (project partitions) | login, head, interactive and RStudio server nodes only | snapshots, 8 weeks; fault tolerant but not highly available (see [Use /store and the I/O queue](store.md)) |
+| NAS | `/store` (project partitions) | login, head, interactive and RStudio server nodes only | snapshots on most partitions, for 2 to 8 weeks; fault tolerant but not highly available (see [Use /store and the I/O queue](store.md)) |
 | local SSD | `$SSD_DIR` | the node the job runs on, while it runs | see [Use a node's local SSD](ssd.md) |
 
 ## Scrubbing
