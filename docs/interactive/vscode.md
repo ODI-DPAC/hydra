@@ -30,10 +30,10 @@ The helper process runs on the login node under the login-node limits, so run no
         ssh -N -L 8000:192.168.92.85:8000 USERNAME@hydra-login01.si.edu
       in a terminal window.
     ...
-    Web UI available at http://192.168.92.85:8000?tkn=6031bf1b-25cd-4d43-96b1-e02bd3dfa5f3
+    Web UI available at http://192.168.92.85:8000?tkn=13cadfb3-a5ea-4f97-bf51-ceb35ff7af6f
     ```
 
-    The token changes every start. `-token STRING` fixes it and `-no-token` removes it. `start-vscode-server -help` lists the options.
+    The script prints the tunnel command and waits. Press Enter to start the server. The token changes every start. `-token STRING` fixes it and `-no-token` removes it. `start-vscode-server -help` lists the options.
 
 2. On your own machine, open the tunnel the script printed, in a terminal you leave alone:
 
@@ -66,7 +66,7 @@ A tunnel registers the compute node with Microsoft's relay under a name, and you
     To grant access to the server, please log into https://github.com/login/device and use code ABE4-F1A6
     ```
 
-2. Choose **GitHub Account** with the arrow keys, open the device-login URL in a browser, and enter the code.
+2. Press Enter when the script asks, to start the tunnel. Then choose **GitHub Account** with the arrow keys, open the device-login URL in a browser, and enter the code.
 
 3. Open `https://vscode.dev/tunnel/USERNAME-compute-64-15` in a browser. Choose **GitHub** if it asks how to authenticate.
 

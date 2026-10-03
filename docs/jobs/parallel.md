@@ -119,7 +119,7 @@ Do not call `mpirun` by a full path. The module defines `mpirun` for its own ver
 If the log shows
 
 ```text
-[proxy:0:0@compute-N-M.local] HYDU_create_process (./utils/launch/launch.c:75): execvp error on file CODE (No such file or directory)
+[proxy:0:0@compute-N-M] HYDU_create_process (utils/launch/launch.c:74): execvp error on file CODE (No such file or directory)
 ```
 
 `mpirun` could not find the executable `CODE`. Check the path, and that the file is on a filesystem the compute nodes mount.
