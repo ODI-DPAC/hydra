@@ -18,7 +18,7 @@ A job array runs one job file many times, each run with a different task ID. For
     echo = `date` $JOB_NAME for taskID=$SGE_TASK_ID done.
     ```
 
-    `-t 1-1000` runs tasks 1 to 1000. `-tc 100` runs at most 100 of them at once.
+    `model` stands for your own program. `-t 1-1000` runs tasks 1 to 1000. `-tc 100` runs at most 100 of them at once.
 
 2. Submit it:
 

@@ -129,5 +129,7 @@ Every session loads `tools/local-user`. `tools/local` adds `tools/local-admin`, 
 | `check-qlogs` | local-admin | the reports behind the [warning emails](efficiency.md) |
 | `check-memuse`, `check-hi-memuse` | local-admin | cluster memory and CPU use |
 | `get-cpu_arch` | local-admin | the current node's CPU architecture |
+| `disk-usage` | local-admin | how full each partition is; see [Quotas](../storage/quotas.md) |
+| `plot-qssduse-summary` | local-admin | local SSD use across the cluster |
 | `elapsed`, `lsth`, `lswc`, `tails`, `total`, `fixFmt`, `p-wait`, `procinfo`, `get-jobhr`, `noX`, `useX`, `dus-report`, `check-qacct` | local+ | shell utilities |
 | `dua`, `dut`, `gdu`, `ncdu`, `dus+` | misc | disk-usage tools |

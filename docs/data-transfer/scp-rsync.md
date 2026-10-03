@@ -4,7 +4,7 @@
 
 The three tools are installed by default on macOS and Linux. Windows 10 (version 1803 and later) and Windows 11 include `scp` and `sftp`. `rsync` is not part of Windows. Use it through the Windows Subsystem for Linux (WSL), or use a graphical client instead.
 
-!!! tip "Use rsync for anything over about 70 GB"
+!!! note "Use rsync for anything over about 70 GB"
 
     `rsync` can resume an interrupted copy and limit its own speed. For large transfers we ask you to cap the rate at 20 MB/s (about 70 GB per hour) with `--bwlimit=20000`, so that one transfer does not fill the link for everyone. If that limit is a problem for your work, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
 

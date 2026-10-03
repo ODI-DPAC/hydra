@@ -43,7 +43,7 @@ echo = `date` job $JOB_NAME done
 | `-N hello` | Job name |
 | `-o hello.log` | Output file |
 
-There is no `-q` line, so the job goes to the default queue, `sThC.q`, which allows up to 7 hours of CPU time and is right for most first jobs. [Job scripts](../jobs/job-scripts.md) lists every option, and the [QSub Generator](../jobs/qsubgen.md) writes a job file for you from a web form.
+There is no `-q` line, so the job goes to the default queue, `sThC.q`, which allows up to 7 hours of CPU time and is right for most first jobs. [Job script reference](../jobs/job-scripts.md) lists every option, and the [QSub Generator](../jobs/qsubgen.md) writes a job file for you from a web form.
 
 ## 3. Submit the job
 

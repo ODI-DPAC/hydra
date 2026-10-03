@@ -1,6 +1,6 @@
 # Recover a file from a snapshot
 
-`/home`, `/data` and the project `/store` partitions keep read-only snapshots of their contents, for 4 weeks on `/home`, 2 weeks on `/data` and 8 weeks on `/store`. You copy a file you deleted or overwrote within that time back from the snapshot.
+`/home`, `/data` and the project `/store` partitions keep read-only snapshots of their contents, for 4 weeks on `/home` and 2 weeks on `/data`. On `/store` the period depends on the partition. You copy a file you deleted or overwrote within that time back from the snapshot.
 
 !!! danger "`/scratch` has no snapshots"
 
@@ -39,13 +39,17 @@ Files under `.snapshot` can be read and copied (with `cp`, `tar` or `rsync`) but
 
 ## Recover a file on /store
 
-`/store` snapshots are under `.zfs/snapshot` at the top of each `/store` partition, one directory per day, named `auto-YYMMDD.0230-8w`:
+`/store` snapshots are under `.zfs/snapshot` at the top of each `/store` partition, named `auto-YYYY-MM-DD_HH-MM`:
 
 ```console
 $ ls /store/PROJECT/.zfs/snapshot
-auto-260916.0230-8w  auto-260917.0230-8w  auto-260918.0230-8w  ...
-$ cp -pi /store/PROJECT/.zfs/snapshot/auto-260917.0230-8w/USERNAME/data.tar /store/PROJECT/USERNAME/
+auto-2026-09-20_03-00  ...  auto-2026-10-03_03-00
+$ cp -pi /store/PROJECT/.zfs/snapshot/auto-2026-10-03_03-00/USERNAME/data.tar /store/PROJECT/USERNAME/
 ```
+
+!!! warning "How far back `/store` snapshots go depends on the partition"
+
+    Some partitions keep 8 weeks of snapshots, some keep 2 or 4 weeks, and some list none. List the directory on your own partition to see what it has before you rely on it.
 
 `/store` is mounted only on the login nodes, the head node, the interactive nodes and the RStudio server node.
 

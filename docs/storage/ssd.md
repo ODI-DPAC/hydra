@@ -99,10 +99,11 @@ Keep `SSD_SAVE_MAX` under 80 GB. Saving more takes too long at job exit. Copy la
 ```console
 $ plot-qssduse JOBID              # PNG of the job's SSD use over time
 $ plot-qssduse -x JOBID           # on screen, over X11
+$ module load tools/local
 $ plot-qssduse-summary            # SSD use across the cluster
 ```
 
-`JOBID.TASKID` selects one task of an array. `man plot-qssduse` has the options.
+`plot-qssduse-summary` needs `module load tools/local`. `JOBID.TASKID` selects one task of an array. `man plot-qssduse` has the options.
 
 ## Further reading
 

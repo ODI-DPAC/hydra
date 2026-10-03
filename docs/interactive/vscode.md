@@ -15,7 +15,9 @@ The `tools/vscode` module also provides `vscode-desktop`, a windowed VS Code ove
 1. Install VS Code and the **Remote-SSH** extension on your machine.
 2. **Remote-SSH: Connect to Host**, enter `USERNAME@hydra-login01.si.edu`, and log in with your Hydra password.
 
-The helper process runs on the login node under the login-node limits, so run nothing heavy from its terminal. Submit a job or open an [interactive session](qrsh.md) instead.
+!!! warning "Remote-SSH runs its helper on a login node"
+
+    Anything you start from its terminal is under the login-node limits. For anything that computes, submit a job or open an [interactive session](qrsh.md).
 
 ## Start a VS Code server on a compute node
 
@@ -33,7 +35,7 @@ The helper process runs on the login node under the login-node limits, so run no
     Web UI available at http://192.168.92.85:8000?tkn=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
     ```
 
-    The script prints the tunnel command and waits. Press Enter to start the server. The token changes every start. `-token STRING` fixes it and `-no-token` removes it. `start-vscode-server -help` lists the options.
+    The script prints the tunnel command and waits. Press Enter to start the server, or start the script with `-no-pause` to skip the wait. The token changes every start. `-token STRING` fixes it and `-no-token` removes it. `start-vscode-server -help` lists the options.
 
 2. On your own machine, open the tunnel the script printed, in a terminal you leave alone:
 

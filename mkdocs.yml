@@ -145,12 +145,12 @@ nav:
       - RStudio on a compute node: interactive/rstudio-node.md
   - Storage:
       - storage/index.md
+      - Filesystems: storage/filesystems.md
       - Check usage and quotas: storage/quotas.md
       - Recover a file from a snapshot: storage/snapshots.md
       - Scrubbed files and restores: storage/scrubber.md
       - Use a node's local SSD: storage/ssd.md
       - Use /store and the I/O queue: storage/store.md
-      - Filesystems: storage/filesystems.md
       - Backups: storage/backups.md
   - Software:
       - software/index.md

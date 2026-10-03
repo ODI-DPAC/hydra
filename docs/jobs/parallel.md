@@ -10,7 +10,7 @@ A parallel job requests a parallel environment (PE) and a number of slots with `
 
 ## Submit a multi-threaded job
 
-1. Request `mthread` slots and pass `$NSLOTS` to the program. For a program with a thread option:
+1. Request `mthread` slots and pass `$NSLOTS` to the program. For a program with a thread option, where `demo` stands for your own program and its module:
 
     ```sh title="demo.job"
     #$ -S /bin/sh
@@ -116,7 +116,7 @@ A parallel job requests a parallel environment (PE) and a number of slots with `
 
 Do not call `mpirun` by a full path. The module defines `mpirun` for its own version. A mismatched `mpirun` gives unpredictable results. `~hpc/examples/mpi` holds a hello-world job for every compiler and implementation, described in its `README`.
 
-If the log shows
+If the log of an MVAPICH job shows
 
 ```text
 [proxy:0:0@compute-N-M] HYDU_create_process (utils/launch/launch.c:74): execvp error on file CODE (No such file or directory)

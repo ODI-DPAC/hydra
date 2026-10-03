@@ -66,11 +66,16 @@ Once a job is submitted, you watch it with `qstat`, change it with `qalter`, del
 `qalter` changes most properties of a job in `qw`, and a few of a running job.
 
 ```console
-$ qalter -q mThC.q JOBID          # move to another queue
-$ qalter -o run-3.log JOBID       # rename the output file
-$ qalter -m abe JOBID             # change email notification
-$ qalter -l s_cpu=240:: JOBID     # change the requested CPU time
+$ qalter -q mThC.q JOBID                    # move to another queue
+$ qalter -o run-3.log JOBID                 # rename the output file
+$ qalter -m abe JOBID                       # change email notification
+$ qalter -mods l_hard s_cpu 240:: JOBID     # change a resource that is already in the request
+$ qalter -adds l_hard s_cpu 240:: JOBID     # add a resource to the request
 ```
+
+!!! warning "`qalter -l` replaces the whole resource request"
+
+    A job submitted with `-l mres=2G,h_data=2G,h_vmem=2G` and altered with `qalter -l s_cpu=1::` is left with `s_cpu` alone. Its memory request is gone. Use `-mods` and `-adds` as above, which change one resource and keep the rest. `qstat -j JOBID` shows the request under `hard_resource_list`. Allow a few seconds for a change to appear there.
 
 ## Check a finished job
 
