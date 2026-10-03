@@ -21,7 +21,7 @@ As with every system on the Smithsonian network, you have no expectation of priv
 
 We reserve the right to suspend, cancel or modify accounts, quotas on the public disks, queue configuration and other settings, without warning, when the integrity of the cluster or its fair use requires it.
 
-Hydra is shared by more than a hundred users, and the cluster works only if each of them treats it that way. In practice that means:
+Hydra is shared by hundreds of users, and it works only if each of them treats it that way. In practice that means:
 
 - Do not run analyses on the login nodes or the head node. The login nodes are for editing, compiling, transfers and short tests. The [scheduler](../jobs/concepts.md) is how work reaches the compute nodes. Processes that compute on a login node are slowed, then killed.
 - Watch your own jobs. You are responsible for monitoring their state and progress, and you should be reachable while they run, so that you can adjust them if something is wrong.

@@ -37,12 +37,11 @@ Every MPI implementation has a build for each compiler family. Load the module t
 
 `V.R` is the GCC major and minor version (`gcc/13.2/openmpi`), and `YY` is the Intel or NVIDIA release year (`intel/24/openmpi`, `nvidia/24/mvapich`). The current module names are on the [Job script reference](../jobs/job-scripts.md#mpi-modules).
 
-Build and run with the module loaded:
+Build with the module loaded:
 
 ```console
 $ module load gcc/13.2/openmpi
 $ mpicc -O2 -o hello hello.c        # mpif90 for Fortran, mpicxx for C++
-$ mpirun -np 4 ./hello               # a short test on a login node; anything longer is a job
 ```
 
 In a job, the slot count comes from `$NSLOTS` and the node list from `$PE_HOSTFILE` (OpenMPI) or `$TMPDIR/machines` (MVAPICH). See [Submit an MPI job](../jobs/parallel.md#submit-an-mpi-job). `~hpc/examples/mpi` has a hello-world build for every compiler and implementation, described in its `README`.

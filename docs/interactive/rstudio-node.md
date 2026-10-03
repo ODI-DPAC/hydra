@@ -17,7 +17,7 @@ RStudio can also run on a compute node of your choosing, with the CPUs and memor
     Use Control+C in this window to kill the server when done.
     ```
 
-    Pick a port between 8000 and 9999 rather than the default 8787. Anyone with a Hydra account who guesses the port and node can open a tunnel to your session, which has your files. `start-rstudio-server -help` lists the options. `Address already in use` means the port is taken on that node. Choose another.
+    `-port` chooses the port, and the default is 8787. `Address already in use` means another user has that port on the node. Choose another, between 1025 and 65535. `start-rstudio-server -help` lists the options.
 
 2. On your own machine, open the tunnel the script printed, in a terminal you leave alone:
 

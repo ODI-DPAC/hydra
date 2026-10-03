@@ -143,7 +143,7 @@ Make the cloud copy match a directory on Hydra. `-i` asks before each change, wh
 $ rclone sync -i /scratch/genomics/USERNAME/project db:project/
 ```
 
-`--dry-run` on any command shows what it would do and does nothing. rclone runs on the login nodes, because they are the nodes with a route to the internet. A large copy can trip the login-node limits, so cap the rate with `--bwlimit 20M`, and run the copy inside `screen` or `tmux` so that it survives a dropped connection.
+`--dry-run` on any command shows what it would do and does nothing.
 
 ## Further reading
 
