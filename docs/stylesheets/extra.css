@@ -21,6 +21,9 @@
 [data-md-color-scheme="slate"] {
   --md-primary-fg-color: var(--si-blue);
   --md-accent-fg-color: #74d1ea;
+  --md-default-bg-color: var(--si-black);
+  --si-surface: color-mix(in srgb, var(--si-black), var(--si-navy) 35%);
+  --si-surface-hover: color-mix(in srgb, var(--si-black), var(--si-navy) 55%);
 }
 
 /* ------------------------------------------------------------------ */
@@ -70,18 +73,16 @@
 
 /* ------------------------------------------------------------------ */
 /* Full-bleed landing page hero: navy band edge to edge under the tabs,
-   image on the right, gradient over both so the text half is solid,
-   text kept on the 61rem page grid by .hero__inner.
-   Swap hero.jpg for a photo of the racks when available. */
+   the photo of the racks from the landing site behind a navy gradient
+   that is nearly solid on the text half. The photo layer is "fixed", so it
+   is sized and placed against the window as on the landing page, and the
+   band shows the slice of it that lies behind,
+   text kept on the 61rem page grid by .hero__inner. */
 .md-typeset .hero {
   background:
-    linear-gradient(90deg,
-      var(--md-primary-fg-color--dark) 0%,
-      var(--md-primary-fg-color--dark) 40%,
-      rgba(0, 0, 0, 0) 100%),
-    url("../assets/hero.jpg") right center / cover no-repeat,
-    var(--md-primary-fg-color);
-  background-blend-mode: normal, multiply, normal;
+    linear-gradient(90deg, rgba(0, 37, 84, .96) 0%, rgba(0, 37, 84, .88) 42%, rgba(0, 37, 84, .45) 100%),
+    url("../assets/hero-adc.jpg") center center / cover no-repeat fixed,
+    var(--si-navy);
   color: #fff;
   margin: -2.4rem calc(50% - 50vw) 1.5rem;
   padding: 1.8rem 0 2rem;
@@ -206,7 +207,7 @@
   padding: 0.9rem 1.1rem;
 }
 [data-md-color-scheme="slate"] .md-typeset .grid.meta .card {
-  background: #1d2733;
+  background: var(--si-surface);
 }
 .md-typeset .grid .card h2 {
   font-size: 1rem;
@@ -233,7 +234,7 @@
   background: var(--si-grey-3);
 }
 [data-md-color-scheme="slate"] .md-typeset .grid .card--link:hover {
-  background: #263241;
+  background: var(--si-surface-hover);
 }
 /* News card: one line per entry, ellipsis if longer */
 .md-typeset .grid .card--link p {
@@ -294,9 +295,9 @@
 
 [data-md-color-scheme="slate"] .md-typeset .tabbed-labels { border-color: var(--si-grey-5); }
 [data-md-color-scheme="slate"] .md-typeset .tabbed-labels > label {
-  color: #a3aab0; background: #1d2733; border-color: var(--si-grey-5);
+  color: #a3aab0; background: var(--si-surface); border-color: var(--si-grey-5);
 }
-[data-md-color-scheme="slate"] .md-typeset .tabbed-labels > label:hover { color: #fff; background: #26313f; }
+[data-md-color-scheme="slate"] .md-typeset .tabbed-labels > label:hover { color: #fff; background: var(--si-surface-hover); }
 [data-md-color-scheme="slate"] .md-typeset .tabbed-set > input:nth-child(1):checked ~ .tabbed-labels > :nth-child(1),
 [data-md-color-scheme="slate"] .md-typeset .tabbed-set > input:nth-child(2):checked ~ .tabbed-labels > :nth-child(2),
 [data-md-color-scheme="slate"] .md-typeset .tabbed-set > input:nth-child(3):checked ~ .tabbed-labels > :nth-child(3),
@@ -306,3 +307,33 @@
   color: #fff; background: var(--si-black); border-bottom-color: var(--si-black);
 }
 [data-md-color-scheme="slate"] .md-typeset .tabbed-content { border-color: var(--si-grey-5); }
+
+/* ------------------------------------------------------------------ */
+/* Footer bar in Smithsonian black, both schemes, as on the landing site. */
+.md-footer-meta {
+  background: var(--si-black);
+  --md-footer-fg-color: #fff;
+  --md-footer-fg-color--light: rgba(255, 255, 255, 0.8);
+  --md-footer-fg-color--lighter: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6);
+}
+.md-footer-meta .md-copyright,
+.md-footer-meta .md-copyright__highlight {
+  color: rgba(255, 255, 255, 0.6);
+}
+/* The theme colours footer links with
+   html .md-footer-meta.md-typeset a:not(:focus, :hover), in a style block
+   that loads after this file, so these selectors carry "body" to outrank it. */
+html body .md-footer-meta.md-typeset a:not(:focus, :hover),
+html body .md-footer-meta .md-social__link:not(:focus, :hover) {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+}
+html body .md-footer-meta.md-typeset a:is(:focus, :hover),
+html body .md-footer-meta .md-social__link:is(:focus, :hover) {
+  color: #fff;
+  text-decoration: underline;
+}
+html body .md-footer-meta .md-social__link svg {
+  fill: currentcolor;
+}
