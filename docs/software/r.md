@@ -34,7 +34,7 @@ cl <- makeCluster(numcores, type = "FORK")
 
 !!! warning "Start R workers with the FORK type"
 
-    `type = "FORK"` is required on Hydra. Without it the cluster's cleanup of orphaned processes kills the workers.
+    Use `type = "FORK"` on Hydra. Without it each worker is a separate R process with its own copy of the data, so the job uses far more resources than expected and may be killed.
 
 R's linear-algebra libraries start one thread per CPU on the node unless told otherwise, which oversubscribes the node. Set `OMP_NUM_THREADS` in the job file before starting R:
 
