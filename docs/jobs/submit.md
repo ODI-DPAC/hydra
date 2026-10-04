@@ -103,9 +103,14 @@ Do not request mail for every task of a large job array.
 
 ## Catch the time limit
 
-Each queue has a soft and a hard time limit 15 minutes apart. At the soft limit the scheduler sends the job a signal. At the hard limit it kills the job. A Bourne-shell script can catch the signal and save its state.
+Each queue has a soft and a hard time limit 15 minutes apart. At the soft limit the job is sent a signal. At the hard limit the scheduler kills the job. The signal stops the program the job is running, and the job file carries on with its next line. The lines after the program are where you save the state of the run.
 
-1. Put a `trap` before the command that does the work:
+| Soft limit reached | Signal | The program | A `trap` in the job file |
+|---|---|---|---|
+| elapsed time (`s_rt`) | `SIGUSR1` | stops with exit status 138, unless it handles the signal itself | runs once the program has stopped |
+| CPU time (`s_cpu`) | `SIGXCPU` | stops with `CPU time limit exceeded` and exit status 152, unless it handles the signal itself | does not run |
+
+1. Print the program's exit status after it, and add a `trap` for the elapsed-time signal:
 
     ```sh title="trap.job"
     #$ -S /bin/sh
@@ -115,17 +120,25 @@ Each queue has a soft and a hard time limit 15 minutes apart. At the soft limit 
     {
       echo @ `date` warning, received $1 signal.
     }
-    trap "warn xcpu" SIGXCPU
     trap "warn usr1" SIGUSR1
     #
     echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
     ./crunch
+    echo "crunch exit status: $?"
     echo = `date` job $JOB_NAME done
     ```
 
-2. Replace the `echo` in `warn` with whatever saves the state of the run.
+    At the soft elapsed-time limit the log shows:
 
-The trap runs when the signal arrives, but the command already running continues until it exits. Put checkpointing inside the program where possible. `csh` scripts cannot catch signals. Use `-S /bin/sh`. [Job script reference](job-scripts.md#signals-at-the-time-limits) lists the signals.
+    ```text
+    User defined signal 1
+    @ Sun Oct 4 12:46:43 EDT 2026 warning, received usr1 signal.
+    crunch exit status: 138
+    ```
+
+2. Replace the two `echo` lines with whatever saves the state of the run. The job has until the hard limit, 15 minutes later.
+
+Put checkpointing inside the program where possible, because a program that handles the signal itself is not stopped by it. `csh` scripts cannot catch signals. Use `-S /bin/sh`. [Job script reference](job-scripts.md#signals-at-the-time-limits) lists the signals.
 
 ## Run jobs in sequence
 

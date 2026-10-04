@@ -7,7 +7,7 @@ Hydra has 74 compute nodes, two login nodes and three storage systems, connected
 | Node | Role |
 |---|---|
 | `hydra-7.si.edu` | head node: runs the scheduler and starts jobs. Do not log in to it. |
-| `hydra-login01.si.edu`, `hydra-login02.si.edu` | login nodes: edit, compile, submit and monitor jobs, transfer data. 48 cores, 128 GB each; use either. |
+| `hydra-login01.si.edu`, `hydra-login02.si.edu` | login nodes: edit, compile, submit and monitor jobs, transfer data. Use either. They are shared by everyone who is logged in and are not for computing. |
 | `hydra-globus01`, `hydra-globus02` | Globus endpoint nodes behind the Hydra collections; see [Globus](../data-transfer/globus.md). |
 
 The login nodes slow, then [kill](efficiency.md#high-cpu-use-on-a-login-node), computations run on them.

@@ -24,7 +24,7 @@ The login-node limits apply (see [Warning emails](../jobs/efficiency.md#high-cpu
 
 ## Copy data as an I/O job
 
-Large or repeated copies run as jobs in the I/O queue, `lTIO.sq`, which runs on the interactive nodes. An I/O job can run for 72 hours but use only 12 hours of CPU and 8 GB per slot. One user may run eight I/O jobs at once, with up to 8 slots in total.
+Large or repeated copies run as jobs in the I/O queue, `lTIO.sq`, which runs on the interactive nodes. An I/O job can run for 72 hours, and use 48 hours of CPU and 8 GB per slot. One user may run eight I/O jobs at once, with up to 8 slots in total.
 
 1. Write a job file that requests the queue with `-q lTIO.sq -l ioq`:
 

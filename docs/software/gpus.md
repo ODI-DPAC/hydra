@@ -20,7 +20,7 @@ Hydra has 8 GPUs on three nodes:
 
 2. Add CPU slots on the same node if the program uses more than one CPU, with `-pe mthread Z`. Leave it off for a serial program. `ngpus` is per job, not per slot, so `-pe mthread 8 -l gpu,ngpus=2` is 8 CPUs and 2 GPUs.
 
-3. Pick the queue by the time the job needs. `sTgpu.q` allows 7 hours of CPU time and 14 hours elapsed, `mTgpu.q` 6 and 12 days, and `lTgpu.q` 30 and 60 days, each with 64 GB resident and 128 GB virtual memory per slot. Memory limits multiply by `Z`, and the GV100 nodes have 125 GB usable in total, so a large per-slot request with several slots fits only on `compute-50-01`.
+3. Pick the queue by the time the job needs. `sTgpu.q` allows 7 hours of CPU time and 14 hours elapsed, `mTgpu.q` 6 and 12 days, and `lTgpu.q` 30 and 60 days, each with 64 GB resident and 256 GB virtual memory per slot. Memory limits multiply by `Z`, and the GV100 nodes have 125 GB usable in total, so a large per-slot request with several slots fits only on `compute-50-01`.
 
 4. To require a specific card, add `gpuarch`:
 

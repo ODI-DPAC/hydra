@@ -8,13 +8,13 @@ Modules provide several Python installations, and conda installs anything else i
 |---|---|---|
 | `tools/python` | 3.11.4, Anaconda | default; many packages preinstalled |
 | `tools/python/3.13` | 3.13.5, Anaconda | |
-| `tools/python/3.14` | 3.14.0 | built from source, base packages only |
-| `tools/python/3.9`, `3.10` | 3.9.13, 3.10.0 | built from source |
+| `tools/python/3.14` | 3.14.0 | built from source, base packages only; run it as `python3` |
+| `tools/python/3.9`, `3.10` | 3.9.8, 3.10.0 | built from source; run them as `python3` |
 | `tools/python/3.7`, `3.8` | 3.7.3, 3.8.8, Anaconda | |
 | `tools/python/2.7` | 2.7.16, Anaconda | |
 | `intel/python/39-24.0` | 3.9.18, Intel | with the Intel 2024.0 compilers |
 
-Run `module load tools/python` in a session or a job file. `module -t avail 2>&1 | grep python` lists every version. The Anaconda builds include NumPy, SciPy, pandas, matplotlib and the rest of the Anaconda distribution. `pip list` after loading shows what is there. Packages you install with `pip install --user` go to `~/.local`, where only that Python version finds them.
+Run `module load tools/python` in a session or a job file. The three builds from source provide `python3` and no `python`. With one of them loaded, `python` is still the system's Python 3.6.8. `module -t avail 2>&1 | grep python` lists every version. The Anaconda builds include NumPy, SciPy, pandas, matplotlib and the rest of the Anaconda distribution. `pip list` after loading shows what is there. Packages you install with `pip install --user` go to `~/.local`, where only that Python version finds them.
 
 ## Keep NumPy to the requested CPUs
 
