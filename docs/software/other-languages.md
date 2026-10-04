@@ -88,14 +88,16 @@ $ module load tools/java          # default
 $ module load tools/java/21
 ```
 
-Hydra has versions 8, 17, 18 and 21. Java sizes its heap and thread pool for the whole node unless told otherwise, and a job without a heap limit fails with:
+Hydra has versions 8, 17, 18 and 21. Java reserves far more virtual memory than its heap. Under a virtual-memory limit (`h_vmem`) of 2 GB no installed version starts, with or without a heap option:
 
 ```text
 Error occurred during initialization of VM
-Could not reserve enough space for object heap
+Could not allocate compressed class space: 1073741824 bytes
 ```
 
-Start Java with an explicit heap limit that fits inside the job's memory reservation:
+Java 8 says `Could not allocate metaspace`. Under a limit of 4 GB every version starts. Give a Java job an `h_vmem` of 4 GB or more.
+
+Java also sizes its heap for the whole node unless told otherwise. Start it with an explicit heap limit that fits inside the job's memory reservation:
 
 ```sh
 java -server -XX:MaxHeapSize=1g -jar program.jar
