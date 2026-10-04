@@ -23,11 +23,11 @@ The hard limits are 15 minutes longer than the soft ones. At a soft limit the sc
 | `sThM.q` `mThM.q` `lThM.q` `uThM.q` | 450 GB / 900 GB | `mthread` | jobs needing 8 GB to 450 GB per CPU | `-l himem`; `-l lopri` for `uThM.q` |
 | `uTxlM.rq` | 2 TB / 2 TB | `mthread` | jobs needing more than 450 GB; approved users only | `-l himem` |
 | `lThMuVM.tq` | 450 GB / unlimited | `mthread` | high-memory jobs that a virtual-memory limit breaks; 30 d CPU, 60 d elapsed; approved users only | `-q lThMuVM.tq -l himem` |
-| `sTgpu.q` `mTgpu.q` `lTgpu.q` | 64 GB / 128 GB | `mthread` | jobs that use a GPU | `-l gpu,ngpus=N` |
+| `sTgpu.q` `mTgpu.q` `lTgpu.q` | 64 GB / 256 GB | `mthread` | jobs that use a GPU | `-l gpu,ngpus=N` |
 | `qrsh.iq` | 8 GB / 64 GB | `mthread` | interactive sessions; 12 h CPU, 48 h elapsed | started with `qrsh` |
 | `qgpu.iq` | 64 GB / 128 GB | `mthread` | interactive sessions with a GPU; 12 h CPU, 24 h elapsed | `qrsh -l gpu,ngpus=N` |
-| `lTIO.sq` | 8 GB / 64 GB | `mthread` | jobs that read or write `/store`; 12 h CPU, 72 h elapsed | `-q lTIO.sq -l ioq` |
-| `lTWFM.sq` | 8 GB / 64 GB | `mthread` | a workflow manager that submits jobs; 6 d CPU, 30 d elapsed, 2 slots | `-q lTWFM.sq -l wfmq` |
+| `lTIO.sq` | 8 GB / 64 GB | `mthread` | jobs that read or write `/store`; 48 h CPU, 72 h elapsed | `-q lTIO.sq -l ioq` |
+| `lTWFM.sq` | 24 GB / 64 GB | `mthread` | a workflow manager that submits jobs; 6 d CPU, 30 d elapsed, 2 slots | `-q lTWFM.sq -l wfmq` |
 
 Memory limits are per slot, so a job with `-pe mthread 4` in a high-CPU queue may use 4 × 8 GB. Only the high-CPU queues run multi-node (MPI and hybrid) jobs. In every other queue a parallel job fits on one node.
 
@@ -51,7 +51,7 @@ A host group is a named list of nodes. `-q QUEUE@@GROUP` restricts a job to the 
 | `@b2g-hosts` | the Blast2GO node |
 | `@ssd-hosts` | nodes with a local SSD |
 | `@ib-hosts` | nodes with InfiniBand |
-| `@24c-hosts`, `@NNc-hosts` | nodes with NN CPUs, up to 192 |
+| `@40c-hosts`, `@NNc-hosts` | nodes with NN CPUs, from 32 to 192 |
 | `@avx-hosts`, `@avx2-hosts` | nodes whose CPUs support AVX or AVX2 |
 
 ## CPU architectures
