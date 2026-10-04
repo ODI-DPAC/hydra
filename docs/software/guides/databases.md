@@ -29,7 +29,7 @@ Loading `bio/blast` sets `BLASTDB` to `/scratch/dbs/blast/v5`, so `-db nt` finds
 └── 3.9/             # Dfam FamDB 3.9
 ```
 
-Local copies of the [Dfam](https://www.dfam.org/) [FamDB](https://www.dfam.org/help/family) transposable-element partitions, used by the RepeatMasker modules: Dfam 3.8 for RepeatMasker 4.1.x, from <https://www.dfam.org/releases/Dfam_3.8/families/FamDB/>, and Dfam 3.9 for RepeatMasker 4.2.x, from <https://www.dfam.org/releases/Dfam_3.9/families/FamDB/>. `README.txt` in each directory lists the taxonomic grouping of the partitions. In the RepeatMasker installations under `/share/apps/bio/repeatmasker`, these `.h5` files are linked into `share/RepeatMasker/Libraries/famdb`.
+Local copies of the [Dfam](https://www.dfam.org/) [FamDB](https://www.dfam.org/help/family) transposable-element partitions, used by the RepeatMasker modules: Dfam 3.8 for RepeatMasker 4.1.x, from <https://www.dfam.org/releases/Dfam_3.8/families/FamDB/>, and Dfam 3.9 for RepeatMasker 4.2.x, from <https://www.dfam.org/releases/Dfam_3.9/families/FamDB/>. `README.txt` in each directory lists the taxonomic grouping of the partitions. In the RepeatMasker installations under `/share/apps/bioinformatics/repeatmasker`, these `.h5` files are linked into `share/RepeatMasker/Libraries/famdb`.
 
 ## `/scratch/dbs/kraken`
 
