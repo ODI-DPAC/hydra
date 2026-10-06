@@ -60,7 +60,7 @@ extra_css:
 
 extra:
   generator: false
-  homepage: https://odi-dpac.github.io/      # the header link; computing.si.edu/ at cutover
+  homepage: https://computing.si.edu/
   # Announcement bar and status pill. kind: maintenance | outage | info.
   # Blank text = no banner, pill shows Operational.
   announce:
