@@ -41,11 +41,11 @@ RStudio can also run on a compute node of your choosing, with the CPUs and memor
     $ ssh -N -L 8123:compute-64-11:8123 USERNAME@hydra-login01.si.edu
     ```
 
-5. Open `http://localhost:8123` in a browser and sign in with your Hydra username and password.
+5. Open `http://localhost:8123` in a browser. RStudio opens with no sign-in.
 
-6. When done, sign out in the browser, `Ctrl-C` in the server's window, `Ctrl-C` in the tunnel's terminal, then `exit` the session. Do not leave a server running unattended.
+6. When done, `Ctrl-C` in the server's window, `Ctrl-C` in the tunnel's terminal, then `exit` the session. Do not leave a server running unattended.
 
-The module loads R 4.4.1 (`tools/R/4.4.1`). `module load tools/R` gives 4.4.0. If a sign-out leaves you unable to sign back in, stop and restart the server. If that fails, clear the browser's cookies.
+The module loads R 4.4.1 (`tools/R/4.4.1`). `module load tools/R` gives 4.4.0.
 
 ## RStudio desktop over X11
 
