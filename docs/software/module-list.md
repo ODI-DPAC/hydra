@@ -64,6 +64,7 @@ This list is generated from `module -t avail`. Load a package with `module load 
 | `hifiasm` | 0.19.8(default), 0.25.0 |
 | `hisat2` | 2.2.1(default) |
 | `hmmer` | 3.4(default) |
+| `holi` | 1.0.0 |
 | `htslib` | 1.19.1(default) |
 | `hybpiper` | 1.3.1_final, 2.1.6(default), 2.3.3 |
 | `illumiprocessor` | 2.10(default) |
@@ -174,7 +175,6 @@ This list is generated from `module -t avail`. Load a package with `module load 
 | `python-single-thread-numpy` |  |
 | `R` | 4.4.0(default), 4.4.1, RStudio/desktop/2024.04.2-764, RStudio/server/2024.04.2-764 |
 | `rclone` | 1.62.2, 1.66.0(default), 1.71.2 |
-| `ruby` | 2.2.2, 2.6.3 |
 | `scrubber` |  |
 | `single-thread-numpy` |  |
 | `ssd` |  |
