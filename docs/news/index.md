@@ -2,6 +2,10 @@
 
 Change notices, upgrades, outages and new features, newest first. Major upgrades have their own pages under [Cluster upgrades](upgrades/index.md).
 
+## 2026
+
+<a id="2026-05-15"></a>**May 15.** Disaster-recovery backups of /home and /data to the cloud resumed, ending the pause noted on December 5, 2025. Snapshots were not affected and remain the way to recover a deleted or overwritten file. See [details](../storage/backups.md).
+
 ## 2025
 
 <a id="2025-12-16"></a>**December 16.** The production RStudio server was upgraded with an updated OS and R version. See [RStudio](../interactive/rstudio.md).
