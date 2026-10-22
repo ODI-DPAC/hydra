@@ -90,7 +90,17 @@ CUDA 13 dropped the Volta architecture, so build code for the GV100 nodes with a
 
 ## Install a GPU framework
 
-PyTorch, TensorFlow, vLLM and similar frameworks install with `pip` or `conda` (see [Python and conda](python.md)), and each build of a framework targets one CUDA release. A build for CUDA 13 fails on the GV100 nodes with `no kernel image is available for execution on the device`, because CUDA 13 dropped the Volta architecture. Install a build for CUDA 12.x, or request `gpuarch=L40S` to keep the job off the GV100 nodes. The framework's installation page lists its builds by CUDA release.
+PyTorch, TensorFlow, vLLM and similar frameworks install with `pip` or `conda` (see [Python and conda](python.md)). Each build targets one CUDA release and a set of GPU architectures, and both have to suit the node the job runs on. On the GV100 nodes a build must be for CUDA 12 and include Volta (`sm_70`) kernels. A build for CUDA 13 fails there with a message that the NVIDIA driver is too old. Some recent CUDA 12 builds leave out Volta and fail with `no kernel image is available for execution on the device`.
+
+To check a PyTorch install, start a session on a GV100 node, activate the environment, and list the architectures the build supports:
+
+```console
+$ qrsh -l gpu,ngpus=1,gpuarch=GV100
+$ conda activate ENV
+$ python -c 'import torch; print(torch.version.cuda, torch.cuda.get_arch_list())'
+```
+
+The list must include `sm_70`. If it does not, install a build that does, or request `gpuarch=L40S` to keep the job off the GV100 nodes.
 
 ## Watch a GPU
 
@@ -110,7 +120,7 @@ $ nvidia-smi dmon -d 30 -s pucm -o DT          # utilization every 30 s
 $ nvidia-smi --query-gpu=name,index,memory.used,utilization.gpu --format=csv -l 15
 ```
 
-If a GPU job waits while `check-gpu-use` shows free GPUs, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) with the job ID.
+If a GPU job waits while `check-gpu-use` shows free GPUs, run `qstat -j JOBID` and `qquota -u $USER`. A job can wait for CPU slots or memory on the GPU node, or because you are at your GPU limit. If neither explains the wait, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) with the job ID.
 
 `man nvidia-smi` is on the login nodes. `qacct+ -j JOBID -show +gpus,gpu_usage` reports a finished job's GPU assignment and use (see [Monitoring tools](../jobs/tools.md#qacct)).
 
