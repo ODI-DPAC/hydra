@@ -75,11 +75,11 @@ The SI HPC cluster contains 74 compute nodes, including GPU nodes, with 5,840 CP
 ## [News](news/index.md)
 
 <!-- news:start -->
+**August 25, 2026.** GPU jobs that request more CPU slots than GPUs, such as -pe mthread 4 -l gpu,ngpus=1, now start as soon as the GPUs and CPUs they request are free.
+
 **October 19, 2026.** The Hydra user documentation is now at https://computing.si.edu/hydra/ and supersedes the pages on the Confluence wiki.
 
 **May 15, 2026.** Disaster-recovery backups of /home and /data to the cloud resumed, ending the pause noted on December 5, 2025.
-
-**December 16, 2025.** The production RStudio server was upgraded with an updated OS and R version.
 <!-- news:end -->
 
 </div>
