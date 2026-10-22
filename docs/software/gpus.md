@@ -18,7 +18,7 @@ Hydra has 8 GPUs on three nodes:
     #$ -l gpu,ngpus=1
     ```
 
-2. Add CPU slots on the same node if the program uses more than one CPU, with `-pe mthread Z`. Leave it off for a serial program. `ngpus` is per job, not per slot, so `-pe mthread 8 -l gpu,ngpus=2` is 8 CPUs and 2 GPUs.
+2. Add CPU slots on the same node if the program uses more than one CPU, with `-pe mthread Z`. Leave it off for a serial program. `ngpus` is per job, not per slot, so `-pe mthread 8 -l gpu,ngpus=2` is 8 CPUs and 2 GPUs. Request only the GPUs the program uses. A GPU that a job holds and does not use is unavailable to everyone else.
 
 3. Pick the queue by the time the job needs. `sTgpu.q` allows 7 hours of CPU time and 14 hours elapsed, `mTgpu.q` 6 and 12 days, and `lTgpu.q` 30 and 60 days, each with 64 GB resident and 256 GB virtual memory per slot. Memory limits multiply by `Z`, and the GV100 nodes have 125 GB usable in total, so a large per-slot request with several slots fits only on `compute-50-01`.
 
@@ -88,6 +88,10 @@ The two GPU models take different drivers, which bounds the CUDA toolkit a progr
 
 CUDA 13 dropped the Volta architecture, so build code for the GV100 nodes with a CUDA 12.x toolkit. For one binary that runs on both cards, build with `-gencode arch=compute_70,code=sm_70 -gencode arch=compute_89,code=sm_89`. `~hpc/examples/gpu` holds CUDA, Python, IDL and MATLAB examples with their job files, and `~hpc/examples/gpu/cuda` the OpenACC and CUDA Fortran variants.
 
+## Install a GPU framework
+
+PyTorch, TensorFlow, vLLM and similar frameworks install with `pip` or `conda` (see [Python and conda](python.md)), and each build of a framework targets one CUDA release. A build for CUDA 13 fails on the GV100 nodes with `no kernel image is available for execution on the device`, because CUDA 13 dropped the Volta architecture. Install a build for CUDA 12.x, or request `gpuarch=L40S` to keep the job off the GV100 nodes. The framework's installation page lists its builds by CUDA release.
+
 ## Watch a GPU
 
 These commands run on a login node:
@@ -105,6 +109,8 @@ $ nvidia-smi
 $ nvidia-smi dmon -d 30 -s pucm -o DT          # utilization every 30 s
 $ nvidia-smi --query-gpu=name,index,memory.used,utilization.gpu --format=csv -l 15
 ```
+
+If a GPU job waits while `check-gpu-use` shows free GPUs, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) with the job ID.
 
 `man nvidia-smi` is on the login nodes. `qacct+ -j JOBID -show +gpus,gpu_usage` reports a finished job's GPU assignment and use (see [Monitoring tools](../jobs/tools.md#qacct)).
 
