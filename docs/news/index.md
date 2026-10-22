@@ -4,6 +4,8 @@ Change notices, upgrades, outages and new features, newest first. Major upgrades
 
 ## 2026
 
+<a id="2026-10-19"></a>**October 19.** The Hydra user documentation is now at https://computing.si.edu/hydra/ and supersedes the pages on the Confluence wiki. The Confluence documentation and any other Hydra documentation sites will soon redirect to https://computing.si.edu/hydra/.
+
 <a id="2026-05-15"></a>**May 15.** Disaster-recovery backups of /home and /data to the cloud resumed, ending the pause noted on December 5, 2025. Snapshots were not affected and remain the way to recover a deleted or overwritten file. See [details](../storage/backups.md).
 
 ## 2025
