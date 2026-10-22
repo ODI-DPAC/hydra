@@ -30,8 +30,10 @@ jobs:
     steps:
       - name: Check the filer is allowed
         id: allowed
+        env:
+          FILER: ${{ github.event.issue.user.login }}
         run: |
-          if echo '${{ env.NEWS_PUBLISHERS }}' | grep -q "\"${{ github.event.issue.user.login }}\""; then
+          if echo "$NEWS_PUBLISHERS" | grep -q "\"$FILER\""; then
             echo "ok=true" >> "$GITHUB_OUTPUT"
           else
             echo "ok=false" >> "$GITHUB_OUTPUT"
@@ -81,17 +83,30 @@ jobs:
           PY
       - name: Apply the change
         if: steps.allowed.outputs.ok == 'true'
+        # Form values reach the shell as environment variables, never pasted into
+        # the script, so backticks, quotes and $ in the text stay plain text.
+        env:
+          MODE: ${{ steps.form.outputs.mode }}
+          NOTE: ${{ steps.form.outputs.note }}
+          TEXT: ${{ steps.form.outputs.text }}
+          ISSUE: ${{ github.event.issue.number }}
+          POST: ${{ steps.form.outputs.post }}
+          DATE: ${{ steps.form.outputs.date }}
+          LINK: ${{ steps.form.outputs.link }}
+          KIND: ${{ steps.form.outputs.kind }}
+          START: ${{ steps.form.outputs.start }}
+          UNTIL: ${{ steps.form.outputs.until }}
         run: |
-          if [ "${{ steps.form.outputs.mode }}" = "down" ]; then
+          if [ "$MODE" = "down" ]; then
             args=(--clear-banner)
-            [ -n "${{ steps.form.outputs.note }}" ] && args+=(--note "${{ steps.form.outputs.note }}")
+            [ -n "$NOTE" ] && args+=(--note "$NOTE")
           else
-            args=(--text "${{ steps.form.outputs.text }}" --issue "${{ github.event.issue.number }}")
-            [ "${{ steps.form.outputs.post }}" = "no" ] && args+=(--no-news) || args+=(--date "${{ steps.form.outputs.date }}")
-            [ -n "${{ steps.form.outputs.link }}" ]  && args+=(--link "${{ steps.form.outputs.link }}")
-            [ -n "${{ steps.form.outputs.kind }}" ]  && args+=(--banner "${{ steps.form.outputs.kind }}")
-            [ -n "${{ steps.form.outputs.start }}" ] && args+=(--from "${{ steps.form.outputs.start }}")
-            [ -n "${{ steps.form.outputs.until }}" ] && args+=(--until "${{ steps.form.outputs.until }}")
+            args=(--text "$TEXT" --issue "$ISSUE")
+            [ "$POST" = "no" ] && args+=(--no-news) || args+=(--date "$DATE")
+            [ -n "$LINK" ]  && args+=(--link "$LINK")
+            [ -n "$KIND" ]  && args+=(--banner "$KIND")
+            [ -n "$START" ] && args+=(--from "$START")
+            [ -n "$UNTIL" ] && args+=(--until "$UNTIL")
           fi
           python3 scripts/add_news.py "${args[@]}"
       - name: Open a pull request
