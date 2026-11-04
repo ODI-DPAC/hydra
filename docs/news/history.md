@@ -128,13 +128,13 @@ The production RStudio server will be offline on Tuesday December 16, 2025 for t
     - All scrubbed files will be permanently deleted *ten days after being scrubbed*, except for what is scrubbed during the last 2 weeks prior to the shutdown, so *do not delay requests to restore files*.
 - **May 21, 2025**
     - OCIO had to decommission the listserv we used to communicate with our users (aka HPCC-L) as of Friday 5/16 at COB.
-    - We have set up a Google group email hosted at SAO ([hppc-l@cfa.harvard.edu](mailto:hpcc-l@cfa.harvard.edu)) to send such emails.
+    - We have set up a Google group email hosted at SAO (<!--email_off-->[hppc-l@cfa.harvard.edu](mailto:hpcc-l@cfa.harvard.edu)<!--/email_off-->) to send such emails.
         - You should have received a test email saying "New HPCC distribution list/method"
         - Please make sure that your mail reader is not sending those to spam.
     - This is a moderated groups email, hence users can post messages/questions to everyone on the list, and
         - the group moderator will distribute the message if deemed appropriate.
     - As before, you can still contact the Hydra support team via the following email addresses, based on your needs: 
- [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) for SysAdmin related issues, 
+ <!--email_off-->[SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu)<!--/email_off--> for SysAdmin related issues, 
 
 - **Mar 5, 2025**
     - Hydra will be down while moving to a new data center location.
@@ -283,7 +283,7 @@ The examples, under `~hpc/examples`, have yet to be updated to include the lates
         - We have recently evaluated various storage options and anticipate expanding our storage on Hydra next year, adding more `/scratch`space and if possible adding a somewhat smaller but very fast different storage system.
     - **Personnel changes.**
         - After more than 7 years at the Office of Research Computing (ORC), Rebecca Dikow will leave ORC and move on to her next endeavor.
-        - The ORC is putting in place a transition plan so as to avoid any disruptions this might cause. Please use [si-hpc\@si.edu](mailto:si-hpc@si.edu) or [si-hpc-admin\@si.edu](mailto:si-hpc-admin@si.edu) for communicating with us, instead of emailing Rebecca directly for issues/questions related to Hydra.
+        - The ORC is putting in place a transition plan so as to avoid any disruptions this might cause. Please use <!--email_off-->[si-hpc\@si.edu](mailto:si-hpc@si.edu)<!--/email_off--> or <!--email_off-->[si-hpc-admin\@si.edu](mailto:si-hpc-admin@si.edu)<!--/email_off--> for communicating with us, instead of emailing Rebecca directly for issues/questions related to Hydra.
 
 ## What was New in 2020 to 2022
 

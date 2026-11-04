@@ -68,7 +68,7 @@ R CMD javareconf > /dev/null 2>&1 || true
 
 or put the environment's `bin` directory on `PATH` in the job file instead of activating it, which works for most packages but skips the other variables activation sets.
 
-For help, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) with the full error message and whether you were using the RStudio server, RStudio on a node, or R from the command line.
+For help, email <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off--> with the full error message and whether you were using the RStudio server, RStudio on a node, or R from the command line.
 
 ## Further reading
 

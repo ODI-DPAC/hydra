@@ -37,7 +37,7 @@ MaSuRCA runs in two jobs. A short one turns the configuration file into an `asse
     echo = `date` job $JOB_NAME done
     ```
 
-4. Run the assembly. Memory depends on the genome size. The high-memory queues allow up to 450 GB per slot, and `uTxlM.rq` more, by request to [SI-HPC@si.edu](mailto:SI-HPC@si.edu). This job runs for hours to days.
+4. Run the assembly. Memory depends on the genome size. The high-memory queues allow up to 450 GB per slot, and `uTxlM.rq` more, by request to <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off-->. This job runs for hours to days.
 
     ```sh title="masurca-assemble.job"
     #$ -S /bin/sh

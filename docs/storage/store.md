@@ -1,6 +1,6 @@
 # Use /store and the I/O queue
 
-`/store` holds the project partitions on the NAS, a large and inexpensive near-line system. It holds data waiting to be processed or already processed, and it is not backed up. [SI-HPC@si.edu](mailto:SI-HPC@si.edu) sets up the groups that have a `/store` partition.
+`/store` holds the project partitions on the NAS, a large and inexpensive near-line system. It holds data waiting to be processed or already processed, and it is not backed up. <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off--> sets up the groups that have a `/store` partition.
 
 !!! note "`/store/public` is being phased out"
 

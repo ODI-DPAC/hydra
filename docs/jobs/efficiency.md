@@ -31,7 +31,7 @@ Stop the process and run it as a [job](submit.md) or in an [interactive session]
 - Analyses: submit them as jobs or run them under `qrsh`.
 - `conda`: the "solving environment" step uses a full CPU. Run `conda` under `qrsh`, use `mamba`, and install into a new environment rather than modifying an existing one. See [Python and conda](../software/python.md).
 - `gzip`, `zip`, `tar`: run them under `qrsh` or as a job.
-- File transfers: some transfer programs use a full CPU. Email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) for alternatives.
+- File transfers: some transfer programs use a full CPU. Email <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off--> for alternatives.
 
 After a kill, check the process's output. A transfer may have left partial files. A `tar` archive being written is incomplete and corrupt.
 
@@ -65,13 +65,13 @@ The following job is running but using almost no CPU cycles i.e.: efficiency (CP
  1234570     job4   USER   +3:13    10   9.9%  lThM.q  64-17
 ```
 
-Either the program has stalled after doing some work, in which case kill it with `qdel`, or it is running on one CPU of the ten requested. In the example above, `cpu%` is 9.9 against a `100/nPEs` of 10. Reply to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) within 24 hours to say whether the job should be killed.
+Either the program has stalled after doing some work, in which case kill it with `qdel`, or it is running on one CPU of the ten requested. In the example above, `cpu%` is 9.9 against a `100/nPEs` of 10. Reply to <!--email_off-->[SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu)<!--/email_off--> within 24 hours to say whether the job should be killed.
 
 ## Oversubscribed jobs
 
 A job is oversubscribed when it uses more than 133% of the CPUs it requested. It slows every other job on the node. The weekly mail lists such jobs with the excess CPU-days each used, from `check-qlogs osub -from -7d -user $USER`.
 
-The usual cause is a program that uses every CPU on the node unless told otherwise. Pass `$NSLOTS` to its thread option, or request the slots it uses with `-pe mthread N`. Kill an oversubscribed job that will run for more than another 24 hours and resubmit it with the correct request. Reply to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) within 24 hours. We kill oversubscribed jobs when the cluster is busy.
+The usual cause is a program that uses every CPU on the node unless told otherwise. Pass `$NSLOTS` to its thread option, or request the slots it uses with `-pe mthread N`. Kill an oversubscribed job that will run for more than another 24 hours and resubmit it with the correct request. Reply to <!--email_off-->[SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu)<!--/email_off--> within 24 hours. We kill oversubscribed jobs when the cluster is busy.
 
 ## Memory over-reservation
 

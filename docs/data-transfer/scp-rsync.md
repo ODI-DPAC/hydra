@@ -6,7 +6,7 @@ The three tools are installed by default on macOS and Linux. Windows 10 (version
 
 !!! note "Use rsync for anything over about 70 GB"
 
-    `rsync` can resume an interrupted copy and limit its own speed. For large transfers we ask you to cap the rate at 20 MB/s (about 70 GB per hour) with `--bwlimit=20000`, so that one transfer does not fill the link for everyone. If that limit is a problem for your work, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
+    `rsync` can resume an interrupted copy and limit its own speed. For large transfers we ask you to cap the rate at 20 MB/s (about 70 GB per hour) with `--bwlimit=20000`, so that one transfer does not fill the link for everyone. If that limit is a problem for your work, email <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off-->.
 
 Give every transfer a destination under `/scratch` or `/data`. The home directory has a small quota, and `/tmp` is small and shared.
 

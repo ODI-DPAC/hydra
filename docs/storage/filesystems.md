@@ -26,7 +26,7 @@ A soft limit can be exceeded for a grace period. At the hard limit writes fail. 
 
 ## Project partitions
 
-Groups with their own funding have dedicated partitions under `/scratch` and `/store`, with quotas set per project. `quota+` shows the ones you have access to. Dedicated space is bought with project funds when the disk farm is expanded. Email [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
+Groups with their own funding have dedicated partitions under `/scratch` and `/store`, with quotas set per project. `quota+` shows the ones you have access to. Dedicated space is bought with project funds when the disk farm is expanded. Email <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off-->.
 
 ## Storage systems
 

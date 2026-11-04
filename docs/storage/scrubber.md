@@ -62,7 +62,7 @@ We restore files only while they are in the staging area, and only for a list yo
 
     Fix anything it reports and verify again. One list per scrubbing date and per partition.
 
-4. Email the full path of the list file to [SI-HPC@si.edu](mailto:SI-HPC@si.edu) before 5 pm on the Friday after the scrubbing. Send the path. Do not attach the file.
+4. Email the full path of the list file to <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off--> before 5 pm on the Friday after the scrubbing. Send the path. Do not attach the file.
 
 !!! danger "Scrubbed files are permanently deleted about ten days after the scrubbing"
 

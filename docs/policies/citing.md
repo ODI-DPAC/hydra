@@ -12,4 +12,4 @@ As an acknowledgment:
 
 Use "Some of the computations" if only part of the work ran on Hydra.
 
-We would like to know about the publication. Please [email us](mailto:SI-HPC@si.edu) the reference. An illustration from the work, with a short caption for a general audience, is welcome too.
+We would like to know about the publication. Please <!--email_off-->[email us](mailto:SI-HPC@si.edu)<!--/email_off--> the reference. An illustration from the work, with a short caption for a general audience, is welcome too.

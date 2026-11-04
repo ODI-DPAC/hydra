@@ -57,7 +57,7 @@ For an overloaded node we identify the jobs behind the load, end them, and tell 
 
 What we ask of you when a warning arrives:
 
-- For a hosed or oversubscribed job, reply to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) within 24 hours where you can, so that we can decide together whether the job should be killed. An oversubscribed job with more than 24 hours still to run should be killed and resubmitted with the right request.
+- For a hosed or oversubscribed job, reply to <!--email_off-->[SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu)<!--/email_off--> within 24 hours where you can, so that we can decide together whether the job should be killed. An oversubscribed job with more than 24 hours still to run should be killed and resubmitted with the right request.
 - For an inefficient or memory-over-reserved job, look at what the job is doing, do not ignore the warning, and write to us if you do not understand why it fired or how to fix it for the next job.
 
 When the cluster is busy, or an oversubscription is large, we kill such jobs at our discretion. When the load is above 70%, users with many inefficient jobs have some of them killed automatically, down to 100 unused slots per user, and receive a warning.
@@ -70,10 +70,14 @@ We communicate by email, and we expect you to read it. We use it to announce new
 
 All of that goes to the address in the `~/.forward` file in your Hydra home directory. We create the file when the account is created, with your canonical Smithsonian address. If you would rather receive mail elsewhere, put one address on the first line of that file:
 
+<!--email_off-->
+
 ```console
 $ echo you@si.edu > ~/.forward
 ```
 
+<!--/email_off-->
+
 ## Contact
 
-Questions and requests go to [SI-HPC@si.edu](mailto:SI-HPC@si.edu). Two things go to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu). One is a reply to a warning email about a hosed or oversubscribed job. The other is a request to unlock an account whose password expired more than 14 days ago. [Getting help](index.md#getting-help) says what to include.
+Questions and requests go to <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off-->. Two things go to <!--email_off-->[SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu)<!--/email_off-->. One is a reply to a warning email about a hosed or oversubscribed job. The other is a request to unlock an account whose password expired more than 14 days ago. [Getting help](index.md#getting-help) says what to include.

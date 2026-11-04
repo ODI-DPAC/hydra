@@ -1,6 +1,6 @@
 # Local bioinformatics databases
 
-Hydra keeps large, widely used reference databases under `/scratch/dbs`, so that each user does not download a copy. Email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) to request a database.
+Hydra keeps large, widely used reference databases under `/scratch/dbs`, so that each user does not download a copy. Email <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off--> to request a database.
 
 !!! warning "Old versions are not kept"
 
