@@ -113,7 +113,7 @@ Install into an environment with `pip` after activating it, so the package lands
 (iqtree-v1) $ pip install PACKAGE
 ```
 
-For software that needs a compiler, load the compiler module first (see [Compilers, libraries and MPI](compilers.md)). For software that needs a license, a build against the cluster's MPI or CUDA libraries, or a shared database, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
+For software that needs a compiler, load the compiler module first (see [Compilers, libraries and MPI](compilers.md)). For software that needs a license, a build against the cluster's MPI or CUDA libraries, or a shared database, email <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off-->.
 
 ## Jupyter
 

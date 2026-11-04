@@ -120,7 +120,7 @@ $ nvidia-smi dmon -d 30 -s pucm -o DT          # utilization every 30 s
 $ nvidia-smi --query-gpu=name,index,memory.used,utilization.gpu --format=csv -l 15
 ```
 
-If a GPU job waits while `check-gpu-use` shows free GPUs, run `qstat -j JOBID` and `qquota -u $USER`. A job can wait for CPU slots or memory on the GPU node, or because you are at your GPU limit. If neither explains the wait, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) with the job ID.
+If a GPU job waits while `check-gpu-use` shows free GPUs, run `qstat -j JOBID` and `qquota -u $USER`. A job can wait for CPU slots or memory on the GPU node, or because you are at your GPU limit. If neither explains the wait, email <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off--> with the job ID.
 
 `man nvidia-smi` is on the login nodes. `qacct+ -j JOBID -show +gpus,gpu_usage` reports a finished job's GPU assignment and use (see [Monitoring tools](../jobs/tools.md#qacct)).
 

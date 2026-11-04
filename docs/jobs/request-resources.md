@@ -37,7 +37,7 @@ Some complete requests are:
 | `-q uThC.q -l lopri` | the unlimited high-CPU queue |
 | `-q uTxlM.rq -l himem` | the unlimited extra-large-memory queue, restricted |
 
-Access to a restricted queue is by request to [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
+Access to a restricted queue is by request to <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off-->.
 
 ## Reserve memory
 
@@ -140,7 +140,7 @@ A job stays in state `qw` when the resources it requested are not free or when y
 
     The reason is in the `scheduling info` lines at the end.
 
-A job that waits for hours or days while you are under the limits has requested a scarce resource. Email [SI-HPC@si.edu](mailto:SI-HPC@si.edu) with the job ID.
+A job that waits for hours or days while you are under the limits has requested a scarce resource. Email <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off--> with the job ID.
 
 ## Further reading
 

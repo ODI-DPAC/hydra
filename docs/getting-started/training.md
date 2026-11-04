@@ -23,4 +23,4 @@ The introductory workshop runs every quarter, and we announce it on the HPCC-L m
 | [Installing software and writing modules](https://github.com/SmithsonianWorkshops/advanced-hydra-workshops/tree/main/install_sw%2Bm) | 2023-03-22 |
 | [Conda on Hydra](https://github.com/SmithsonianWorkshops/advanced-hydra-workshops/tree/main/conda) | 2023-02-15 |
 
-If you would like a workshop on a topic that is not here, or a session for your group, email [SI-HPC@si.edu](mailto:SI-HPC@si.edu).
+If you would like a workshop on a topic that is not here, or a session for your group, email <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off-->.

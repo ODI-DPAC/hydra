@@ -125,7 +125,7 @@ Use the self-service page to change a password you know, to reset one you have f
 
 ### Unlock an account after 14 days
 
-Once a password has been expired for more than 14 days the account is locked and the self-service page no longer works for it. Email [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) to request a reset. The instructions come to your work email address.
+Once a password has been expired for more than 14 days the account is locked and the self-service page no longer works for it. Email <!--email_off-->[SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu)<!--/email_off--> to request a reset. The instructions come to your work email address.
 
 ## Further reading
 

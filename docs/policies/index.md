@@ -6,14 +6,14 @@ Hydra is a shared system, and we require every user to follow the [usage policie
 
 ## Getting help
 
-Email [SI-HPC@si.edu](mailto:SI-HPC@si.edu). Include the following, so that we can reproduce the problem:
+Email <!--email_off-->[SI-HPC@si.edu](mailto:SI-HPC@si.edu)<!--/email_off-->. Include the following, so that we can reproduce the problem:
 
 - your Hydra username
 - the job ID, from `qstat` for a running job or `qacct+ -j JOBID` for a finished one
 - the full command or the job file, and the error message copied exactly
 - what you expected to happen instead
 
-Two things go to [SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu) instead. One is a reply to a warning email about a hosed or oversubscribed job (see [Usage policies](usage.md#oversubscribed-and-inefficient-jobs)). The other is a request to unlock an account whose password expired more than 14 days ago (see [Logging in and passwords](../getting-started/login.md)). For a new account or VPN access, see [Requesting an account](../getting-started/account.md).
+Two things go to <!--email_off-->[SI-HPC-Admin@si.edu](mailto:SI-HPC-Admin@si.edu)<!--/email_off--> instead. One is a reply to a warning email about a hosed or oversubscribed job (see [Usage policies](usage.md#oversubscribed-and-inefficient-jobs)). The other is a request to unlock an account whose password expired more than 14 days ago (see [Logging in and passwords](../getting-started/login.md)). For a new account or VPN access, see [Requesting an account](../getting-started/account.md).
 
 ## Before you write
 
